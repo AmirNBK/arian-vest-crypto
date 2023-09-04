@@ -1,0 +1,22 @@
+import React from 'react';
+import localFont from 'next/font/local'
+const myFontIran = localFont({ src: '../../../assets/Fonts/iranyekanwebregular_0.ttf' })
+
+const FooterInfo = (props: {
+    title: string;
+    info: string
+}) => {
+    return (
+        <div className={`${myFontIran.className} FooterInfo flex flex-row items-baseline text-right`}>
+            <span className='text-2xl mr-2'>
+                {props.info}
+            </span>
+            :
+            <span className='text-2xl ml-2 font-semibold'>
+                {props.title}
+            </span>
+        </div>
+    );
+};
+
+export default FooterInfo;
