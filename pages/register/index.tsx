@@ -13,8 +13,10 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { Checkbox } from "primereact/checkbox";
 import chart from '../../assets/images/chart.png'
-
 const inter = Inter({ subsets: ['latin'] })
+import localFont from 'next/font/local'
+const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
 
 export default function Register() {
 
@@ -27,9 +29,9 @@ export default function Register() {
             <PrimeReactProvider>
                 <Header />
                 <div className='Register__title flex flex-col gap-4 mt-16 justify-center'>
-                    <div className='flex flex-row-reverse w-full items-baseline justify-center mb-12 gap-5'>
+                    <div className='flex flex-row-reverse w-full items-center justify-center mb-24 gap-5'>
                         <Image src={icon} alt='registerIcon' />
-                        <div className='text-5xl flex flex-row-reverse gap-1'>
+                        <div className={`${myFont.className} text-5xl flex flex-row-reverse gap-1`}>
                             <p className='text-white'>
                                 فرآیند
                             </p>
@@ -44,7 +46,7 @@ export default function Register() {
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px' }} className='w-full px-8 py-8'>
                                 <div className='flex flex-row gap-2 items-center justify-end'>
-                                    <p style={{ color: '#F68D2E' }} className='text-3xl mr-2'> عضویت </p>
+                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> عضویت </p>
                                     <Image src={signUp} alt='signup' />
                                 </div>
                                 <div className='mt-16 flex flex-col gap-10'>
@@ -57,7 +59,7 @@ export default function Register() {
                                     <RegisterButton text='عضویت' />
                                 </div>
                             </div>
-                            <p className='text-white text-center mt-4 text-base'>
+                            <p className={`${myFontIran.className} text-white text-center mt-4 text-base`}>
                                 اطلاعات شخصی شما برای پردازش سفارش شما استفاده می‌شود، و پشتیبانی از تجربه شما در این وبسایت، و برای اهداف دیگری که در  <span className='inline text-underline' style={{ color: '#F68D2E', textDecoration: 'underline' }}> سیاست حفظ حریم خصوصی </span> توضیح داده شده است.
                             </p>
                         </div>
@@ -65,17 +67,17 @@ export default function Register() {
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px' }} className='w-full px-8 py-8 h-fit'>
                                 <div className='flex flex-row gap-2 items-center justify-end '>
-                                    <p style={{ color: '#F68D2E' }} className='text-3xl mr-2'> ورود </p>
+                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> ورود </p>
                                     <Image src={login} alt='login' />
                                 </div>
                                 <div className='mt-12 flex flex-col gap-10'>
                                     <RegisterInput placeholder='آدرس ایمیل*' />
                                     <RegisterInput placeholder='پسورد ایمیل*' />
-                                    <p style={{ color: '#00A3FF' }} className='text-lg text-right'>
+                                    <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base text-right`}>
                                         رمز عبور خود را فراموش کرده اید؟
                                     </p>
                                     <div className='flex flex-row items-center gap-2 text-right justify-end'>
-                                        <p className='text-white text-lg'>
+                                        <p className={`${myFontIran.className} text-white text-base`}>
                                             مرا به خاطر بسپار
                                         </p>
                                         <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
@@ -84,7 +86,7 @@ export default function Register() {
                                 </div>
                             </div>
 
-                            <Image src={chart} alt='chart' className='w-' style={{opacity : '0.3'}} />
+                            <Image src={chart} alt='chart' className='w-' style={{ opacity: '0.3' }} />
                         </div>
                     </div>
                 </div>
