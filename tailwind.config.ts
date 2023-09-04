@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         'new-black': '#1D1D1D',
+        'main-orange': '#F68D2E',
       },
     },
   },

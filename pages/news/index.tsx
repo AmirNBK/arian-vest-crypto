@@ -10,6 +10,9 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
 import newspaper from '../../assets/icons/newspaper2.svg'
+import NewsComponent from '@/components/NewsComponent/NewsComponent';
+import pic from '../../assets/images/newsPic.png'
+import Footer from '@/components/Footer/Footer';
 
 export default function SingleBlog() {
 
@@ -28,6 +31,18 @@ export default function SingleBlog() {
                         آرشیو <span style={{ color: '#F68D2E' }}>  اخبار و مقالات </span>
                     </p>
                 </div>
+
+
+                <div className='px-12 mt-20 grid grid-cols-3 gap-y-24 mb-32'>
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={30} image={pic} />
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={30} image={pic} />
+                    <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
+                </div>
+
+                <Footer />
 
             </PrimeReactProvider>
         </main>
