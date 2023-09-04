@@ -94,6 +94,77 @@ export default function SingleBlog() {
 
                 <Footer />
             </PrimeReactProvider>
+
+
+            <style>
+                {
+                    `
+                    .p-accordion .p-accordion-header .p-accordion-header-link {
+                        border: none;
+                        background: #1D1D1D;
+                        color: #fff;
+                        padding: 30px 20px;
+                        font-family: '__myFont_0ebf61';
+                        font-weight:400;
+                    }
+
+                    .p-accordion-header-text {
+                        text-align:right;
+                        line-height:1.8
+                    }
+
+                    .p-accordion-header {
+                        color : white;
+                    }
+
+                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+                        background: #1D1D1D;
+                        color : white
+                    }
+
+                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+                        border:none;
+                        background : #1D1D1D;
+                        color : white;
+                    }
+
+                    .p-accordion .p-accordion-content {
+                        background : #1D1D1D;
+                        color : white;
+                        border:none
+                    }
+
+                    
+    .p-checkbox .p-checkbox-box {
+        background-color: transparent;
+      }
+  
+      .p-accordion-header-link {
+
+        justify-content: space-between;
+      }
+
+      .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+        background-color: #1D1D1D;
+        border: none;
+        color : white;
+      }
+
+      .p-accordion-tab {
+        width: 681px;
+      }
+
+      .p-accordion .p-accordion-header .p-accordion-header-link {
+        height : 90px;
+      }
+
+      .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+        color : #F68D2E;
+      }
+                    
+                    `
+                }
+            </style>
         </main>
     )
 }
