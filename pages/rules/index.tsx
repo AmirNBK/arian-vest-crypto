@@ -5,8 +5,7 @@ import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import { Checkbox } from "primereact/checkbox";
-import chart from '../../assets/images/chart.png'
+import trading from '../../assets/icons/Range_trading.png'
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import rules from '../../assets/icons/rules.svg'
@@ -14,7 +13,9 @@ import Footer from '@/components/Footer/Footer'
 import RulesComponent from '@/components/RulesComponent/RulesComponent';
 const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
-
+import bull from '../../assets/images/bull.png'
+import book from '../../assets/icons/book.svg'
+import { Accordion, AccordionTab } from 'primereact/accordion';
 
 
 export default function Rules() {
@@ -52,10 +53,153 @@ export default function Rules() {
                     <RulesComponent translate={0} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />
                     <RulesComponent translate={20} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />
                     <RulesComponent translate={50} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />
-
                 </div>
 
+                <div className='relative'>
+                    <Image src={trading} alt='trading' unoptimized />
+                    <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
+                        style={{ transform: 'translate(-50%,-50%)' }}
+                    />
+                </div>
+
+                <div className='flex flex-row-reverse justify-center items-center mt-24'>
+                    <Image src={book} alt='rules' unoptimized />
+                    <p className={`${myFont.className} mr-5 text-white text-4xl`}>
+                        بررسی کامل <span style={{ color: '#F68D2E' }}>قوانین معامله </span>
+                    </p>
+                </div>
+
+                <div>
+                    <Accordion multiple className='grid grid-cols-2 gap-y-4 ml-12 mb-24 mt-8'>
+                        <AccordionTab
+                            className='text-white text-right' header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+                        <AccordionTab header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
+                            <p className={`m-0 ${myFontIran.className} text-right`}>
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                            </p>
+                        </AccordionTab>
+
+                    </Accordion>
+                </div>
+
+
+
                 <Footer />
+
+
+                <style>
+                    {
+                        `
+                    .p-accordion .p-accordion-header .p-accordion-header-link {
+                        border: none;
+                        background: #1D1D1D;
+                        color: #fff;
+                        padding: 30px 20px;
+                        font-family: '__myFont_0ebf61';
+                        font-weight:400;
+                    }
+
+                    .p-accordion-header-text {
+                        text-align:right;
+                        line-height:1.8
+                    }
+
+                    .p-accordion-header {
+                        color : white;
+                    }
+
+                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+                        background: #1D1D1D;
+                        color : white
+                    }
+
+                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+                        border:none;
+                        background : #1D1D1D;
+                        color : white;
+                    }
+
+                    .p-accordion .p-accordion-content {
+                        background : #1D1D1D;
+                        color : white;
+                        border:none
+                    }
+
+                    
+    .p-checkbox .p-checkbox-box {
+        background-color: transparent;
+      }
+  
+      .p-accordion-header-link {
+
+        justify-content: space-between;
+      }
+
+      .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+        background-color: #1D1D1D;
+        border: none;
+        color : white;
+      }
+
+      .p-accordion-tab {
+        width: 681px;
+      }
+
+      .p-accordion .p-accordion-header .p-accordion-header-link {
+        height : 90px;
+      }
+
+      .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+        color : #F68D2E;
+      }
+                    
+                    `
+                    }
+                </style>
             </PrimeReactProvider>
         </main>
     )

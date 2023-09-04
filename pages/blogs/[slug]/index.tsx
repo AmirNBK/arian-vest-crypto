@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import { Checkbox } from "primereact/checkbox";
-import chart from '../../assets/images/chart.png'
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import newspaper from '../../../assets/icons/newspaper.svg'
@@ -22,7 +19,6 @@ import blogImage3 from '../../../assets/images/blog3.png'
 export default function SingleBlog() {
 
     const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
-
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
