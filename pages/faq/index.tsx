@@ -33,8 +33,11 @@ export default function SingleBlog() {
                 </div>
 
                 <div>
-                    <Accordion multiple activeIndex={[0]} className='grid grid-cols-2 gap-y-4 ml-12 mb-24'>
+                    <Accordion multiple className='grid grid-cols-2 gap-y-4 ml-12 mb-24 mt-8'>
                         <AccordionTab
+                            pt={{
+                                headerIcon: <Image src={arrow} alt='arrow'/>
+                            }}
                             className='text-white text-right' header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟">
                             <p className={`m-0 ${myFontIran.className} text-right`}>
                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
@@ -153,6 +156,10 @@ export default function SingleBlog() {
 
       .p-accordion .p-accordion-header .p-accordion-header-link {
         height : 90px;
+      }
+
+      .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+        color : #F68D2E;
       }
                     
                     `
