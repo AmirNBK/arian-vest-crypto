@@ -8,7 +8,7 @@ const myFont = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' }
 const Header = () => {
     const header = ['صفحه اصلی', 'تعرفه ها', 'قوانین', 'سوالات متداول', 'درباره ما', 'بلاگ']
     return (
-        <div className='Header flex flex-row-reverse justify-between w-full items-center'>
+        <div className='Header flex flex-row-reverse justify-between w-full items-center px-12'>
             <div>
                 <Image src={logo} alt='logo' style={{ width: '191px' }} />
             </div>

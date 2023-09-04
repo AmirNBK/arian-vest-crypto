@@ -15,6 +15,7 @@ import { Checkbox } from "primereact/checkbox";
 import chart from '../../assets/images/chart.png'
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
+import Footer from '@/components/Footer/Footer'
 const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
 
@@ -24,11 +25,11 @@ export default function Register() {
 
     return (
         <main
-            className={`flex min-h-screen flex-col p-12 ${inter.className}`}
+            className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
                 <Header />
-                <div className='Register__title flex flex-col gap-4 mt-16 justify-center'>
+                <div className='Register__title flex flex-col gap-4 mt-16 justify-center p-12'>
                     <div className='flex flex-row-reverse w-full items-center justify-center mb-24 gap-5'>
                         <Image src={icon} alt='registerIcon' />
                         <div className={`${myFont.className} text-5xl flex flex-row-reverse gap-1`}>
@@ -90,6 +91,7 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </PrimeReactProvider>
         </main>
     )
