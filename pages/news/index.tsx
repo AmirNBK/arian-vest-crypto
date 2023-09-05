@@ -24,10 +24,7 @@ export default function SingleBlog() {
 
     const [first, setFirst] = useState<number[]>([0, 0, 0]);
     const [rows, setRows] = useState([10, 10, 10]);
-    const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
-
-
-
+    
     const onPageChange = (e: PaginatorPageChangeEvent, index: number) => {
         setFirst(first.map((f, i) => (index === i ? e.first : f)));
         setRows(rows.map((r, i) => (index === i ? e.rows : r)));
