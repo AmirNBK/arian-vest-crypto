@@ -12,7 +12,7 @@ const Header = () => {
         { label: 'تعرفه ها', url: '/' },
         { label: 'قوانین', url: '/rules' },
         { label: 'سوالات متداول', url: '/faq' },
-        { label: 'درباره ما', url: '/' },
+        { label: 'درباره ما', url: '/about-us' },
         { label: 'بلاگ', url: '/blogs' }
     ];
 
