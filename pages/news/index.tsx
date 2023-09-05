@@ -12,11 +12,28 @@ const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.tt
 import newspaper from '../../assets/icons/newspaper2.svg'
 import NewsComponent from '@/components/NewsComponent/NewsComponent';
 import pic from '../../assets/images/newsPic.png'
+import { classNames } from 'primereact/utils';
+import { Ripple } from 'primereact/ripple';
 import Footer from '@/components/Footer/Footer';
+import {
+    Paginator, PaginatorPageChangeEvent, PaginatorNextPageLinkOptions, PaginatorPageLinksOptions, PaginatorPrevPageLinkOptions,
+} from 'primereact/paginator';
+import template1 from '@/functions/function';
 
 export default function SingleBlog() {
 
+    const [first, setFirst] = useState<number[]>([0, 0, 0]);
+    const [rows, setRows] = useState([10, 10, 10]);
     const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
+
+
+
+    const onPageChange = (e: PaginatorPageChangeEvent, index: number) => {
+        setFirst(first.map((f, i) => (index === i ? e.first : f)));
+        setRows(rows.map((r, i) => (index === i ? e.rows : r)));
+    };
+
+
 
     return (
         <main
@@ -33,7 +50,7 @@ export default function SingleBlog() {
                 </div>
 
 
-                <div className='px-12 mt-20 grid grid-cols-3 gap-y-24 mb-32'>
+                <div className='px-12 mt-20 grid grid-cols-3 gap-24 mb-32 mx-auto'>
                     <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
                     <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={30} image={pic} />
                     <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
@@ -42,7 +59,64 @@ export default function SingleBlog() {
                     <NewsComponent text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها.' translate={0} image={pic} />
                 </div>
 
+                <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={120}
+                    style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
+
                 <Footer />
+
+
+                <style>
+
+                    {
+                        `
+                        .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+                            color: #F68D2E;
+                            border-bottom: 1px solid #F68D2E;
+                            border-radius: 0px;
+                            background : transparent;
+                            border-color : none;
+                        }
+
+                        .p-link:focus {
+                            box-shadow:none;
+                        }
+
+                        .p-paginator .p-paginator-pages .p-paginator-page {
+                            color : white;
+                        }
+
+                        .p-paginator-pages {
+                            display: flex;
+                            flex-direction : row-reverse;
+                        }
+
+                        .p-paginator {
+                            flex-direction: row-reverse;
+                        }
+
+                        .p-paginator .p-paginator-pages .p-paginator-page {
+                            border: 0 none;
+                            min-width: 0.7rem;
+                            height: 1.5rem;
+                            margin: 0.5rem;
+                            transition: box-shadow 0.2s;
+                        }
+
+                        .p-paginator .p-paginator-current {
+                            display:none;
+                        }
+
+                        .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+                            background : transparent;
+                            color : white;
+                        }
+
+                        .p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+                            background : transparent;
+                        }
+                        `
+                    }
+                </style>
 
             </PrimeReactProvider>
         </main>
