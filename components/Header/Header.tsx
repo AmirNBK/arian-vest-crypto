@@ -9,7 +9,7 @@ const myFont = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' }
 const Header = () => {
     const header = [
         { label: 'صفحه اصلی', url: '/' },
-        { label: 'تعرفه ها', url: '/' },
+        { label: 'تعرفه ها', url: '/tariff' },
         { label: 'قوانین', url: '/rules' },
         { label: 'سوالات متداول', url: '/faq' },
         { label: 'درباره ما', url: '/about-us' },
