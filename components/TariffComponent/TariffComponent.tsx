@@ -1,7 +1,7 @@
 import React from 'react';
 import localFont from 'next/font/local'
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
-const myFontIranlight = localFont({ src: '../../assets/Fonts/iranyekanweblight_0.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+const myFontIranlight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
 import bull from '../../assets/images/bullHead.png'
 import Image from 'next/image';
 import TariffTable from '../TariffTable/TariffTable';

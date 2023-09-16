@@ -2,9 +2,9 @@ import React from 'react';
 import footerBg from '../../assets/images/footerBg.png'
 import Image from 'next/image';
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
-const myFontLight = localFont({ src: '../../assets/Fonts/iranyekanweblight_0.ttf' })
-const myFont2 = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+const myFontLight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
+const myFont2 = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import arrow from '../../assets/icons/arrowWithCircle.svg'
 import bull from '../../assets/icons/bull.svg'
 import FooterInfo from '../CommonComponents/FooterInfo/FooterInfo';

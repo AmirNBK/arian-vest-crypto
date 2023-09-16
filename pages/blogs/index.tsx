@@ -7,8 +7,8 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import newspaper from '../../assets/icons/newspaper2.svg'
 import NewsComponent from '@/components/NewsComponent/NewsComponent';
 import pic from '../../assets/images/newsPic.png'

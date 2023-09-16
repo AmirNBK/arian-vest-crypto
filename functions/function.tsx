@@ -1,5 +1,5 @@
 import localFont from 'next/font/local'
-const myFontIran = localFont({ src: '../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../assets/fonts/iranyekanwebregular_0.ttf' })
 import {
     PaginatorNextPageLinkOptions, PaginatorPageLinksOptions, PaginatorPrevPageLinkOptions,
 } from 'primereact/paginator';

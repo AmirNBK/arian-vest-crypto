@@ -4,7 +4,7 @@ import logo from '../../assets/icons/logo.png'
 import profile from '../../assets/icons/profile.svg'
 import localFont from 'next/font/local'
 import Link from 'next/link';
-const myFont = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const Header = () => {
     const header = [

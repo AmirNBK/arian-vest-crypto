@@ -1,9 +1,9 @@
 import Image, { StaticImageData } from 'next/image';
 import localFont from 'next/font/local'
 import React from 'react';
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
-const myFontIranLight = localFont({ src: '../../assets/Fonts/iranyekanweblight_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+const myFontIranLight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
 
 const NewsComponent = (props: {
     image: StaticImageData

@@ -1,0 +1,36 @@
+.ArrowContainer {
+    -webkit-animation: scale-down 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-down 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.ArrowContainer__notHover {
+    -webkit-animation: scale-up 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-up 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+@keyframes scale-down {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    100% {
+        background-color: #FFD074;
+        border: none;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+}
+
+@keyframes scale-up {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}

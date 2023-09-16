@@ -1,6 +1,6 @@
 import React from 'react';
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
 import Image from 'next/image';
 

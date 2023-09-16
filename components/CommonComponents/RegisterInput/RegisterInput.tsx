@@ -1,6 +1,6 @@
 import React from 'react';
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const RegisterInput = (props: {
     placeholder: string

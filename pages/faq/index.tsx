@@ -7,8 +7,8 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import faq from '../../assets/icons/faq.svg'
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import arrow from '../../assets/icons/arrow2.svg'

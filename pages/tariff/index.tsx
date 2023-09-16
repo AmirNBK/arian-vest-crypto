@@ -7,9 +7,9 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { TabView, TabPanel } from 'primereact/tabview';
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import tariff from '../../assets/icons/tariff.svg'
 import TariffComponent from '@/components/TariffComponent/TariffComponent';
 import TariffTable from '@/components/TariffTable/TariffTable';

@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import newspaper from '../../../assets/icons/newspaper.svg'
 import Footer from '@/components/Footer/Footer'
-const myFont = localFont({ src: '../../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
 import blogImage from '../../../assets/images/blog.png'
 import blogImage2 from '../../../assets/images/blog2.png'
 import blogImage3 from '../../../assets/images/blog3.png'

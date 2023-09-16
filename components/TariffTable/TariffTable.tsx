@@ -3,7 +3,7 @@ import logo from '../../assets/icons/rulesLogo.svg'
 import Image from 'next/image';
 import localFont from 'next/font/local'
 import RegisterButton from '../CommonComponents/RegisterButton/RegisterButton';
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const TariffTable = (props: {
     title: string

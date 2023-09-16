@@ -1,6 +1,6 @@
 import React from 'react';
 import localFont from 'next/font/local'
-const myFontIran = localFont({ src: '../../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const FooterInfo = (props: {
     title: string;

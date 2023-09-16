@@ -11,8 +11,8 @@ import localFont from 'next/font/local'
 import rules from '../../assets/icons/rules.svg'
 import Footer from '@/components/Footer/Footer'
 import RulesComponent from '@/components/RulesComponent/RulesComponent';
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import bull from '../../assets/images/bull.png'
 import book from '../../assets/icons/book.svg'
 import { Accordion, AccordionTab } from 'primereact/accordion';

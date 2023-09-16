@@ -16,12 +16,12 @@ import chart from '../../assets/images/chart.png'
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 export default function Register() {
 
-    const [checked, setChecked] = useState<boolean>(false);
+    const [checked, setChecked] = useState<any>(false);
 
     return (
         <main

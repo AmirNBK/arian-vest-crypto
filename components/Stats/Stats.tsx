@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import localFont from 'next/font/local'
 
 

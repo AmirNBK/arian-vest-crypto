@@ -1,117 +1,89 @@
 import Image from 'next/image'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+import Header from '@/components/Header/Header';
+import pic from '../assets/images/HeroSectionPic.png'
+import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
+import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
 
 export default function Home() {
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
+  const cumulativeOffset = (element: any) => {
+    let top = 0;
+    let left = 0;
+    while (element) {
+      top += element.current?.offsetTop || 0;
+      left += element.current?.offsetLeft || 0;
+      element = element.offsetParent;
+    }
+    return { top, left };
+  };
+
+  const moveFunc = (event: any) => {
+    const e = event || window.event;
+
+    // Check if imageRef is defined and current is not undefined
+    if (imageRef && imageRef.current) {
+      const x = (e.pageX - cumulativeOffset(imageRef).left - (300 / 2)) * -1 / 100;
+      const y = (e.pageY - cumulativeOffset(imageRef).top - (300 / 2)) * -1 / 100;
+
+      // Check if scrollY is greater than 400
+      if (scrollY > 400) {
+        // Reset x and y values to 0
+        const matrix = [
+          [1, 0, 0, 0],
+          [0, 1, 0, 0],
+          [0, 0, 1, 1],
+          [0, 0, 0, 1]
+        ];
+
+        imageRef.current.style.transition = 'all 0.35s'; // Add the transition inline
+        imageRef.current.style.transform = `matrix3d(${matrix.toString()})`;
+      } else {
+        // Apply the regular transformation
+        const matrix = [
+          [1, 0, 0, -x * 0.00005],
+          [0, 1, 0, -y * 0.00005],
+          [0, 0, 1, 1],
+          [0, 0, 0, 1]
+        ];
+
+        imageRef.current.style.transition = 'all 0.35s';
+        imageRef.current.style.transform = `matrix3d(${matrix.toString()})`;
+      }
+    }
+  };
+
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col ${inter.className}`}
+      onMouseMoveCapture={moveFunc}
     >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+      <PrimeReactProvider>
+        <Header />
+
+        <div className='relative h-screen'>
+          <div className='relative mt-20 lg:block block
+                      absolute left-1/2 top-1/3 
+                      '
+            style={{ transform: 'translate(-50%,-54%)' }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <Image src={pic} alt='pic' unoptimized
+              ref={imageRef}
+              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 h-full' />
+            <div className=''>
+              <HeroSectionText />
+            </div>
+          </div>
+          <ArrowComponent />
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </PrimeReactProvider>
     </main>
   )
 }

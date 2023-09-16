@@ -7,8 +7,8 @@ import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import team from '../../assets/icons/team.svg'
-const myFont = localFont({ src: '../../assets/Fonts/Mj Dinar Two Medium.ttf' })
-const myFontIran = localFont({ src: '../../assets/Fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import range from '../../assets/images/rangeTrading.png'
 import shape from '../../assets/images/shape.png'
 import AboutUsItems from '@/components/AboutUsItems/AboutUsItems';
