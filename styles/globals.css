@@ -16,7 +16,29 @@
   }
 }
 
+html {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
 body {
+  overflow-x: hidden;
   background-color: #0E0E0E;
   color: rgb(var(--foreground-rgb));
   /* background: linear-gradient(
@@ -26,7 +48,7 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 
-    .rtl {
-      direction: rtl;
-    }
+  .rtl {
+    direction: rtl;
+  }
 }

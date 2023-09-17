@@ -7,8 +7,16 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import Header from '@/components/Header/Header';
 import pic from '../assets/images/HeroSectionPic.png'
+import localFont from 'next/font/local'
 import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
+import dynamic from 'next/dynamic';
+const myFont = localFont({ src: '../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFontIran = localFont({ src: '../assets/fonts/iranyekanwebregular_0.ttf' })
+const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
+  ssr: false,
+});
+import bull from '../assets/images/bull.svg'
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -82,6 +90,24 @@ export default function Home() {
             </div>
           </div>
           <ArrowComponent />
+
+          <div className={`justify-center flex flex-row-reverse gap-4 items-end py-20 mr-12 mt-8 flex flex-col w-6/12 ml-auto`}>
+            <p className={`${myFont.className} text-white text-5xl my-2`}>
+              <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
+            </p>
+            <p className={`${myFontIran.className} rtl text-white`}>
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
+            </p>
+            <p className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
+              بررسی تعرفه ها
+            </p>
+          </div>
+
+          <div className='relative'>
+            <CarouselSlider />
+            <Image src={bull} alt='bull' className='absolute top-1/2' unoptimized />
+          </div>
+
         </div>
       </PrimeReactProvider>
     </main>
