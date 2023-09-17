@@ -27,7 +27,8 @@ import Footer from '@/components/Footer/Footer';
 import container from '../assets/images/container.png'
 import container2 from '../assets/images/container2.png'
 import goldBUll from '../assets/images/goldBull.png'
-
+import customer from '../assets/images/customer.png'
+import customers from '../assets/images/customers.png'
 
 
 
@@ -213,10 +214,26 @@ export default function Home() {
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه.
               </p>
               <p className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
-                style={{ textDecoration: 'underline' , transform: 'translate(-50%,0%)' }}>
+                style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
                 بیشتر بخوانید
               </p>
-              <Image src={goldBUll} unoptimized alt='bull' className='absolute -left-36 -bottom-16 w-96'/>
+              <Image src={goldBUll} unoptimized alt='bull' className='absolute -left-36 -bottom-16 w-96' />
+            </div>
+          </div>
+
+          <div className='my-56'>
+            <Image src={customer} alt='customer' className='ml-40  translate-y-12' unoptimized />
+            <div className='relative'>
+              <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+              >
+                <span className='text-3xl text-main-orange text-center'>
+                </span>رشد حساب 40% تا <span style={{ color: '#F68D2E' }}>
+                  سقف 1 میلیون دلار </span>
+              </p>
+              <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
+              </p>
+              <Image src={customers} alt='customers' unoptimized className='absolute -top-12' />
             </div>
           </div>
           <Footer />
