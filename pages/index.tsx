@@ -19,6 +19,11 @@ const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/Carouse
   ssr: false,
 });
 import bull from '../assets/images/bull.svg'
+import redBull from '../assets/images/redBull.svg'
+import greenBull from '../assets/images/greenBull.svg'
+import button from '../assets/icons/register.svg'
+
+
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -166,6 +171,22 @@ export default function Home() {
               </Accordion>
             </div>
 
+          </div>
+
+          <div className='py-32'>
+            <p className={`${myFont.className} text-white text-5xl text-center`}>
+              <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
+            </p>
+            <div className='flex flex-row-reverse py-6 gap-12'>
+              <Image src={redBull} alt='redBull' />
+              <div className='flex flex-col items-center justify-center gap-10'>
+                <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+                </p>
+                <Image src={button} alt='register'/>
+              </div>
+              <Image src={greenBull} alt='greenBull' />
+            </div>
           </div>
 
         </div>
