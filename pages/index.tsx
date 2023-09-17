@@ -18,10 +18,16 @@ import rulesPic from '../assets/images/rules.png'
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
 });
+import pic1 from '../assets/images/pic1.png'
 import bull from '../assets/images/bull.svg'
 import redBull from '../assets/images/redBull.svg'
 import greenBull from '../assets/images/greenBull.svg'
 import button from '../assets/icons/register.svg'
+import Footer from '@/components/Footer/Footer';
+import container from '../assets/images/container.png'
+import container2 from '../assets/images/container2.png'
+import goldBUll from '../assets/images/goldBull.png'
+
 
 
 
@@ -183,11 +189,37 @@ export default function Home() {
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
                 </p>
-                <Image src={button} alt='register'/>
+                <Image src={button} alt='register' className='cursor-pointer' />
               </div>
               <Image src={greenBull} alt='greenBull' />
             </div>
           </div>
+
+          <div className='aboutUs my-40 relative'>
+            <Image src={pic1} alt='pic' unoptimized style={{ opacity: '0.5' }} />
+            <div className='absolute right-0 top-12'>
+              <Image src={container} alt='container' />
+              <p className={`${myFont.className} text-white w-max text-5xl text-center absolute top-1/2 left-1/2`}
+                style={{ transform: 'translate(-50%,-50%)' }}
+              >
+                <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
+              </p>
+            </div>
+            <div className='absolute right-0 top-64'>
+              <Image src={container2} alt='container' />
+              <p className={`${myFontIran.className} leading-[2.8rem]	text-white text-lg  text-right rtl w-[36rem] absolute top-1/2 left-1/2`}
+                style={{ transform: 'translate(-50%,-65%)' }}
+              >
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه.
+              </p>
+              <p className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
+                style={{ textDecoration: 'underline' , transform: 'translate(-50%,0%)' }}>
+                بیشتر بخوانید
+              </p>
+              <Image src={goldBUll} unoptimized alt='bull' className='absolute -left-36 -bottom-16 w-96'/>
+            </div>
+          </div>
+          <Footer />
 
         </div>
 
