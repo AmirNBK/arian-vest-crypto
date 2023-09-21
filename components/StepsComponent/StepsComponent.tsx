@@ -1,7 +1,15 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import logo from '../../assets/icons/logoWhite.png'
+import bull from '../../assets/images/yellowBull.png'
+import leopard from '../../assets/images/yellowLeopard.png'
+import localFont from 'next/font/local'
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+
 
 const StepsComponent = () => {
     const [current, setCurrent] = useState(1);
+    const [activeStep, setActiveStep] = useState(1);
 
     useEffect(() => {
         const stepsNode = document.querySelector("#steps");
@@ -15,8 +23,10 @@ const StepsComponent = () => {
         const totalSteps = stepsNode.children.length;
 
         stepsNode.querySelectorAll("button").forEach((step) => {
+            const targetStep = parseInt(step.dataset.step || '1');
+
             step.addEventListener("click", (e) => {
-                const targetStep = parseInt((e.target as HTMLElement)?.dataset.step || '1');
+                console.log(e.target);
 
                 contentsNode
                     .querySelectorAll(".content")
@@ -26,7 +36,7 @@ const StepsComponent = () => {
                     .forEach((content) => content.classList.remove("active"));
 
                 contentsNode.querySelector(`.content[data-step="${targetStep}"]`)?.classList.add("active");
-                stepsNode.querySelector(`button[data-step="${targetStep}"]`)?.classList.add("active");
+                step.classList.add("active");
 
                 stepsNode
                     .querySelectorAll("div")
@@ -40,6 +50,7 @@ const StepsComponent = () => {
 
                 // Update the current step state
                 setCurrent(targetStep);
+                setActiveStep(targetStep);
             });
         });
     }, []);
@@ -47,30 +58,62 @@ const StepsComponent = () => {
 
     return (
         <>
-            <div className="steps" id="steps">
-                <button data-step="1" className="active">1</button>
-                <div></div>
-                <button data-step="2">2</button>
-                <div></div>
-                <button data-step="3">3</button>
-            </div>
-
-            <div id="contents" >
-                <div className="content active" data-step="1">
-                    <div className="content__box">
+            <div className={`${myFontIran.className} steps relative`} id="steps">
+                <button data-step="1"
+                    className={(activeStep === 1 || activeStep === 2 || activeStep === 3) ? "active" : ""}
+                    style={{
+                        background: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && '#F68D2E'}`,
+                        color: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && 'white'}`
+                    }}
+                >
+                    <p className='absolute font-light top-[-30px] text-base text-white'> ارزیابی </p>
+                    <p>
                         1
+                    </p>
+                </button>
+                <div></div>
+                <button data-step="2" className={(activeStep === 2 || activeStep === 3) ? "active" : ""}
+                    style={{
+                        background: `${(activeStep === 2 || activeStep === 3) ? '#F68D2E' : '#A2A2A2'}`,
+                        color: `${(activeStep === 2 || activeStep === 3) && 'white'}`
+                    }}
+                >
+                    <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
+                        <p className='absolute font-light top-[-30px] -translate-x-[70px] text-base text-white'> تایید مهارت </p>
+                    </span>
+                </button>
+                <div></div>
+                <button data-step="3" className={activeStep === 3 ? "active" : ""}
+                    style={{
+                        background: `${(activeStep === 3) ? '#F68D2E' : '#A2A2A2'}`,
+                        color: `${(activeStep === 3) && 'white'}`
+                    }}
+                >
+                    <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
+                    <p className='absolute font-light top-[-30px] w-max text-base text-white'> تریدر آرین‌وست </p>
+                </button>
+            </div>
+            <div id="contents" className={`${myFontIran.className}`} >
+                <div className="content active" data-step="1">
+                    <div className="content__box rtl">
+                        اولین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
                 <div className="content" data-step="2">
-                    <div className="content__box">
-                        2
+                    <div className="content__box rtl">
+                        دومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
                 <div className="content" data-step="3">
-                    <div className="content__box">
-                        3
+                    <div className="content__box rtl">
+                        سومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
+                <div className='flex flex-row w-full justify-between'>
+                    <Image src={bull} alt='bull' unoptimized />
+                    <Image src={leopard} alt='leopard' unoptimized />
+                </div>
+
             </div>
 
 
@@ -89,7 +132,7 @@ const StepsComponent = () => {
                       .steps div {
                         width: 100%;
                         height: 2px;
-                        background: rgba(49, 140, 252, 0.25);
+                        background: #A2A2A2;
                         position: relative;
                       }
                       .steps div::after {
@@ -109,9 +152,6 @@ const StepsComponent = () => {
                       }
                       .steps button {
                         cursor: pointer;
-                        background: transparent;
-                        border: 2px solid #F68D2E;
-                        color: #F68D2E;
                         font-weight: 900;
                         border-radius: 100%;
                         min-width: 50px;
@@ -121,7 +161,6 @@ const StepsComponent = () => {
                         align-items: center;
                         font-size: 25px;
                         box-shadow: 0.9px 2.8px 2.2px rgba(49, 140, 252, 0.02), 2.1px 6.7px 5.3px rgba(49, 140, 252, 0.028), 4px 12.5px 10px rgba(49, 140, 252, 0.035), 7.1px 22.3px 17.9px rgba(49, 140, 252, 0.042), 13.4px 41.8px 33.4px rgba(49, 140, 252, 0.05), 32px 100px 80px rgba(49, 140, 252, 0.07);
-                        background: white;
                         transition: all 0.3s ease;
                       }
                       .steps button.active {
@@ -153,11 +192,11 @@ const StepsComponent = () => {
                         z-index: 10;
                       }
                       .content__box {
-                        background: white;
-                        box-shadow: 0.9px 2.8px 2.2px rgba(49, 140, 252, 0.02), 2.1px 6.7px 5.3px rgba(49, 140, 252, 0.028), 4px 12.5px 10px rgba(49, 140, 252, 0.035), 7.1px 22.3px 17.9px rgba(49, 140, 252, 0.042), 13.4px 41.8px 33.4px rgba(49, 140, 252, 0.05), 32px 100px 80px rgba(49, 140, 252, 0.07);
-                        border-radius: 20px;
+                        color : white;
+                        text-align:center;
                         padding: 50px;
-                        max-width: 800px;
+                        width: 60%;
+                        font-size : 20px;
                         margin: 0 auto;
                       }
                     `
