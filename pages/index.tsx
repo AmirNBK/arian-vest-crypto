@@ -29,8 +29,11 @@ import container2 from '../assets/images/container2.png'
 import goldBUll from '../assets/images/goldBull.png'
 import customer from '../assets/images/customer.png'
 import customers from '../assets/images/customers.png'
-
-
+import BenefitsComponent from '@/components/BenefitsComponent/BenefitsComponent';
+import benefitsPic from '../assets/images/benefitsPic1.png'
+import benefitsPic2 from '../assets/images/benefitsPic2.png'
+import benefitsPic3 from '../assets/images/benefitsPic3.png'
+import line from '../assets/icons/line.svg'
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -234,6 +237,39 @@ export default function Home() {
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
               </p>
               <Image src={customers} alt='customers' unoptimized className='absolute -top-12' />
+            </div>
+          </div>
+
+          <div className='py-32 cooroprate__Benefits mx-12'>
+            <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+            >
+              <span className='text-3xl text-main-orange text-center'>
+              </span>مزایای همکاری  <span style={{ color: '#F68D2E' }}>
+                با آرین وست </span>
+            </p>
+            <div className='flex flex-col gap-10 mt-6 relative'>
+              <BenefitsComponent
+                title='تا سقف'
+                highlightTitle='یک میلیون دلار'
+                description='تا سقف یک میلیون دلار اعتبار سرمایه دریافت کن و شروع به ترید کن ! اگر قصد فعالیت در بازار های مالی رو داری و سرمایه مورد نیاز نداری یا نمیخوای روی سرمایه ی خودت ریسک کنی ، پراپی این سرمایه بزرگ رو در اختیارت قرار میده'
+                image={benefitsPic}
+                position='normal'
+              />
+              <BenefitsComponent
+                title='تا 90 درصد سود'
+                highlightTitle='برای شما'
+                description='فقط کافیه در دو مرحله توانایی های خودت رو اثبات کنی و بعد از اون هرچقدر روی حساب اعتباری سود کسب کنی تا 90 درصد مبلغ سود رو میتونی دریافت کنی !'
+                image={benefitsPic2}
+                position=''
+              />
+              <BenefitsComponent
+                title='سرور اختصاصی'
+                highlightTitle='آرین وست'
+                description='اضافه شدن سرور اختصاصی بروکر ایت کپ قدمی بسیار بزرگ برای شروع فعالیت های بین المللی پراپ فرم پراپی است . هدف و اولویت ما راحتی و آسوده خاطر بودن تریدر های عزیز میباشد .'
+                image={benefitsPic3}
+                position='normal'
+              />
+              <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1]' />
             </div>
           </div>
           <Footer />
