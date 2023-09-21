@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import localFont from 'next/font/local'
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 const myFontIranlight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
 import bull from '../../assets/images/bullHead.png'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Image from 'next/image';
 import TariffTable from '../TariffTable/TariffTable';
 
@@ -11,8 +13,13 @@ const TariffComponent = (props: {
     price: number
     description: string
 }) => {
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-8/12 mx-auto p-6`}>
+        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-8/12 mx-auto p-6`}
+            data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+        >
             <div className='TariffComponent__info text-main-orange flex flex-row text-4xl justify-between'>
                 <p> {props.title} </p>
                 <p> {props.price}k </p>

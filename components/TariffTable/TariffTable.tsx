@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from '../../assets/icons/rulesLogo.svg'
 import Image from 'next/image';
 import localFont from 'next/font/local'
 import RegisterButton from '../CommonComponents/RegisterButton/RegisterButton';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+
 
 const TariffTable = (props: {
     title: string
     data: Array<{ title: string, info: string }>
     price: number
 }) => {
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
         <div className={`${myFontIran.className} TariffTable my-32 w-8/12 mx-auto rounded-lg`}
             style={{ backgroundColor: '#1D1D1D' }}
+            data-aos-duration="2000" data-aos-once={true} data-aos="flip-left"
         >
             <div className='TariffTable__title gap-5 flex flex-row-reverse items-center p-6'>
                 <Image src={logo} alt='logo' />
