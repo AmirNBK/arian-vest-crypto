@@ -19,7 +19,7 @@ const HeroSectionText = () => {
             className={`HeroSectionText left-1/2 top-1/2 translate-x-150 translate-y-150
             lg:translate-x-180 lg:translate-y-180
             items-center w-fit gap-6 whitespace-nowrap text-white absolute flex flex-col ${myFont.className}`}
-            style={{ top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
+            style={{ top: '50%', left: '50%', transform: 'translate(-50%,-135%)' }}
         >
             <div className='text-5xl md:text-8xl lg:text-9xl'
                 style={{ transform: 'translateX(100px)' }}

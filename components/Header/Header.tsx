@@ -4,6 +4,7 @@ import logo from '../../assets/icons/logo.png'
 import profile from '../../assets/icons/profile.svg'
 import localFont from 'next/font/local'
 import Link from 'next/link';
+import 'animate.css';
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const Header = () => {
@@ -17,7 +18,7 @@ const Header = () => {
     ];
 
     return (
-        <div className='Header flex flex-row-reverse justify-between w-full items-center px-12'>
+        <div className='Header flex flex-row-reverse justify-between w-full items-center px-12 animate__animated animate__fadeInLeft animate__slow'>
             <div>
                 <Image src={logo} alt='logo' style={{ width: '191px' }} />
             </div>

@@ -5,11 +5,16 @@ import bull from '../../assets/images/yellowBull.png'
 import leopard from '../../assets/images/yellowLeopard.png'
 import localFont from 'next/font/local'
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const StepsComponent = () => {
     const [current, setCurrent] = useState(1);
     const [activeStep, setActiveStep] = useState(1);
+
+    useEffect(() => {
+        AOS.init();
+    }, [])
 
     useEffect(() => {
         const stepsNode = document.querySelector("#steps");
@@ -94,24 +99,30 @@ const StepsComponent = () => {
                 </button>
             </div>
             <div id="contents" className={`${myFontIran.className}`} >
-                <div className="content active" data-step="1">
+                <div className="content active" data-step="1"
+
+                >
                     <div className="content__box rtl">
                         اولین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
-                <div className="content" data-step="2">
+                <div className="content" data-step="2"
+
+                >
                     <div className="content__box rtl">
                         دومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
-                <div className="content" data-step="3">
+                <div className="content" data-step="3"
+
+                >
                     <div className="content__box rtl">
                         سومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>
-                    <Image src={bull} alt='bull' unoptimized />
-                    <Image src={leopard} alt='leopard' unoptimized />
+                    <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" />
+                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"/>
                 </div>
 
             </div>

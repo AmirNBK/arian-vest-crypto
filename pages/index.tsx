@@ -9,12 +9,15 @@ import Header from '@/components/Header/Header';
 import pic from '../assets/images/HeroSectionPic.png'
 import localFont from 'next/font/local'
 import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
 import dynamic from 'next/dynamic';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 const myFont = localFont({ src: '../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../assets/fonts/iranyekanwebregular_0.ttf' })
 import rulesPic from '../assets/images/rules.png'
+import 'animate.css';
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
 });
@@ -85,15 +88,17 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
     <main
       className={`flex min-h-screen flex-col ${inter.className}`}
       onMouseMoveCapture={moveFunc}
     >
-
       <PrimeReactProvider>
         <Header />
-
         <div className='relative h-screen'>
           <div className='relative mt-20 lg:block block
                       absolute left-1/2 top-1/3 
@@ -102,14 +107,17 @@ export default function Home() {
           >
             <Image src={pic} alt='pic' unoptimized
               ref={imageRef}
-              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 h-full' />
-            <div className=''>
+              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 h-full animate__animated  animate__zoomIn animate__slower' />
+            <div className='animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow'
+            >
               <HeroSectionText />
             </div>
           </div>
           <ArrowComponent />
 
-          <div className={`justify-center flex flex-row-reverse gap-4 items-end py-20 mr-12 mt-8 flex flex-col w-6/12 ml-auto`}>
+          <div className={`justify-center flex flex-row-reverse gap-4 items-end py-20 mr-12 mt-8 flex flex-col w-6/12 ml-auto`}
+            data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
+          >
             <p className={`${myFont.className} text-white text-5xl my-2`}>
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
@@ -127,10 +135,14 @@ export default function Home() {
           </div>
 
           <div className='py-40 text-center tradeRules'>
-            <p className={`${myFont.className} text-white text-5xl py-12`}>
+            <p className={`${myFont.className} text-white text-5xl py-12`}
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
+            >
               <span className='text-3xl text-main-orange'> </span> قوانین <span style={{ color: '#F68D2E' }}> ترید </span>
             </p>
-            <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto' />
+            <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+            />
             <p className={`${myFontIran.className} text-main-orange text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین
@@ -138,8 +150,11 @@ export default function Home() {
           </div>
 
           <div className='tradeChallenges'>
-            <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-3'>
-              <p className={`${myFont.className} text-white text-5xl text-center`}>
+            <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-3'
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+            >
+              <p className={`${myFont.className} text-white text-5xl text-center`}
+              >
                 <span className='text-3xl text-main-orange'> </span>سوالات متداول <span style={{ color: '#F68D2E' }}> چالش های تریدینگ </span>
               </p>
               <p className={`${myFontIran.className} text-main-orange text-center`}
@@ -152,12 +167,15 @@ export default function Home() {
               <Accordion multiple className='flex flex-col gap-y-4 mx-12 mb-24 mt-8'>
                 <AccordionTab
                   style={{ marginLeft: 'auto', width: '80%' }}
-                  className='text-white text-right' header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟">
+                  className='text-white text-right' header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟"
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
+                >
                   <p className={`m-0 ${myFontIran.className} text-right`}>
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
                   </p>
                 </AccordionTab>
                 <AccordionTab
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
                   style={{ marginRight: 'auto', width: '80%' }}
                   header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک؟">
                   <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -165,6 +183,7 @@ export default function Home() {
                   </p>
                 </AccordionTab>
                 <AccordionTab
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
                   style={{ marginLeft: 'auto', width: '80%' }}
                   header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
                   <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -172,6 +191,7 @@ export default function Home() {
                   </p>
                 </AccordionTab>
                 <AccordionTab
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
                   style={{ marginRight: 'auto', width: '80%' }}
                   header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
                   <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -185,10 +205,12 @@ export default function Home() {
           </div>
 
           <div className='py-32'>
-            <p className={`${myFont.className} text-white text-5xl text-center`}>
+            <p className={`${myFont.className} text-white text-5xl text-center`}
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+            >
               <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
             </p>
-            <div className='flex flex-row-reverse py-6 gap-12'>
+            <div data-aos-duration="2000" data-aos-once={true} data-aos="fade-up" className='flex flex-row-reverse py-6 gap-12'>
               <Image src={redBull} alt='redBull' />
               <div className='flex flex-col items-center justify-center gap-10'>
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
@@ -201,8 +223,12 @@ export default function Home() {
           </div>
 
           <div className='aboutUs my-40 relative'>
-            <Image src={pic1} alt='pic' unoptimized style={{ opacity: '0.5' }} />
-            <div className='absolute right-0 top-12'>
+            <Image src={pic1} alt='pic' unoptimized style={{ opacity: '0.5' }}
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
+            />
+            <div className='absolute right-0 top-12'
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
+            >
               <Image src={container} alt='container' />
               <p className={`${myFont.className} text-white w-max text-5xl text-center absolute top-1/2 left-1/2`}
                 style={{ transform: 'translate(-50%,-50%)' }}
@@ -210,7 +236,10 @@ export default function Home() {
                 <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
               </p>
             </div>
-            <div className='absolute right-0 top-64'>
+            <div className='absolute right-0 top-64'
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
+              data-aos-delay="500"
+            >
               <Image src={container2} alt='container' />
               <p className={`${myFontIran.className} leading-[2.8rem]	text-white text-lg  text-right rtl w-[36rem] absolute top-1/2 left-1/2`}
                 style={{ transform: 'translate(-50%,-65%)' }}
@@ -229,6 +258,7 @@ export default function Home() {
             <Image src={customer} alt='customer' className='ml-40  translate-y-12' unoptimized />
             <div className='relative'>
               <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+                data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
               >
                 <span className='text-3xl text-main-orange text-center'>
                 </span>رشد حساب 40% تا <span style={{ color: '#F68D2E' }}>
@@ -243,6 +273,7 @@ export default function Home() {
 
           <div className='py-32 cooroprate__Benefits mx-12'>
             <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
               </span>مزایای همکاری  <span style={{ color: '#F68D2E' }}>
@@ -276,6 +307,7 @@ export default function Home() {
 
           <div className='successSteps py-56'>
             <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
               </span> مراحل موفقیت <span style={{ color: '#F68D2E' }}>
@@ -286,7 +318,7 @@ export default function Home() {
             </div>
           </div>
           <Footer />
-        </div>
+        </div >
 
         <style>
           {
@@ -353,7 +385,7 @@ export default function Home() {
                     `
           }
         </style>
-      </PrimeReactProvider>
-    </main>
+      </PrimeReactProvider >
+    </main >
   )
 }

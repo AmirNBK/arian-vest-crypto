@@ -3,10 +3,16 @@ import { TweenMax, Expo, Quint } from 'gsap';
 import Image from 'next/image';
 import $ from 'jquery';
 import useWindowSize from '@/Hooks/innerSize';
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const CarouselSlider = () => {
+
+    useEffect(() => {
+        AOS.init();
+      }, [])
 
     const size = useWindowSize()
 
@@ -186,6 +192,7 @@ const CarouselSlider = () => {
 
     return (
         <div className="wrapper"
+        data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             style={{ transform: 'rotate(4deg)', width: '105vw', marginTop: `${size.width && size.width < 768 && '-250px'}` }}
         >
             <div id="contentContainer" className="trans3d">
