@@ -34,6 +34,7 @@ import benefitsPic from '../assets/images/benefitsPic1.png'
 import benefitsPic2 from '../assets/images/benefitsPic2.png'
 import benefitsPic3 from '../assets/images/benefitsPic3.png'
 import line from '../assets/icons/line.svg'
+import StepsComponent from '@/components/StepsComponent/StepsComponent';
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -272,8 +273,19 @@ export default function Home() {
               <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1]' />
             </div>
           </div>
-          <Footer />
 
+          <div className='successSteps py-56'>
+            <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+            >
+              <span className='text-3xl text-main-orange text-center'>
+              </span> مراحل موفقیت <span style={{ color: '#F68D2E' }}>
+                با تیم آرین وست </span>
+            </p>
+            <div className='pt-12'>
+              <StepsComponent />
+            </div>
+          </div>
+          <Footer />
         </div>
 
         <style>
