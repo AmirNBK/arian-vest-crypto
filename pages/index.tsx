@@ -35,14 +35,17 @@ import customer from '../assets/images/customer.png'
 import customers from '../assets/images/customers.png'
 import BenefitsComponent from '@/components/BenefitsComponent/BenefitsComponent';
 import benefitsPic from '../assets/images/benefitsPic1.png'
+import { useInView, animated } from '@react-spring/web'
 import benefitsPic2 from '../assets/images/benefitsPic2.png'
 import benefitsPic3 from '../assets/images/benefitsPic3.png'
 import line from '../assets/icons/line.svg'
 import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
+import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
 
   const cumulativeOffset = (element: any) => {
@@ -168,82 +171,35 @@ export default function Home() {
             <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             />
-            <p className={`${myFontIran.className} text-main-orange text-center`}
+            <Link href={'/rules'} className={`${myFontIran.className} text-main-orange text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین
-            </p>
+            </Link>
           </div>
 
-          <div className='tradeChallenges'>
-            <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-3'
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-            >
-              <p className={`${myFont.className} text-white text-5xl text-center`}
-              >
-                <span className='text-3xl text-main-orange'> </span>سوالات متداول <span style={{ color: '#F68D2E' }}> چالش های تریدینگ </span>
-              </p>
-              <p className={`${myFontIran.className} text-main-orange text-center`}
-                style={{ textDecoration: 'underline' }}>
-                مشاهده تمام سوالات
-              </p>
-            </div>
-
-            <div>
-              <Accordion multiple className='flex flex-col gap-y-4 mx-12 mb-24 mt-8'>
-                <AccordionTab
-                  style={{ marginLeft: 'auto', width: '80%' }}
-                  className='text-white text-right' header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟"
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
-                >
-                  <p className={`m-0 ${myFontIran.className} text-right`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
-                  </p>
-                </AccordionTab>
-                <AccordionTab
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
-                  style={{ marginRight: 'auto', width: '80%' }}
-                  header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک؟">
-                  <p className={`m-0 ${myFontIran.className} text-right`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
-                  </p>
-                </AccordionTab>
-                <AccordionTab
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
-                  style={{ marginLeft: 'auto', width: '80%' }}
-                  header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
-                  <p className={`m-0 ${myFontIran.className} text-right`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
-                  </p>
-                </AccordionTab>
-                <AccordionTab
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
-                  style={{ marginRight: 'auto', width: '80%' }}
-                  header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک ، چاپگرها و متونن بلکه روزنامه؟">
-                  <p className={`m-0 ${myFontIran.className} text-right`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
-                  </p>
-                </AccordionTab>
-
-              </Accordion>
-            </div>
-
-          </div>
-
+          <TradeChallengesSection />
           <div className='py-32'>
             <p className={`${myFont.className} text-white text-5xl text-center`}
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+              data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
             </p>
-            <div data-aos-duration="2000" data-aos-once={true} data-aos="fade-up" className='flex flex-row-reverse py-6 gap-12'>
-              <Image src={redBull} alt='redBull' />
-              <div className='flex flex-col items-center justify-center gap-10'>
+            <div className='flex flex-row-reverse py-6 gap-12'>
+              <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" />
+              <div className='flex flex-col items-center justify-center gap-10'
+                data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                data-aos-delay="800"
+              >
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
                   لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
                 </p>
-                <Image src={button} alt='register' className='cursor-pointer' />
+                <Link href={'/register'}>
+                  <Image src={button} alt='register' className='cursor-pointer' />
+                </Link>
               </div>
-              <Image src={greenBull} alt='greenBull' />
+              <Image src={greenBull} alt='greenBull'
+                data-aos-duration="1000" data-aos-once={true} data-aos="fade-right"
+              />
             </div>
           </div>
 
@@ -271,10 +227,10 @@ export default function Home() {
               >
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه.
               </p>
-              <p className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
+              <Link href={'/about-us'} className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
                 style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
                 بیشتر بخوانید
-              </p>
+              </Link>
               <Image src={goldBUll} unoptimized alt='bull' className='absolute -left-36 -bottom-16 w-96' />
             </div>
           </div>
