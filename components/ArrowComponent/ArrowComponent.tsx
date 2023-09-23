@@ -28,7 +28,7 @@ const ArrowComponent = () => {
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
         >
-            <span onClick={scrollToAboutUs}>
+            <Link href={'#AboutUs'}>
                 <div
                     className={`absolute w-40 h-40 xl:w-64 xl:h-64 left-1/2 top-1/2`}
                     style={{ transform: 'translate(-50%, -50%)' }}
@@ -47,7 +47,7 @@ const ArrowComponent = () => {
                     className='relative left-1/2 top-1/2'
                     style={{ transform: 'translate(-50%, -50%)' }}
                 />
-            </span>
+            </Link>
         </div>
     );
 };

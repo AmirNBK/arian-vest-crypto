@@ -30,16 +30,16 @@ const HeroSectionText = () => {
                 style={{ transform: 'translateX(100px)' }}
             >
                 <p className='text-5xl md:text-8xl lg:text-9xl'> با ما </p>
-                <div onClick={scrollToAboutUs} className='lg:block hidden cursor-pointer'>
+                <Link href={'/register'} className='lg:block hidden cursor-pointer'>
                     <Image src={button} alt='register' />
-                </div>
+                </Link>
             </div>
             <div className='text-5xl md:text-8xl lg:text-9xl'>
                 ما شکوفا کنید
             </div>
-            <div onClick={scrollToAboutUs} className='lg:hidden block cursor-pointer'>
+            <Link href={'/register'} className='lg:hidden block cursor-pointer'>
                 <Image src={button} alt='register' />
-            </div>
+            </Link>
         </div>
     );
 };

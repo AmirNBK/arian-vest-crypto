@@ -17,6 +17,9 @@
 }
 
 html {
+
+  scroll-behavior: smooth;
+
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -47,6 +50,59 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
+
+  .p-tabview .p-tabview-nav {
+    background: transparent;
+  }
+
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: transparent;
+    color: #F68D2E;
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    background: transparent;
+  }
+
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    font-size: 22px;
+  }
+
+  .p-tabview-title {
+    font-size: 22px;
+  }
+
+  .p-tabview .p-tabview-nav li:hover {
+    background: transparent
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    color: white
+  }
+
+  .p-tabview .p-tabview-panels {
+    background: transparent
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none;
+  }
+
+  .p-tabview .p-tabview-nav {
+    border-bottom: 1px solid #F68D2E;
+  }
+
+  .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+    background-color: #F68D2E
+  }
+
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border: none
+  }
+
+  .p-tabview-nav {
+    justify-content: space-between;
+  }
 
   .rtl {
     direction: rtl;

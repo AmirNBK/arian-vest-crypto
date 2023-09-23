@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useEffect } from 'react';
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
@@ -16,9 +16,14 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import bull from '../../assets/images/bull.png'
 import book from '../../assets/icons/book.svg'
 import { Accordion, AccordionTab } from 'primereact/accordion';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Rules() {
+
+    useEffect(() => {
+        AOS.init();
+    }, [])
 
     const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
 
@@ -27,7 +32,7 @@ export default function Rules() {
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header />
+                <Header active={2} />
 
                 <div className='text-white w-10/12 mx-auto mt-20'>
                     <h2 className={`${myFont.className} text-3xl mb-6 text-center text-white`}
@@ -39,14 +44,18 @@ export default function Rules() {
                     </p>
                 </div>
 
-                <div className='flex flex-row-reverse justify-center items-center mt-24'>
+                <div className='flex flex-row-reverse justify-center items-center mt-24'
+                    data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
+                >
                     <Image src={rules} alt='rules' unoptimized />
                     <p className={`${myFont.className} mr-5 text-white text-4xl`}>
                         قوانین کلی <span style={{ color: '#F68D2E' }}> مربوط به سایت </span>
                     </p>
                 </div>
 
-                <div className='px-12 mt-20 grid grid-cols-3 gap-y-12 mb-32'>
+                <div className='px-12 mt-20 grid grid-cols-3 gap-y-12 mb-32'
+                    data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
+                >
                     <RulesComponent translate={0} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />
                     <RulesComponent translate={20} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />
                     <RulesComponent translate={50} text='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟' />

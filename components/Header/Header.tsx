@@ -7,7 +7,9 @@ import Link from 'next/link';
 import 'animate.css';
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
-const Header = () => {
+const Header = (props: {
+    active?: number
+}) => {
     const header = [
         { label: 'صفحه اصلی', url: '/' },
         { label: 'تعرفه ها', url: '/tariff' },
@@ -19,16 +21,16 @@ const Header = () => {
 
     return (
         <div className='Header flex flex-row-reverse justify-between w-full items-center px-12 animate__animated animate__fadeInLeft animate__slow'>
-            <div>
+            <Link href={'/'}>
                 <Image src={logo} alt='logo' style={{ width: '191px' }} />
-            </div>
+            </Link>
             <div className='flex flex-row-reverse gap-20 text-white text-xl'>
                 {header.map((item, index) => (
                     <Link
                         key={index}
                         href={item.url}
                         className={`pb-1 ${myFont.className}`}
-                        style={{ borderBottom: `${index === 0 ? '3px solid #F68D2E' : ''}` }}
+                        style={{ borderBottom: `${index === props.active ? '3px solid #F68D2E' : ''}` }}
                     >
                         {item.label}
                     </Link>

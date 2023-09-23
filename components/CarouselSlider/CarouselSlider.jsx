@@ -193,7 +193,8 @@ const CarouselSlider = () => {
     return (
         <div className="wrapper"
         data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
-            style={{ transform: 'rotate(4deg)', width: '105vw', marginTop: `${size.width && size.width < 768 && '-250px'}` }}
+            style={{ transform: 'rotate(4deg)', width: '105vw', 
+            marginTop: `${size.width && size.width < 768 && '-250px'}` }}
         >
             <div id="contentContainer" className="trans3d">
                 <section id="carouselContainer" className="trans3d">

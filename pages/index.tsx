@@ -8,6 +8,7 @@ import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import Header from '@/components/Header/Header';
 import pic from '../assets/images/HeroSectionPic.png'
 import localFont from 'next/font/local'
+import { TabView, TabPanel } from 'primereact/tabview';
 import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -38,9 +39,11 @@ import benefitsPic2 from '../assets/images/benefitsPic2.png'
 import benefitsPic3 from '../assets/images/benefitsPic3.png'
 import line from '../assets/icons/line.svg'
 import StepsComponent from '@/components/StepsComponent/StepsComponent';
+import Link from 'next/link';
 
 export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const [selectedTab, setSelectedTab] = useState<number>(0)
 
   const cumulativeOffset = (element: any) => {
     let top = 0;
@@ -98,7 +101,7 @@ export default function Home() {
       onMouseMoveCapture={moveFunc}
     >
       <PrimeReactProvider>
-        <Header />
+        <Header active={0} />
         <div className='relative h-screen'>
           <div className='relative mt-20 lg:block block
                       absolute left-1/2 top-1/3 
@@ -116,7 +119,7 @@ export default function Home() {
           <ArrowComponent />
 
           <div className={`justify-center flex flex-row-reverse gap-4 items-end py-20 mr-12 mt-8 flex flex-col w-6/12 ml-auto`}
-            data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
+            data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-5xl my-2`}>
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
@@ -124,14 +127,36 @@ export default function Home() {
             <p className={`${myFontIran.className} rtl text-white`}>
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
             </p>
-            <p className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
+            <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               بررسی تعرفه ها
-            </p>
+            </Link>
           </div>
 
           <div className='relative'>
-            <CarouselSlider />
-            <Image src={bull} alt='bull' className='absolute top-1/2' unoptimized />
+            <div className="card"
+              style={{ margin: '0 auto', marginTop: '50px' }}
+            >
+              <TabView
+                activeIndex={selectedTab}
+                onTabChange={(e) => {
+                  setSelectedTab(e.index)
+                }}
+              >
+                <TabPanel header="Classic">
+                  <CarouselSlider />
+                </TabPanel>
+                <TabPanel header="One-Step">
+                  <CarouselSlider />
+                </TabPanel>
+                <TabPanel header="Rapid">
+                  <CarouselSlider />
+                </TabPanel>
+              </TabView>
+              <div className='text-white text-center mt-6 text-3xl'>
+                {selectedTab === 0 ? ' 30K - 300K' : selectedTab === 0 ? '300K - 500K' : ' 500K - 800K'}
+              </div>
+            </div>
+            <Image src={bull} alt='bull' className='absolute top-[60%]' style={{ zIndex: '-1' }} unoptimized />
           </div>
 
           <div className='py-40 text-center tradeRules'>
@@ -323,6 +348,19 @@ export default function Home() {
         <style>
           {
             `
+
+            .p-component {
+              display: flex;
+    flex-direction: column-reverse;
+            }
+            .p-tabview .p-tabview-panels {
+              max-height: 900px;
+            }
+            .p-tabview-nav-content {
+              width: 35%;
+              margin: 0 auto;
+              z-index : 1;
+            }
                     .p-accordion .p-accordion-header .p-accordion-header-link {
                         border: none;
                         background: #1D1D1D;

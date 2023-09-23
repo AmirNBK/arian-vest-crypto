@@ -23,7 +23,7 @@ export default function Rules() {
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header />
+                <Header active={1} />
 
                 <div className='flex flex-col'>
                     <div className={`${myFont.className} justify-center flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
@@ -128,7 +128,7 @@ export default function Rules() {
                             />
                         </TabPanel>
                         <TabPanel header="240k">
-                        <div className='mt-12'>
+                            <div className='mt-12'>
                                 <TariffComponent title='-Classic challenge-' price={240}
                                     description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                             </div>
@@ -145,7 +145,7 @@ export default function Rules() {
                             />
                         </TabPanel>
                         <TabPanel header="300k">
-                        <div className='mt-12'>
+                            <div className='mt-12'>
                                 <TariffComponent title='-Classic challenge-' price={300}
                                     description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                             </div>
@@ -163,63 +163,20 @@ export default function Rules() {
                         </TabPanel>
                     </TabView>
                 </div>
-
-
                 <Footer />
+
+
+                <style>
+                    {
+                        `
+                        .p-tabview-nav-content {
+                            width: 50%;
+                            margin: 0 auto;
+                          }
+                        `
+                    }
+                </style>
             </PrimeReactProvider>
-
-
-            <style>
-                {
-                    `
-                    .p-tabview-nav-content {
-                        width : 50%;
-                        margin : 0 auto;
-                    }
-                    .p-tabview .p-tabview-nav {
-                        background : transparent;
-                    }
-
-                    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-                        background : transparent;
-                        color : #F68D2E;
-                    }
-                    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-                        background : transparent;
-                    }
-                    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-                        font-size : 22px;
-                    }
-                    .p-tabview-title {
-                        font-size : 22px;
-                    }
-                    .p-tabview .p-tabview-nav li:hover {
-                        background : transparent
-                    }
-                    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-                        color : white
-                    }
-                    .p-tabview .p-tabview-panels {
-                        background : transparent
-                    }
-                    .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
-                        box-shadow : none;
-                    }
-                    .p-tabview .p-tabview-nav {
-                        border-bottom : 1px solid #F68D2E;
-                    }
-                    .p-tabview .p-tabview-nav .p-tabview-ink-bar {
-                        background-color :    #F68D2E
-                    }
-                    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-                        border : none
-                    }
-                    .p-tabview-nav { 
-                        justify-content : space-between;
-                    }
-                    `
-                }
-            </style>
         </main>
     )
 }
