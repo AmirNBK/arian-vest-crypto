@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
 import localFont from 'next/font/local'
 import React from 'react';
+import Link from 'next/link';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 const myFontIranLight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
@@ -11,7 +12,7 @@ const NewsComponent = (props: {
     translate: number
 }) => {
     return (
-        <div className={`${myFontIran.className} flex items-center px-6 relative leading-relaxed cursor-pointer
+        <Link href={'/blogs/id'} className={`${myFontIran.className} flex items-center px-6 relative leading-relaxed cursor-pointer
         text-lg RulesComponent rounded-xl text-center text-white w-fit bg-new-black transition duration-700	`}
             style={{ maxWidth: '350px', height: '450px', transform: `translateY(${props.translate}px)` }}
         >
@@ -29,7 +30,7 @@ const NewsComponent = (props: {
                     اطلاعات بیشتر
                 </p>
             </div>
-        </div>
+        </Link>
     );
 };
 

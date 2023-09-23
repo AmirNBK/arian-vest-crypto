@@ -14,7 +14,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
 import dynamic from 'next/dynamic';
-import { Accordion, AccordionTab } from 'primereact/accordion';
 const myFont = localFont({ src: '../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../assets/fonts/iranyekanwebregular_0.ttf' })
 import rulesPic from '../assets/images/rules.png'

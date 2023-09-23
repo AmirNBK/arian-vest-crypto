@@ -33,7 +33,6 @@ export default function Rules() {
         >
             <PrimeReactProvider>
                 <Header active={2} />
-
                 <div className='text-white w-10/12 mx-auto mt-20'>
                     <h2 className={`${myFont.className} text-3xl mb-6 text-center text-white`}
                     >
@@ -143,6 +142,25 @@ export default function Rules() {
                 <style>
                     {
                         `
+
+                        
+                    .p-dialog-draggable .p-dialog-header {
+                        background: #252525;
+                    }
+
+                    .p-dialog .p-dialog-content:last-of-type {
+                        background: #252525;
+                    }
+
+                    .p-dialog .p-dialog-header .p-dialog-title {
+                        text-align: right;
+                        transform: translateY(40px);
+                        color : white
+                    }
+
+                    .p-dialog-draggable .p-dialog-header {
+                        flex-direction: row-reverse;
+                    }
                     .p-accordion .p-accordion-header .p-accordion-header-link {
                         border: none;
                         background: #1D1D1D;

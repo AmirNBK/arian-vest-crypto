@@ -47,9 +47,9 @@ export default function SingleBlog() {
                 <div className='flex flex-row-reverse justify-center m-24'>
                     <Image src={shape} alt='shape' unoptimized />
                     <div className='flex flex-col justify-around mr-12'>
-                        <AboutUsItems translate={60} text='کاهش کلاهبرداری های اینترنتی' />
-                        <AboutUsItems translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
-                        <AboutUsItems translate={60} text='کاهش خطرات تحریم بر کارکرد' />
+                        <AboutUsItems delay={0} translate={60} text='کاهش کلاهبرداری های اینترنتی' />
+                        <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
+                        <AboutUsItems delay={1000} translate={60} text='کاهش خطرات تحریم بر کارکرد' />
                     </div>
                 </div>
 
@@ -58,9 +58,9 @@ export default function SingleBlog() {
                         آمار کاربران <span style={{ color: '#F68D2E' }}> سایت ارین وست <span className='text-3xl'> (1402) </span> </span>
                     </p>
                     <div className='mt-24 flex flex-row gap-24'>
-                        <Stats icon={profit} text='بزرگترین پرداخت سود' stat='+25000$' translate={0} />
-                        <Stats icon={users} text='تعداد کاربران' stat='+68589' translate={40} />
-                        <Stats icon={payment} text='مجموع پرداخت‌ها' stat='+3,000,000$' translate={0} />
+                        <Stats fadePosition='right' icon={profit} text='بزرگترین پرداخت سود' stat='+25000$' translate={0} />
+                        <Stats fadePosition='up' icon={users} text='تعداد کاربران' stat='+68589' translate={40} />
+                        <Stats fadePosition='left' icon={payment} text='مجموع پرداخت‌ها' stat='+3,000,000$' translate={0} />
                     </div>
                 </div>
 

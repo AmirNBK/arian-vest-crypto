@@ -27,7 +27,7 @@ export default function Rules() {
             <PrimeReactProvider>
                 <Header active={1} />
 
-                <div className='flex flex-row-reverse'>
+                <div className='flex flex-row-reverse items-center'>
                     <div className='flex flex-col flex-1'>
                         <div className={`${myFont.className} justify-right flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
                             <Image src={tariff} alt='faq' />
