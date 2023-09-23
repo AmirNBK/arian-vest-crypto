@@ -5,14 +5,18 @@ import $ from 'jquery';
 import useWindowSize from '@/Hooks/innerSize';
 import localFont from 'next/font/local';
 import AOS from 'aos';
+import { Dialog } from 'primereact/dialog';
 import 'aos/dist/aos.css';
-const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+const myFontIran = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
+const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+import logo from '../../assets/icons/rulesLogo.svg'
 
 const CarouselSlider = () => {
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         AOS.init();
-      }, [])
+    }, [])
 
     const size = useWindowSize()
 
@@ -192,13 +196,30 @@ const CarouselSlider = () => {
 
     return (
         <div className="wrapper"
-        data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
-            style={{ transform: 'rotate(4deg)', width: '105vw', 
-            marginTop: `${size.width && size.width < 768 && '-250px'}` }}
+            data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
+            style={{
+                transform: 'rotate(4deg)', width: '105vw',
+                marginTop: `${size.width && size.width < 768 && '-250px'}`
+            }}
         >
+            <Dialog header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟" visible={visible} style={{
+                width: '40vw', display: 'flex', flexDirection: 'column',
+                backgroundColor: '#252525' 
+            }}
+            className={`${myFont.className} font-normal	`}
+                onHide={() => setVisible(false)}
+            >
+                <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
+                <p className={`${myFontIran.className} leading-loose text-base m-0 text-[#E5E5E5] text-right my-12`}
+                >
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
+                </p>
+            </Dialog>
             <div id="contentContainer" className="trans3d">
                 <section id="carouselContainer" className="trans3d">
-                    <figure id="item1" className="carouselItem trans3d">
+                    <figure id="item1" className="carouselItem trans3d"
+                        onClick={() => setVisible(true)}
+                    >
                         <div className="carouselItemInner trans3d"
                             style={{
                                 backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a0cc/c21f/0cc53cc8a38222f1d3eca8fd2ecfb197?Expires=1695600000&Signature=GtvH23VVd7vuDMr5NGNyiWik1vjvQ8BnnB9J-7KEwjMu2J4Uata4u2BAHNecl9uT7rhJJ6~CBEdnW9fybNWnLPxsraHrOZ9HDe~jado3iOLUONttw29svV9d3miQFzGaq1H4X8IEc~g1K2oQMEpv~frOPdp-XYcY5bodtp-bq4bEJJjyKJG4Wbhh2ZHt~if4yn9cOiibbai0Lrv9ZaL0lJmJW1eF1uoB5L~2RuO3w4wLJFarItZ~YGZjFXgPphqHaxLerRUhzCEqZvCddf6TzR5QgY9mTobEcf52VZG5vC4rpm7wv2wwPijcC6i5S-F2p84crfOpHeKgFuzqFVI46g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
@@ -211,7 +232,9 @@ const CarouselSlider = () => {
                             تعرفه شماره 7
                         </div>
                     </figure>
-                    <figure id="item2" className="carouselItem trans3d">
+                    <figure id="item2" className="carouselItem trans3d"
+                        onClick={() => setVisible(true)}
+                    >
                         <div className="carouselItemInner trans3d"
                             style={{
                                 backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1695600000&Signature=Cxo0in7mTz-nTCqf8DS3ShlRf-ij2VL1dDO0BAGt5S1JRTQcLgO~QoZLfbtCr815lxK9taiRCKKc9wGHciSlOZ2G3B5tLff51U56L3Pp~M0rVA7qlaX-Zo1L2tOxUFlM-2~v4u7yt2gicZaHkAF3DkTFWokGFQUH9wnstdeghUsTIVsHHPW82Pmp5a-VtbVQpwM2a7k3G8pKffLZ6t3pGsf0AsuU-bC4-kXSclQYgl2H32C1KiAg8QeD4Hypqrgmn2w2fdkWKSejiZAfOQjaXPqykRGXMgZ7aRtgQKOR3-gkR36cWMO9H7ON5Ib463BY~omCWZBLUILuSqkK5o4MGQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
@@ -224,7 +247,9 @@ const CarouselSlider = () => {
                             تعرفه شماره 6
                         </div>
                     </figure>
-                    <figure id="item3" className="carouselItem trans3d">
+                    <figure id="item3" className="carouselItem trans3d"
+                        onClick={() => setVisible(true)}
+                    >
                         <div className="carouselItemInner trans3d"
                             style={{
                                 backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/f198/5937/0ed9d7e64e562978fc5c069751a2ce1b?Expires=1695600000&Signature=Ad7GmwytF3BBQ8EALvRNvtGSTVWQVNLt75pgijwjiCx9XfQVWbif1hLpBy7vbQ2SL8Wv0qNcjMYMnESGIGbu2CR9clSy6jjmmTzcbQF7kQzluPpNI3me5Tz8gYFrnF6jtzzsuVstGBEEtQJRMGznTWEKZ62pgalh9A6b41Ib1jfRsixlZJ28a3fUNLD6eipoiDjIFAGV3mC9j0YVINyTHgkwIBHB2C7dJpZVRQg~O17iB5CbiIauDNzSh37p-sSh0CrId5p~pjRoBNV2UqMcaDDmeMWCcHrZ5XJKwmFySstY79dLtbL13DCmkyHs1dzhnRLQ3sjis819TWaKOw9vtA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
@@ -237,7 +262,9 @@ const CarouselSlider = () => {
                             تعرفه شماره 5
                         </div>
                     </figure>
-                    <figure id="item4" className="carouselItem trans3d">
+                    <figure id="item4" className="carouselItem trans3d"
+                        onClick={() => setVisible(true)}
+                    >
                         <div className="carouselItemInner trans3d"
                             style={{
                                 backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1695600000&Signature=Cxo0in7mTz-nTCqf8DS3ShlRf-ij2VL1dDO0BAGt5S1JRTQcLgO~QoZLfbtCr815lxK9taiRCKKc9wGHciSlOZ2G3B5tLff51U56L3Pp~M0rVA7qlaX-Zo1L2tOxUFlM-2~v4u7yt2gicZaHkAF3DkTFWokGFQUH9wnstdeghUsTIVsHHPW82Pmp5a-VtbVQpwM2a7k3G8pKffLZ6t3pGsf0AsuU-bC4-kXSclQYgl2H32C1KiAg8QeD4Hypqrgmn2w2fdkWKSejiZAfOQjaXPqykRGXMgZ7aRtgQKOR3-gkR36cWMO9H7ON5Ib463BY~omCWZBLUILuSqkK5o4MGQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
@@ -250,7 +277,9 @@ const CarouselSlider = () => {
                             تعرفه شماره 3
                         </div>
                     </figure>
-                    <div id="item5" className="carouselItem trans3d">
+                    <div id="item5" className="carouselItem trans3d"
+                        onClick={() => setVisible(true)}
+                    >
                         <div className="carouselItemInner trans3d"
                             style={{
                                 backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a0cc/c21f/0cc53cc8a38222f1d3eca8fd2ecfb197?Expires=1695600000&Signature=GtvH23VVd7vuDMr5NGNyiWik1vjvQ8BnnB9J-7KEwjMu2J4Uata4u2BAHNecl9uT7rhJJ6~CBEdnW9fybNWnLPxsraHrOZ9HDe~jado3iOLUONttw29svV9d3miQFzGaq1H4X8IEc~g1K2oQMEpv~frOPdp-XYcY5bodtp-bq4bEJJjyKJG4Wbhh2ZHt~if4yn9cOiibbai0Lrv9ZaL0lJmJW1eF1uoB5L~2RuO3w4wLJFarItZ~YGZjFXgPphqHaxLerRUhzCEqZvCddf6TzR5QgY9mTobEcf52VZG5vC4rpm7wv2wwPijcC6i5S-F2p84crfOpHeKgFuzqFVI46g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
@@ -360,7 +389,26 @@ const CarouselSlider = () => {
             <style>
 
                 {
-                    `                 
+                    `    
+                    
+                    .p-dialog-draggable .p-dialog-header {
+                        background: #252525;
+
+                    }
+
+                    .p-dialog .p-dialog-content:last-of-type {
+                        background: #252525;
+                    }
+
+                    .p-dialog .p-dialog-header .p-dialog-title {
+                        text-align: right;
+                        transform: translateY(40px);
+                        color : white
+                    }
+
+                    .p-dialog-draggable .p-dialog-header {
+                        flex-direction: row-reverse;
+                    }
 .wrapper {
   background-repeat: no-repeat;
   background-position: top center;

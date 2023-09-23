@@ -348,7 +348,6 @@ export default function Home() {
         <style>
           {
             `
-
             .p-component {
               display: flex;
     flex-direction: column-reverse;
