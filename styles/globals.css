@@ -51,6 +51,10 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 
+    .p-dialog .p-dialog-header .p-dialog-title {
+      direction: rtl;
+    }
+
   .p-tabview .p-tabview-nav {
     background: transparent;
   }

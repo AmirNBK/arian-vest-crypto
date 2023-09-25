@@ -5,15 +5,15 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import logo from '../../assets/icons/rulesLogo.svg'
 import whiteLogo from '../../assets/icons/logo-white.png'
 import Image from 'next/image';
-import { Dialog } from 'primereact/dialog';
 
 
 const RulesComponent = (props: {
     text: string
     translate: number
+    feature: string
+    onClick: () => void
 }) => {
     const [hovered, setHovered] = useState(false);
-    const [visible, setVisible] = useState<boolean>(false);
 
 
     const handleMouseEnter = () => {
@@ -26,7 +26,7 @@ const RulesComponent = (props: {
 
     return (
         <div
-            className={`${myFont.className} flex items-center px-6 relative leading-relaxed cursor-pointer
+            className={`${myFont.className} flex items-center px-24 py-[100px] relative leading-relaxed cursor-pointer
           text-lg RulesComponent rounded-xl text-center text-white w-fit bg-new-black hover:bg-orange-400 transition duration-700`}
             style={{
                 maxWidth: '400px',
@@ -35,22 +35,8 @@ const RulesComponent = (props: {
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={props.onClick}
         >
-            <Dialog
-                header="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است؟" visible={visible} style={{
-                    width: '40vw', display: 'flex', flexDirection: 'column',
-                    backgroundColor: '#252525'
-                }}
-                className={`${myFont.className} font-normal`}
-                onHide={() => setVisible(false)}
-                onShow={() => {setHovered(false)}}
-            >
-                <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-                <p className={`${myFontIran.className} text-right rtl my-12 text-[#E5E5E5]`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده از طراحان گرافیک صنعت چاپ، و با استفاده از طراحان گرافیک لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز صنعت چاپ، و با استفاده.
-                </p>
-
-            </Dialog>
             <Image
                 src={logo}
                 unoptimized
@@ -69,10 +55,19 @@ const RulesComponent = (props: {
                 className={`opacity-0 ${hovered && 'opacity-100'} transition duration-500 absolute right-1/2 translate-x-1/2`}
                 style={{ top: '-15%' }}
             />
-            <p style={{ marginBottom: '-40px' }} className={`${hovered && 'text-black'} duration-700`}
-                onClick={() => setVisible(true)}
+            <p style={{ marginBottom: '-40px' }} className={`${hovered && 'text-black'}
+            -translate-y-[15px]
+            duration-700 flex flex-col gap-4`}
             >
-                {props.text}
+                <p className='rtl'>
+                    {props.text}
+                </p>
+                <p>
+                    {props.feature}
+                </p>
+                <p className='font-bold text-2xl'>
+                    مشاهده قوانین
+                </p>
             </p>
         </div>
     );
