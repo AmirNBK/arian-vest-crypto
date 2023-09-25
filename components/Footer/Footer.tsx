@@ -54,8 +54,8 @@ const Footer = () => {
                     <p className='text-white text-right mb-3'>
                         راه های ارتباط با ما
                     </p>
-                    <FooterInfo title='شماره تماس' info='65854796-021' />
-                    <FooterInfo title='ایمیل' info='example@gmail.com' />
+                    <FooterInfo title='شماره تماس' info='به زودی' />
+                    <FooterInfo title='ایمیل' info='Arianvest@gmail.com' />
                     <p className='text-2xl text-right'>
                         <span className='font-semibold'> آدرس: </span> مطهری ، میرعماد ، کوچه یازدهم ، پلاک 23 شرکت ، <span className='text-white'> آریان‌وست </span>
                     </p>

@@ -36,13 +36,12 @@ export default function SingleBlog() {
                     </p>
                 </div>
 
-                <p className={`${myFontIran.className} text-center leading-loose text-white w-10/12 mx-auto mt-12`}>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                <p className={`${myFontIran.className} text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
+                    به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان crypto. ما درک داریم که فضای کریپتو همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای کریپتو همراهتان باشیم. با هم، در دنیای هیجان‌انگیز کریپتو راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
                 </p>
-
-                    <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
-                        <Image src={range} alt='rangeTrading' />
-                    </div>
+                <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
+                    <Image src={range} alt='rangeTrading' />
+                </div>
 
                 <div className='flex flex-row-reverse justify-center m-24'>
                     <Image src={shape} alt='shape' unoptimized />

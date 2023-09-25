@@ -43,7 +43,6 @@ export default function Rules() {
                             </p>
                         </div>
                     </div>
-
                     <div className='w-full flex-1'>
                         <TabView
                             style={{ width: '80%' }}
@@ -184,10 +183,10 @@ export default function Rules() {
                                 price={129}
                             />
                         </TabPanel>
-                        {selectedTab === 0 &&
+                        {(selectedTab === 0 || selectedTab === 2) &&
                             <TabPanel header="100k">
                                 <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={100}
+                                    <TariffComponent title={`-${(selectedTab === 0 || selectedTab === 2) ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={100}
                                         description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                                 </div>
 
@@ -208,10 +207,10 @@ export default function Rules() {
                                 />
                             </TabPanel>
                         }
-                        {selectedTab === 0 &&
+                        {(selectedTab === 0 || selectedTab === 2) &&
                             <TabPanel header="200k">
                                 <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={200}
+                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 2 ? 'One-Step' : 'Rapid'} challenge-`} price={200}
                                         description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                                 </div>
 

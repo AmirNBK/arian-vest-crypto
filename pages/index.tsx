@@ -127,7 +127,7 @@ export default function Home() {
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
             <p className={`${myFontIran.className} rtl text-white`}>
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
+              با کمال خوش آمدگویی، ما با افتخار تعرفه های منحصر به فرد وب‌سایت ArianVest را به شما معرفی می‌کنیم. در ArianVest، تلاش کرده‌ایم تا تعرفه هایی ارائه دهیم که به تمام افراد با سلیقه‌ها و سطوح تجربه در دنیای کریپتو امکان دسترسی به مزایای بی‌پایان این بازار را بدهیم.
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               بررسی تعرفه ها
@@ -155,7 +155,7 @@ export default function Home() {
                 </TabPanel>
               </TabView>
               <div className='text-white text-center mt-6 text-3xl'>
-                {selectedTab === 0 ? ' 30K - 300K' : selectedTab === 0 ? '300K - 500K' : ' 500K - 800K'}
+                {selectedTab === 0 ? ' 5K - 200K' : selectedTab === 1 ? '5K - 50K' : ' 5K - 200K'}
               </div>
             </div>
             <Image src={bull} alt='bull' className='absolute top-[60%]' style={{ zIndex: '-1' }} unoptimized />
