@@ -48,8 +48,8 @@ export default function SingleBlog() {
 
 
                 <div className='px-12 mt-20 grid grid-cols-3 gap-24 mb-32 mx-auto'>
-                    <NewsComponent text='مدیریت نوسانات بازار کریپتو و استراتژی‌های موفقیت' translate={0} image={pic} />
-                    <NewsComponent text='لاکچین فراتر از کریپتو و کاوش در کاربردهای واقعی' translate={30} image={pic} />
+                    <NewsComponent text='مدیریت نوسانات بازار فارکس و استراتژی‌های موفقیت' translate={0} image={pic} />
+                    <NewsComponent text='لاکچین فراتر از فارکس و کاوش در کاربردهای واقعی' translate={30} image={pic} />
                     <NewsComponent text='صعود NFT‌ها و انقلاب دیجیتالی کشف شده' translate={0} image={pic} />
                 </div>
 

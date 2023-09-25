@@ -127,7 +127,7 @@ export default function Home() {
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
             <p className={`${myFontIran.className} rtl text-white`}>
-              با کمال خوش آمدگویی، ما با افتخار تعرفه های منحصر به فرد وب‌سایت ArianVest را به شما معرفی می‌کنیم. در ArianVest، تلاش کرده‌ایم تا تعرفه هایی ارائه دهیم که به تمام افراد با سلیقه‌ها و سطوح تجربه در دنیای کریپتو امکان دسترسی به مزایای بی‌پایان این بازار را بدهیم.
+              با کمال خوش آمدگویی، ما با افتخار تعرفه های منحصر به فرد وب‌سایت ArianVest را به شما معرفی می‌کنیم. در ArianVest، تلاش کرده‌ایم تا تعرفه هایی ارائه دهیم که به تمام افراد با سلیقه‌ها و سطوح تجربه در دنیای فارکس امکان دسترسی به مزایای بی‌پایان این بازار را بدهیم.
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               بررسی تعرفه ها
@@ -175,7 +175,6 @@ export default function Home() {
               مشاهده تمام قوانین
             </Link>
           </div>
-
           <TradeChallengesSection />
           <div className='py-32'>
             <p className={`${myFont.className} text-white text-5xl text-center`}
@@ -190,7 +189,7 @@ export default function Home() {
                 data-aos-delay="800"
               >
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.
+                  وب‌سایت ما با تمرکز بر روی آموزش، تحلیل‌های بازاری پیشرفته، و ابزارهای مفید، به شما راهی به سوی موفقیت در دنیای معاملات فارکس ارائه می‌دهد.
                 </p>
                 <Link href={'/register'}>
                   <Image src={button} alt='register' className='cursor-pointer' />
@@ -221,10 +220,10 @@ export default function Home() {
               data-aos-delay="500"
             >
               <Image src={container2} alt='container' />
-              <p className={`${myFontIran.className} leading-[2.8rem]	text-white text-lg  text-right rtl w-[36rem] absolute top-1/2 left-1/2`}
+              <p className={`${myFontIran.className} leading-[2.8rem]	text-white text-lg  text-right rtl w-[34.5rem] absolute top-1/2 left-1/2`}
                 style={{ transform: 'translate(-50%,-65%)' }}
               >
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه.
+                به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
               </p>
               <Link href={'/about-us'} className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
                 style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
@@ -245,7 +244,7 @@ export default function Home() {
                   سقف 1 میلیون دلار </span>
               </p>
               <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.
+              با توانایی بهبود حساب خود تا 40% و رسیدن به سقف 1 میلیون دلار، شما می‌توانید از این فرصت منحصر به فرد بهره‌برید. اگر به دنبال راهی برای افزایش سرمایه و موفقیت در معاملات فارکس هستید، ما در اینجا هستیم تا شما را همراهی کنیم. 
               </p>
               <Image src={customers} alt='customers' unoptimized className='absolute -top-12' />
             </div>

@@ -110,19 +110,21 @@ const StepsComponent = () => {
 
                 >
                     <div className="content__box rtl">
-                        دومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
+                        در مرحله دوم چالش، تایید مهارت‌های خود را آغاز کنید. این مرحله مهم به شما این امکان را می‌دهد تا مهارت‌های معاملاتی و تجربیات خود را مورد بررسی قرار دهید.
                     </div>
                 </div>
                 <div className="content" data-step="3"
 
                 >
                     <div className="content__box rtl">
-                        سومین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
+                    در مرحله سوم، به عنوان تریدر آرین‌وست به عالم معاملات فارکس وارد شوید. این مرحله به شما این امکان را می‌دهد تا به عنوان یک تریدر حرفه‌ای در دنیای فارکس به موفقیت بی‌پایان نزدیک شوید.
+
+
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>
                     <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" />
-                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"/>
+                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" />
                 </div>
 
             </div>

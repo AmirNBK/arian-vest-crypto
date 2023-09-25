@@ -213,15 +213,21 @@ const CarouselSlider = () => {
                 onHide={() => setVisible(false)}
             >
                 <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
+
                 <TariffTable title='همیشه همراه شماییم' data={[
-                    { title: 'قدرت نفوذ:', info: '1:60' },
+                    { title: 'مقدار سرمایه:', info: '10k' },
+                    { title: 'leverage حساب :', info: '1:60' },
                     { title: 'حداقل روزهای معاملاتی:', info: '3' },
                     { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                    { title: 'هدف فاز 1:', info: '8%' },
-                    { title: 'هدف فاز 2:', info: '5%' },
-                    { title: 'حداکثر ضرر:', info: '10%' },
+                    { title: 'target فاز 1:', info: '8%' },
+                    { title: 'target فاز 2:', info: '5%' },
+                    { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                    { title: 'حداکثر ضرر کلی:', info: '20%' },
+                    { title: 'استفاده از ربات:', info: 'مجاز' },
+                    { title: 'refund:', info: 'دارد' },
+                    { title: 'news trading:', info: 'دارد' },
                 ]}
-                fullWidth
+                    fullWidth
                     price={129}
                 />
             </Dialog>
