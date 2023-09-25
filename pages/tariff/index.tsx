@@ -64,131 +64,141 @@ export default function Rules() {
                     style={{ margin: '0 auto', marginTop: '50px' }}
                 >
                     <TabView>
-                        <TabPanel header="30k">
+                        <TabPanel header="5k">
                             <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={30}
-                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
+                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' : ''}`} />
                             </div>
 
                             <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'قدرت نفوذ:', info: '1:60' },
+                                { title: 'مقدار سرمایه:', info: '5k' },
+                                { title: 'leverage حساب :', info: '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'هدف فاز 1:', info: '8%' },
-                                { title: 'هدف فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر:', info: '10%' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
                             ]}
                                 price={129}
                             />
                         </TabPanel>
-                        <TabPanel header="70k">
+                        <TabPanel header="10k">
                             <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={70}
-                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                                <TariffComponent
+                                    title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={10}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                             </div>
 
                             <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'قدرت نفوذ:', info: '1:60' },
+                                { title: 'مقدار سرمایه:', info: '10k' },
+                                { title: 'leverage حساب :', info: '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'هدف فاز 1:', info: '8%' },
-                                { title: 'هدف فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر:', info: '10%' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
                             ]}
                                 price={129}
                             />
                         </TabPanel>
-                        <TabPanel header="120k">
+                        <TabPanel header="15k">
                             <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={120}
-                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={15}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                             </div>
 
                             <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'قدرت نفوذ:', info: '1:60' },
+                                { title: 'مقدار سرمایه:', info: '15k' },
+                                { title: 'leverage حساب :', info: '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'هدف فاز 1:', info: '8%' },
-                                { title: 'هدف فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر:', info: '10%' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
                             ]}
                                 price={129}
                             />
                         </TabPanel>
-                        <TabPanel header="150k">
+                        <TabPanel header="25k">
                             <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={150}
-                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={25}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
                             </div>
 
                             <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'قدرت نفوذ:', info: '1:60' },
+                                { title: 'مقدار سرمایه:', info: '25k' },
+                                { title: 'leverage حساب :', info: '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'هدف فاز 1:', info: '8%' },
-                                { title: 'هدف فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر:', info: '10%' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
                             ]}
                                 price={129}
                             />
                         </TabPanel>
-                        {(selectedTab === 0 || selectedTab === 1) &&
-                            <TabPanel header="180k">
-                                <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={180}
-                                        description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
-                                </div>
+                        <TabPanel header="50k">
+                            <div className='mt-12'>
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={50}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                            </div>
 
-                                <TariffTable title='همیشه همراه شماییم' data={[
-                                    { title: 'قدرت نفوذ:', info: '1:60' },
-                                    { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                    { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                    { title: 'هدف فاز 1:', info: '8%' },
-                                    { title: 'هدف فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر:', info: '10%' },
-                                ]}
-                                    price={129}
-                                />
-                            </TabPanel>
-                        }
-                        {selectedTab === 0 &&
-                            <TabPanel header="240k">
-                                <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={240}
-                                        description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
-                                </div>
+                            <TariffTable title='همیشه همراه شماییم' data={[
+                                { title: 'مقدار سرمایه:', info: '50k' },
+                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
+                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
+                            ]}
+                                price={129}
+                            />
+                        </TabPanel>
+                        <TabPanel header="100k">
+                            <div className='mt-12'>
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={100}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                            </div>
 
-                                <TariffTable title='همیشه همراه شماییم' data={[
-                                    { title: 'قدرت نفوذ:', info: '1:60' },
-                                    { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                    { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                    { title: 'هدف فاز 1:', info: '8%' },
-                                    { title: 'هدف فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر:', info: '10%' },
-                                ]}
-                                    price={129}
-                                />
-                            </TabPanel>
-                        }
-                        {selectedTab === 0 &&
-                            <TabPanel header="300k">
-                                <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={300}
-                                        description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
-                                </div>
+                            <TariffTable title='همیشه همراه شماییم' data={[
+                                { title: 'مقدار سرمایه:', info: '100k' },
+                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
+                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
+                            ]}
+                                price={129}
+                            />
+                        </TabPanel>
+                        <TabPanel header="200k">
+                            <div className='mt-12'>
+                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={200}
+                                    description='لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با target بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه.' />
+                            </div>
 
-                                <TariffTable title='همیشه همراه شماییم' data={[
-                                    { title: 'قدرت نفوذ:', info: '1:60' },
-                                    { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                    { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                    { title: 'هدف فاز 1:', info: '8%' },
-                                    { title: 'هدف فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر:', info: '10%' },
-                                ]}
-                                    price={129}
-                                />
-                            </TabPanel>
-                        }
+                            <TariffTable title='همیشه همراه شماییم' data={[
+                                { title: 'مقدار سرمایه:', info: '200k' },
+                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
+                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
+                                { title: 'target فاز 1:', info: '8%' },
+                                { title: 'target فاز 2:', info: '5%' },
+                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
+                                { title: 'حداکثر ضرر کلی:', info: '20%' },
+                            ]}
+                                price={129}
+                            />
+                        </TabPanel>
+
                     </TabView>
                 </div>
                 <Footer />
