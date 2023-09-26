@@ -84,10 +84,10 @@ export default function Rules() {
                                 { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                 { title: 'حداکثر ضرر کلی:', info: '20%' },
                                 { title: 'استفاده از ربات:', info: 'مجاز' },
-                                { title: 'refund:', info: 'دارد' },
+                                { title: 'refund:', info: selectedTab === 2 ? 'دارد' : 'ندارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={129}
+                                price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74.25}
                             />
                         </TabPanel>
                         <TabPanel header="10k">
@@ -109,10 +109,10 @@ export default function Rules() {
                                 { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                 { title: 'حداکثر ضرر کلی:', info: '20%' },
                                 { title: 'استفاده از ربات:', info: 'مجاز' },
-                                { title: 'refund:', info: 'دارد' },
+                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={129}
+                                price={selectedTab === 0 ? 88 : selectedTab === 1 ? 92 : 118.8}
                             />
                         </TabPanel>
                         <TabPanel header="15k">
@@ -134,10 +134,10 @@ export default function Rules() {
                                 { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                 { title: 'حداکثر ضرر کلی:', info: '20%' },
                                 { title: 'استفاده از ربات:', info: 'مجاز' },
-                                { title: 'refund:', info: 'دارد' },
+                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={129}
+                                price={selectedTab === 0 ? 99 : selectedTab === 1 ? 105 : 133.65}
                             />
                         </TabPanel>
                         <TabPanel header="25k">
@@ -163,10 +163,10 @@ export default function Rules() {
                                 { title: 'news trading:', info: 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                                 { title: 'استفاده از ربات:', info: 'مجاز' },
-                                { title: 'refund:', info: 'دارد' },
+                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={129}
+                                price={selectedTab === 0 ? 155 : selectedTab === 1 ? 170 : 209.25}
                             />
                         </TabPanel>
                         <TabPanel header="50k">
@@ -188,10 +188,10 @@ export default function Rules() {
                                 { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                 { title: 'حداکثر ضرر کلی:', info: '20%' },
                                 { title: 'استفاده از ربات:', info: 'مجاز' },
-                                { title: 'refund:', info: 'دارد' },
+                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={129}
+                                price={selectedTab === 0 ? 304 : selectedTab === 1 ? 355 : 410.4}
                             />
                         </TabPanel>
                         {(selectedTab === 0 || selectedTab === 2) &&
@@ -213,10 +213,10 @@ export default function Rules() {
                                     { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                     { title: 'حداکثر ضرر کلی:', info: '20%' },
                                     { title: 'استفاده از ربات:', info: 'مجاز' },
-                                    { title: 'refund:', info: 'دارد' },
+                                    { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                     { title: 'news trading:', info: 'دارد' },
                                 ]}
-                                    price={129}
+                                    price={selectedTab === 0 ? 512 : 691.2}
                                 />
                             </TabPanel>
                         }
@@ -239,10 +239,10 @@ export default function Rules() {
                                     { title: 'حداکثر ضرر روزانه:', info: '10%' },
                                     { title: 'حداکثر ضرر کلی:', info: '20%' },
                                     { title: 'استفاده از ربات:', info: 'مجاز' },
-                                    { title: 'refund:', info: 'دارد' },
+                                    { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                     { title: 'news trading:', info: 'دارد' },
                                 ]}
-                                    price={129}
+                                    price={selectedTab === 0 ? 889 : 1200.15}
                                 />
                             </TabPanel>
                         }
