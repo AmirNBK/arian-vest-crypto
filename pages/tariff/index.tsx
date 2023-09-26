@@ -76,18 +76,18 @@ export default function Rules() {
 
                             <TariffTable title='همیشه همراه شماییم' data={[
                                 { title: 'مقدار سرمایه:', info: '5k' },
-                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                 { title: 'target فاز 1:', info: '8%' },
                                 { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: selectedTab === 2 ? 'دارد' : 'ندارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74.25}
+                                price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74}
                             />
                         </TabPanel>
                         <TabPanel header="10k">
@@ -101,18 +101,18 @@ export default function Rules() {
 
                             <TariffTable title='همیشه همراه شماییم' data={[
                                 { title: 'مقدار سرمایه:', info: '10k' },
-                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                 { title: 'target فاز 1:', info: '8%' },
                                 { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={selectedTab === 0 ? 88 : selectedTab === 1 ? 92 : 118.8}
+                                price={selectedTab === 0 ? 88 : selectedTab === 1 ? 92 : 118}
                             />
                         </TabPanel>
                         <TabPanel header="15k">
@@ -126,18 +126,18 @@ export default function Rules() {
 
                             <TariffTable title='همیشه همراه شماییم' data={[
                                 { title: 'مقدار سرمایه:', info: '15k' },
-                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                 { title: 'target فاز 1:', info: '8%' },
                                 { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={selectedTab === 0 ? 99 : selectedTab === 1 ? 105 : 133.65}
+                                price={selectedTab === 0 ? 99 : selectedTab === 1 ? 105 : 133}
                             />
                         </TabPanel>
                         <TabPanel header="25k">
@@ -151,22 +151,22 @@ export default function Rules() {
 
                             <TariffTable title='همیشه همراه شماییم' data={[
                                 { title: 'مقدار سرمایه:', info: '25k' },
-                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                 { title: 'target فاز 1:', info: '8%' },
                                 { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={selectedTab === 0 ? 155 : selectedTab === 1 ? 170 : 209.25}
+                                price={selectedTab === 0 ? 155 : selectedTab === 1 ? 170 : 209}
                             />
                         </TabPanel>
                         <TabPanel header="50k">
@@ -180,18 +180,18 @@ export default function Rules() {
 
                             <TariffTable title='همیشه همراه شماییم' data={[
                                 { title: 'مقدار سرمایه:', info: '50k' },
-                                { title: 'leverage حساب :', info: '1:60' },
+                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                 { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                 { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                 { title: 'target فاز 1:', info: '8%' },
                                 { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                { title: 'استفاده از ربات:', info: 'مجاز' },
+                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                 { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                 { title: 'news trading:', info: 'دارد' },
                             ]}
-                                price={selectedTab === 0 ? 304 : selectedTab === 1 ? 355 : 410.4}
+                                price={selectedTab === 0 ? 304 : selectedTab === 1 ? 355 : 410}
                             />
                         </TabPanel>
                         {(selectedTab === 0 || selectedTab === 2) &&
@@ -205,18 +205,18 @@ export default function Rules() {
 
                                 <TariffTable title='همیشه همراه شماییم' data={[
                                     { title: 'مقدار سرمایه:', info: '100k' },
-                                    { title: 'leverage حساب :', info: '1:60' },
+                                    { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                     { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                     { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                     { title: 'target فاز 1:', info: '8%' },
                                     { title: 'target فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                    { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                    { title: 'استفاده از ربات:', info: 'مجاز' },
+                                    { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                    { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                    { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                     { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                     { title: 'news trading:', info: 'دارد' },
                                 ]}
-                                    price={selectedTab === 0 ? 512 : 691.2}
+                                    price={selectedTab === 0 ? 512 : 691}
                                 />
                             </TabPanel>
                         }
@@ -231,18 +231,18 @@ export default function Rules() {
 
                                 <TariffTable title='همیشه همراه شماییم' data={[
                                     { title: 'مقدار سرمایه:', info: '200k' },
-                                    { title: 'leverage حساب :', info: '1:60' },
+                                    { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
                                     { title: 'حداقل روزهای معاملاتی:', info: '3' },
                                     { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
                                     { title: 'target فاز 1:', info: '8%' },
                                     { title: 'target فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر روزانه:', info: '10%' },
-                                    { title: 'حداکثر ضرر کلی:', info: '20%' },
-                                    { title: 'استفاده از ربات:', info: 'مجاز' },
+                                    { title: 'حداکثر ضرر روزانه:', info: '6%' },
+                                    { title: 'حداکثر ضرر کلی:', info: '13%' },
+                                    { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
                                     { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
                                     { title: 'news trading:', info: 'دارد' },
                                 ]}
-                                    price={selectedTab === 0 ? 889 : 1200.15}
+                                    price={selectedTab === 0 ? 889 : 1200}
                                 />
                             </TabPanel>
                         }
