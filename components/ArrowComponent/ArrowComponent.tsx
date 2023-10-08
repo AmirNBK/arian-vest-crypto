@@ -30,7 +30,7 @@ const ArrowComponent = () => {
         >
             <Link href={'#AboutUs'}>
                 <div
-                    className={`absolute w-40 h-40 xl:w-64 xl:h-64 left-1/2 top-1/2`}
+                    className={`absolute w-40 h-40 xl:w-64 xl:h-64 left-1/2 3xl:left-[85%] top-1/2 3xl:top-[20%]`}
                     style={{ transform: 'translate(-50%, -50%)' }}
                 >
                     <div
@@ -44,7 +44,7 @@ const ArrowComponent = () => {
                     unoptimized
                     alt='arrow'
                     src={arrow}
-                    className='relative left-1/2 top-1/2'
+                    className='relative left-1/2 3xl:left-[85%] top-1/2 3xl:top-[20%]'
                     style={{ transform: 'translate(-50%, -50%)' }}
                 />
             </Link>

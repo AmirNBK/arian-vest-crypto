@@ -105,14 +105,14 @@ export default function Home() {
       <PrimeReactProvider>
         <Header active={0} />
         <div className='relative h-screen'>
-          <div className='relative mt-20 lg:block block
+          <div className='relative sm:mt-20 lg:block block
                       absolute left-1/2 top-1/3 
                       '
             style={{ transform: 'translate(-50%,-54%)' }}
           >
             <Image src={pic} alt='pic' unoptimized
               ref={imageRef}
-              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 h-full animate__animated  animate__zoomIn animate__slower' />
+              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 3xl:w-5/12 h-full animate__animated  animate__zoomIn animate__slower' />
             <div className='animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow'
             >
               <HeroSectionText />
