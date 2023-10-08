@@ -15,7 +15,7 @@ const TradeChallengesSection = () => {
 
     return (
         <div className='tradeChallenges'>
-            <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-3'
+            <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-8 lg:gap-3 flex-wrap'
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
                 <p className={`${myFont.className} text-white text-5xl text-center`}

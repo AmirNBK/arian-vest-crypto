@@ -120,13 +120,13 @@ export default function Home() {
           </div>
           <ArrowComponent />
 
-          <div className={`justify-center flex flex-row-reverse gap-4 items-end py-20 mr-12 mt-8 flex flex-col w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4 lg:items-end items-center py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-5xl my-2`}>
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
-            <p className={`${myFontIran.className} rtl text-white`}>
+            <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
               با کمال خوش آمدگویی، ما با افتخار تعرفه های منحصر به فرد وب‌سایت ArianVest را به شما معرفی می‌کنیم. در ArianVest، تلاش کرده‌ایم تا تعرفه هایی ارائه دهیم که به تمام افراد با سلیقه‌ها و سطوح تجربه در دنیای فارکس امکان دسترسی به مزایای بی‌پایان این بازار را بدهیم.
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
@@ -134,7 +134,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className='relative'>
+          <div className='relative lg:m-0 -mt-[27rem]'>
             <div className="card"
               style={{ margin: '0 auto', marginTop: '50px' }}
             >
@@ -158,10 +158,10 @@ export default function Home() {
                 {selectedTab === 0 ? ' 5K - 200K' : selectedTab === 1 ? '5K - 50K' : ' 5K - 200K'}
               </div>
             </div>
-            <Image src={bull} alt='bull' className='absolute top-[60%]' style={{ zIndex: '-1' }} unoptimized />
+            <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '-1' }} unoptimized />
           </div>
 
-          <div className='py-40 text-center tradeRules'>
+          <div className='lg:py-40 pb-40 pt-20 text-center tradeRules'>
             <p className={`${myFont.className} text-white text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             >
@@ -176,14 +176,14 @@ export default function Home() {
             </Link>
           </div>
           <TradeChallengesSection />
-          <div className='py-32'>
+          <div className='lg:py-32'>
             <p className={`${myFont.className} text-white text-5xl text-center`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
             </p>
-            <div className='flex flex-row-reverse py-6 gap-12'>
-              <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" />
+            <div className='flex flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
+              <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
               <div className='flex flex-col items-center justify-center gap-10'
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                 data-aos-delay="800"
@@ -195,17 +195,17 @@ export default function Home() {
                   <Image src={button} alt='register' className='cursor-pointer' />
                 </Link>
               </div>
-              <Image src={greenBull} alt='greenBull'
+              <Image src={greenBull} alt='greenBull' className='lg:w-fit w-36'
                 data-aos-duration="1000" data-aos-once={true} data-aos="fade-right"
               />
             </div>
           </div>
 
           <div className='aboutUs my-40 relative'>
-            <Image src={pic1} alt='pic' unoptimized style={{ opacity: '0.5' }}
+            <Image src={pic1} className='3xl:w-[60%] lg:visible invisible' alt='pic' unoptimized style={{ opacity: '0.5' }}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
             />
-            <div className='absolute right-0 top-12'
+            <div className='absolute right-0 top-12 3xl:w-[45%]'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
             >
               <Image src={container} alt='container' />
@@ -215,7 +215,7 @@ export default function Home() {
                 <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
               </p>
             </div>
-            <div className='absolute right-0 top-64'
+            <div className='absolute right-0 top-64 3xl:w-[45%]'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
               data-aos-delay="500"
             >
@@ -225,7 +225,7 @@ export default function Home() {
               >
                 به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
               </p>
-              <Link href={'/about-us'} className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10`}
+              <Link href={'/about-us'} className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10 3xl:right-[20%]`}
                 style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
                 بیشتر بخوانید
               </Link>
@@ -234,8 +234,8 @@ export default function Home() {
           </div>
 
           <div className='my-56'>
-            <Image src={customer} alt='customer' className='ml-40  translate-y-12' unoptimized />
-            <div className='relative'>
+            <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
+            <div className='relative lg:p-0 pt-24'>
               <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
               >
@@ -244,9 +244,9 @@ export default function Home() {
                   سقف 1 میلیون دلار </span>
               </p>
               <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
-              با توانایی بهبود حساب خود تا 40% و رسیدن به سقف 1 میلیون دلار، شما می‌توانید از این فرصت منحصر به فرد بهره‌برید. اگر به دنبال راهی برای افزایش سرمایه و موفقیت در معاملات فارکس هستید، ما در اینجا هستیم تا شما را همراهی کنیم. 
+                با توانایی بهبود حساب خود تا 40% و رسیدن به سقف 1 میلیون دلار، شما می‌توانید از این فرصت منحصر به فرد بهره‌برید. اگر به دنبال راهی برای افزایش سرمایه و موفقیت در معاملات فارکس هستید، ما در اینجا هستیم تا شما را همراهی کنیم.
               </p>
-              <Image src={customers} alt='customers' unoptimized className='absolute -top-12' />
+              <Image src={customers} alt='customers' unoptimized className='absolute top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
             </div>
           </div>
 
@@ -307,10 +307,18 @@ export default function Home() {
     flex-direction: column-reverse;
             }
             .p-tabview .p-tabview-panels {
-              max-height: 900px;
+              max-height: 850px;
+
+              @media (min-width: 1024px) { 
+                max-height: 900px;
+               }
             }
             .p-tabview-nav-content {
-              width: 35%;
+
+              @media (min-width: 1024px) { 
+                width: 35%;
+               }
+               width: 50%;
               margin: 0 auto;
               z-index : 1;
             }
