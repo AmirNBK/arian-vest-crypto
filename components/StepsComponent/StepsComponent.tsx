@@ -123,8 +123,8 @@ const StepsComponent = () => {
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>
-                    <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" />
-                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" />
+                    <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" className='lg:w-fit w-44' />
+                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
                 </div>
 
             </div>

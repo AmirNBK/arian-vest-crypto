@@ -20,17 +20,17 @@ const BenefitsComponent = (props: {
     }, [])
 
     return (
-        <div className={`cooroprate__Benefits__firstSection flex ${props.position === 'normal' ? 'flex-row-reverse' : 'flex-row'} items-center`}>
+        <div className={`cooroprate__Benefits__firstSection gap-10 flex ${props.position === 'normal' ? 'flex-row-reverse' : 'flex-row'} items-center`}>
             <div className='cooroprate__Benefits__firstSection__info flex-1 3xl:flex-[2]'
                 data-aos-duration="2000" data-aos-once={true} data-aos={`${props.position === 'normal' ? 'fade-left' : 'fade-right'}`}
             >
                 <h2 className='cooroprate__Benefits__firstSection__info__title rtl'>
-                    <p className={`${myFont.className} text-white text-3xl 3xl:text-5xl py-12`}>
+                    <p className={`${myFont.className} text-white text-2xl lg:text-3xl 3xl:text-5xl pb-4 lg:py-12`}>
                         <span className='text-3xl text-main-orange'> </span> {props.title} <span style={{ color: '#F68D2E' }}> {props.highlightTitle} </span>
                     </p>
                 </h2>
                 <p className={`${myFontIran.className} cooroprate__Benefits__firstSection__info__description rtl
-                text-base 3xl:text-2xl
+                text-sm lg:text-base 3xl:text-2xl
                 text-white`}>
                     {props.description}
                 </p>

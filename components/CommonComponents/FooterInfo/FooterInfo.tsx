@@ -8,11 +8,11 @@ const FooterInfo = (props: {
 }) => {
     return (
         <div className={`${myFontIran.className} FooterInfo flex flex-row items-baseline text-right`}>
-            <span className='text-2xl mr-2'>
+            <span className='text-xl lg:text-2xl mr-2'>
                 {props.info}
             </span>
             :
-            <span className='text-2xl ml-2 font-semibold'>
+            <span className='text-xl lg:text-2xl ml-2 font-semibold'>
                 {props.title}
             </span>
         </div>

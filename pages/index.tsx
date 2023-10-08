@@ -280,11 +280,11 @@ export default function Home() {
                 image={benefitsPic3}
                 position='normal'
               />
-              <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1]' />
+              <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1] lg:block hidden' />
             </div>
           </div>
 
-          <div className='successSteps py-56'>
+          <div className='successSteps p-12 lg:py-56'>
             <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
