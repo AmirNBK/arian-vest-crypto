@@ -25,15 +25,15 @@ export default function SingleBlog() {
             <PrimeReactProvider>
                 <Header active={3} />
 
-                <div className={`${myFont.className} flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
+                <div className={`${myFont.className} flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={faq} alt='faq' />
-                    <p className='text-white text-4xl'>
+                    <p className='text-white text-4xl sm:text-end text-center'>
                         سوالات متداول <span style={{ color: '#F68D2E' }}> برای معاملات </span>
                     </p>
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid lg:grid-cols-2 grid-cols-1 gap-y-4 lg:ml-12 ml-20 3xl:ml-56 mb-24 mt-8'>
+                    <Accordion multiple className='grid lg:grid-cols-2 grid-cols-1 gap-y-4 lg:ml-12 sm:ml-20 3xl:ml-56 mb-24 mt-8'>
                         <AccordionTab
                             pt={{
                                 headerIcon: <Image src={arrow} alt='arrow' />
@@ -171,7 +171,9 @@ export default function SingleBlog() {
       }
 
       .p-accordion-tab {
-        width: 681px;
+        @media (min-width: 640px) { 
+            width: 681px;
+           }
       }
 
       .p-accordion .p-accordion-header .p-accordion-header-link {
