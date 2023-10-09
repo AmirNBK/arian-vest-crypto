@@ -7,7 +7,7 @@ const RegisterInput = (props: {
 }) => {
     return (
         <>
-            <input className={`${myFont.className} RegisterInput text-white bg-transparent border border-solid border-white rtl text-right w-full rounded-2xl px-6 py-7 placeholder:text-base`}
+            <input className={`${myFont.className} RegisterInput text-white bg-transparent border border-solid border-white rtl text-right w-full rounded-2xl px-6 py-4 sm:py-7 placeholder:text-base`}
                 style={{ direction: 'rtl' }}
                 placeholder={props.placeholder} />
 

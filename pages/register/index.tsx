@@ -30,9 +30,9 @@ export default function Register() {
             <PrimeReactProvider>
                 <Header />
                 <div className='Register__title flex flex-col gap-4 mt-16 justify-center p-12'>
-                    <div className='flex flex-row-reverse w-full items-center justify-center mb-24 gap-5'>
+                    <div className='flex flex-col sm:flex-row-reverse w-full items-center justify-center mb-8 sm:mb-24 gap-5'>
                         <Image src={icon} alt='registerIcon' />
-                        <div className={`${myFont.className} text-5xl flex flex-row-reverse gap-1`}>
+                        <div className={`${myFont.className} text-end text-3xl sm:text-5xl flex flex-row-reverse gap-1`}>
                             <p className='text-white'>
                                 فرآیند
                             </p>
