@@ -20,7 +20,7 @@ const Header = (props: {
     ];
 
     return (
-        <div className='Header flex flex-wrap flex-row-reverse justify-center xl:justify-between w-full items-center px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8'>
+        <div className='Header flex flex-wrap flex-row-reverse justify-center xl:justify-between w-full items-center sm:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8'>
             <Link href={'/'}>
                 <Image src={logo} alt='logo' className='w-[230px] lg:w-[150px] 2xl:w-[191px] 3xl:w-[250px]' />
             </Link>

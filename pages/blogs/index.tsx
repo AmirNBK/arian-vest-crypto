@@ -43,7 +43,7 @@ export default function SingleBlog() {
             <PrimeReactProvider>
                 <Header active={5} />
 
-                <div className={`${myFont.className} justify-center flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
+                <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={newspaper} alt='faq' />
                     <p className='text-white text-4xl'>
                         آرشیو <span style={{ color: '#F68D2E' }}>  اخبار و مقالات </span>
@@ -51,7 +51,7 @@ export default function SingleBlog() {
                 </div>
 
 
-                <div className='px-12 mt-20 grid grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
+                <div className='px-12 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
                     <NewsComponent text='مدیریت نوسانات بازار فارکس و استراتژی‌های موفقیت' translate={0} image={pic} />
                     <NewsComponent text='لاکچین فراتر از فارکس و کاوش در کاربردهای واقعی' translate={size.width && size.width < 1024 ? 0 : 30} image={pic} />
                     <NewsComponent text='صعود NFT‌ها و انقلاب دیجیتالی کشف شده' translate={0} image={pic} />
