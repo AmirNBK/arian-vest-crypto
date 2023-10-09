@@ -22,7 +22,7 @@ const AboutUsItems = (props: {
             style={{ transform: `translateX(${props.translate}px)` }}
         >
             <Image src={logo} alt='logo' className='w-8 3xl:w-12' unoptimized />
-            <p className={`${myFontIran.className} text-white text-xl 3xl:text-2xl`}> {props.text} </p>
+            <p className={`${myFontIran.className} text-white text-xl 3xl:text-2xl text-right`}> {props.text} </p>
         </div>
     );
 };

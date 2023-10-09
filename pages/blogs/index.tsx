@@ -19,12 +19,16 @@ import {
     Paginator, PaginatorPageChangeEvent, PaginatorNextPageLinkOptions, PaginatorPageLinksOptions, PaginatorPrevPageLinkOptions,
 } from 'primereact/paginator';
 import template1 from '@/functions/function';
+import useWindowSize from '@/Hooks/innerSize';
 
 export default function SingleBlog() {
 
     const [first, setFirst] = useState<number[]>([0, 0, 0]);
     const [rows, setRows] = useState([10, 10, 10]);
-    
+
+    const size = useWindowSize();
+
+
     const onPageChange = (e: PaginatorPageChangeEvent, index: number) => {
         setFirst(first.map((f, i) => (index === i ? e.first : f)));
         setRows(rows.map((r, i) => (index === i ? e.rows : r)));
@@ -47,9 +51,9 @@ export default function SingleBlog() {
                 </div>
 
 
-                <div className='px-12 mt-20 grid grid-cols-3 gap-24 mb-32 mx-auto'>
+                <div className='px-12 mt-20 grid grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
                     <NewsComponent text='مدیریت نوسانات بازار فارکس و استراتژی‌های موفقیت' translate={0} image={pic} />
-                    <NewsComponent text='لاکچین فراتر از فارکس و کاوش در کاربردهای واقعی' translate={30} image={pic} />
+                    <NewsComponent text='لاکچین فراتر از فارکس و کاوش در کاربردهای واقعی' translate={size.width && size.width < 1024 ? 0 : 30} image={pic} />
                     <NewsComponent text='صعود NFT‌ها و انقلاب دیجیتالی کشف شده' translate={0} image={pic} />
                 </div>
 

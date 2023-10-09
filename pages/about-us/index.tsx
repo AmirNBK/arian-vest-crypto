@@ -44,7 +44,7 @@ export default function SingleBlog() {
                 </div>
 
                 <div className='flex flex-row-reverse justify-center m-24'>
-                    <Image src={shape} className='3xl:w-96' alt='shape' unoptimized />
+                    <Image src={shape} className='w-56 lg:w-fit 3xl:w-96' alt='shape' unoptimized />
                     <div className='flex flex-col justify-around mr-12'>
                         <AboutUsItems delay={0} translate={60} text='کاهش کلاهبرداری های اینترنتی' />
                         <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
