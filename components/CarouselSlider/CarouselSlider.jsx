@@ -19,7 +19,7 @@ const CarouselSlider = () => {
         AOS.init();
     }, [])
 
-    const size = useWindowSize()
+    const size = useWindowSize();
 
     const jqueryCode = () => {
         var w, container, carousel, item, radius, itemLength, rY, ticker, wrapper;

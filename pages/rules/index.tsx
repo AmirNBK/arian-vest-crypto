@@ -21,12 +21,15 @@ import AOS from 'aos';
 import logo from '../../assets/icons/rulesLogo.svg'
 
 import 'aos/dist/aos.css';
+import useWindowSize from '@/Hooks/innerSize';
 
 export default function Rules() {
 
     useEffect(() => {
         AOS.init();
     }, [])
+    const size = useWindowSize();
+
 
     const planADatas = [
         {
@@ -388,14 +391,14 @@ export default function Rules() {
             <PrimeReactProvider>
                 <Dialog
                     header="پلن قدیمی، محبوب و خاص SGB، برای عموم تریدرهای مجموعه" visible={visibleA} style={{
-                        width: '60vw', display: 'flex', flexDirection: 'column',
+                        width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
                         backgroundColor: '#252525'
                     }}
                     className={`${myFont.className} font-normal`}
                     onHide={() => setVisibleA(false)}
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-                    <Accordion multiple className='gap-y-4 ml-48 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:ml-48 mb-24 mt-8'>
                         {planADatas.map((item, index) => (
                             <AccordionTab
                                 key={index}
@@ -411,7 +414,7 @@ export default function Rules() {
                 <Dialog
                     header="SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.
                     " visible={visibleB} style={{
-                        width: '60vw', display: 'flex', flexDirection: 'column',
+                        width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
                         backgroundColor: '#252525'
                     }}
                     className={`${myFont.className} font-normal`}
@@ -419,7 +422,7 @@ export default function Rules() {
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                    <Accordion multiple className='gap-y-4 ml-48 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:ml-48 mb-24 mt-8'>
                         {planBDatas.map((item, index) => (
                             <AccordionTab
                                 key={index}
@@ -434,11 +437,11 @@ export default function Rules() {
                 </Dialog>
                 <Header active={2} />
                 <div className='text-white w-10/12 mx-auto mt-20'>
-                    <h2 className={`${myFont.className} text-3xl mb-6 text-center text-white`}
+                    <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
                     >
                         قوانین پلن انتخابی را  <span style={{ color: '#F68D2E' }}> به دقت مطالعه نمایید</span>
                     </h2>
-                    <p className={`${myFontIran.className} text-center leading-loose`}>
+                    <p className={`${myFontIran.className} text-center 3xl:text-xl rtl`} style={{ lineHeight: '2' }}>
                         بسیاری از ابهامات و سوال هایی که ممکن است برای شما ایجاد شود در این بخش مورد بررسی قرار گرفته است. تریدر باید دو مرحله در اکانت دمو ترید کند و بدون نقض قوانین، به تارگت های پیش رو برسد. پس از تکمیل سفارش، معامله گران در چلنج شرکت خواهند نمود. تریدر باید در حساب های Demo، با رعایت قوانین، به تارگت مراحل برسد.
                     </p>
                 </div>
@@ -447,7 +450,7 @@ export default function Rules() {
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
                 >
                     <Image src={rules} alt='rules' unoptimized />
-                    <p className={`${myFont.className} mr-5 text-white text-4xl`}>
+                    <p className={`${myFont.className} mr-5 text-white text-4xl 3xl:text-5xl`}>
                         قوانین کلی <span style={{ color: '#F68D2E' }}> پلن ها </span>
                     </p>
                 </div>
@@ -468,13 +471,13 @@ export default function Rules() {
 
                 <div className='flex flex-row-reverse justify-center items-center mt-24'>
                     <Image src={book} alt='rules' unoptimized />
-                    <p className={`${myFont.className} mr-5 text-white text-4xl`}>
+                    <p className={`${myFont.className} mr-5 text-white text-4xl 3xl:text-5xl`}>
                         قوانین کلی <span style={{ color: '#F68D2E' }}> مربوط به سایت </span>
                     </p>
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid grid-cols-2 gap-y-4 ml-12 mb-24 mt-8'>
+                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-y-4 ml-12 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
                         <AccordionTab
                             className='text-white text-right' header="آیا میتوانیم پسورد حساب متاتریدر را تغییر دهیم؟">
                             <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -652,7 +655,11 @@ export default function Rules() {
                     {
                         `
 
-                        
+                        .p-accordion .p-accordion-header .p-accordion-header-link {
+                            @media (min-width: 2000px) { 
+                                font-size : 23px;
+                               }
+                        }
                     .p-dialog-draggable .p-dialog-header {
                         background: #252525;
                     }
@@ -664,7 +671,8 @@ export default function Rules() {
                     .p-dialog .p-dialog-header .p-dialog-title {
                         text-align: right;
                         transform: translateY(40px);
-                        color : white
+                        color : white;
+                        z-index : 20;
                     }
 
                     .p-dialog-draggable .p-dialog-header {
