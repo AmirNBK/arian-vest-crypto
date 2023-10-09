@@ -398,7 +398,7 @@ export default function Rules() {
                     onHide={() => setVisibleA(false)}
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-                    <Accordion multiple className='gap-y-4 lg:ml-48 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:ml-16 mb-24 mt-8'>
                         {planADatas.map((item, index) => (
                             <AccordionTab
                                 key={index}
@@ -422,7 +422,7 @@ export default function Rules() {
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                    <Accordion multiple className='gap-y-4 lg:ml-48 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:ml-16 mb-24 mt-8'>
                         {planBDatas.map((item, index) => (
                             <AccordionTab
                                 key={index}
@@ -732,7 +732,7 @@ export default function Rules() {
       }
 
       .p-accordion-tab {
-        width: 681px;
+        width: 100%;
       }
 
       .p-accordion .p-accordion-header .p-accordion-header-link {
