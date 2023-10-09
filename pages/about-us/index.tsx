@@ -17,10 +17,12 @@ import Stats from '@/components/Stats/Stats';
 import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit.svg'
+import useWindowSize from '@/Hooks/innerSize';
 
 
 export default function SingleBlog() {
 
+    const size = useWindowSize();
     const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
     return (
         <main
@@ -29,9 +31,9 @@ export default function SingleBlog() {
             <PrimeReactProvider>
                 <Header active={4} />
 
-                <div className={`${myFont.className} justify-center flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
+                <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
-                    <p className='text-white text-5xl'>
+                    <p className='text-white text-5xl text-center sm:text-end'>
                         درباره <span style={{ color: '#F68D2E' }}>  تیم ما <span className='text-3xl'> (ارین وست) </span> </span>
                     </p>
                 </div>
@@ -40,25 +42,25 @@ export default function SingleBlog() {
                     به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
-                    <Image src={range} alt='rangeTrading' className='3xl:w-full' />
+                    <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
                 </div>
 
-                <div className='flex flex-row-reverse justify-center m-24'>
+                <div className='flex flex-col sm:flex-row-reverse justify-center mb-8 mt-4 mx-8 items-center sm:m-24'>
                     <Image src={shape} className='w-56 lg:w-fit 3xl:w-96' alt='shape' unoptimized />
-                    <div className='flex flex-col justify-around mr-12'>
-                        <AboutUsItems delay={0} translate={60} text='کاهش کلاهبرداری های اینترنتی' />
+                    <div className='flex flex-col justify-around sm:mr-20 gap-8 mt-8'>
+                        <AboutUsItems delay={0} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش کلاهبرداری های اینترنتی' />
                         <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
-                        <AboutUsItems delay={1000} translate={60} text='کاهش خطرات تحریم بر کارکرد' />
+                        <AboutUsItems delay={1000} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش خطرات تحریم بر کارکرد' />
                     </div>
                 </div>
 
-                <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-4 items-center mr-12 mt-8 mb-44`}>
-                    <p className='text-white text-5xl'>
+                <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-4 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
+                    <p className='text-white text-5xl sm:text-end text-center'>
                         آمار کاربران <span style={{ color: '#F68D2E' }}> سایت ارین وست <span className='text-3xl'> (1402) </span> </span>
                     </p>
-                    <div className='mt-24 flex flex-row gap-24'>
+                    <div className='mt-12 sm:mt-24 flex flex-col sm:flex-row gap-20 sm:gap-24'>
                         <Stats fadePosition='right' icon={profit} text='بزرگترین پرداخت سود' stat='+25000$' translate={0} />
-                        <Stats fadePosition='up' icon={users} text='تعداد کاربران' stat='+68589' translate={40} />
+                        <Stats fadePosition='up' icon={users} text='تعداد کاربران' stat='+68589' translate={size.width && size.width > 640 ? 40 : 0} />
                         <Stats fadePosition='left' icon={payment} text='مجموع پرداخت‌ها' stat='+3,000,000$' translate={0} />
                     </div>
                 </div>

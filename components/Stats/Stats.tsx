@@ -21,11 +21,12 @@ const Stats = (props: {
         <div className={`${myFontIran.className} Stats text-white flex flex-col gap-3 items-center`}
             style={{ transform: `translateY(-${props.translate}px)` }}
         >
-            <Image src={props.icon} alt='icon' unoptimized data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`} />
-            <p className='text-2xl 3xl:text-3xl'
+            <Image src={props.icon} alt='icon' unoptimized data-aos-duration="3000"
+                data-aos-once={true} data-aos={`fade-${props.fadePosition}`} />
+            <p className='text-lg sm:text-2xl 3xl:text-3xl'
                 data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`}
             > {props.text} </p>
-            <p className='text-xl 3xl:text-2xl'
+            <p className='text-base sm:text-xl 3xl:text-2xl'
                 data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`}
             > {props.stat} </p>
         </div>
