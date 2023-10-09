@@ -33,7 +33,7 @@ export default function SingleBlog() {
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid grid-cols-2 gap-y-4 ml-12 mb-24 mt-8'>
+                    <Accordion multiple className='grid lg:grid-cols-2 grid-cols-1 gap-y-4 lg:ml-12 ml-20 3xl:ml-56 mb-24 mt-8'>
                         <AccordionTab
                             pt={{
                                 headerIcon: <Image src={arrow} alt='arrow' />
@@ -112,6 +112,11 @@ export default function SingleBlog() {
             <style>
                 {
                     `
+                    .p-accordion .p-accordion-header .p-accordion-header-link {
+                        @media (min-width: 2000px) { 
+                            font-size : 20px;
+                           }
+                    }
                     .p-accordion .p-accordion-header .p-accordion-header-link {
                         border: none;
                         background: #1D1D1D;
