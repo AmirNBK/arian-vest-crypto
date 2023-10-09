@@ -446,7 +446,7 @@ export default function Rules() {
                     </p>
                 </div>
 
-                <div className='flex flex-row-reverse justify-center items-center mt-24'
+                <div className='flex flex-col sm:flex-row-reverse sm:gap-0 gap-4 justify-center items-center mt-24'
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
                 >
                     <Image src={rules} alt='rules' unoptimized />
@@ -455,7 +455,7 @@ export default function Rules() {
                     </p>
                 </div>
 
-                <div className='px-12 mt-20 flex flex-row justify-center gap-x-32 mb-32'
+                <div className='px-12 mt-20 flex flex-col sm:flex-row justify-center sm:gap-y-0 gap-y-12 gap-x-32 mb-32'
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
                 >
                     <RulesComponent onClick={() => setVisibleA(true)} translate={0} text='قوانین پلن کِلاس A' feature='(تارگت سود کمتر)' />
@@ -469,15 +469,15 @@ export default function Rules() {
                     />
                 </div>
 
-                <div className='flex flex-row-reverse justify-center items-center mt-24'>
+                <div className='flex flex-col sm:flex-row-reverse sm:gap-0 gap-4 justify-center items-center mt-24'>
                     <Image src={book} alt='rules' unoptimized />
-                    <p className={`${myFont.className} mr-5 text-white text-4xl 3xl:text-5xl`}>
+                    <p className={`${myFont.className} mr-5 text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
                         قوانین کلی <span style={{ color: '#F68D2E' }}> مربوط به سایت </span>
                     </p>
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-y-4 ml-12 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
+                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:ml-12 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
                         <AccordionTab
                             className='text-white text-right' header="آیا میتوانیم پسورد حساب متاتریدر را تغییر دهیم؟">
                             <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -659,6 +659,9 @@ export default function Rules() {
                             @media (min-width: 2000px) { 
                                 font-size : 23px;
                                }
+                               @media (max-width: 640px) { 
+                                font-size : 13px;
+                               }
                         }
                     .p-dialog-draggable .p-dialog-header {
                         background: #252525;
@@ -673,6 +676,10 @@ export default function Rules() {
                         transform: translateY(40px);
                         color : white;
                         z-index : 20;
+
+                        @media (max-width: 640px) { 
+                            font-size : 1rem;
+                           }
                     }
 
                     .p-dialog-draggable .p-dialog-header {
