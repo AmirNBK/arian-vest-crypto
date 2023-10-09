@@ -200,7 +200,7 @@ const CarouselSlider = () => {
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             style={{
                 transform: 'rotate(4deg)', width: '105vw',
-                marginTop: `${size.width && size.width < 768 && '-250px'}`
+
             }}
         >
             <Dialog

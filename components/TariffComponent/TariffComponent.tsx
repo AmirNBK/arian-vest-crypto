@@ -17,7 +17,7 @@ const TariffComponent = (props: {
         AOS.init();
     }, [])
     return (
-        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-8/12 mx-auto p-6`}
+        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-full lg:w-8/12 mx-auto p-6`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
         >
             <div className='TariffComponent__info text-main-orange flex flex-row text-4xl justify-between'>
@@ -25,10 +25,10 @@ const TariffComponent = (props: {
                 <p> {props.price}k </p>
             </div>
             <div className='mt-10'>
-                <p className={`${myFontIranlight} rtl text-right text-white w-8/12 ml-auto mt-6 leading-loose font-extralight`}>
+                <p className={`${myFontIranlight} rtl text-right text-white w-full lg:w-8/12 ml-auto mt-6 leading-loose font-extralight`}>
                     {props.description}
                 </p>
-                <Image className='absolute' src={bull} alt='bull'
+                <Image className='absolute lg:block hidden' src={bull} alt='bull'
                     style={{ bottom: '-100px', left: '-15px' }} unoptimized
                 />
             </div>

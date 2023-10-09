@@ -14,11 +14,13 @@ import tariff from '../../assets/icons/tariff.svg'
 import TariffComponent from '@/components/TariffComponent/TariffComponent';
 import TariffTable from '@/components/TariffTable/TariffTable';
 import Footer from '@/components/Footer/Footer';
+import useWindowSize from '@/Hooks/innerSize';
 
 
 export default function Rules() {
 
     const [selectedTab, setSelectedTab] = useState<number>(0)
+    const size = useWindowSize()
 
     return (
         <main
@@ -27,9 +29,9 @@ export default function Rules() {
             <PrimeReactProvider>
                 <Header active={1} />
 
-                <div className='flex flex-row-reverse items-center'>
-                    <div className='flex flex-col flex-1'>
-                        <div className={`${myFont.className} justify-right flex flex-row-reverse gap-4 items-center mr-12 mt-8`}>
+                <div className='flex flex-col lg:flex-row-reverse items-center'>
+                    <div className='flex flex-col flex-1 lg:my-0 my-16'>
+                        <div className={`${myFont.className} justify-right flex flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
                             <Image src={tariff} alt='faq' />
                             <p className='text-white text-5xl'>
                                 <span className='text-3xl text-main-orange'> {selectedTab === 0 ? '(classic)' : selectedTab === 1 ? '(one-step)' : '(rapid)'}
@@ -38,14 +40,14 @@ export default function Rules() {
                             </p>
                         </div>
                         <div>
-                            <p className={`${myFontIran.className} text-right rtl text-white leading-loose text-white w-10/12 mx-auto mt-6`}>
+                            <p className={`${myFontIran.className} text-right rtl text-white leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
                                 {selectedTab === 0 ? 'طرح کلاسیک به عنوان یکی از پرطرفدارترین گزینه‌ها در وب‌سایت فارکس ما شناخته می‌شود.' : selectedTab === 1 ? 'طرح یک مرحله‌ای مناسب برای تریدرهای حرفه‌ای با تجربه است.' : 'طرح رپید برای کسانی مناسب است که به دنبال معاملات سریع و اجازه استفاده از ربات می‌باشند.'}
                             </p>
                         </div>
                     </div>
                     <div className='w-full flex-1'>
                         <TabView
-                            style={{ width: '80%' }}
+                            style={{ width: `${size.width && size.width < 1024 ? '100%' : '80%'}`, padding: '0px 10px' }}
                             activeIndex={selectedTab}
                             onTabChange={(e) => {
                                 setSelectedTab(e.index)
@@ -256,8 +258,12 @@ export default function Rules() {
                     {
                         `
                         .p-tabview-nav-content {
-                            width: 50%;
                             margin: 0 auto;
+                            width : 90%;
+
+                            @media (min-width: 1024px) { 
+                                width: 50%;
+                               }
                           }
                         `
                     }

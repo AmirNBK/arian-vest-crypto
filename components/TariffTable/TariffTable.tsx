@@ -18,7 +18,7 @@ const TariffTable = (props: {
         AOS.init();
     }, [])
     return (
-        <div className={`${myFontIran.className} TariffTable my-32 ${props.fullWidth ? ' w-full' : ' w-8/12'} mx-auto rounded-lg`}
+        <div className={`${myFontIran.className} TariffTable my-32 ${props.fullWidth ? ' w-full' : 'w-11/12 lg:w-8/12'} mx-auto rounded-lg`}
             style={{ backgroundColor: '#1D1D1D' }}
             data-aos-duration="2000" data-aos-once={true} data-aos="flip-left"
         >
