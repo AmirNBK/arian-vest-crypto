@@ -22,10 +22,10 @@ const Stats = (props: {
             style={{ transform: `translateY(-${props.translate}px)` }}
         >
             <Image src={props.icon} alt='icon' unoptimized data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`} />
-            <p className='text-2xl'
+            <p className='text-2xl 3xl:text-3xl'
                 data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`}
             > {props.text} </p>
-            <p className='text-xl'
+            <p className='text-xl 3xl:text-2xl'
                 data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`}
             > {props.stat} </p>
         </div>

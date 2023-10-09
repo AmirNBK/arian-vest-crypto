@@ -36,15 +36,15 @@ export default function SingleBlog() {
                     </p>
                 </div>
 
-                <p className={`${myFontIran.className} text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
+                <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
                     به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
-                    <Image src={range} alt='rangeTrading' />
+                    <Image src={range} alt='rangeTrading' className='3xl:w-full' />
                 </div>
 
                 <div className='flex flex-row-reverse justify-center m-24'>
-                    <Image src={shape} alt='shape' unoptimized />
+                    <Image src={shape} className='3xl:w-96' alt='shape' unoptimized />
                     <div className='flex flex-col justify-around mr-12'>
                         <AboutUsItems delay={0} translate={60} text='کاهش کلاهبرداری های اینترنتی' />
                         <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
