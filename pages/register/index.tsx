@@ -43,7 +43,7 @@ export default function Register() {
                     </div>
 
 
-                    <div className='flex flex-row-reverse w-full gap-10'>
+                    <div className='flex flex-col lg:flex-row-reverse w-full gap-10'>
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px' }} className='w-full px-8 py-8'>
                                 <div className='flex flex-row gap-2 items-center justify-end'>
@@ -87,7 +87,7 @@ export default function Register() {
                                 </div>
                             </div>
 
-                            <Image src={chart} alt='chart' className='w-' style={{ opacity: '0.3' }} />
+                            <Image src={chart} alt='chart' className='lg:block hidden' style={{ opacity: '0.3' }} />
                         </div>
                     </div>
                 </div>
