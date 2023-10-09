@@ -18,11 +18,11 @@ const TariffTable = (props: {
         AOS.init();
     }, [])
     return (
-        <div className={`${myFontIran.className} TariffTable my-32 ${props.fullWidth ? ' w-full' : 'w-11/12 lg:w-8/12'} mx-auto rounded-lg`}
+        <div className={`${myFontIran.className} TariffTable my-32 ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12'} sm:mx-auto rounded-lg`}
             style={{ backgroundColor: '#1D1D1D' }}
             data-aos-duration="2000" data-aos-once={true} data-aos="flip-left"
         >
-            <div className='TariffTable__title gap-5 flex flex-row-reverse items-center p-6'>
+            <div className='TariffTable__title gap-5 flex flex-col sm:flex-row-reverse items-center p-6'>
                 <Image src={logo} alt='logo' />
                 <p className='text-main-orange text-3xl'> {props.title} </p>
             </div>
@@ -37,8 +37,8 @@ const TariffTable = (props: {
             <div className='tableItems flex flex-row-reverse justify-between'>
                 <div className='tableTitles my-10'>
                     {props.data.map((item, index) => (
-                        <div key={index} className="p-4 flex flex-row-reverse justify-between">
-                            <h2 className="text-lg text-white rtl">{item.title}</h2>
+                        <div key={index} className="px-14 p-4 flex flex-row-reverse justify-between">
+                            <h2 className="text-base sm:text-lg text-white rtl">{item.title}</h2>
                         </div>
                     ))}
                 </div>
@@ -50,7 +50,7 @@ const TariffTable = (props: {
                         border: 'none'
                     }}
                 />
-                <div className='tableInfos flex flex-col items-center ml-20 my-10'>
+                <div className='tableInfos flex flex-col justify-evenly text-center items-center ml-20 my-10'>
                     {props.data.map((item, index) => (
                         <div key={index} className="p-4 flex flex-row-reverse justify-between">
                             <p className="text-lg"
@@ -68,7 +68,7 @@ const TariffTable = (props: {
                 }}
             />
 
-            <div className='tablePrice flex flex-row-reverse py-8 gap-56 font-bold items-center text-white text-2xl justify-center'>
+            <div className='tablePrice flex flex-col sm:flex-row-reverse py-8 gap-8 sm:gap-56 font-bold items-center text-white text-2xl justify-center'>
                 <h2>
                     هزینه حساب کاربری
                 </h2>

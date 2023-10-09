@@ -31,16 +31,16 @@ export default function Rules() {
 
                 <div className='flex flex-col lg:flex-row-reverse items-center'>
                     <div className='flex flex-col flex-1 lg:my-0 my-16'>
-                        <div className={`${myFont.className} justify-right flex flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
+                        <div className={`${myFont.className} justify-right flex flex-col sm:flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
                             <Image src={tariff} alt='faq' />
-                            <p className='text-white text-5xl'>
+                            <p className='text-white text-5xl sm:text-end text-center'>
                                 <span className='text-3xl text-main-orange'> {selectedTab === 0 ? '(classic)' : selectedTab === 1 ? '(one-step)' : '(rapid)'}
 
                                 </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
                             </p>
                         </div>
                         <div>
-                            <p className={`${myFontIran.className} text-right rtl text-white leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
+                            <p className={`${myFontIran.className} sm:text-right rtl text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
                                 {selectedTab === 0 ? 'طرح کلاسیک به عنوان یکی از پرطرفدارترین گزینه‌ها در وب‌سایت فارکس ما شناخته می‌شود.' : selectedTab === 1 ? 'طرح یک مرحله‌ای مناسب برای تریدرهای حرفه‌ای با تجربه است.' : 'طرح رپید برای کسانی مناسب است که به دنبال معاملات سریع و اجازه استفاده از ربات می‌باشند.'}
                             </p>
                         </div>
@@ -63,7 +63,7 @@ export default function Rules() {
                     </div>
 
                 </div>
-                <div className="card"
+                <div className="card w-full"
                     style={{ margin: '0 auto', marginTop: '50px' }}
                 >
                     <TabView>
