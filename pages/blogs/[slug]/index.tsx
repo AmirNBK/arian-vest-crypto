@@ -25,9 +25,9 @@ export default function SingleBlog() {
         >
             <PrimeReactProvider>
                 <Header />
-                <div className='flex flex-row-reverse gap-6 justify-center items-center mt-16'>
+                <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
                     <Image src={newspaper} alt='newspaper' unoptimized />
-                    <p className={`${myFont.className} text-white text-4xl`}>
+                    <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
                         اسم و تایتل <span style={{ color: '#F68D2E' }}> خبر مورد نظر </span>
                     </p>
                 </div>
@@ -94,7 +94,7 @@ export default function SingleBlog() {
                     <Image src={blogImage3} alt='blogimage' className='mx-auto mt-12' unoptimized />
                 </div>
 
-                <div className='w-8/12 mx-auto text-white px-6 pb-12 pt-4 mt-6 mb-40'
+                <div className='w-11/12 sm:w-8/12 mx-auto text-white px-6 pb-12 pt-4 mt-6 mb-40'
                     style={{ backgroundColor: 'rgba(206, 206, 206, 0.25)', borderRadius: '15px', backdropFilter: 'blur(2px)' }}>
                     <h2 className={`${myFont.className} text-3xl mb-6 text-center`}
                     >
