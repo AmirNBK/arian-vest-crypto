@@ -107,8 +107,8 @@ export default function Home() {
         <div className='relative h-screen'>
           <div className='relative sm:mt-20 lg:block block
                       absolute left-1/2 top-1/3 
+                      -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[90%]
                       '
-            style={{ transform: 'translate(-50%,-54%)' }}
           >
             <Image src={pic} alt='pic' unoptimized
               ref={imageRef}
@@ -120,10 +120,10 @@ export default function Home() {
           </div>
           <ArrowComponent />
 
-          <div className={` w-full justify-center flex flex-row-reverse gap-4 lg:items-end items-center py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4 lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
-            <p className={`${myFont.className} text-white text-5xl my-2`}>
+            <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
             <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
@@ -134,7 +134,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className='relative lg:m-0 -mt-[27rem]'>
+          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[30rem]'>
             <div className="card"
               style={{ margin: '0 auto', marginTop: '50px' }}
             >
@@ -162,7 +162,7 @@ export default function Home() {
           </div>
 
           <div className='lg:py-40 pb-40 pt-20 text-center tradeRules'>
-            <p className={`${myFont.className} text-white text-5xl py-12`}
+            <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             >
               <span className='text-3xl text-main-orange'> </span> قوانین <span style={{ color: '#F68D2E' }}> ترید </span>
@@ -177,12 +177,12 @@ export default function Home() {
           </div>
           <TradeChallengesSection />
           <div className='lg:py-32'>
-            <p className={`${myFont.className} text-white text-5xl text-center`}
+            <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
             </p>
-            <div className='flex flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
+            <div className='flex flex-col items-center sm:flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
               <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
               <div className='flex flex-col items-center justify-center gap-10'
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
@@ -205,17 +205,17 @@ export default function Home() {
             <Image src={pic1} className='3xl:w-[60%] lg:visible invisible' alt='pic' unoptimized style={{ opacity: '0.5' }}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
             />
-            <div className='absolute right-0 top-12 3xl:w-[45%]'
+            <div className='sm:absolute right-0 top-12 3xl:w-[45%]'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
             >
               <Image src={container} alt='container' />
-              <p className={`${myFont.className} text-white w-max text-5xl text-center absolute top-1/2 left-1/2`}
+              <p className={`${myFont.className} text-white sm:w-max text-5xl text-center sm:absolute top-1/2 left-1/2`}
                 style={{ transform: 'translate(-50%,-50%)' }}
               >
                 <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
               </p>
             </div>
-            <div className='absolute right-0 top-64 3xl:w-[45%]'
+            <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
               data-aos-delay="500"
             >
@@ -229,14 +229,14 @@ export default function Home() {
                 style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
                 بیشتر بخوانید
               </Link>
-              <Image src={goldBUll} unoptimized alt='bull' className='absolute -left-36 -bottom-16 w-96' />
+              <Image src={goldBUll} unoptimized alt='bull' className='sm:block hidden absolute -left-36 -bottom-16 w-96' />
             </div>
           </div>
 
           <div className='my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
             <div className='relative lg:p-0 pt-24'>
-              <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
               >
                 <span className='text-3xl text-main-orange text-center'>
@@ -251,7 +251,7 @@ export default function Home() {
           </div>
 
           <div className='py-32 cooroprate__Benefits mx-12'>
-            <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+            <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
@@ -285,7 +285,7 @@ export default function Home() {
           </div>
 
           <div className='successSteps p-12 lg:py-56'>
-            <p className={`${myFont.className} text-white w-max text-5xl mx-auto text-center rtl`}
+            <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
@@ -312,11 +312,18 @@ export default function Home() {
               @media (min-width: 1024px) { 
                 max-height: 900px;
                }
+
+               @media (max-width: 640px) { 
+                max-height: 700px;
+               }
+               
             }
             .p-tabview-nav-content {
-
               @media (min-width: 1024px) { 
                 width: 35%;
+               }
+               @media (max-width: 640px) { 
+                width: 90%;
                }
                width: 50%;
               margin: 0 auto;

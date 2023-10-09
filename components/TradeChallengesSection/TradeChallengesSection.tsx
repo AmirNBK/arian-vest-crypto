@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Link from 'next/link';
+import useWindowSize from '@/Hooks/innerSize';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
@@ -11,14 +12,19 @@ const TradeChallengesSection = () => {
 
     useEffect(() => {
         AOS.init();
+        console.log(size.width);
+        
     }, [])
+
+    const size = useWindowSize();
+
 
     return (
         <div className='tradeChallenges'>
             <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-8 lg:gap-3 flex-wrap'
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
-                <p className={`${myFont.className} text-white text-5xl text-center`}
+                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center`}
                 >
                     <span className='text-3xl text-main-orange'> </span>سوالات متداول <span style={{ color: '#F68D2E' }}> چالش های تریدینگ </span>
                 </p>
@@ -33,7 +39,7 @@ const TradeChallengesSection = () => {
                     data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                 >
                     <AccordionTab
-                        style={{ marginLeft: 'auto', width: '80%' }}
+                        style={{ marginLeft: 'auto', width: `${(size.width && size.width < 640) ? '100%' : '80%'}` }}
                         className='text-white text-right' header="حداقل زمان برای تکمیل مرحله ارزیابی چقدر است؟"
                     >
                         <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -41,7 +47,7 @@ const TradeChallengesSection = () => {
                         </p>
                     </AccordionTab>
                     <AccordionTab
-                        style={{ marginRight: 'auto', width: '80%' }}
+                        style={{ marginRight: 'auto', width: `${(size.width && size.width < 640) ? '100%' : '80%'}` }}
                         header="ساعات کاری مجموعه چه زمانی است؟">
                         <p className={`m-0 ${myFontIran.className} text-right`}>
                             از بامداد دوشنبه تا بامداد شنبه تیم های پشتیبانی و فروش در خدمت شما هستند. پشتیبانی این مجموعه در روز های شنبه و یکشنبه بصورت پاره وقت آماده پاسخگویی به شما خواهد بود.
@@ -49,7 +55,7 @@ const TradeChallengesSection = () => {
                         </p>
                     </AccordionTab>
                     <AccordionTab
-                        style={{ marginLeft: 'auto', width: '80%' }}
+                        style={{ marginLeft: 'auto', width: `${(size.width && size.width < 640) ? '100%' : '80%'}` }}
                         header="حداکثر ضرر روزانه چگونه محاسبه می شود؟"
                     >
                         <p className={`m-0 ${myFontIran.className} text-right`}>
@@ -58,7 +64,7 @@ const TradeChallengesSection = () => {
                         </p>
                     </AccordionTab>
                     <AccordionTab
-                        style={{ marginRight: 'auto', width: '80%' }}
+                        style={{ marginRight: 'auto', width: `${(size.width && size.width < 640) ? '100%' : '80%'}` }}
                         header="بجز هزینه خرید پلن ، آیا هزینه دیگری هم باید پرداخت کنم؟">
                         <p className={`m-0 ${myFontIran.className} text-right`}>
                             خیر، هیچ گونه هزینه اضافی دیگری وجود ندارد.

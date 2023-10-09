@@ -20,8 +20,8 @@ const BenefitsComponent = (props: {
     }, [])
 
     return (
-        <div className={`cooroprate__Benefits__firstSection gap-10 flex ${props.position === 'normal' ? 'flex-row-reverse' : 'flex-row'} items-center`}>
-            <div className='cooroprate__Benefits__firstSection__info flex-1 3xl:flex-[2]'
+        <div className={`cooroprate__Benefits__firstSection gap-10 flex ${props.position === 'normal' ? 'flex-col sm:flex-row-reverse' : 'flex-col sm:flex-row'} items-center`}>
+            <div className='cooroprate__Benefits__firstSection__info flex-1 3xl:flex-[2] sm:text-right text-center'
                 data-aos-duration="2000" data-aos-once={true} data-aos={`${props.position === 'normal' ? 'fade-left' : 'fade-right'}`}
             >
                 <h2 className='cooroprate__Benefits__firstSection__info__title rtl'>

@@ -199,7 +199,7 @@ const CarouselSlider = () => {
         <div className="wrapper"
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             style={{
-                transform: 'rotate(4deg)', width: '105vw',
+                transform: 'rotate(4deg)', width: `${size.width && size.width < 1024 ? '90vw' : '105vw'}`,
 
             }}
         >
