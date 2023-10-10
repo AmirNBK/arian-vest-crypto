@@ -20,11 +20,11 @@ const TradeChallengesSection = () => {
 
 
     return (
-        <div className='tradeChallenges'>
+        <div className='tradeChallenges sm:px-0 px-1'>
             <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-8 lg:gap-3 flex-wrap'
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
-                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center`}
+                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
                 >
                     <span className='text-3xl text-main-orange'> </span>سوالات متداول <span style={{ color: '#F68D2E' }}> چالش های تریدینگ </span>
                 </p>

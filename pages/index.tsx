@@ -120,7 +120,7 @@ export default function Home() {
           </div>
           <ArrowComponent />
 
-          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-32 flex flex-col lg:w-6/12 ml-auto`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
@@ -134,7 +134,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[30rem]'>
+          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[23rem]'>
             <div className="card"
               style={{ margin: '0 auto', marginTop: '50px' }}
             >
@@ -161,7 +161,7 @@ export default function Home() {
             <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '-1' }} unoptimized />
           </div>
 
-          <div className='lg:py-40 pb-40 pt-20 text-center tradeRules'>
+          <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             >
@@ -177,7 +177,7 @@ export default function Home() {
           </div>
           <TradeChallengesSection />
           <div className='lg:py-32'>
-            <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center`}
+            <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
@@ -188,7 +188,7 @@ export default function Home() {
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                 data-aos-delay="800"
               >
-                <p className={`${myFontIran.className} text-white text-xl text-center rtl`}>
+                <p className={`${myFontIran.className} text-white text-xl text-center rtl sm:px-0 px-6 leading-relaxed`}>
                   وب‌سایت ما با تمرکز بر روی آموزش، تحلیل‌های بازاری پیشرفته، و ابزارهای مفید، به شما راهی به سوی موفقیت در دنیای معاملات فارکس ارائه می‌دهد.
                 </p>
                 <Link href={'/register'}>
@@ -201,7 +201,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='aboutUs my-20 sm:my-40 relative'>
+          <div className='aboutUs sm:mx-0 mx-6 my-20 sm:my-40 relative'>
             <Image src={pic1} className='3xl:w-[60%] lg:block hidden' alt='pic' unoptimized style={{ opacity: '0.5' }}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
             />
@@ -210,7 +210,7 @@ export default function Home() {
             >
               <Image src={container} alt='container' className='sm:block hidden' />
               <p className={`${myFont.className} text-white sm:w-max text-5xl text-center
-              sm:-translate-x-1/2 sm:-translate-y-1/2
+              sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
               sm:absolute top-1/2 left-1/2`}
               >
                 <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
@@ -237,10 +237,10 @@ export default function Home() {
           <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
             <div className='relative lg:p-0 pt-24'>
-              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
+              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
               >
-                <span className='text-3xl text-main-orange text-center'>
+                <span className='text-3xl text-main-orange text-center '>
                 </span>رشد حساب 40% تا <span style={{ color: '#F68D2E' }}>
                   سقف 1 میلیون دلار </span>
               </p>
@@ -251,8 +251,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='py-32 cooroprate__Benefits mx-12'>
-            <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
+          <div className='py-32 cooroprate__Benefits sm:mx-12 mx-6'>
+            <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
@@ -285,8 +285,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='successSteps p-12 lg:py-56 hidden'>
-            <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
+          <div className='successSteps p-6 sm:p-12 lg:py-56'>
+            <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>

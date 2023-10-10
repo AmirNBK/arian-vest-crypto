@@ -84,7 +84,7 @@ const StepsComponent = () => {
                     }}
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
-                        <p className='absolute font-light top-[-30px] -translate-x-[70px] text-base text-white'> تایید مهارت </p>
+                        <p className='absolute font-light top-[-30px] sm:-translate-x-[70px] -translate-x-[30px] text-base text-white'> تایید مهارت </p>
                     </span>
                 </button>
                 <div></div>
@@ -95,7 +95,8 @@ const StepsComponent = () => {
                     }}
                 >
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
-                    <p className='absolute font-light top-[-30px] w-max text-base text-white'> تریدر آرین‌وست </p>
+                    <p className='absolute sm:-translate-x-[0px] translate-x-[10px]
+                    font-light top-[-30px] w-max text-base text-white'> تریدر آرین‌وست </p>
                 </button>
             </div>
             <div id="contents" className={`${myFontIran.className}`} >
@@ -123,8 +124,8 @@ const StepsComponent = () => {
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>
-                    <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" className='lg:w-fit w-44' />
-                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
+                    <Image src={bull} alt='bull' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-right" className='lg:w-fit w-44 sm:block hidden' />
+                    <Image src={leopard} alt='leopard' unoptimized data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36 sm:block hidden' />
                 </div>
 
             </div>
@@ -141,6 +142,11 @@ const StepsComponent = () => {
                         justify-content: space-around;
                         align-items: center;
                         margin: 50px auto;
+
+
+                        @media (max-width: 640px) { 
+                            width : 100%;
+                               }
                       }
                       .steps div {
                         width: 100%;
@@ -214,6 +220,11 @@ const StepsComponent = () => {
                         @media (min-width: 2000px) { 
                         font-size : 32px;
                            }
+
+                           @media (max-width: 640px) { 
+                            width : 100%;
+                        padding: 0px;
+                               }
                       }
                     `
                 }

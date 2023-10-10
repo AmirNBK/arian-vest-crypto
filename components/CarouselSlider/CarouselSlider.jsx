@@ -242,7 +242,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 7
@@ -257,7 +257,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 6
@@ -272,7 +272,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 5
@@ -287,7 +287,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 3
@@ -302,7 +302,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 2
@@ -317,7 +317,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover',
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 1
@@ -332,7 +332,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 4
@@ -347,7 +347,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 5
@@ -362,7 +362,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 6
@@ -377,7 +377,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 7
@@ -392,7 +392,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 8
@@ -407,7 +407,7 @@ const CarouselSlider = () => {
                                 backgroundSize: 'cover'
                             }}
                         ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-4xl w-full text-end`}
+                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                             style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
                             تعرفه شماره 9
@@ -518,6 +518,12 @@ const CarouselSlider = () => {
   padding-top: 50px;
   border-radius : 15px;
   background-position : cover;
+
+
+  @media (max-width: 640px) { 
+    width: 200px;
+    height: 200px;
+   }
 }
 
 .wrapper {
