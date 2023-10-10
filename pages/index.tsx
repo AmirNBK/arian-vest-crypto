@@ -94,7 +94,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    AOS.init();
+    ;
   }, [])
 
   return (
@@ -105,9 +105,9 @@ export default function Home() {
       <PrimeReactProvider>
         <Header active={0} />
         <div className='relative h-screen'>
-          <div className='relative sm:mt-20 lg:block block
+          <div className='relative sm:mt-20 block
                       absolute left-1/2 top-1/3 
-                      -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[90%]
+                      -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[80%]
                       '
           >
             <Image src={pic} alt='pic' unoptimized
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
           <ArrowComponent />
 
-          <div className={` w-full justify-center flex flex-row-reverse gap-4 lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-8 flex flex-col lg:w-6/12 ml-auto`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
@@ -201,16 +201,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='aboutUs my-40 relative'>
-            <Image src={pic1} className='3xl:w-[60%] lg:visible invisible' alt='pic' unoptimized style={{ opacity: '0.5' }}
+          <div className='aboutUs my-20 sm:my-40 relative'>
+            <Image src={pic1} className='3xl:w-[60%] lg:block hidden' alt='pic' unoptimized style={{ opacity: '0.5' }}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
             />
             <div className='sm:absolute right-0 top-12 3xl:w-[45%]'
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
             >
-              <Image src={container} alt='container' />
-              <p className={`${myFont.className} text-white sm:w-max text-5xl text-center sm:absolute top-1/2 left-1/2`}
-                style={{ transform: 'translate(-50%,-50%)' }}
+              <Image src={container} alt='container' className='sm:block hidden' />
+              <p className={`${myFont.className} text-white sm:w-max text-5xl text-center
+              sm:-translate-x-1/2 sm:-translate-y-1/2
+              sm:absolute top-1/2 left-1/2`}
               >
                 <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
               </p>
@@ -219,21 +220,21 @@ export default function Home() {
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
               data-aos-delay="500"
             >
-              <Image src={container2} alt='container' />
-              <p className={`${myFontIran.className} leading-[2.8rem]	text-white text-lg  text-right rtl w-[34.5rem] absolute top-1/2 left-1/2`}
-                style={{ transform: 'translate(-50%,-65%)' }}
+              <Image src={container2} alt='container' className='sm:block hidden' />
+              <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
+              sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
               >
                 به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
               </p>
-              <Link href={'/about-us'} className={`${myFontIran.className} text-main-orange text-right absolute bottom-16 right-10 3xl:right-[20%]`}
-                style={{ textDecoration: 'underline', transform: 'translate(-50%,0%)' }}>
+              <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
+                style={{ textDecoration: 'underline' }}>
                 بیشتر بخوانید
               </Link>
               <Image src={goldBUll} unoptimized alt='bull' className='sm:block hidden absolute -left-36 -bottom-16 w-96' />
             </div>
           </div>
 
-          <div className='my-56'>
+          <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
             <div className='relative lg:p-0 pt-24'>
               <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
@@ -246,7 +247,7 @@ export default function Home() {
               <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
                 با توانایی بهبود حساب خود تا 40% و رسیدن به سقف 1 میلیون دلار، شما می‌توانید از این فرصت منحصر به فرد بهره‌برید. اگر به دنبال راهی برای افزایش سرمایه و موفقیت در معاملات فارکس هستید، ما در اینجا هستیم تا شما را همراهی کنیم.
               </p>
-              <Image src={customers} alt='customers' unoptimized className='absolute top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
+              <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
             </div>
           </div>
 
@@ -284,7 +285,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='successSteps p-12 lg:py-56'>
+          <div className='successSteps p-12 lg:py-56 hidden'>
             <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
