@@ -41,8 +41,10 @@ import line from '../assets/icons/line.svg'
 import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
+import { GetStaticProps } from 'next';
+import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 
-export default function Home() {
+export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
@@ -127,7 +129,7 @@ export default function Home() {
               <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
             </p>
             <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
-              با کمال خوش آمدگویی، ما با افتخار تعرفه های منحصر به فرد وب‌سایت ArianVest را به شما معرفی می‌کنیم. در ArianVest، تلاش کرده‌ایم تا تعرفه هایی ارائه دهیم که به تمام افراد با سلیقه‌ها و سطوح تجربه در دنیای فارکس امکان دسترسی به مزایای بی‌پایان این بازار را بدهیم.
+              {tariffSectionData.description}
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               بررسی تعرفه ها
@@ -145,17 +147,17 @@ export default function Home() {
                 }}
               >
                 <TabPanel header="Classic">
-                  <CarouselSlider />
+                  <CarouselSlider type={'classic'} data={tariffs} />
                 </TabPanel>
                 <TabPanel header="One-Step">
-                  <CarouselSlider />
+                  <CarouselSlider type={'one-step'} data={tariffs} />
                 </TabPanel>
                 <TabPanel header="Rapid">
-                  <CarouselSlider />
+                  <CarouselSlider type={'rapid'} data={tariffs} />
                 </TabPanel>
               </TabView>
               <div className='text-white text-center mt-6 text-3xl'>
-                {selectedTab === 0 ? ' 5K - 200K' : selectedTab === 1 ? '5K - 50K' : ' 5K - 200K'}
+                {selectedTab === 0 ? `${tariffs?.tariffs[0]?.range}` : selectedTab === 1 ? `${tariffs?.tariffs[1]?.range}` : `${tariffs?.tariffs[2]?.range}`}
               </div>
             </div>
             <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '-1' }} unoptimized />
@@ -396,3 +398,31 @@ export default function Home() {
     </main >
   )
 }
+
+
+export const getStaticProps: GetStaticProps = async () => {
+  const tariffSectionData = await getQueryTariffSection();
+  const tariffs = await getQueryTariffs();
+  const faqHomeSection = await getQueryFaqHomeSection();
+  const successSection = await getQuerySuccessSection();
+  const aboutUsSection = await getQueryAboutUsSection();
+  const accountGrowthSection = await getQueryAccountGrowthSection();
+  const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
+  const successSteps = await getQuerySuccessSteps();
+
+
+
+  return {
+    props: {
+      tariffSectionData,
+      tariffs,
+      faqHomeSection,
+      successSection,
+      aboutUsSection,
+      accountGrowthSection,
+      collabrationSuccessSection,
+      successSteps
+    },
+    revalidate: 3600,
+  };
+};
