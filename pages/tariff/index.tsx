@@ -15,9 +15,11 @@ import TariffComponent from '@/components/TariffComponent/TariffComponent';
 import TariffTable from '@/components/TariffTable/TariffTable';
 import Footer from '@/components/Footer/Footer';
 import useWindowSize from '@/Hooks/innerSize';
+import { GetStaticProps } from 'next';
+import { getQueryFooter } from '@/lib/service';
 
 
-export default function Rules() {
+export default function Rules({ footer }: { footer: any }) {
 
     const [selectedTab, setSelectedTab] = useState<number>(0)
     const size = useWindowSize()
@@ -28,7 +30,6 @@ export default function Rules() {
         >
             <PrimeReactProvider>
                 <Header active={1} />
-
                 <div className='flex flex-col lg:flex-row-reverse items-center'>
                     <div className='flex flex-col flex-1 lg:my-0 my-16'>
                         <div className={`${myFont.className} justify-right flex flex-col sm:flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
@@ -251,8 +252,7 @@ export default function Rules() {
 
                     </TabView>
                 </div>
-                <Footer />
-
+                <Footer data={footer?.footer} />
 
                 <style>
                     {
@@ -272,3 +272,17 @@ export default function Rules() {
         </main>
     )
 }
+
+
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const footer = await getQueryFooter();
+
+    return {
+        props: {
+            footer
+        },
+        revalidate: 3600,
+    };
+};

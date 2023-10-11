@@ -1,8 +1,8 @@
 import { fetchAPI } from "./base";
 
 export async function getQueryTariffSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query TariffSection {
             pages {
               nodes {
@@ -16,14 +16,14 @@ export async function getQueryTariffSection() {
             }
           }
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0].homepage.tariffSection[0];
+  return data?.pages?.nodes[0].homepage.tariffSection[0];
 }
 
 export async function getQueryTariffs() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query Tariffs {
             pages {
               nodes {
@@ -57,15 +57,15 @@ export async function getQueryTariffs() {
           
           
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0].tariffs;
+  return data?.pages?.nodes[0].tariffs;
 }
 
 
 export async function getQueryFaqHomeSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
 
         query faqHomeSection {
             pages {
@@ -82,14 +82,14 @@ export async function getQueryFaqHomeSection() {
             }
           } 
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQuerySuccessSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query successSection {
             pages {
               nodes {
@@ -101,14 +101,14 @@ export async function getQuerySuccessSection() {
           }
                   
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQueryAboutUsSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query aboutUsSection {
             pages {
               nodes {
@@ -120,14 +120,14 @@ export async function getQueryAboutUsSection() {
           }
                     
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQueryAccountGrowthSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query accountGrowthSection {
             pages {
               nodes {
@@ -142,14 +142,14 @@ export async function getQueryAccountGrowthSection() {
             }
           }
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQueryCollabrationSuccessSection() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query collabrationSuccessSection {
             pages {
               nodes {
@@ -164,14 +164,14 @@ export async function getQueryCollabrationSuccessSection() {
             }
           }
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQuerySuccessSteps() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query successSteps {
             pages {
               nodes {
@@ -187,14 +187,14 @@ export async function getQuerySuccessSteps() {
             }
           }          
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
 }
 
 export async function getQueryFooter() {
-    const data = await fetchAPI(
-        `
+  const data = await fetchAPI(
+    `
         query Footer {
             pages {
               nodes {
@@ -207,7 +207,43 @@ export async function getQueryFooter() {
             }
           } 
       `,
-    );
+  );
 
-    return data?.pages?.nodes[0];
+  return data?.pages?.nodes[0];
+}
+
+
+export async function getQueryRules() {
+  const data = await fetchAPI(
+    `
+      query rules {
+        pages {
+          nodes {
+            rules {
+              title {
+                coloredTitle
+                fieldGroupName
+                normalTitle
+              }
+              description
+              classRules {
+                title
+                feature
+                items {
+                  title
+                  description
+                }
+              }
+              allRules {
+                title
+                description
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+
+  return data?.pages?.nodes[0].rules;
 }
