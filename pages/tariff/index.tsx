@@ -253,7 +253,6 @@ export default function Rules({ footer }: { footer: any }) {
                     </TabView>
                 </div>
                 <Footer data={footer?.footer} />
-
                 <style>
                     {
                         `

@@ -27,9 +27,6 @@ import { getQueryFooter, getQueryRules } from '@/lib/service';
 
 export default function Rules({ footer, data }: { footer: any, data: any }) {
 
-    console.log(data);
-
-
     useEffect(() => {
         AOS.init();
     }, [])

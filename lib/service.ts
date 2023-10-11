@@ -247,3 +247,25 @@ export async function getQueryRules() {
 
   return data?.pages?.nodes[0].rules;
 }
+
+
+export async function getQueryFaq() {
+  const data = await fetchAPI(
+    `
+    query faq {
+      pages {
+        nodes {
+          faq {
+            question {
+              title
+              description
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[0].faq.question;
+}
