@@ -44,7 +44,7 @@ import TradeChallengesSection from '@/components/TradeChallengesSection/TradeCha
 import { GetStaticProps } from 'next';
 import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 
-export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any }) {
+export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
@@ -177,7 +177,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               مشاهده تمام قوانین
             </Link>
           </div>
-          <TradeChallengesSection />
+          <TradeChallengesSection data={faqHomeSection.homepage.faqSection[0].question} />
           <div className='lg:py-32'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
@@ -191,7 +191,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
                 data-aos-delay="800"
               >
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl sm:px-0 px-6 leading-relaxed`}>
-                  وب‌سایت ما با تمرکز بر روی آموزش، تحلیل‌های بازاری پیشرفته، و ابزارهای مفید، به شما راهی به سوی موفقیت در دنیای معاملات فارکس ارائه می‌دهد.
+                  {successSection?.homepage.successSection}
                 </p>
                 <Link href={'/register'}>
                   <Image src={button} alt='register' className='cursor-pointer' />
@@ -226,7 +226,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
               sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
               >
-                به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
+                {aboutUsSection?.homepage.aboutUs}
               </p>
               <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
                 style={{ textDecoration: 'underline' }}>
