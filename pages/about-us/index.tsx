@@ -18,12 +18,17 @@ import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit.svg'
 import useWindowSize from '@/Hooks/innerSize';
+import { GetStaticProps } from 'next';
+import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 
 
-export default function SingleBlog() {
+export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
 
     const size = useWindowSize();
-    const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
+
+    console.log(data.description);
+    
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -39,7 +44,7 @@ export default function SingleBlog() {
                 </div>
 
                 <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
-                    به ArianVest خوش آمدید، مقصد مورد اعتماد شما برای معاملات امن و قابل اطمینان فارکس. ما درک داریم که فضای فارکس همزمان هیجان‌انگیز و پیچیده است، به همین دلیل به ارائه دانش، ابزارها و منابعی که برای تصمیم‌گیری با اطلاعات کافی نیاز دارید، متعهد شده‌ایم. امروز به جامعه ArianVest بپیوندید و با اعتماد به نفس به ما بپیوندید تا در ماجرای فارکس همراهتان باشیم. با هم، در دنیای هیجان‌انگیز فارکس راهی جدید باز خواهیم کرد و در این مسیر فرصت‌ها و پتانسیل‌های جدیدی را کشف خواهیم کرد.
+                    {data.description}
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
@@ -64,10 +69,24 @@ export default function SingleBlog() {
                         <Stats fadePosition='left' icon={payment} text='مجموع پرداخت‌ها' stat='+3,000,000$' translate={0} />
                     </div>
                 </div>
+                <Footer data={footer?.footer} />
 
-
-                <Footer />
             </PrimeReactProvider>
         </main>
     )
 }
+
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const footer = await getQueryFooter();
+    const data = await getQueryAboutUs();
+
+    return {
+        props: {
+            footer,
+            data
+        },
+        revalidate: 3600,
+    };
+};

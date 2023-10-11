@@ -269,3 +269,30 @@ export async function getQueryFaq() {
 
   return data?.pages?.nodes[0].faq.question;
 }
+
+export async function getQueryAboutUs() {
+  const data = await fetchAPI(
+    `
+    query aboutUs {
+      pages {
+        nodes {
+          aboutus {
+            description
+            features {
+              item
+            }
+            stats {
+              item {
+                title
+                stat
+              }
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[0].aboutus;
+}

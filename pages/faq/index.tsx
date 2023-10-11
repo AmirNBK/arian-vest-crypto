@@ -17,10 +17,7 @@ import { GetStaticProps } from 'next';
 import { getQueryFaq, getQueryFooter } from '@/lib/service';
 
 export default function SingleBlog({ footer, questions }: { footer: any, questions: any }) {
-
-    const items = ['لورم ایپسوم با تولید ساده', 'لورم ایپسوم متن ساختگی', 'متن ساختگی با تولید ساده', 'لورم ایپسوم ساختگی با تولید ساده', 'لورم ایپسوم متن ساختگی با تولید ساده']
-
-
+    
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
