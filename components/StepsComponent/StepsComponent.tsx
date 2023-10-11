@@ -8,7 +8,9 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const StepsComponent = () => {
+const StepsComponent = (props: {
+    data: any
+}) => {
     const [current, setCurrent] = useState(1);
     const [activeStep, setActiveStep] = useState(1);
 
@@ -31,8 +33,6 @@ const StepsComponent = () => {
             const targetStep = parseInt(step.dataset.step || '1');
 
             step.addEventListener("click", (e) => {
-                console.log(e.target);
-
                 contentsNode
                     .querySelectorAll(".content")
                     .forEach((content) => content.classList.remove("active"));
@@ -60,7 +60,6 @@ const StepsComponent = () => {
         });
     }, []);
 
-
     return (
         <>
             <div className={`${myFontIran.className} steps relative`} id="steps">
@@ -71,7 +70,7 @@ const StepsComponent = () => {
                         color: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && 'white'}`
                     }}
                 >
-                    <p className='absolute font-light top-[-30px] text-base text-white'> ارزیابی </p>
+                    <p className='absolute font-light top-[-30px] text-base text-white'> {props.data[0].title} </p>
                     <p>
                         1
                     </p>
@@ -84,7 +83,7 @@ const StepsComponent = () => {
                     }}
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
-                        <p className='absolute font-light top-[-30px] sm:-translate-x-[70px] -translate-x-[30px] text-base text-white'> تایید مهارت </p>
+                        <p className='absolute font-light top-[-30px] sm:-translate-x-[70px] -translate-x-[30px] text-base text-white'> {props.data[1].title}</p>
                     </span>
                 </button>
                 <div></div>
@@ -96,7 +95,7 @@ const StepsComponent = () => {
                 >
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
                     <p className='absolute sm:-translate-x-[0px] translate-x-[10px]
-                    font-light top-[-30px] w-max text-base text-white'> تریدر آرین‌وست </p>
+                    font-light top-[-30px] w-max text-base text-white'> {props.data[2].title} </p>
                 </button>
             </div>
             <div id="contents" className={`${myFontIran.className}`} >
@@ -104,23 +103,21 @@ const StepsComponent = () => {
 
                 >
                     <div className="content__box rtl">
-                        اولین مرحله چالش ، ارزیابی تریدر برای مدیریت ریسک است در این مرحله تریدر باید به هدف خواسته شده 8% در مدت زمان مشخص 30 روزه برسد
+                        {props.data[0].description}
                     </div>
                 </div>
                 <div className="content" data-step="2"
 
                 >
                     <div className="content__box rtl">
-                        در مرحله دوم چالش، تایید مهارت‌های خود را آغاز کنید. این مرحله مهم به شما این امکان را می‌دهد تا مهارت‌های معاملاتی و تجربیات خود را مورد بررسی قرار دهید.
+                        {props.data[1].description}
                     </div>
                 </div>
                 <div className="content" data-step="3"
 
                 >
                     <div className="content__box rtl">
-                        در مرحله سوم، به عنوان تریدر آرین‌وست به عالم معاملات فارکس وارد شوید. این مرحله به شما این امکان را می‌دهد تا به عنوان یک تریدر حرفه‌ای در دنیای فارکس به موفقیت بی‌پایان نزدیک شوید.
-
-
+                        {props.data[2].description}
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>

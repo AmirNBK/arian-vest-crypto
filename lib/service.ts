@@ -191,3 +191,23 @@ export async function getQuerySuccessSteps() {
 
     return data?.pages?.nodes[0];
 }
+
+export async function getQueryFooter() {
+    const data = await fetchAPI(
+        `
+        query Footer {
+            pages {
+              nodes {
+                footer {
+                  phone
+                  email
+                  address
+                }
+              }
+            }
+          } 
+      `,
+    );
+
+    return data?.pages?.nodes[0];
+}

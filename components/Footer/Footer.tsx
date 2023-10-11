@@ -15,7 +15,9 @@ import pinterest from '../../assets/icons/pinterest.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
 
 
-const Footer = () => {
+const Footer = (props: {
+    data: any
+}) => {
 
     const policies = ['قوانین و مقررات', 'شرایط و ضوابط', 'انتقادات و پیشنهادات']
     const socialMedia = [facebook, twitter, dribble, pinterest, linkedin]
@@ -116,10 +118,10 @@ const Footer = () => {
                         <p className='text-white text-right mb-3'>
                             راه های ارتباط با ما
                         </p>
-                        <FooterInfo title='شماره تماس' info='به زودی' />
-                        <FooterInfo title='ایمیل' info='Arianvest@gmail.com' />
+                        <FooterInfo title='شماره تماس' info={props.data.phone} />
+                        <FooterInfo title='ایمیل' info={props.data.email} />
                         <p className='text-xl lg:text-2xl text-right'>
-                            <span className='font-semibold'> آدرس: </span> مطهری ، میرعماد ، کوچه یازدهم ، پلاک 23 شرکت ، <span className='text-white'> آریان‌وست </span>
+                            <span className='font-semibold'> آدرس: </span> {props.data.address} <span className='text-white'>  </span>
                         </p>
                     </div>
 

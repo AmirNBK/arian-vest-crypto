@@ -42,9 +42,9 @@ import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
 import { GetStaticProps } from 'next';
-import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
+import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 
-export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any }) {
+export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
@@ -243,11 +243,11 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
               >
                 <span className='text-3xl text-main-orange text-center '>
-                </span>رشد حساب 40% تا <span style={{ color: '#F68D2E' }}>
-                  سقف 1 میلیون دلار </span>
+                </span>{accountGrowthSection?.homepage.accountGrowth[0].normalTitle} <span style={{ color: '#F68D2E' }}>
+                  {accountGrowthSection?.homepage.accountGrowth[0].coloredTitle} </span>
               </p>
               <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
-                با توانایی بهبود حساب خود تا 40% و رسیدن به سقف 1 میلیون دلار، شما می‌توانید از این فرصت منحصر به فرد بهره‌برید. اگر به دنبال راهی برای افزایش سرمایه و موفقیت در معاملات فارکس هستید، ما در اینجا هستیم تا شما را همراهی کنیم.
+                {accountGrowthSection?.homepage.accountGrowth[0].description}
               </p>
               <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
             </div>
@@ -263,23 +263,23 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </p>
             <div className='flex flex-col gap-10 mt-6 relative'>
               <BenefitsComponent
-                title='تا سقف'
-                highlightTitle='یک میلیون دلار'
-                description='تا سقف یک میلیون دلار اعتبار سرمایه دریافت کن و شروع به ترید کن ! اگر قصد فعالیت در بازار های مالی رو داری و سرمایه مورد نیاز نداری یا نمیخوای روی سرمایه ی خودت ریسک کنی ، پراپی این سرمایه بزرگ رو در اختیارت قرار میده'
+                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].normalTitle}
+                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].coloredTitle}
+                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].description}
                 image={benefitsPic}
                 position='normal'
               />
               <BenefitsComponent
-                title='تا 90 درصد سود'
-                highlightTitle='برای شما'
-                description='فقط کافیه در دو مرحله توانایی های خودت رو اثبات کنی و بعد از اون هرچقدر روی حساب اعتباری سود کسب کنی تا 90 درصد مبلغ سود رو میتونی دریافت کنی !'
+                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].normalTitle}
+                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].coloredTitle}
+                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].description}
                 image={benefitsPic2}
                 position=''
               />
               <BenefitsComponent
-                title='سرور اختصاصی'
-                highlightTitle='آرین وست'
-                description='اضافه شدن سرور اختصاصی بروکر ایت کپ قدمی بسیار بزرگ برای شروع فعالیت های بین المللی پراپ فرم پراپی است . هدف و اولویت ما راحتی و آسوده خاطر بودن تریدر های عزیز میباشد .'
+                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].normalTitle}
+                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].coloredTitle}
+                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].description}
                 image={benefitsPic3}
                 position='normal'
               />
@@ -296,10 +296,10 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
                 با تیم آرین وست </span>
             </p>
             <div className='pt-12'>
-              <StepsComponent />
+              <StepsComponent data={successSteps.homepage.successSteps[0].item} />
             </div>
           </div>
-          <Footer />
+          <Footer data={footer?.footer} />
         </div >
 
         <style>
@@ -409,8 +409,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const accountGrowthSection = await getQueryAccountGrowthSection();
   const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
   const successSteps = await getQuerySuccessSteps();
-
-
+  const footer = await getQueryFooter();
 
   return {
     props: {
@@ -421,7 +420,8 @@ export const getStaticProps: GetStaticProps = async () => {
       aboutUsSection,
       accountGrowthSection,
       collabrationSuccessSection,
-      successSteps
+      successSteps,
+      footer
     },
     revalidate: 3600,
   };
