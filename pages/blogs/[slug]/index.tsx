@@ -106,7 +106,7 @@ export default function SingleBlog() {
                 </div>
 
 
-                <Footer />
+                {/* <Footer /> */}
             </PrimeReactProvider>
         </main>
     )

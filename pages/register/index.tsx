@@ -91,7 +91,7 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </PrimeReactProvider>
         </main>
     )

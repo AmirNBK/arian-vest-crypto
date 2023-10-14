@@ -60,7 +60,7 @@ export default function SingleBlog() {
                 <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={120}
                     style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
 
-                <Footer />
+                {/* <Footer /> */}
 
 
                 <style>
