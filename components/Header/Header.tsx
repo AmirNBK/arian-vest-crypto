@@ -2,16 +2,19 @@ import Image from 'next/image';
 import React from 'react';
 import logo from '../../assets/icons/logo.png'
 import profile from '../../assets/icons/profile.svg'
+import logout from '../../assets/icons/logout.svg'
+import { useRouter } from 'next/router';
 import localFont from 'next/font/local'
 import Link from 'next/link';
 import 'animate.css';
-import withAuth from '../../HOC/withAuth'; 
+import withAuth from '../../HOC/withAuth';
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const Header = (props: {
     active?: number
     loggedIn: boolean;
 }) => {
+    const router = useRouter();
 
     const header = [
         { label: 'صفحه اصلی', url: '/' },
@@ -40,12 +43,19 @@ const Header = (props: {
                 ))}
             </div>
             <div>
-                <Link href={'/register'}>
-                    <div className='flex flex-row-reverse items-center gap-2 border-solid border-white border-2 rounded-2xl px-4 py-2 2xl:py-4'>
-                        <p className={`${myFont.className} text-white 3xl:text-2xl `}> عضویت و ورود </p>
-                        <Image src={profile} alt='profile' />
-                    </div>
-                </Link>
+                <div
+                    onClick={() => {
+                        if (props.loggedIn) {
+                            sessionStorage.removeItem("authToken")
+                            localStorage.removeItem("authToken")
+                            router.reload();
+                        }
+                        else router.push('/register')
+                    }}
+                    className='cursor-pointer flex flex-row-reverse items-center gap-2 border-solid border-white border-2 rounded-2xl px-4 py-2 2xl:py-4'>
+                    <p className={`${myFont.className} text-white 3xl:text-2xl `}> {props.loggedIn ? 'خروج از حساب' : 'عضویت و ورود '} </p>
+                    <Image src={props.loggedIn ? logout : profile} alt='profile' />
+                </div>
             </div>
         </div>
     );
