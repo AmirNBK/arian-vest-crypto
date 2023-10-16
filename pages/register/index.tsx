@@ -104,7 +104,9 @@ export default function Register({ footer }: { footer: any }) {
                         else {
                             sessionStorage.setItem('authToken', result.login.authToken)
                         }
-                        router.push('/');
+                        setTimeout(() => {
+                            router.push('/');
+                        }, 2000);
                     }
                 } catch (error) {
 
@@ -162,7 +164,9 @@ export default function Register({ footer }: { footer: any }) {
                         else {
                             sessionStorage.setItem('authToken', result.login.authToken)
                         }
-                        router.push('/');
+                        setTimeout(() => {
+                            router.push('/');
+                        }, 2000);
                     }
                 } catch (error) {
 
