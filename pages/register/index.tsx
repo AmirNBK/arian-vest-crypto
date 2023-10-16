@@ -6,10 +6,12 @@ import icon from '../../assets/icons/registerIcon.svg'
 import signUp from '../../assets/icons/signuUp.svg'
 import login from '../../assets/icons/login.svg'
 import RegisterInput from '@/components/CommonComponents/RegisterInput/RegisterInput'
+import { redirect } from 'next/navigation'
 import RegisterButton from '@/components/CommonComponents/RegisterButton/RegisterButton'
 import RegisterTextarea from '@/components/CommonComponents/RegisterTextarea/RegisterTextarea'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { useRouter } from 'next/router';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { Checkbox } from "primereact/checkbox";
 import chart from '../../assets/images/chart.png'
@@ -18,7 +20,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
 import { GetStaticProps } from 'next'
-import { getQueryFooter, registerUserMutation } from '@/lib/service'
+import { getQueryFooter, loginMutation, registerUserMutation } from '@/lib/service'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
@@ -26,6 +28,7 @@ import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthChe
 export default function Register({ footer }: { footer: any }) {
 
     const [checked, setChecked] = useState<any>(false);
+    const router = useRouter();
     const checkPasswordStrength = usePasswordStrengthCheck();
     const toastBottomRight = useRef<Toast>(null);
     const showMessage = (event: React.MouseEvent<HTMLButtonElement>, ref: React.RefObject<Toast>, severity: ToastMessage['severity']) => {
@@ -44,6 +47,11 @@ export default function Register({ footer }: { footer: any }) {
         description: "",
     });
 
+    const [loginData, setLoginData] = useState({
+        username: "",
+        password: "",
+    });
+
     const handleInputChange = (fieldName: string, value: string) => {
         setRegistrationData((prevData) => ({
             ...prevData,
@@ -51,14 +59,21 @@ export default function Register({ footer }: { footer: any }) {
         }));
     };
 
+    const handleInputChangeLogin = (field: string, value: string) => {
+        setLoginData({
+            ...loginData,
+            [field]: value,
+        });
+    };
+
 
     const handleRegistration = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(registrationData);
 
         if (
             registrationData.username &&
             registrationData.password &&
+            registrationData.locale &&
             registrationData.email &&
             registrationData.description
         ) {
@@ -67,9 +82,27 @@ export default function Register({ footer }: { footer: any }) {
             if (passwordStrength === 'Strong') {
                 try {
                     const result = await registerUserMutation(registrationData);
-                    console.log(result);
+
+                    if (result.errors) {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: result.errors[0].message,
+                            life: 3000,
+                        });
+                    }
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'ثبت نام با موفقیت انجام شد',
+                            life: 3000,
+                        });
+
+                        router.push('/');
+                    }
                 } catch (error) {
-                    console.error(error);
+
                 }
             } else {
                 toastBottomRight.current?.show({
@@ -78,6 +111,7 @@ export default function Register({ footer }: { footer: any }) {
                     detail: 'لطفا رمز عبور قوی‌تری انتخاب کنید.',
                     life: 3000,
                 });
+
             }
         } else {
             toastBottomRight.current?.show({
@@ -89,7 +123,65 @@ export default function Register({ footer }: { footer: any }) {
         }
     };
 
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
 
+        if (
+            loginData.username &&
+            loginData.password
+        ) {
+            const passwordStrength = checkPasswordStrength(loginData.password);
+
+            if (passwordStrength === 'Strong') {
+                try {
+                    const result = await loginMutation(loginData);
+
+                    if (result.errors) {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: result.errors[0].message,
+                            life: 3000,
+                        });
+                    }
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: 'ورود با موفقیت انجام شد',
+                            life: 3000,
+                        });
+                        console.log(result);
+                        if (checked) {
+                            localStorage.setItem('authToken', result.login.authToken)
+                        }
+                        else {
+                            sessionStorage.setItem('authToken', result.login.authToken)
+                        }
+                        // router.push('/');
+                    }
+                } catch (error) {
+
+                }
+            } else {
+                toastBottomRight.current?.show({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'لطفا رمز عبور قوی‌تری انتخاب کنید.',
+                    life: 3000,
+                });
+
+            }
+        } else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'لطفا تمامی فیلد ها را تکمیل نمایید',
+                life: 3000,
+            });
+        }
+
+    };
 
     return (
         <main
@@ -120,23 +212,23 @@ export default function Register({ footer }: { footer: any }) {
                                     <Image src={signUp} alt='signup' />
                                 </div>
                                 <form onSubmit={handleRegistration} className='mt-16 flex flex-col gap-10'>
-                                    <RegisterInput placeholder='نام کاربری*' value={registrationData.username}
+                                    <RegisterInput placeholder='نام کاربری' value={registrationData.username}
                                         onChange={(value) => handleInputChange("username", value)}
                                         type='text'
                                     />
-                                    <RegisterInput placeholder='محل سکونت*' value={registrationData.locale}
+                                    <RegisterInput placeholder='محل سکونت' value={registrationData.locale}
                                         onChange={(value) => handleInputChange("locale", value)}
                                         type='text'
                                     />
-                                    <RegisterInput placeholder='آدرس ایمیل*' value={registrationData.email}
+                                    <RegisterInput placeholder='آدرس ایمیل' value={registrationData.email}
                                         onChange={(value) => handleInputChange("email", value)}
                                         type='email'
                                     />
-                                    <RegisterInput placeholder='پسورد ایمیل*' value={registrationData.password}
+                                    <RegisterInput placeholder='رمز عبور' value={registrationData.password}
                                         onChange={(value) => handleInputChange("password", value)}
                                         type='password'
                                     />
-                                    <RegisterTextarea placeholder='چه مقدار سابقه کار در بازار مالی را دارید؟**'
+                                    <RegisterTextarea placeholder='چه مقدار سابقه کار در بازار مالی را دارید؟'
                                         value={registrationData.description}
                                         onChange={(value) => handleInputChange("description", value)}
                                     />
@@ -154,9 +246,11 @@ export default function Register({ footer }: { footer: any }) {
                                     <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> ورود </p>
                                     <Image src={login} alt='login' />
                                 </div>
-                                <div className='mt-12 flex flex-col gap-10'>
-                                    <RegisterInput placeholder='آدرس ایمیل*' />
-                                    <RegisterInput placeholder='پسورد ایمیل*' />
+                                <form onSubmit={handleLogin} className='mt-12 flex flex-col gap-10'>
+                                    <RegisterInput placeholder='نام کاربری یا ایمیل' value={loginData.username}
+                                        onChange={(value) => handleInputChangeLogin("username", value)} type='text' />
+                                    <RegisterInput placeholder='رمز عبور' value={loginData.password}
+                                        onChange={(value) => handleInputChangeLogin("password", value)} type='password' />
                                     <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base text-right`}>
                                         رمز عبور خود را فراموش کرده اید؟
                                     </p>
@@ -167,7 +261,7 @@ export default function Register({ footer }: { footer: any }) {
                                         <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
                                     </div>
                                     <RegisterButton text='ورود' />
-                                </div>
+                                </form>
                             </div>
 
                             <Image src={chart} alt='chart' className='lg:block hidden' style={{ opacity: '0.3' }} />

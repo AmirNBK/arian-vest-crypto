@@ -311,3 +311,20 @@ export async function registerUserMutation(input: any) {
 
   return await fetchAPI(mutation, { variables: { input } });
 }
+
+export async function loginMutation(input: any) {
+  const mutation = `
+  mutation LoginMutation {
+    login(input: {password: "tripleH1321@", username: "AmirNbk7"}) {
+      refreshToken
+      user {
+        username
+        userId
+      }
+      authToken
+    }
+  }
+  `;
+
+  return await fetchAPI(mutation, { variables: { input } });
+}
