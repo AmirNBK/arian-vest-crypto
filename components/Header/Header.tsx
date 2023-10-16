@@ -5,11 +5,14 @@ import profile from '../../assets/icons/profile.svg'
 import localFont from 'next/font/local'
 import Link from 'next/link';
 import 'animate.css';
+import withAuth from '../../HOC/withAuth'; 
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const Header = (props: {
     active?: number
+    loggedIn: boolean;
 }) => {
+
     const header = [
         { label: 'صفحه اصلی', url: '/' },
         { label: 'تعرفه ها', url: '/tariff' },
@@ -48,4 +51,4 @@ const Header = (props: {
     );
 };
 
-export default Header;
+export default withAuth(Header);

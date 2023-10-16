@@ -98,7 +98,12 @@ export default function Register({ footer }: { footer: any }) {
                             detail: 'ثبت نام با موفقیت انجام شد',
                             life: 3000,
                         });
-
+                        if (checked) {
+                            localStorage.setItem('authToken', result.login.authToken)
+                        }
+                        else {
+                            sessionStorage.setItem('authToken', result.login.authToken)
+                        }
                         router.push('/');
                     }
                 } catch (error) {
@@ -151,14 +156,13 @@ export default function Register({ footer }: { footer: any }) {
                             detail: 'ورود با موفقیت انجام شد',
                             life: 3000,
                         });
-                        console.log(result);
                         if (checked) {
                             localStorage.setItem('authToken', result.login.authToken)
                         }
                         else {
                             sessionStorage.setItem('authToken', result.login.authToken)
                         }
-                        // router.push('/');
+                        router.push('/');
                     }
                 } catch (error) {
 
