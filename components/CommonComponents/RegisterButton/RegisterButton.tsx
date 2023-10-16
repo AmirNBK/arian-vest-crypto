@@ -5,9 +5,11 @@ const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0
 const RegisterButton = (props: {
     text: string
     isHeroSection?: boolean
+    onClick?: () => void
 }) => {
     return (
         <button className={`${myFontIran.className} w-full text-white rounded-2xl sm:h-16 h-14 text-3xl`}
+            onClick={props.onClick}
             style={{ background: `${props.isHeroSection ? '#F68D2E' : '#0A8100'} ` }}>
             {props.text}
         </button>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
@@ -14,19 +14,88 @@ import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { Checkbox } from "primereact/checkbox";
 import chart from '../../assets/images/chart.png'
 const inter = Inter({ subsets: ['latin'] })
+import { Toast, ToastMessage } from 'primereact/toast';
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
+import { GetStaticProps } from 'next'
+import { getQueryFooter, registerUserMutation } from '@/lib/service'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
 
-export default function Register() {
+export default function Register({ footer }: { footer: any }) {
 
     const [checked, setChecked] = useState<any>(false);
+    const checkPasswordStrength = usePasswordStrengthCheck();
+    const toastBottomRight = useRef<Toast>(null);
+    const showMessage = (event: React.MouseEvent<HTMLButtonElement>, ref: React.RefObject<Toast>, severity: ToastMessage['severity']) => {
+        const target = event.target as HTMLButtonElement;
+        const label = target.innerText;
+
+        ref.current?.show({ severity: severity, summary: label, detail: label, life: 3000 });
+    };
+
+    const [registrationData, setRegistrationData] = useState({
+        username: "",
+        password: "",
+        email: "",
+        displayName: "",
+        locale: "",
+        description: "",
+    });
+
+    const handleInputChange = (fieldName: string, value: string) => {
+        setRegistrationData((prevData) => ({
+            ...prevData,
+            [fieldName]: value,
+        }));
+    };
+
+
+    const handleRegistration = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log(registrationData);
+
+        if (
+            registrationData.username &&
+            registrationData.password &&
+            registrationData.email &&
+            registrationData.description
+        ) {
+            const passwordStrength = checkPasswordStrength(registrationData.password);
+
+            if (passwordStrength === 'Strong') {
+                try {
+                    const result = await registerUserMutation(registrationData);
+                    console.log(result);
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                toastBottomRight.current?.show({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'لطفا رمز عبور قوی‌تری انتخاب کنید.',
+                    life: 3000,
+                });
+            }
+        } else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'لطفا تمامی فیلد ها را تکمیل نمایید',
+                life: 3000,
+            });
+        }
+    };
+
+
 
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
+            <Toast ref={toastBottomRight} position="bottom-right" />
             <PrimeReactProvider>
                 <Header />
                 <div className='Register__title flex flex-col gap-4 mt-16 justify-center p-12'>
@@ -50,15 +119,29 @@ export default function Register() {
                                     <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> عضویت </p>
                                     <Image src={signUp} alt='signup' />
                                 </div>
-                                <div className='mt-16 flex flex-col gap-10'>
-                                    <RegisterInput placeholder='نام و نام خانوادگی' />
-                                    <RegisterInput placeholder='محل سکونت*' />
-                                    <RegisterInput placeholder='آدرس ایمیل*' />
-                                    <RegisterInput placeholder='پسورد ایمیل*' />
-                                    <RegisterInput placeholder='شماره تماس*' />
-                                    <RegisterTextarea placeholder='چه مقدار سابقه کار در بازار مالی را دارید؟**' />
+                                <form onSubmit={handleRegistration} className='mt-16 flex flex-col gap-10'>
+                                    <RegisterInput placeholder='نام کاربری*' value={registrationData.username}
+                                        onChange={(value) => handleInputChange("username", value)}
+                                        type='text'
+                                    />
+                                    <RegisterInput placeholder='محل سکونت*' value={registrationData.locale}
+                                        onChange={(value) => handleInputChange("locale", value)}
+                                        type='text'
+                                    />
+                                    <RegisterInput placeholder='آدرس ایمیل*' value={registrationData.email}
+                                        onChange={(value) => handleInputChange("email", value)}
+                                        type='email'
+                                    />
+                                    <RegisterInput placeholder='پسورد ایمیل*' value={registrationData.password}
+                                        onChange={(value) => handleInputChange("password", value)}
+                                        type='password'
+                                    />
+                                    <RegisterTextarea placeholder='چه مقدار سابقه کار در بازار مالی را دارید؟**'
+                                        value={registrationData.description}
+                                        onChange={(value) => handleInputChange("description", value)}
+                                    />
                                     <RegisterButton text='عضویت' />
-                                </div>
+                                </form>
                             </div>
                             <p className={`${myFontIran.className} text-white text-center mt-4 text-base`}>
                                 اطلاعات شخصی شما برای پردازش سفارش شما استفاده می‌شود، و پشتیبانی از تجربه شما در این وبسایت، و برای اهداف دیگری که در  <span className='inline text-underline' style={{ color: '#F68D2E', textDecoration: 'underline' }}> سیاست حفظ حریم خصوصی </span> توضیح داده شده است.
@@ -91,8 +174,30 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
-                {/* <Footer /> */}
+                <Footer data={footer?.footer} />
             </PrimeReactProvider>
+
+            <style>
+                {
+                    `
+                    .p-toast-detail {
+                        text-align : right;
+                    }
+                    `
+                }
+            </style>
         </main>
     )
 }
+
+
+export const getStaticProps: GetStaticProps = async () => {
+    const footer = await getQueryFooter();
+
+    return {
+        props: {
+            footer
+        },
+        revalidate: 3600,
+    };
+};

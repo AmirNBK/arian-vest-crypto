@@ -18,7 +18,7 @@ export async function getQueryTariffSection() {
       `,
   );
 
-  return data?.pages?.nodes[0].homepage.tariffSection[0];
+  return data?.pages?.nodes[2].homepage?.tariffSection[0];
 }
 
 export async function getQueryTariffs() {
@@ -59,7 +59,7 @@ export async function getQueryTariffs() {
       `,
   );
 
-  return data?.pages?.nodes[0].tariffs;
+  return data?.pages?.nodes[2].tariffs;
 }
 
 
@@ -84,7 +84,7 @@ export async function getQueryFaqHomeSection() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQuerySuccessSection() {
@@ -103,7 +103,7 @@ export async function getQuerySuccessSection() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQueryAboutUsSection() {
@@ -122,7 +122,7 @@ export async function getQueryAboutUsSection() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQueryAccountGrowthSection() {
@@ -144,7 +144,7 @@ export async function getQueryAccountGrowthSection() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQueryCollabrationSuccessSection() {
@@ -166,7 +166,7 @@ export async function getQueryCollabrationSuccessSection() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQuerySuccessSteps() {
@@ -189,7 +189,7 @@ export async function getQuerySuccessSteps() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 export async function getQueryFooter() {
@@ -209,7 +209,7 @@ export async function getQueryFooter() {
       `,
   );
 
-  return data?.pages?.nodes[0];
+  return data?.pages?.nodes[2];
 }
 
 
@@ -245,7 +245,7 @@ export async function getQueryRules() {
     `,
   );
 
-  return data?.pages?.nodes[0].rules;
+  return data?.pages?.nodes[2].rules;
 }
 
 
@@ -267,7 +267,7 @@ export async function getQueryFaq() {
     `,
   );
 
-  return data?.pages?.nodes[0].faq.question;
+  return data?.pages?.nodes[2].faq.question;
 }
 
 export async function getQueryAboutUs() {
@@ -294,5 +294,20 @@ export async function getQueryAboutUs() {
     `,
   );
 
-  return data?.pages?.nodes[0].aboutus;
+  return data?.pages?.nodes[2].aboutus;
+}
+
+export async function registerUserMutation(input: any) {
+  const mutation = `
+    mutation RegisterUser($input: RegisterUserInput!) {
+      registerUser(input: $input) {
+        user {
+          jwtAuthToken
+          jwtRefreshToken
+        }
+      }
+    }
+  `;
+
+  return await fetchAPI(mutation, { variables: { input } });
 }
