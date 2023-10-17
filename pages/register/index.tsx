@@ -6,7 +6,6 @@ import icon from '../../assets/icons/registerIcon.svg'
 import signUp from '../../assets/icons/signuUp.svg'
 import login from '../../assets/icons/login.svg'
 import RegisterInput from '@/components/CommonComponents/RegisterInput/RegisterInput'
-import { redirect } from 'next/navigation'
 import RegisterButton from '@/components/CommonComponents/RegisterButton/RegisterButton'
 import RegisterTextarea from '@/components/CommonComponents/RegisterTextarea/RegisterTextarea'
 import "primereact/resources/themes/lara-light-indigo/theme.css";

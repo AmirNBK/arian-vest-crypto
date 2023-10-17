@@ -23,12 +23,14 @@ import leaderboards from '../../assets/icons/leaderboard.svg'
 import download from '../../assets/icons/download.svg'
 import certificate from '../../assets/icons/certificate.svg'
 import refer from '../../assets/icons/refer.svg'
+import ProfitWithdrawal from '@/components/ProfitWithdrawal/ProfitWithdrawal';
+import Leaderboards from '@/components/Leaderboards/Leaderboards';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard },
-        { title: 'برداشت سود', icon: profit },
+        { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile },
         { title: 'تابلو امتیازات', icon: leaderboards },
         { title: 'معرفی به دوستان', icon: refer },
@@ -50,7 +52,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                         {panelItems.map((item) => {
                             return (
                                 <div className='panelItem flex flex-row items-center justify-end gap-4'>
-                                    <p className='text-base text-white'> {item.title} </p>
+                                    <p className='cursor-pointer text-base text-white'> {item.title} </p>
                                     <Image width={35} src={item.icon} alt='icon' />
                                 </div>
                             )
@@ -61,9 +63,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
                 <div className='panelContainer px-12'>
                     <Image src={menu} alt='menu' className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
-
                 </div>
 
+                <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6'>
+                    <Leaderboards />
+                    {/* <ProfitWithdrawal /> */}
+                </div>
 
                 {/* <Footer data={footer?.footer} /> */}
 
