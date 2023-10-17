@@ -25,6 +25,7 @@ import certificate from '../../assets/icons/certificate.svg'
 import refer from '../../assets/icons/refer.svg'
 import ProfitWithdrawal from '@/components/ProfitWithdrawal/ProfitWithdrawal';
 import Leaderboards from '@/components/Leaderboards/Leaderboards';
+import Certificate from '@/components/Certificate/Certificate';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
@@ -36,7 +37,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
         { title: 'معرفی به دوستان', icon: refer },
         { title: 'دانلود', icon: download },
-        { title: 'مدرک', icon: certificate },
+        { title: 'مدرک', icon: certificate, link: 'certificates' },
     ]
 
     return (
@@ -71,7 +72,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 </div>
 
                 <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6 mb-20'>
-                    {activePanel === 'leaderboards' ? <Leaderboards /> : ''}
+                    {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> : ''}
                     {/* <ProfitWithdrawal /> */}
                 </div>
 
