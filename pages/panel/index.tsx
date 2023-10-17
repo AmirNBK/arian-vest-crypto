@@ -28,11 +28,12 @@ import Leaderboards from '@/components/Leaderboards/Leaderboards';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
+    const [activePanel, setActivePanel] = useState<any>('')
     const panelItems = [
         { title: 'داشبورد', icon: dashboard },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile },
-        { title: 'تابلو امتیازات', icon: leaderboards },
+        { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
         { title: 'معرفی به دوستان', icon: refer },
         { title: 'دانلود', icon: download },
         { title: 'مدرک', icon: certificate },
@@ -52,7 +53,11 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                         {panelItems.map((item) => {
                             return (
                                 <div className='panelItem flex flex-row items-center justify-end gap-4'>
-                                    <p className='cursor-pointer text-base text-white'> {item.title} </p>
+                                    <p className='cursor-pointer text-base text-white'
+                                        onClick={() => {
+                                            setActivePanel(item.link)
+                                        }}
+                                    > {item.title} </p>
                                     <Image width={35} src={item.icon} alt='icon' />
                                 </div>
                             )
@@ -65,12 +70,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     <Image src={menu} alt='menu' className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
                 </div>
 
-                <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6'>
-                    <Leaderboards />
+                <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6 mb-20'>
+                    {activePanel === 'leaderboards' ? <Leaderboards /> : ''}
                     {/* <ProfitWithdrawal /> */}
                 </div>
 
-                {/* <Footer data={footer?.footer} /> */}
+                <Footer data={footer?.footer} />
 
             </PrimeReactProvider>
         </main>
