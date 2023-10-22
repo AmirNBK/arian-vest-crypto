@@ -75,13 +75,13 @@ const TariffTable = (props: {
                 <h2> {props.price}$ </h2>
             </div>
 
-            <div className='w-6/12 mx-auto'>
+            <div className='w-6/12 mx-auto pb-10'>
                 <RegisterButton text='خرید' />
             </div>
 
-            <p className='text-main-orange text-center py-6' style={{ textDecoration: 'underline' }}>
+            {/* <p className='text-main-orange text-center py-6' style={{ textDecoration: 'underline' }}>
                 مقایسه تعرفه ها
-            </p>
+            </p> */}
         </div>
     );
 };

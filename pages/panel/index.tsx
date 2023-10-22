@@ -27,12 +27,13 @@ import ProfitWithdrawal from '@/components/ProfitWithdrawal/ProfitWithdrawal';
 import Leaderboards from '@/components/Leaderboards/Leaderboards';
 import Certificate from '@/components/Certificate/Certificate';
 import Profile from '@/components/Profile/Profile';
+import Dashboard from '@/components/Dashboard/Dashboard';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [activePanel, setActivePanel] = useState<any>('')
     const panelItems = [
-        { title: 'داشبورد', icon: dashboard },
+        { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile, link: 'profile' },
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
@@ -74,7 +75,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
                 <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6 mb-20'>
                     {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
-                        activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> : ''
+                        activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
+                            activePanel === 'dashboard' ? <Dashboard /> : ''
                     }
 
                 </div>
