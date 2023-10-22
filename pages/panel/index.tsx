@@ -28,6 +28,7 @@ import Leaderboards from '@/components/Leaderboards/Leaderboards';
 import Certificate from '@/components/Certificate/Certificate';
 import Profile from '@/components/Profile/Profile';
 import Dashboard from '@/components/Dashboard/Dashboard';
+import Download from '@/components/Download/Download';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
@@ -38,7 +39,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'پروفایل', icon: profile, link: 'profile' },
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
         { title: 'معرفی به دوستان', icon: refer },
-        { title: 'دانلود', icon: download },
+        { title: 'دانلود', icon: download, link: 'download' },
         { title: 'مدرک', icon: certificate, link: 'certificates' },
     ]
 
@@ -76,7 +77,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6 mb-20'>
                     {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
                         activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
-                            activePanel === 'dashboard' ? <Dashboard /> : ''
+                            activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> : ''
                     }
 
                 </div>
