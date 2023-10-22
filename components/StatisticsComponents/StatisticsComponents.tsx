@@ -6,20 +6,23 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 
 const StatisticsComponents = (props: {
     title: string
-    value: number
-    icon: any
+    value: number | string
+    icon?: any
     dollar: boolean
+    isActive?: boolean
 }) => {
     return (
-        <div className={`StatisticsComponents bg-[#1A1C1F] flex flex-row-reverse rounded-md py-5 w-64 px-5
+        <div className={`StatisticsComponents mx-auto bg-[#1A1C1F] flex flex-row-reverse rounded-md py-5 w-64 px-5
          gap-4 items-center  ${myFontIran.className}`}>
-            <div>
-                <Image src={props.icon} alt='icon' width={35} />
-            </div>
+            {props.icon &&
+                <div>
+                    <Image src={props.icon} alt='icon' width={35} />
+                </div>
+            }
 
             <div className='flex flex-col items-end gap-2'>
                 <p className='text-gray-500'> {props.title} </p>
-                <p className='text-white'>  {props.dollar && '$'}{props.value} </p>
+                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit text-[#21c21e] bg-green-200' : 'text-white'} `}>  {props.dollar && '$'}{props.value} </p>
             </div>
         </div>
     );
