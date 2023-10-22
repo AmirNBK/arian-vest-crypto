@@ -29,6 +29,7 @@ import Certificate from '@/components/Certificate/Certificate';
 import Profile from '@/components/Profile/Profile';
 import Dashboard from '@/components/Dashboard/Dashboard';
 import Download from '@/components/Download/Download';
+import Referral from '@/components/Referral/Referral';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
@@ -38,14 +39,14 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile, link: 'profile' },
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
-        { title: 'معرفی به دوستان', icon: refer },
+        { title: 'معرفی به دوستان', icon: refer, link: 'referral' },
         { title: 'دانلود', icon: download, link: 'download' },
         { title: 'مدرک', icon: certificate, link: 'certificates' },
     ]
 
     return (
         <main
-            className={`flex min-h-screen w-full flex-col ${inter.className}`}
+            className={`flex min-h-screen w-full flex-col justify-between ${inter.className}`}
         >
             <PrimeReactProvider>
                 <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)}
@@ -77,7 +78,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className='h-full bg-[#1A1C1F] mx-12 py-8 px-6 rounded-md mt-6 mb-20'>
                     {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
                         activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
-                            activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> : ''
+                            activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
+                                activePanel === 'referral' ? <Referral /> : ''
                     }
 
                 </div>

@@ -26,8 +26,6 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
     const size = useWindowSize();
 
-    console.log(data.description);
-    
 
     return (
         <main
