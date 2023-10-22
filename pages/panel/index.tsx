@@ -31,7 +31,7 @@ import Dashboard from '@/components/Dashboard/Dashboard';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
-    const [activePanel, setActivePanel] = useState<any>('')
+    const [activePanel, setActivePanel] = useState<any>('dashboard')
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
