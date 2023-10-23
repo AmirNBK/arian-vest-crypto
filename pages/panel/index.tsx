@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import team from '../../assets/icons/team.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import Footer from '@/components/Footer/Footer';
 import { Sidebar } from 'primereact/sidebar';
@@ -30,10 +31,12 @@ import Profile from '@/components/Profile/Profile';
 import Dashboard from '@/components/Dashboard/Dashboard';
 import Download from '@/components/Download/Download';
 import Referral from '@/components/Referral/Referral';
+import logout from '../../assets/icons/logout.svg'
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
-    const [activePanel, setActivePanel] = useState<any>('dashboard')
+    const [activePanel, setActivePanel] = useState<any>('dashboard');
+    const router = useRouter();
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
@@ -42,6 +45,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'معرفی به دوستان', icon: refer, link: 'referral' },
         { title: 'دانلود', icon: download, link: 'download' },
         { title: 'مدرک', icon: certificate, link: 'certificates' },
+        { title: 'خروج از حساب کاربری', icon: logout, link: 'logout' },
     ]
 
     return (
@@ -60,7 +64,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                 <div className='panelItem flex flex-row items-center justify-end gap-4'>
                                     <p className='cursor-pointer text-base text-white'
                                         onClick={() => {
-                                            setActivePanel(item.link)
+                                            if (item.link === 'logout') {
+                                                sessionStorage.removeItem("authToken")
+                                                localStorage.removeItem("authToken")
+                                                router.push('/')
+                                            }
+                                            else setActivePanel(item.link)
                                         }}
                                     > {item.title} </p>
                                     <Image width={35} src={item.icon} alt='icon' />

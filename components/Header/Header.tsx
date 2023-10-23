@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React from 'react';
 import logo from '../../assets/icons/logo.png'
 import profile from '../../assets/icons/profile.svg'
-import logout from '../../assets/icons/logout.svg'
 import { useRouter } from 'next/router';
 import localFont from 'next/font/local'
 import Link from 'next/link';
@@ -46,15 +45,13 @@ const Header = (props: {
                 <div
                     onClick={() => {
                         if (props.loggedIn) {
-                            sessionStorage.removeItem("authToken")
-                            localStorage.removeItem("authToken")
-                            router.reload();
+                            router.push('/panel')
                         }
                         else router.push('/register')
                     }}
                     className='cursor-pointer flex flex-row-reverse items-center gap-2 border-solid border-white border-2 rounded-2xl px-4 py-2 2xl:py-4'>
-                    <p className={`${myFont.className} text-white 3xl:text-2xl `}> {props.loggedIn ? 'خروج از حساب' : 'عضویت و ورود '} </p>
-                    <Image src={props.loggedIn ? logout : profile} alt='profile' />
+                    <p className={`${myFont.className} text-white 3xl:text-2xl `}> {props.loggedIn ? 'پنل کاربری' : 'عضویت و ورود '} </p>
+                    <Image src={profile} alt='profile' />
                 </div>
             </div>
         </div>
