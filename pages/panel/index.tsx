@@ -5,7 +5,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import { Dialog } from 'primereact/dialog';
 import team from '../../assets/icons/team.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
@@ -37,6 +38,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
+    const [visible, setVisible] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
@@ -53,6 +55,32 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
             className={`flex min-h-screen w-full flex-col justify-between ${inter.className}`}
         >
             <PrimeReactProvider>
+                <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: '25vw' }}
+                    className={`${myFontIran.className} rtl`} onHide={() => setVisible(false)}>
+                    <div>
+                        <p className="m-0">
+                            آیا از خروج از حساب کاربری خود اطمینان دارید؟
+                        </p>
+                        <div className='flex flex-row justify-center mt-6 gap-6'>
+                            <button className='btn-grad-red  text-white rounded-md text-center text-lg'
+                                onClick={() => {
+                                    sessionStorage.removeItem("authToken")
+                                    localStorage.removeItem("authToken")
+                                    router.push('/')
+                                }}
+                            >
+                                بله
+                            </button>
+                            <button className='btn-grad-black text-white rounded-md text-center text-lg'
+                                onClick={() => {
+                                    setVisible(false)
+                                }}
+                            >
+                                خیر
+                            </button>
+                        </div>
+                    </div>
+                </Dialog>
                 <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)}
                     style={{ backgroundColor: 'black' }}
                 >
@@ -65,9 +93,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                     <p className='cursor-pointer text-base text-white'
                                         onClick={() => {
                                             if (item.link === 'logout') {
-                                                sessionStorage.removeItem("authToken")
-                                                localStorage.removeItem("authToken")
-                                                router.push('/')
+                                                setVisible(true)
                                             }
                                             else setActivePanel(item.link)
                                         }}
@@ -96,6 +122,58 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <Footer data={footer?.footer} />
 
             </PrimeReactProvider>
+
+
+
+            <style>
+                {`
+                         
+         
+                         .btn-grad-red {
+                            background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%);
+                            margin: 10px;
+                            padding: 10px 30px;
+                            text-align: center;
+                            text-transform: uppercase;
+                            transition: 0.5s;
+                            background-size: 200% auto;
+                            color: white;            
+                            box-shadow: 0 0 20px #eee;
+                            border-radius: 5px;
+                            display: block;
+                          }
+                
+                          .btn-grad:hover {
+                            background-position: right center; /* change the direction of the change here */
+                            color: #fff;
+                            text-decoration: none;
+                          }
+
+                                   
+         .btn-grad-black {
+            background-image: linear-gradient(to right, #283048 0%, #859398  51%, #283048  100%);
+            margin: 10px;
+            padding: 10px 30px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 5px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+                         
+         
+                `}
+            </style>
         </main>
     )
 }
