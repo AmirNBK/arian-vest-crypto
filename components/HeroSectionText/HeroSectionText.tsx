@@ -2,18 +2,12 @@ import React from 'react';
 import localFont from 'next/font/local'
 import Link from 'next/link';
 import RegisterButton from '../CommonComponents/RegisterButton/RegisterButton';
-import button from '../../assets/icons/register.svg'
+import button from '../../assets/images/tariffButton.svg'
 import Image from 'next/image';
 
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const HeroSectionText = () => {
 
-    const scrollToAboutUs = () => {
-        window.scrollTo({
-            top: 350,
-            behavior: 'smooth',
-        });
-    };
     return (
         <div
             className={`HeroSectionText left-1/2 top-1/2 translate-x-150 translate-y-150 
@@ -28,14 +22,14 @@ const HeroSectionText = () => {
             <div className='flex flex-row-reverse items-center gap-24 lg:translate-x-[100px]'
             >
                 <p className='text-2xl sm:text-5xl md:text-8xl lg:text-9xl'> با ما </p>
-                <Link href={'/register'} className='lg:block hidden cursor-pointer'>
+                <Link href={'#Tariffs'} className='lg:block hidden cursor-pointer'>
                     <Image src={button} alt='register' />
                 </Link>
             </div>
             <div className='text-2xl sm:text-5xl md:text-8xl lg:text-9xl'>
                 ما شکوفا کنید
             </div>
-            <Link href={'/register'} className='lg:hidden block cursor-pointer'>
+            <Link href={'#Tariffs'} className='lg:hidden block cursor-pointer'>
                 <Image src={button} alt='register' />
             </Link>
         </div>

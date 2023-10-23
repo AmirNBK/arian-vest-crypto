@@ -15,13 +15,6 @@ const ArrowComponent = () => {
         setIsHovered(false);
     };
 
-    const scrollToAboutUs = () => {
-        window.scrollTo({
-            top: 350,
-            behavior: 'smooth',
-        });
-    };
-
     return (
         <div
             className={`ArrowComponent rounded-full w-fit w-64 h-64 absolute bottom-0 lg:block hidden`}

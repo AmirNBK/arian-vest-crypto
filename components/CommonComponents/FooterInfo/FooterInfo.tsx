@@ -12,7 +12,7 @@ const FooterInfo = (props: {
                 {props.info}
             </span>
             :
-            <span className='text-xl lg:text-2xl ml-2 font-semibold'>
+            <span className='text-xl lg:text-xl ml-2 font-semibold'>
                 {props.title}
             </span>
         </div>

@@ -10,6 +10,7 @@ import pic from '../assets/images/HeroSectionPic.png'
 import localFont from 'next/font/local'
 import { TabView, TabPanel } from 'primereact/tabview';
 import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
+import useWindowSize from '@/Hooks/innerSize';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
@@ -59,14 +60,16 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
     }
     return { top, left };
   };
+  const size = useWindowSize();
+
 
   const moveFunc = (event: any) => {
     const e = event || window.event;
 
     // Check if imageRef is defined and current is not undefined
     if (imageRef && imageRef.current) {
-      const x = (e.pageX - cumulativeOffset(imageRef).left - (300 / 2)) * -1 / 100;
-      const y = (e.pageY - cumulativeOffset(imageRef).top - (300 / 2)) * -1 / 100;
+      const x = (e.pageX - cumulativeOffset(imageRef).left - (300 / 2)) * -1 / (size.width && size.width > 2000 ? 200 : 100);
+      const y = (e.pageY - cumulativeOffset(imageRef).top - (300 / 2)) * -1 / (size.width && size.width > 2000 ? 200 : 100);
 
       // Check if scrollY is greater than 400
       if (scrollY > 400) {
@@ -136,7 +139,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </Link>
           </div>
 
-          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[23rem]'>
+          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
             <div className="card"
               style={{ margin: '0 auto', marginTop: '50px' }}
             >

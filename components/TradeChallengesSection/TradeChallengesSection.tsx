@@ -18,7 +18,6 @@ const TradeChallengesSection = (props: {
     
     const size = useWindowSize();
 
-
     return (
         <div className='tradeChallenges sm:px-0 px-1'>
             <div className='tradeChallenges__title flex flex-row-reverse items-baseline text-center justify-center gap-8 lg:gap-3 flex-wrap'

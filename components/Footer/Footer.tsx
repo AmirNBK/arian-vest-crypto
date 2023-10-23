@@ -88,14 +88,14 @@ const Footer = (props: {
             </div>
 
             <div className='Footer__default sm:block hidden'>
-                <Image src={footerBg} alt='footerBg' className='w-full lg:h-[600px] h-[500px]' />
+                <Image src={footerBg} alt='footerBg' className='w-full lg:h-[420px]' />
 
                 <div className='Footer__content'>
-                    <div className={`${myFont.className} Footer__rightside w-3/12 absolute translate-y-2/4`} style={{ right: '6%', bottom: '50%' }}>
-                        <p className='text-white text-right mb-3 lg:text-base text-sm'>
+                    <div className={`${myFont.className} Footer__rightside w-3/12 absolute translate-y-2/4`} style={{ right: '6%', bottom: '52%' }}>
+                        <p className='text-white text-right mb-3 text-sm'>
                             همیشه به روز باشید
                         </p>
-                        <p style={{ color: '#1D252D' }} className='text-right text-3xl lg:text-6xl mb-6 !leading-normal font-bold'>
+                        <p style={{ color: '#1D252D' }} className='text-right text-3xl lg:text-4xl mb-6 !leading-normal font-bold'>
                             اخبار را از ما دریافت کنید
                         </p>
                         <div className='Footer_rightSide__email flex flex-row-reverse items-center justify-between w-full gap-6'>
@@ -107,20 +107,20 @@ const Footer = (props: {
                     </div>
 
 
-                    <div className='Footer__center absolute translate-y-2/4 translate-x-2/4 right-[47%] lg:right-1/2 bottom-1/2'
+                    <div className='Footer__center absolute translate-y-2/4 translate-x-2/4 right-[47%] lg:right-1/2 bottom-[52%]'
                     >
-                        <Image src={bull} alt='bull' className='lg:w-fit w-72' />
+                        <Image src={bull} alt='bull' className='w-72' />
                     </div>
 
                     <div className={`${myFont.className} Footer__leftside absolute flex flex-col items-end w-4/12 gap-6 translate-y-2/4`}
-                        style={{ left: '1%', bottom: '50%' }}
+                        style={{ left: '1%', bottom: '52%' }}
                     >
                         <p className='text-white text-right mb-3'>
                             راه های ارتباط با ما
                         </p>
                         <FooterInfo title='شماره تماس' info={props.data.phone} />
                         <FooterInfo title='ایمیل' info={props.data.email} />
-                        <p className='text-xl lg:text-2xl text-right'>
+                        <p className='text-xl lg:text-xl text-right'>
                             <span className='font-semibold'> آدرس: </span> {props.data.address} <span className='text-white'>  </span>
                         </p>
                     </div>
