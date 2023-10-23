@@ -165,7 +165,7 @@ const CarouselSlider = ({ type, data }) => {
             if (dragged) {
                 currentMouseX = event.clientX;
                 if (currentMouseX - prevMouseX < 50 && currentMouseX - prevMouseX > -50) {
-                    let Intensity = (currentMouseX - prevMouseX) * 0.8;
+                    let Intensity = (currentMouseX - prevMouseX) * 0.3;
                     mouseX =
                         currentMouseX - prevMouseX > 0
                             ? mouseX - Intensity

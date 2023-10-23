@@ -20,7 +20,7 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
     
     return (
         <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
+            className={`flex min-h-screen flex-col justify-between ${inter.className}`}
         >
             <PrimeReactProvider>
                 <Header active={3} />
@@ -32,7 +32,7 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid lg:grid-cols-2 grid-cols-1 gap-y-4 lg:ml-12 sm:ml-20 3xl:ml-56 mb-24 mt-8'>
+                    <Accordion multiple className='flex  flex-wrap gap-12 justify-center lg:ml-12 sm:ml-20 3xl:ml-6 mb-24 mt-8'>
                         {questions.map((item: any, index: number) => {
                             return (
                                 <AccordionTab

@@ -48,7 +48,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                     onHide={() => setVisibleA(false)}
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-                    <Accordion multiple className='gap-y-4 lg:ml-16 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
                         {data.classRules[0].items.map((item: any, index: number) => (
                             <AccordionTab
                                 key={index}
@@ -76,7 +76,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                    <Accordion multiple className='gap-y-4 lg:ml-16 mb-24 mt-8'>
+                    <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
                         {data.classRules[1].items.map((item: any, index: number) => (
                             <AccordionTab
                                 key={index}
