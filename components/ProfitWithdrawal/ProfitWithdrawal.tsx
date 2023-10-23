@@ -19,7 +19,7 @@ const ProfitWithdrawal = () => {
             </div>
 
             <div className='mt-12 bg-[#272A2E] rounded-md px-8 py-4 w-1/2 text-center mx-auto'>
-                <h2 className={`${myFontIran.className} ProfitInfoComponent__title text-white text-xl`}>
+                <h2 className={`${myFontIran.className} ProfitInfoComponent__title text-white text-2xl my-3`}>
                     مبلغ قابل برداشت
                 </h2>
 
@@ -30,6 +30,9 @@ const ProfitWithdrawal = () => {
                 <div className='my-4'>
                     <ProfitInfoComponent dollar value={83} />
                 </div>
+                <textarea placeholder='توضیحات مربوطه خود را بنویسید ...' cols={65}
+                    className={`${myFontIran.className} text-sm outline-none rounded-md rtl p-4 `}
+                    rows={5} />
                 <button className={`${myFontIran.className}
                 ProfitInfoComponent__value btn-grad-2 text-white rounded-md w-96 text-center text-lg`}>
                     برداشت سود
@@ -54,7 +57,7 @@ const ProfitWithdrawal = () => {
           }
 
           .btn-grad-2:hover {
-            background-position: right center; /* change the direction of the change here */
+            background-position: right center;
             color: #fff;
             text-decoration: none;
           }
