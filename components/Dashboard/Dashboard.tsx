@@ -13,8 +13,6 @@ import server from '../../assets/icons/server.svg'
 import platform from '../../assets/icons/layers.svg'
 import Image from 'next/image';
 
-
-
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});

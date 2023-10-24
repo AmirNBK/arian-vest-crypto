@@ -98,21 +98,18 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
     }
   };
 
-  useEffect(() => {
-    ;
-  }, [])
-
   return (
     <main
       className={`flex min-h-screen flex-col ${inter.className}`}
       onMouseMoveCapture={moveFunc}
+      style={{transform: 'translateX(22px)'}}
     >
       <PrimeReactProvider>
         <Header active={0} />
         <div className='relative h-screen'>
           <div className='relative sm:mt-20 block
                       absolute left-1/2 top-1/3 
-                      -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[80%]
+                      -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                       '
           >
             <Image src={pic} alt='pic' unoptimized
@@ -125,7 +122,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
           </div>
           <ArrowComponent />
 
-          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-32 flex flex-col lg:w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-20 sm:mt-32 flex flex-col lg:w-6/12 ml-auto`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
