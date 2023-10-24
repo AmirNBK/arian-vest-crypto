@@ -211,7 +211,7 @@ const CarouselSlider = ({ type, data }) => {
             <Dialog
                 maximizable
                 visible={visible} style={{
-                    width: '50vw', display: 'flex', flexDirection: 'column',
+                    width: `${size.width < 640 ? '120vw' : '50vw'}`, display: 'flex', flexDirection: 'column',
                     backgroundColor: '#252525'
                 }}
                 className={`${myFont.className} font-normal`}

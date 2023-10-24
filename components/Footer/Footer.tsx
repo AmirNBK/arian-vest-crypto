@@ -30,7 +30,7 @@ const Footer = (props: {
                     <p className='text-white text-right mb-3 lg:text-base text-sm'>
                         همیشه به روز باشید
                     </p>
-                    <p style={{ color: '#1D252D' }} className='text-right text-3xl lg:text-6xl mb-6 !leading-normal font-bold'>
+                    <p style={{ color: '#1D252D' }} className='text-right text-2xl lg:text-6xl mb-6 !leading-normal font-bold'>
                         اخبار را از ما دریافت کنید
                     </p>
                     <div className='Footer_rightSide__email flex flex-row-reverse items-center justify-between w-full gap-6'>
@@ -43,17 +43,17 @@ const Footer = (props: {
 
                 <div className='Footer__center'
                 >
-                    <Image src={bull} alt='bull' className='mx-auto w-72' />
+                    <Image src={bull} alt='bull' className='mx-auto w-48 mt-4' />
                 </div>
 
-                <div className={`${myFont.className} Footer__leftside flex flex-col items-end px-12 pt-6 gap-4`}
+                <div className={`${myFont.className} Footer__leftside flex flex-col items-end px-12 pt-3 gap-4`}
                 >
                     <p className='text-white text-right mb-3'>
                         راه های ارتباط با ما
                     </p>
                     <FooterInfo title='شماره تماس' info='به زودی' />
                     <FooterInfo title='ایمیل' info='Arianvest@gmail.com' />
-                    <p className='text-xl lg:text-2xl text-right'>
+                    <p className='text-base sm:text-xl lg:text-2xl text-right'>
                         <span className='font-semibold'> آدرس: </span> مطهری ، میرعماد ، کوچه یازدهم ، پلاک 23 شرکت ، <span className='text-white'> آریان‌وست </span>
                     </p>
                 </div>
@@ -61,26 +61,17 @@ const Footer = (props: {
 
                 <div className=''
                 >
-                    <hr className='mb-6 lg:mb-0 mt-12' />
+                    <hr className='mb-4 lg:mb-0 mt-6' />
                     <div className='flex flex-col justify-between items-center lg:items-baseline'>
-                        <div className='policies flex flex-row gap-4 justify-center my-6 items-center flex-wrap'>
-                            {policies.map((item) => {
-                                return (
-                                    <p className={`${myFontLight.className} text-white font-light`}>
-                                        {item}
-                                    </p>
-                                )
-                            })}
-                        </div>
                         <div className='flex flex-row gap-6 lg:gap-16'>
                             {socialMedia.map((item) => {
                                 return (
-                                    <Image src={item} alt={item} unoptimized />
+                                    <Image src={item} alt={item} unoptimized width={20} />
                                 )
                             })}
                         </div>
 
-                        <p className={`text-white text-center my-6 text-xl ${myFont2.className}`}
+                        <p className={`text-white text-center my-2 text-base ${myFont2.className}`}
                             style={{ color: '#000' }}
                         > طراحی شده توسط زفره مدیا </p>
                     </div>
