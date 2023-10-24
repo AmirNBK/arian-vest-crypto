@@ -55,7 +55,7 @@ const Header = (props: {
             <Link href={'/'}>
                 <Image src={logo} alt='logo' className='w-[230px] lg:w-[150px] 2xl:w-[191px] 3xl:w-[250px]  sm:block hidden' />
             </Link>
-            <div className='flex flex-row-reverse sm:flex hidden md:justify-end justify-center gap-10 xl:gap-16 2xl:gap-20 text-white flex-wrap text-lg 2xl:text-xl 3xl:text-3xl'>
+            <div className='flex flex-row-reverse sm:flex hidden md:justify-end justify-center gap-20 xl:gap-16 3xl:gap-20 text-white flex-wrap text-lg 2xl:text-xl 3xl:text-3xl'>
                 {header.map((item, index) => (
                     <Link
                         key={index}

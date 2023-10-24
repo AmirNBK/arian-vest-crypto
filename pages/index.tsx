@@ -100,9 +100,8 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
 
   return (
     <main
-      className={`flex min-h-screen flex-col ${inter.className}`}
+      className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
       onMouseMoveCapture={moveFunc}
-      style={{transform: 'translateX(22px)'}}
     >
       <PrimeReactProvider>
         <Header active={0} />
