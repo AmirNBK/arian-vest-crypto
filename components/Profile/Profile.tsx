@@ -70,13 +70,13 @@ const Profile = () => {
                 حساب کاربری
             </h2>
 
-            <div className='Profile__info bg-[#272A2E] rounded-md p-6 mt-8 flex flex-row-reverse gap-4 justify-between items-end'>
-                <div className='flex flex-row-reverse gap-4 items-center'>
+            <div className='Profile__info bg-[#272A2E] rounded-md p-6 mt-8 flex flex-col sm:flex-row-reverse gap-4 justify-between items-center sm:items-end'>
+                <div className='flex flex-col sm:flex-row-reverse gap-4 items-center'>
                     <Image src={profile} alt='profile' width={100} height={100} />
-                    <div className='flex flex-col items-end gap-2'>
+                    <div className='flex flex-col items-center sm:items-end gap-2'>
                         <p className={`${myFont.className} text-white text-3xl`}> محمد باقری </p>
                         <p className='text-base text-white opacity-[0.7] text-sm'> test@gmail.com </p>
-                        <p className='text-white text-sm opacity-[0.7]'>
+                        <p className='text-white text-sm opacity-[0.7] text-right'>
                             17shahrivar street-marashi alley-no5
                             tehran, Tehran (تهران) 1718814754
                             Iran

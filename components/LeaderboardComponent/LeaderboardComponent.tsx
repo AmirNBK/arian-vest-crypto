@@ -68,7 +68,7 @@ const LeaderboardComponent = (props: {
     }, []);
 
     return (
-        <div className='LeaderboardComponent bg-[#272A2E] rounded-md py-4 px-8 flex flex-row-reverse justify-between items-center'>
+        <div className='LeaderboardComponent bg-[#272A2E] rounded-md lg:py-4 py-12 px-8 flex flex-col gap-12 lg:gap-0 lg:flex-row-reverse justify-between items-center'>
             <div className='LeaderboardComponent__rightSide flex flex-row-reverse'>
                 <p className={` bg-[#1D1F24] w-fit rounded-md px-8 py-6 text-white text-5xl`}>
                     {props.rank}
@@ -80,7 +80,7 @@ const LeaderboardComponent = (props: {
                 </div>
             </div>
 
-            <div className='LeaderboardComponent__leftSide flex flex-row-reverse gap-32'>
+            <div className='LeaderboardComponent__leftSide flex flex-col lg:flex-row-reverse gap-12 lg:gap-32'>
                 <div className='rounded-md flex flex-row-reverse items-end gap-24 background-gradient px-4 py-6'>
                     <div className={`${myFontIran.className} text-white flex flex-col items-end gap-2 opacity-[0.6]`}>
                         <p> سایز حساب </p>

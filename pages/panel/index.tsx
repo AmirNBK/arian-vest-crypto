@@ -104,7 +104,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                         })}
                     </div>
                 </Sidebar>
-                <Header active={''} />
+                <Header active={'panel'} />
 
                 <div className='panelContainer px-12'>
                     <Image src={menu} alt='menu' className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />

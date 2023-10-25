@@ -13,7 +13,7 @@ const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' }
 import menu from '../../assets/icons/hamburgerMenu.png'
 
 const Header = (props: {
-    active?: number
+    active?: number | string
     loggedIn: boolean;
 }) => {
     const router = useRouter();
@@ -36,7 +36,7 @@ const Header = (props: {
     ];
 
     return (
-        <div className='Header flex flex-wrap flex-row-reverse justify-start lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8'>
+        <div className={`Header flex flex-wrap flex-row-reverse ${props.active === 'panel' ? 'justify-center' : 'justify-start'} lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8`}>
 
             <Image src={menu} alt='menu' width={50} className='mt-10 lg:hidden block mr-6' onClick={() => {
                 setVisible(true)
