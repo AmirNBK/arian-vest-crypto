@@ -5,6 +5,7 @@ import profile from '../../assets/icons/profile.svg'
 import { useRouter } from 'next/router';
 import localFont from 'next/font/local'
 import Link from 'next/link';
+import useWindowSize from '@/Hooks/innerSize';
 import 'animate.css';
 import { Sidebar } from 'primereact/sidebar';
 import withAuth from '../../HOC/withAuth';
@@ -17,10 +18,16 @@ const Header = (props: {
 }) => {
     const router = useRouter();
     const [visible, setVisible] = useState<boolean>(false);
+    const size = useWindowSize();
 
     const header = [
         { label: 'صفحه اصلی', url: '/' },
-        { label: `${props.loggedIn ? 'پنل کاربری' : 'عضویت و ورود '}`, url: `${props.loggedIn ? '/panel' : '/register'}` },
+        {
+            label: `${(props.loggedIn && (size.width && size.width < 640)) ? 'پنل کاربری' :
+                `${(!(props.loggedIn) && (size.width && size.width < 640)) ? 'ورود و عضویت' : ''}`}`,
+            url: `${(props.loggedIn && (size.width && size.width < 640)) ? '/panel' :
+                `${(!(props.loggedIn) && (size.width && size.width < 640)) ? '/register' : ''}`}`
+        },
         { label: 'تعرفه ها', url: '/tariff' },
         { label: 'قوانین', url: '/rules' },
         { label: 'سوالات متداول', url: '/faq' },
@@ -45,7 +52,7 @@ const Header = (props: {
                             <Link
                                 href={`${item.url}`}
                                 className='panelItem flex flex-row items-center justify-end gap-4'>
-                                <p className='cursor-pointer text-xl text-white'
+                                <p className={`cursor-pointer text-xl text-white`}
                                 > {item.label} </p>
                             </Link>
                         )
@@ -60,7 +67,7 @@ const Header = (props: {
                     <Link
                         key={index}
                         href={item.url}
-                        className={`pb-1 ${myFont.className}`}
+                        className={`pb-1 ${myFont.className} ${item.label === '' && 'hidden'}`}
                         style={{ borderBottom: `${index === props.active ? '3px solid #F68D2E' : ''}` }}
                     >
                         {item.label}

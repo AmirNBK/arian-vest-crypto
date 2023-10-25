@@ -62,7 +62,6 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   };
   const size = useWindowSize();
 
-
   const moveFunc = (event: any) => {
     const e = event || window.event;
 

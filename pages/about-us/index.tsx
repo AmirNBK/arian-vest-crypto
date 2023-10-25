@@ -25,8 +25,7 @@ import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
 
     const size = useWindowSize();
-
-
+    
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}

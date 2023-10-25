@@ -13,7 +13,8 @@ const StatisticsComponents = (props: {
     isReferral?: boolean
 }) => {
     return (
-        <div className={`StatisticsComponents mx-auto ${props.isReferral ? 'bg-[#272A2E]' : 'bg-[#1A1C1F]'} flex flex-row-reverse rounded-md py-5 w-64 px-5
+        <div className={`StatisticsComponents mx-auto
+        ${props.isReferral ? 'bg-[#272A2E]' : 'bg-[#1A1C1F]'} flex flex-row-reverse sm:justify-start justify-center rounded-md py-5 w-64 px-5
          gap-4 items-center  ${myFontIran.className}`}>
             {props.icon &&
                 <div>
