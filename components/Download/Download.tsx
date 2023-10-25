@@ -11,12 +11,12 @@ const Download = () => {
                 دانلود
             </h2>
 
-            <h2 className={`${myFontIran.className} Profile__title text-white text-lg mt-6 w-fit mx-auto`}>
+            <h2 className={`${myFontIran.className} Profile__title text-center text-white text-lg mt-6 w-fit mx-auto`}>
                 میتوانید 2 برنامه زیر را متناسب با پلتفرم خود انتخاب و دانلود نمایید </h2>
 
             <div className='flex flex-col items-center'>
                 <h2 className={`${myFont.className} Profile__title text-white text-lg mt-6 w-fit mx-auto`}> برنامه اول </h2>
-                <div className='flex flex-row gap-6 mt-6'>
+                <div className='flex flex-col sm:flex-row gap-6 mt-6'>
                     <AppDownload platform='ios' text='دانلود برای iphone' />
                     <AppDownload platform='android' text='دانلود برای android' />
                 </div>
@@ -24,7 +24,7 @@ const Download = () => {
 
             <div className='flex flex-col items-center'>
                 <h2 className={`${myFont.className} Profile__title text-white text-lg mt-6 w-fit mx-auto`}> برنامه دوم </h2>
-                <div className='flex flex-row gap-6 mt-6'>
+                <div className='flex flex-col sm:flex-row gap-6 mt-6'>
                     <AppDownload platform='ios' text='دانلود برای iphone' />
                     <AppDownload platform='android' text='دانلود برای android' />
                 </div>
