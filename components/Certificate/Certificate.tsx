@@ -13,7 +13,7 @@ const Certificate = () => {
             </h2>
             <div className='flex flex-col items-center my-20'>
                 <Image src={certificate} alt='certificate' unoptimized width={200} height={200}/>
-                <p className={`${myFontIran.className} text-white text-2xl`}> در حال حاظر هیچ مدرک و گواهی ندارید </p>
+                <p className={`${myFontIran.className} text-white text-2xl text-center`}> در حال حاظر هیچ مدرک و گواهی ندارید </p>
             </div>
         </div>
     );
