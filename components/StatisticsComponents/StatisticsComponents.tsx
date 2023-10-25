@@ -23,8 +23,8 @@ const StatisticsComponents = (props: {
             }
 
             <div className='flex flex-col items-end gap-2'>
-                <p className='text-gray-500'> {props.title} </p>
-                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit text-[#21c21e] bg-green-200' : 'text-white'} `}>  {props.dollar && '$'}{props.value} </p>
+                <p className='text-gray-500 3xl:text-xl'> {props.title} </p>
+                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} 3xl:text-lg `}>  {props.dollar && '$'}{props.value} </p>
             </div>
         </div>
     );

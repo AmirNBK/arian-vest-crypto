@@ -11,14 +11,14 @@ const ProfitWithdrawal = () => {
                 برداشت سود
             </h2>
 
-            <div className='flex flex-row  justify-between mt-12'>
+            <div className='flex flex-row flex-wrap  lg:justify-between justify-center mt-12'>
                 <ProfitInfoComponent title='کل سود' dollar value={650} />
                 <ProfitInfoComponent title='تعداد برداشت ها' value={6} />
                 <ProfitInfoComponent title='برداشت های در انتظار' value={2} />
                 <ProfitInfoComponent title='مبلغ برداشت شده' dollar value={360} />
             </div>
 
-            <div className='mt-12 bg-[#272A2E] rounded-md px-8 py-4 w-1/2 text-center mx-auto'>
+            <div className='mt-12 bg-[#272A2E] rounded-md px-8 py-4 lg:w-1/2 text-center mx-auto'>
                 <h2 className={`${myFontIran.className} ProfitInfoComponent__title text-white text-2xl my-3`}>
                     مبلغ قابل برداشت
                 </h2>
@@ -30,11 +30,11 @@ const ProfitWithdrawal = () => {
                 <div className='my-4'>
                     <ProfitInfoComponent dollar value={83} />
                 </div>
-                <textarea placeholder='توضیحات مربوطه خود را بنویسید ...' cols={65}
+                <textarea placeholder='توضیحات مربوطه خود را بنویسید ...' cols={45}
                     className={`${myFontIran.className} text-sm outline-none rounded-md rtl p-4 `}
                     rows={5} />
                 <button className={`${myFontIran.className}
-                ProfitInfoComponent__value btn-grad-2 text-white rounded-md w-96 text-center text-lg`}>
+                ProfitInfoComponent__value btn-grad-2 text-white rounded-md w-56 lg:w-96 text-center text-lg`}>
                     برداشت سود
                 </button>
             </div>

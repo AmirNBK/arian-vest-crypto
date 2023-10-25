@@ -36,9 +36,9 @@ const Header = (props: {
     ];
 
     return (
-        <div className='Header flex flex-wrap flex-row-reverse justify-start sm:justify-center xl:justify-between w-full items-center sm:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8'>
+        <div className='Header flex flex-wrap flex-row-reverse justify-start lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8'>
 
-            <Image src={menu} alt='menu' width={50} className='mt-10 sm:hidden block mr-6' onClick={() => {
+            <Image src={menu} alt='menu' width={50} className='mt-10 lg:hidden block mr-6' onClick={() => {
                 setVisible(true)
             }} />
             <Sidebar visible={visible} position="right" onHide={() => setVisible(false)}
@@ -60,9 +60,9 @@ const Header = (props: {
                 </div>
             </Sidebar>
             <Link href={'/'}>
-                <Image src={logo} alt='logo' className='w-[230px] lg:w-[150px] 2xl:w-[191px] 3xl:w-[250px]  sm:block hidden' />
+                <Image src={logo} alt='logo' className='w-[230px] lg:w-[150px] 2xl:w-[191px] 3xl:w-[250px]  lg:block hidden' />
             </Link>
-            <div className='flex flex-row-reverse sm:flex hidden md:justify-end justify-center gap-20 xl:gap-16 3xl:gap-20 text-white flex-wrap text-lg 2xl:text-xl 3xl:text-3xl'>
+            <div className='flex flex-row-reverse lg:flex hidden md:justify-end justify-center gap-20 xl:gap-16 3xl:gap-20 text-white flex-wrap text-lg 2xl:text-xl 3xl:text-3xl'>
                 {header.map((item, index) => (
                     <Link
                         key={index}
@@ -74,7 +74,7 @@ const Header = (props: {
                     </Link>
                 ))}
             </div>
-            <div className='sm:block hidden'>
+            <div className='lg:block hidden'>
                 <div
                     onClick={() => {
                         if (props.loggedIn) {

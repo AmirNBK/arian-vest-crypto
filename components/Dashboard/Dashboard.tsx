@@ -40,7 +40,7 @@ const Dashboard = () => {
         };
         const options = {
             maintainAspectRatio: false,
-            aspectRatio: (size.width && size.width < 640) ? 1.5 : 0.65,
+            aspectRatio: (size.width && size.width < 640) ? 1.5 : (size.width && size.width > 2000) ? 0.5 : 0.65,
             plugins: {
                 legend: {
                     labels: {
@@ -74,15 +74,15 @@ const Dashboard = () => {
 
     return (
         <div className='Dashboard'>
-            <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
+            <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit ml-auto`}>
                 داشبورد
             </h2>
 
             <div className='bg-[#272A2E] rounded-md px-8 py-4 w-full mt-6'>
-                <h2 className={`${myFont.className} Profile__title text-white text-xl w-fit ml-auto`}>
+                <h2 className={`${myFont.className} Profile__title text-white text-xl 3xl:text-3xl w-fit ml-auto`}>
                     اطلاعات کلی حساب
                 </h2>
-                <div className='mt-8 flex flex-row-reverse justify-between flex-wrap sm:gap-0 gap-6'>
+                <div className='mt-8 flex flex-row-reverse justify-between flex-wrap xl:gap-0 gap-6'>
                     <StatisticsComponents dollar={false} title='تاریخ شروع ' value={'09/06/2023'} />
                     <StatisticsComponents dollar={false} title='تاریخ پایان ' value={'09/06/2024'} />
                     <StatisticsComponents dollar title='سایز حساب' value={150000} />
