@@ -19,7 +19,7 @@ const Referral = () => {
             <h2 className={`${myFontIran.className} Profile__title text-gray-500 mt-6 w-fit ml-auto`}>
                 با رفر کردن ما به دوستان خود درصدی از خرید اشتراک آن ها به حساب شما افزوده خواهد شد </h2>
 
-            <div className='mt-8 flex flex-row-reverse justify-between flex-wrap'>
+            <div className='mt-8 flex flex-row-reverse justify-between flex-wrap gap-12'>
                 <StatisticsComponents dollar={false} title='کد رفرال ' value={'sfs143123'} icon={share} isReferral />
                 <StatisticsComponents dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral />
                 <StatisticsComponents dollar={false} title='درصد اضافه شده ' value={32} icon={percent} isReferral />
