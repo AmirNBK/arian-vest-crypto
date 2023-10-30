@@ -13,6 +13,7 @@ import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
 import useWindowSize from '@/Hooks/innerSize';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import faqBull from '../assets/images/faqBull.png'
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
 import dynamic from 'next/dynamic';
 const myFont = localFont({ src: '../assets/fonts/Mj Dinar Two Medium.ttf' })
@@ -167,9 +168,23 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             >
               <span className='text-3xl text-main-orange'> </span> قوانین <span style={{ color: '#F68D2E' }}> ترید </span>
             </p>
-            <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-            />
+
+            <div className='relative'>
+              <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
+                data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
+              />
+              <Image src={faqBull} alt='rulesPic' unoptimized className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
+              />
+            </div>
+
+
+
+
+
+
+
+
+
             <Link href={'/rules'} className={`${myFontIran.className} text-main-orange text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین

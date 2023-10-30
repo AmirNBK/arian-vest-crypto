@@ -41,7 +41,7 @@ export default function SingleBlog() {
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={5} />
+                <Header active={6} />
 
                 <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={newspaper} alt='faq' />

@@ -92,7 +92,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                         ))}
                     </Accordion>
                 </Dialog>
-                <Header active={2} />
+                <Header active={3} />
                 <div className='text-white w-10/12 mx-auto mt-20'>
                     <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
                     >

@@ -29,7 +29,7 @@ export default function Rules({ footer }: { footer: any }) {
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={1} />
+                <Header active={2} />
                 <div className='flex flex-col lg:flex-row-reverse items-center'>
                     <div className='flex flex-col flex-1 lg:my-0 my-16'>
                         <div className={`${myFont.className} justify-right flex flex-col sm:flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
