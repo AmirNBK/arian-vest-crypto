@@ -5,6 +5,7 @@ import android from '../../assets/icons/android.svg'
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+import line from '../../assets/icons/Line2.svg'
 
 const AppDownload = (props: {
     platform: string
@@ -12,9 +13,30 @@ const AppDownload = (props: {
 }) => {
     return (
         <div className={`${myFontIran.className}
-        AppDownload cursor-pointer flex flex-row-reverse items-center gap-2 bg-gray-400 p-3 rounded-md`}>
-            <p className='rtl translate-y-[2px]'> {props.text} </p>
-            <Image src={props.platform === 'ios' ? apple : android} alt='icon' />
+        AppDownload cursor-pointer flex flex-row-reverse justify-between items-center gap-12 bg-[#202020] py-3 px-8 rounded-md bg-shadow`}>
+            <div className='flex flex-col items-center gap-3'
+            >
+                <Image src={apple} alt='apple' />
+                <p className='text-white'> IOS </p>
+            </div>
+
+            <Image src={line} alt='line'/>
+
+            <div className='flex flex-col items-center gap-3 px-2'
+            >
+                <Image src={android} alt='apple' />
+                <p className='text-white'> APK </p>
+            </div>
+
+            <style>
+                {`
+                .bg-shadow {
+                    fill: #202020;
+filter: drop-shadow(0px 4.018365383148193px 4.018365383148193px rgba(0, 0, 0, 0.25));
+                }
+                
+                `}
+            </style>
         </div>
     );
 };
