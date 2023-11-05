@@ -64,7 +64,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             آیا از خروج از حساب کاربری خود اطمینان دارید؟
                         </p>
                         <div className='flex flex-row justify-center mt-6 gap-6'>
-                            <button className='btn-grad-red  text-white rounded-md text-center text-lg'
+                            <button className='btn-grad-red  text-white rounded-lg text-center text-lg'
                                 onClick={() => {
                                     sessionStorage.removeItem("authToken")
                                     localStorage.removeItem("authToken")
@@ -73,7 +73,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             >
                                 بله
                             </button>
-                            <button className='btn-grad-black text-white rounded-md text-center text-lg'
+                            <button className='btn-grad-black text-white rounded-lg text-center text-lg'
                                 onClick={() => {
                                     setVisible(false)
                                 }}
@@ -108,8 +108,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     </div>
                 </Sidebar>
 
-                <div className='flex flex-col md:flex-row-reverse'>
-                    <div className={`Sidebar md:block hidden p-10 bg-[#1D1D1D]`}
+                <div className='flex flex-col lg:flex-row-reverse'>
+                    <div className={`Sidebar lg:block hidden p-10 bg-[#1D1D1D]`}
                     >
                         <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto' />
                         <div className='flex flex-col gap-8'>
@@ -135,12 +135,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
                         </div>
                     </div>
-                    <div className='panelContainer my-6 md:hidden block'>
+                    <div className='panelContainer mx-6 my-6 lg:hidden block'>
                         <Image src={menu} alt='menu'
                             className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
                     </div>
 
-                    <div className='h-full w-full bg-[#1A1C1F] mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-md mt-6 mb-20'>
+                    <div className='h-full lg:w-full bg-[#1A1C1F] mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
                         {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
                                 activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
@@ -149,7 +149,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
                     </div>
                 </div>
-                <div className={`${myFontIran.className} footer__panel text-main-orange flex flex-row-reverse gap-6 mx-auto mb-6`}>
+                <div className={`${myFontIran.className} footer__panel text-main-orange flex flex-row-reverse gap-6 mx-auto mb-4 lg:mb-6`}>
                     <div className='flex flex-col text-center items-center '>
                         <p className=''> آرین وست </p>
                         <hr className='w-[70px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
