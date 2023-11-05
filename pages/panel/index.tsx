@@ -17,7 +17,6 @@ import { GetStaticProps } from 'next';
 import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 import { useState } from 'react';
 import menu from '../../assets/icons/menu.svg'
-import logo from '../../assets/icons/logo.png'
 import dashboard from '../../assets/icons/dashboard.svg'
 import profit from '../../assets/icons/money.svg'
 import profile from '../../assets/icons/profile2.svg'
@@ -30,6 +29,7 @@ import Leaderboards from '@/components/Leaderboards/Leaderboards';
 import Certificate from '@/components/Certificate/Certificate';
 import Profile from '@/components/Profile/Profile';
 import Dashboard from '@/components/Dashboard/Dashboard';
+import logo from '../../assets/icons/baseLogo.png'
 import Download from '@/components/Download/Download';
 import Referral from '@/components/Referral/Referral';
 import logout from '../../assets/icons/logout.svg'
@@ -39,6 +39,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
     const [visible, setVisible] = useState<boolean>(false);
+    const [fullSidebar, setFullSidebar] = useState(true)
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
@@ -52,7 +53,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
     return (
         <main
-            className={`flex min-h-screen w-full flex-col justify-between ${inter.className}`}
+            className={`flex min-h-screen w-full flex-col justify-between`}
         >
             <PrimeReactProvider>
                 <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: '25vw' }}
@@ -81,45 +82,46 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                         </div>
                     </div>
                 </Dialog>
-                <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)}
-                    style={{ backgroundColor: 'black' }}
-                >
-                    <Image src={logo} alt='logo' className='mx-auto w-7/12' />
 
-                    <div className='flex flex-col gap-8'>
-                        {panelItems.map((item) => {
-                            return (
-                                <div className='panelItem flex flex-row items-center justify-end gap-4'>
-                                    <p className='cursor-pointer text-base text-white'
-                                        onClick={() => {
-                                            if (item.link === 'logout') {
-                                                setVisible(true)
-                                            }
-                                            else setActivePanel(item.link)
-                                        }}
-                                    > {item.title} </p>
-                                    <Image width={35} src={item.icon} alt='icon' />
-                                </div>
-                            )
-                        })}
+
+                <div className='flex flex-row-reverse'>
+                    <div className={`Sidebar p-10 bg-[#1D1D1D]`}
+                    >
+                        <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto'/>
+                        <div className='flex flex-col gap-8'>
+                            {panelItems.map((item) => {
+                                return (
+                                    <div className='panelItem flex flex-row items-center justify-end gap-4 relative'>
+                                        <p className={`cursor-pointer text-right whitespace-nowrap text-sm text-white ml-6
+                                        ${myFontIran.className}`}
+                                            onClick={() => {
+                                                if (item.link === 'logout') {
+                                                    setVisible(true);
+                                                } else {
+                                                    setActivePanel(item.link);
+                                                }
+                                            }}
+                                        >
+                                            {item.title}
+                                        </p>
+                                        <Image width={35} src={item.icon} alt='icon' />
+                                    </div>
+                                );
+                            })}
+
+                        </div>
                     </div>
-                </Sidebar>
-                <Header active={'panel'} />
 
-                <div className='panelContainer px-12'>
-                    <Image src={menu} alt='menu' className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
+                    <div className='h-full w-full bg-[#1A1C1F] mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-md mt-6 mb-20'>
+                        {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
+                            activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
+                                activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
+                                    activePanel === 'referral' ? <Referral /> : ''
+                        }
+
+                    </div>
                 </div>
 
-                <div className='h-full bg-[#1A1C1F] mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-md mt-6 mb-20'>
-                    {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
-                        activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
-                            activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
-                                activePanel === 'referral' ? <Referral /> : ''
-                    }
-
-                </div>
-
-                <Footer data={footer?.footer} />
 
             </PrimeReactProvider>
 
@@ -127,8 +129,25 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
             <style>
                 {`
-                         
-         
+
+.Sidebar {
+    width: 120px;
+    transition: width 1s ease-in-out;
+  }
+  
+  .Sidebar:hover {
+    width: 320px;
+  }
+  
+
+.Sidebar p {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+  .Sidebar:hover p {
+    opacity: 1;
+  }
+    
                          .btn-grad-red {
                             background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%);
                             margin: 10px;

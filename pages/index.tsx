@@ -176,15 +176,6 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               <Image src={faqBull} alt='rulesPic' unoptimized className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
-
-
-
-
-
-
-
-
-
             <Link href={'/rules'} className={`${myFontIran.className} text-main-orange text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین
