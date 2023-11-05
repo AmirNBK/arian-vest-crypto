@@ -30,6 +30,7 @@ import Certificate from '@/components/Certificate/Certificate';
 import Profile from '@/components/Profile/Profile';
 import Dashboard from '@/components/Dashboard/Dashboard';
 import logo from '../../assets/icons/baseLogo.png'
+import mobileLogo from '../../assets/icons/logo.png'
 import Download from '@/components/Download/Download';
 import Referral from '@/components/Referral/Referral';
 import logout from '../../assets/icons/logout.svg'
@@ -83,11 +84,34 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     </div>
                 </Dialog>
 
+                <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)}
+                    style={{ backgroundColor: 'black' }}
+                >
+                    <Image src={mobileLogo} alt='logo' className='mx-auto w-7/12' />
 
-                <div className='flex flex-row-reverse'>
-                    <div className={`Sidebar p-10 bg-[#1D1D1D]`}
+                    <div className='flex flex-col gap-8'>
+                        {panelItems.map((item) => {
+                            return (
+                                <div className='panelItem flex flex-row items-center justify-end gap-4'>
+                                    <p className='cursor-pointer text-base text-white'
+                                        onClick={() => {
+                                            if (item.link === 'logout') {
+                                                setVisible(true)
+                                            }
+                                            else setActivePanel(item.link)
+                                        }}
+                                    > {item.title} </p>
+                                    <Image width={35} src={item.icon} alt='icon' />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Sidebar>
+
+                <div className='flex flex-col md:flex-row-reverse'>
+                    <div className={`Sidebar md:block hidden p-10 bg-[#1D1D1D]`}
                     >
-                        <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto'/>
+                        <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto' />
                         <div className='flex flex-col gap-8'>
                             {panelItems.map((item) => {
                                 return (
@@ -111,6 +135,10 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
                         </div>
                     </div>
+                    <div className='panelContainer my-6 md:hidden block'>
+                        <Image src={menu} alt='menu'
+                            className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
+                    </div>
 
                     <div className='h-full w-full bg-[#1A1C1F] mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-md mt-6 mb-20'>
                         {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
@@ -119,6 +147,20 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                     activePanel === 'referral' ? <Referral /> : ''
                         }
 
+                    </div>
+                </div>
+                <div className={`${myFontIran.className} footer__panel text-main-orange flex flex-row-reverse gap-6 mx-auto mb-6`}>
+                    <div className='flex flex-col text-center items-center '>
+                        <p className=''> آرین وست </p>
+                        <hr className='w-[70px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
+                    </div>
+                    <div className='flex flex-col text-center items-center '>
+                        <p className=''> قوانین انتشار  </p>
+                        <hr className='w-[80px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
+                    </div>
+                    <div className='flex flex-col text-center items-center '>
+                        <p className=''> بلاگ  </p>
+                        <hr className='w-8 h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
                     </div>
                 </div>
 
@@ -132,7 +174,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
 .Sidebar {
     width: 120px;
-    transition: width 1s ease-in-out;
+    transition: all 1s ease-in-out;
   }
   
   .Sidebar:hover {
@@ -142,7 +184,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
 .Sidebar p {
     opacity: 0;
-    transition: opacity 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
   }
   .Sidebar:hover p {
     opacity: 1;
