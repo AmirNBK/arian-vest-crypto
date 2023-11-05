@@ -140,11 +140,13 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
                     </div>
 
-                    <div className='h-full lg:w-full bg-[#1A1C1F] mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
+                    <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
                         {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
                                 activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
-                                    activePanel === 'referral' ? <Referral /> : ''
+                                    activePanel === 'referral' ?
+                                            <Referral />
+                                         : ''
                         }
 
                     </div>

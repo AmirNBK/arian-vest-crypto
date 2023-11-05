@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const Certificate = () => {
     return (
-        <div className='Certificate'>
+        <div className='Certificate h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20 bg-[#1A1C1F]'>
             <div className='flex flex-row items-center gap-4'>
                 <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
                     گواهی و مدارک

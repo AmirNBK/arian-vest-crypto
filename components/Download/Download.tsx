@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const Download = () => {
     return (
-        <div className='Download'>
+        <div className='Download bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
 
             <div className='flex flex-col md:flex-row-reverse gap-2'>
                 <div className='flex flex-row items-center gap-4'>

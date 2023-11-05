@@ -11,21 +11,29 @@ const StatisticsComponents = (props: {
     dollar: boolean
     isActive?: boolean
     isReferral?: boolean
+    paddingY?: number
 }) => {
     return (
-        <div className={`StatisticsComponents mx-auto
-        ${props.isReferral ? 'bg-[#272A2E]' : 'bg-[#1A1C1F]'} flex flex-row-reverse sm:justify-start justify-center rounded-md py-5 w-64 px-5
+        <div className={`StatisticsComponents bg-shadow mx-auto justify-center
+        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#1A1C1F]'} flex flex-row-reverse rounded-md py-12 ${props.paddingY ? `py-${props.paddingY}` : 'py-12'} w-64 px-5
          gap-4 items-center  ${myFontIran.className}`}>
-            {props.icon &&
-                <div>
-                    <Image src={props.icon} alt='icon' width={35} />
-                </div>
-            }
-
             <div className='flex flex-col items-end gap-2'>
-                <p className='text-gray-500 3xl:text-xl'> {props.title} </p>
-                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} 3xl:text-lg `}>  {props.dollar && '$'}{props.value} </p>
+                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} text-2xl font-bold 3xl:text-lg `}>
+                    <span className='text-main-orange'>
+                        {props.dollar && '$'}
+                    </span>
+                    {props.value} </p>
             </div>
+
+            <style>
+                {`
+                .bg-shadow {
+                    fill: #202020;
+filter: drop-shadow(0px 4.018365383148193px 4.018365383148193px rgba(0, 0, 0, 0.25));
+                }
+                
+                `}
+            </style>
         </div>
     );
 };
