@@ -4,8 +4,10 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import profile from '../../assets/icons/profile3.svg'
+import profile from '../../assets/images/profilePic.png'
+import range from '../../assets/images/whiteRange.svg'
 import Image from 'next/image';
+import edit from '../../assets/icons/edit.svg'
 
 const Profile = () => {
     const [products, setProducts] = useState([
@@ -64,17 +66,19 @@ const Profile = () => {
     ]);
 
     return (
-        <div className='Profile'>
-
-            <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
-                حساب کاربری
-            </h2>
-
-            <div className='Profile__info bg-[#272A2E] rounded-md p-6 mt-8 flex flex-col sm:flex-row-reverse gap-4 justify-between items-center sm:items-end'>
+        <div className='Profile' style={{ zIndex: '-50' }}>
+            <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
+            justify-between items-center sm:items-end relative'
+                style={{ zIndex: '20' }}
+            >
+                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '1' }} />
                 <div className='flex flex-col sm:flex-row-reverse gap-4 items-center'>
-                    <Image src={profile} alt='profile' width={100} height={100} />
+                    <Image src={profile} alt='profile' unoptimized style={{ zIndex: '20' }} />
                     <div className='flex flex-col items-center sm:items-end gap-2'>
-                        <p className={`${myFont.className} text-white text-3xl`}> محمد باقری </p>
+                        <div className='flex flex-row gap-3'>
+                            <Image src={edit} alt='edit'/>
+                            <p className={`${myFont.className} text-white text-3xl`}> محمد باقری </p>
+                        </div>
                         <p className='text-base text-white opacity-[0.7] text-sm'> test@gmail.com </p>
                         <p className='text-white text-sm opacity-[0.7] text-right'>
                             17shahrivar street-marashi alley-no5
@@ -82,13 +86,6 @@ const Profile = () => {
                             Iran
                         </p>
                     </div>
-                </div>
-
-                <div>
-                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-main-orange`}
-                    >
-                        ویرایش
-                    </button>
                 </div>
             </div>
             <p className={`${myFont.className} text-white text-2xl text-right mt-8 w-full`}> اکانت های خریداری شده </p>
