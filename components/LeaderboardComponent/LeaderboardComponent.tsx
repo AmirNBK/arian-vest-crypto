@@ -71,7 +71,7 @@ const LeaderboardComponent = (props: {
     }, []);
 
     return (
-        <div className='LeaderboardComponent rounded-md py-12 px-8 flex flex-col gap-12 lg:gap-5 lg:flex-row-reverse 
+        <div className='LeaderboardComponent rounded-md py-12 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 lg:flex-row-reverse 
         justify-between items-center'
             style={{borderBottom : '1px solid rgba(255, 255, 255, 0.10)'}}
         >
