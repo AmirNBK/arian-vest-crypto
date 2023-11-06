@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import certificateMini from '../../assets/icons/certificateMini.svg';
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import NewInput from '../NewInput/NewInput';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
@@ -19,13 +20,21 @@ const Authentication = () => {
 
             <div>
                 <p
-                className={`${myFontIran.className} rtl text-sm mt-2`}
-                style={{
-                    color: 'rgba(255, 255, 255, 0.40)'
-                }}>
+                    className={`${myFontIran.className} rtl text-sm mt-2`}
+                    style={{
+                        color: 'rgba(255, 255, 255, 0.40)'
+                    }}>
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتر.
                 </p>
             </div>
+
+            <div className='grid grid-cols-2 gap-4 mt-8'>
+                <NewInput placeholder='نام' />
+                <NewInput placeholder='نام‌ خانوادگی' />
+                <NewInput placeholder='کد ملی' />
+                <NewInput placeholder='شماره تماس' />
+            </div>
+
         </div>
     );
 };
