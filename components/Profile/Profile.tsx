@@ -8,6 +8,9 @@ import profile from '../../assets/images/profilePic.png'
 import range from '../../assets/images/whiteRange.svg'
 import Image from 'next/image';
 import edit from '../../assets/icons/edit.svg'
+import icon from '../../assets/icons/certificateMini.svg'
+import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
+
 
 const Profile = () => {
     const [products, setProducts] = useState([
@@ -76,11 +79,11 @@ const Profile = () => {
                     <Image src={profile} alt='profile' unoptimized style={{ zIndex: '20' }} />
                     <div className='flex flex-col items-center sm:items-end gap-2'>
                         <div className='flex flex-row gap-3'>
-                            <Image src={edit} alt='edit'/>
+                            <Image src={edit} alt='edit' />
                             <p className={`${myFont.className} text-white text-3xl`}> محمد باقری </p>
                         </div>
                         <p className='text-base text-white opacity-[0.7] text-sm'> test@gmail.com </p>
-                        <p className='text-white text-sm opacity-[0.7] text-right'>
+                        <p className='text-white text-sm opacity-[0.7] sm:text-right text-center'>
                             17shahrivar street-marashi alley-no5
                             tehran, Tehran (تهران) 1718814754
                             Iran
@@ -88,62 +91,95 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <p className={`${myFont.className} text-white text-2xl text-right mt-8 w-full`}> اکانت های خریداری شده </p>
+            <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
+                <div className='flex flex-row items-center gap-4'>
+                    <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
+                        اکانت های خریداری شده
+                    </h2>
+                    <Image src={icon} alt='icon' unoptimized />
+                </div>
 
+                <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto`}>
+                    <table className='w-full'>
+                        <tr>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>قیمت</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>حساب خریداری شده</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <StatisticsComponents value={<div>
+                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+                                    >
+                                        پرداخت شده
+                                    </button>
+                                </div>} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'55.000.000'} dollar={true} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'Classic 5K'} dollar={false} />
 
-            <div className={`accounts__info rounded-md p-6 mt-5 w-full`}>
-                {/* <AccountsDetail /> */}
-                <DataTable value={products} tableStyle={{ width: '100%', }} >
-                    <Column field="status" header="وضعیت" align={'right'}></Column>
-                    <Column field="price" header="قیمت" align={'right'}></Column>
-                    <Column field="account" header="حساب خریداری شده" align={'right'}></Column>
-                    <Column field="date" header="تاریخ" align={'right'}></Column>
-                </DataTable>
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'05/03/2023'} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-6xl font-bold'> 01 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <StatisticsComponents value={<div>
+                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                    >
+                                        منقضی شده
+                                    </button>
+                                </div>} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'55.000.000'} dollar={true} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'Classic 5K'} dollar={false} />
+
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents value={'05/03/2023'} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-6xl font-bold'> 02 </h2>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
             </div>
 
 
             <style>
-
-                {`
-                .gradient-text {
-                    background: #F68D2E;
-background: linear-gradient(to right, #fff 0%, #F68D2E 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-
+                {
+                    `
+                    table {
+                        border - collapse: separate;
+                    border-spacing: 0 10px;
+      }
+    
+                    th, td {
+                        padding-left: 10px;
+                        padding-right: 10px; 
+                        padding-bottom: 25px;
+                        padding-top: 25px;
+      }   
+      tr:not(:last-child,:first-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+      
+                    `
                 }
-
-                .background-gradient {
-                    background: rgb(0,0,0);
-background: linear-gradient(180deg, #1D1F24 0%, #1D1F24 50%, transparent 100%);
-                }
-
-
-                .p-datatable>.p-datatable-wrapper {
-                    border-radius : 8px;
-                }
-
-                .p-column-title {
-                    font-family : __myFontIran_ca096e;
-                }
-
-                .p-datatable .p-datatable-thead > tr > th { 
-                    background : transparent;
-                    color: rgba(255, 255, 255, 0.6);
-                }
-
-                .p-datatable .p-datatable-tbody > tr > td {
-                    background : #0E1013;
-                }
-
-                .p-datatable .p-datatable-tbody > tr > td {
-                    border : none;
-                }
-
-                .p-datatable .p-datatable-thead > tr > th {
-                    border : none;
-                }
-                `}
             </style>
         </div>
     );

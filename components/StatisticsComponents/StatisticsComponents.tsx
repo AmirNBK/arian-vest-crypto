@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const StatisticsComponents = (props: {
-    title: string
-    value: number | string
+    title?: string
+    value: number | string | ReactElement
     icon?: any
     dollar: boolean
     isActive?: boolean
@@ -15,7 +15,7 @@ const StatisticsComponents = (props: {
 }) => {
     return (
         <div className={`StatisticsComponents bg-shadow mx-auto justify-center
-        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#1A1C1F]'} flex flex-row-reverse rounded-md py-12 ${props.paddingY ? `py-${props.paddingY}` : 'py-12'} w-64 px-5
+        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#202020]'} flex flex-row-reverse rounded-md py-12 ${props.paddingY ? `py-${props.paddingY}` : 'py-12'} w-64 px-5
          gap-4 items-center  ${myFontIran.className}`}>
             <div className='flex flex-col items-end gap-2'>
                 <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} text-2xl font-bold 3xl:text-lg `}>
