@@ -1,8 +1,7 @@
 import React from 'react';
 import localFont from 'next/font/local'
-import ProfitInfoComponent from '../ProfitInfoComponent/ProfitInfoComponent';
 import Image from 'next/image';
-import certificateMini from '../../assets/icons/certificateMini.svg'
+import certificateMini from '../../assets/icons/certificateMini.svg';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })

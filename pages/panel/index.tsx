@@ -34,6 +34,9 @@ import mobileLogo from '../../assets/icons/logo.png'
 import Download from '@/components/Download/Download';
 import Referral from '@/components/Referral/Referral';
 import logout from '../../assets/icons/logout.svg'
+import authentication from '../../assets/icons/authentication.svg'
+import Authentication from '@/components/Authentication/Authentication';
+
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
@@ -46,6 +49,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile, link: 'profile' },
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
+        { title: 'احراز هویت', icon: authentication, link: 'authentication' },
         { title: 'معرفی به دوستان', icon: refer, link: 'referral' },
         { title: 'دانلود', icon: download, link: 'download' },
         { title: 'مدرک', icon: certificate, link: 'certificates' },
@@ -145,8 +149,9 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
                                 activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :
                                     activePanel === 'referral' ?
-                                            <Referral />
-                                         : ''
+                                        <Referral />
+                                        : activePanel === 'authentication' ?
+                                            <Authentication /> : ''
                         }
 
                     </div>
