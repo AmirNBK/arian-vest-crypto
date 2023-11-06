@@ -11,8 +11,7 @@ import buttonImage from '../../assets/images/profitButton.png'
 const ProfitWithdrawal = () => {
     return (
         <div className='ProfitWithdrawal'>
-
-            <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-10'>
+            <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
                         <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
@@ -22,7 +21,7 @@ const ProfitWithdrawal = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-row-reverse justify-between mt-8'>
+                <div className='flex flex-row-reverse justify-center lg:justify-between mt-8 flex-wrap lg:gap-0 gap-4'>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             مبلغ برداشت شده
@@ -50,7 +49,7 @@ const ProfitWithdrawal = () => {
                 </div>
             </div>
 
-            <div className='flex flex-row-reverse mt-8 gap-12 bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-16 rounded-lg mt-6 mb-20'>
+            <div className='flex flex-col lg:flex-row-reverse mt-8 gap-12 bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-16 rounded-lg mt-6 mb-20'>
                 <div className='flex flex-col flex-1'>
                     <div className='flex flex-row items-center gap-4'>
                         <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
@@ -76,7 +75,9 @@ const ProfitWithdrawal = () => {
                     <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                         توضیحات مربوطه خود را بنویسید
                     </h3>
-                    <textarea cols={65} rows={5} className='bg-transparent border border-white rounded-md' />
+                    <textarea cols={65} rows={5} className='bg-transparent border border-white rounded-md md:block hidden' />
+                    <textarea cols={35} rows={5} className='bg-transparent border border-white rounded-md md:hidden block' />
+
                 </div>
             </div>
 
