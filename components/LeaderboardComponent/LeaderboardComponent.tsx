@@ -3,14 +3,16 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { Chart } from 'primereact/chart';
+import Image from 'next/image';
 
 const LeaderboardComponent = (props: {
-    rank: number
+    rank: number | string
     name: string
     profit: number
     accountSize: number
     return: number
     back: number
+    bgImage: any
 }) => {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
@@ -69,38 +71,59 @@ const LeaderboardComponent = (props: {
 
     return (
         <div className='LeaderboardComponent bg-[#272A2E] rounded-md lg:py-4 py-12 px-8 flex flex-col gap-12 lg:gap-0 lg:flex-row-reverse justify-between items-center'>
-            <div className='LeaderboardComponent__rightSide flex flex-row-reverse'>
-                <p className={` bg-[#1D1F24] w-fit rounded-md px-8 py-6 text-white text-5xl`}>
-                    {props.rank}
-                </p>
-                <div className={`${myFontIran.className} flex flex-col items-end mr-6`}>
-                    <h2 className='text-white text-2xl'> {props.name} </h2>
-                    <p className={`${myFont.className} text-white text-xl mb-1`}> سود </p>
-                    <p className='text-main-orange text-3xl font-bold gradient-text'> ${props.profit} </p>
+
+            <h2 className='text-main-orange text-6xl font-bold'> {props.rank} </h2>
+
+            <div className='flex flex-col items-center gap-2'>
+                <h2 className={`${myFont.className} text-main-orange text-xl`}>
+                    سود و نام
+                </h2>
+
+                <div className='relative'>
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
+                    <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <h3 className='text-main-orange font-bold text-2xl'>  {props.name} </h3>
+                        <p className='text-white text-lg font-bold'>
+                            <span className='text-main-orange'>
+                                $
+                            </span>
+                            {props.profit} </p>
+                    </div>
+                </div>
+            </div>
+            <div className='flex flex-col items-center gap-2'>
+                <h2 className={`${myFont.className} text-main-orange text-xl`}>
+                    سایز حساب
+                </h2>
+
+                <div className='relative'>
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
+                    <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <p className='text-white text-2xl font-bold'>
+                            <span className='text-main-orange'>
+                                $
+                            </span>
+                            {props.accountSize} </p>
+                    </div>
                 </div>
             </div>
 
-            <div className='LeaderboardComponent__leftSide flex flex-col lg:flex-row-reverse gap-12 lg:gap-32'>
-                <div className='rounded-md flex flex-row-reverse items-end gap-24 background-gradient px-4 py-6'>
-                    <div className={`${myFontIran.className} text-white flex flex-col items-end gap-2 opacity-[0.6]`}>
-                        <p> سایز حساب </p>
-                        <p> برگشتی </p>
-                        <p> بازگشت </p>
+            <div className='flex flex-col items-center gap-2'>
+                <h2 className={`${myFont.className} text-main-orange text-xl`}>
+                    برگشتی و بازگشتی
+                </h2>
+
+                <div className='relative'>
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
+                    <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <p className='text-white text-2xl font-bold'>
+                            <span className='text-main-orange'>
+                                $
+                            </span>
+                            {props.accountSize} </p>
                     </div>
-
-                    <div className='flex flex-col items-end gap-2'>
-                        <p className='text-white'>  ${props.accountSize} </p>
-                        <p className='text-white'> {props.return}%  </p>
-                        <p className='text-white'> {props.back} </p>
-                    </div>
-                </div>
-
-
-                <div className='card'>
-                    <Chart type="line" data={chartData} options={chartOptions} />
                 </div>
             </div>
-
 
             <style>
 
