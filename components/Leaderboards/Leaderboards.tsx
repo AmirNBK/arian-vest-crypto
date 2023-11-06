@@ -6,6 +6,9 @@ import certificateMini from '../../assets/icons/certificateMini.svg'
 import Image from 'next/image';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import pic from '../../assets/images/leaderboard1.png'
+import pic2 from '../../assets/images/leaderboard2.png'
+import pic3 from '../../assets/images/leaderboard3.png'
+
 
 const Leaderboards = () => {
     return (
@@ -21,10 +24,10 @@ const Leaderboards = () => {
             <div className='mt-6 flex flex-col gap-6'>
                 <LeaderboardComponent rank={'01'} name='Alex205197' profit={2899000} bgImage={pic}
                     accountSize={1000000} return={28.99} back={5.42} />
-                {/* <LeaderboardComponent rank={2} name='Alex205197' profit={2899000} accountSize={1000000} return={28.99} back={5.42} />
-                <LeaderboardComponent rank={3} name='Alex205197' profit={2899000} accountSize={1000000} return={28.99} back={5.42} />
-                <LeaderboardComponent rank={4} name='Alex205197' profit={2899000} accountSize={1000000} return={28.99} back={5.42} />
-                <LeaderboardComponent rank={5} name='Alex205197' profit={2899000} accountSize={1000000} return={28.99} back={5.42} /> */}
+                <LeaderboardComponent rank={'02'} name='Alex205197' profit={2899000} bgImage={pic2}
+                    accountSize={1000000} return={28.99} back={5.42} />
+                <LeaderboardComponent rank={'03'} name='Alex205197' profit={2899000} bgImage={pic3}
+                    accountSize={1000000} return={28.99} back={5.42} />
             </div>
 
 
