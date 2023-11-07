@@ -12,7 +12,7 @@ const NewInput = (props: {
                 <label className={`${myFont.className} input-label`}>
                     {props.placeholder}
                 </label>
-                <input type="text" className="input-1" />
+                <input style={{direction : 'rtl'}} type="text" className="input-1" />
             </div>
 
 
@@ -80,15 +80,15 @@ input {
   box-sizing: border-box;
   height: 50px;
   width: 100%;
-  border-radius: 4px;
-  color: #202124;
+  border-radius: 8px;
+  color: #fff;
   border: 1px solid #dadce0;
   padding: 13px 15px;
   transition: 250ms;
 }
 .input-box .input-1:focus {
   outline: none;
-  border: 2px solid #1a73e8;
+  border: 2px solid #F68D2E;
   transition: 250ms;
 }
 
