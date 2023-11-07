@@ -10,6 +10,7 @@ import loss from '../../assets/icons/loss.svg'
 import profit from '../../assets/icons/profit2.svg'
 import profit2 from '../../assets/icons/profit3.svg'
 import server from '../../assets/icons/server.svg'
+import certificateMini from '../../assets/icons/certificateMini.svg';
 import platform from '../../assets/icons/layers.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
@@ -106,22 +107,80 @@ const Dashboard = () => {
             </div>
 
 
-            <div className='bg-[#272A2E] rounded-md px-8 py-4 w-full mt-6'>
-                <h2 className={`${myFont.className} Profile__title text-white text-xl w-fit ml-auto`}>
-                    آمار حساب
-                </h2>
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
+
+                <div className='flex flex-col lg:flex-row-reverse gap-2'>
+                    <div className='flex flex-row items-center gap-4'>
+                        <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
+                            آمار حساب
+                        </h2>
+                        <Image src={certificateMini} alt='icon' unoptimized />
+                    </div>
+                </div>
 
                 <div className='mt-8 flex flex-row-reverse justify-center gap-8 sm:justify-between flex-wrap'>
-                    <StatisticsComponents dollar={false} icon={trade} title='مقدار ترید' value={57} />
-                    <StatisticsComponents dollar icon={profit} title='مقدار سود' value={257} />
-                    <StatisticsComponents dollar icon={loss} title='ضرر میانگین' value={702.91} />
-                    <StatisticsComponents dollar icon={profit2} title='سود کلی' value={18860} />
+                    <StatisticsComponents dollar={false} icon={trade} title='مقدار ترید' paddingY={6} value={
+                        <div className='flex flex-col items-center gap-4'>
+                            <div>
+                                <h2 className={`${myFontIran.className} text-main-orange text-lg w-fit ml-auto`}>
+                                    مقدار ترید
+                                </h2>
+                            </div>
+                            <div>
+                                <p className={`${myFontIran.className} text-white text-2xl w-fit ml-auto`}>
+                                    65
+                                </p>
+                            </div>
+                        </div>
+                    } />
+                    <StatisticsComponents paddingY={6} dollar={false} icon={profit} title='مقدار سود' value={
+                        <div className='flex flex-col items-center gap-4'>
+                            <div>
+                                <h2 className={`${myFontIran.className} text-main-orange text-lg w-fit ml-auto`}>
+                                    مقدار سود
+                                </h2>
+                            </div>
+                            <div>
+                                <p className={`${myFontIran.className} text-white text-2xl w-fit ml-auto`}>
+                                    $150
+                                </p>
+                            </div>
+                        </div>
+                    } />
+                    <StatisticsComponents dollar={false} icon={loss} title='ضرر میانگین' value={
+                        <div className='flex flex-col items-center gap-4'>
+                            <div>
+                                <h2 className={`${myFontIran.className} text-main-orange text-lg w-fit ml-auto`}>
+                                    ضرر میانگین
+                                </h2>
+                            </div>
+                            <div>
+                                <p className={`${myFontIran.className} text-white text-2xl w-fit ml-auto`}>
+                                    $50.24
+                                </p>
+                            </div>
+                        </div>
+                    } />
+                    <StatisticsComponents dollar={false} icon={profit2} title='سود کلی' value={
+                        <div className='flex flex-col items-center gap-4'>
+                            <div>
+                                <h2 className={`${myFontIran.className} text-main-orange text-lg w-fit ml-auto`}>
+                                    سود کلی
+                                </h2>
+                            </div>
+                            <div>
+                                <p className={`${myFontIran.className} text-white text-2xl w-fit ml-auto`}>
+                                    $1650
+                                </p>
+                            </div>
+                        </div>
+                    } />
 
                 </div>
             </div>
 
-            <div className='flex flex-col sm:flex-row-reverse gap-4'>
-                <div className='bg-[#272A2E] rounded-md px-2 py-4 w-full mt-6 flex-[0.3] flex flex-col gap-2'>
+            <div className='flex flex-col sm:flex-row-reverse gap-4  bg-[#1D1D1D] mt-6'>
+                <div className='rounded-md px-2 py-4 w-full mt-6 flex-[0.3] flex flex-col gap-2'>
                     <div className='flex flex-row gap-8 justify-center mb-4'>
                         <div className='rounded-md flex flex-col items-center py-8' style={{ background: 'rgba(26, 28, 31, 0.5)' }}>
                             <Image src={server} alt='server' className='mb-8' />
@@ -137,7 +196,7 @@ const Dashboard = () => {
                     <StatisticsComponents dollar={false} title='تاریخ شروع ' value={'09/06/2023'} />
                     <StatisticsComponents dollar={false} title='تاریخ پایان ' value={'09/06/2024'} />
                 </div>
-                <div className='bg-[#272A2E] rounded-md px-8 py-4 w-full mt-6 flex-1'>
+                <div className='rounded-md px-8 py-4 w-full mt-6 flex-1'>
                     <div className='card'>
                         <Chart type="line" data={chartData} options={chartOptions} />
                     </div>

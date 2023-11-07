@@ -23,10 +23,10 @@ const Ticket = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-row'>
+                <div className='flex flex-col lg:flex-row'>
                     <div className='flex flex-col items-center gap-5 flex-1'>
                         <div>
-                            <h2 className={`${myFont.className} Ticket__title text-main-orange text-base w-fit ml-auto`}>
+                            <h2 className={`${myFont.className} Ticket__title text-main-orange text-base w-fit ml-auto text-center`}>
                                 اگر احتیاج به آپلود فایل هستش در این بخش وارد کنید
                             </h2>
                         </div>
@@ -35,7 +35,7 @@ const Ticket = () => {
                     </div>
 
                     <div className='flex flex-col flex-[1.5]'>
-                        <div className='grid grid-cols-3 gap-4 flex-1'>
+                        <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1'>
                             <NewInput placeholder='موضوع' isTextArea={false} />
                             <NewInput placeholder='نوع پشتیبانی' isTextArea={false} selectable />
                             <NewInput placeholder='فوریت' isTextArea={false} />
