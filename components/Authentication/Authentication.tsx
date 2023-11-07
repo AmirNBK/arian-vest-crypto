@@ -11,8 +11,6 @@ import SendButton from '../../assets/images/sendButton.png'
 import idCardFront from '../../assets/icons/idCard.png'
 import idCardBack from '../../assets/icons/idCard2.png'
 
-
-
 const Authentication = () => {
     return (
         <div>

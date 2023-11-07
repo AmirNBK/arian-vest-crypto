@@ -11,9 +11,9 @@ import team from '../../assets/icons/team.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
-import Footer from '@/components/Footer/Footer';
 import { Sidebar } from 'primereact/sidebar';
 import { GetStaticProps } from 'next';
+import support from '../../assets/icons/support.svg'
 import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 import { useState } from 'react';
 import menu from '../../assets/icons/menu.svg'
@@ -36,6 +36,7 @@ import Referral from '@/components/Referral/Referral';
 import logout from '../../assets/icons/logout.svg'
 import authentication from '../../assets/icons/authentication.svg'
 import Authentication from '@/components/Authentication/Authentication';
+import Ticket from '@/components/Ticket/Ticket';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -51,6 +52,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
         { title: 'احراز هویت', icon: authentication, link: 'authentication' },
         { title: 'معرفی به دوستان', icon: refer, link: 'referral' },
+        { title: 'پشتیبانی', icon: support, link: 'ticket' },
         { title: 'دانلود', icon: download, link: 'download' },
         { title: 'مدرک', icon: certificate, link: 'certificates' },
         { title: 'خروج از حساب کاربری', icon: logout, link: 'logout' },
@@ -151,7 +153,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                     activePanel === 'referral' ?
                                         <Referral />
                                         : activePanel === 'authentication' ?
-                                            <Authentication /> : ''
+                                            <Authentication /> : activePanel === 'ticket' ? <Ticket /> : ''
                         }
 
                     </div>

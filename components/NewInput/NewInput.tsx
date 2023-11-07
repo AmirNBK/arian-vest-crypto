@@ -4,21 +4,28 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' });
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' });
 
 const NewInput = (props: {
-    placeholder: string
+  placeholder: string
+  isTextArea?: boolean
+  selectable?: boolean
 }) => {
-    return (
-        <div className={`${myFont.className} NewInput`}>
-            <div className="input-box active-grey">
-                <label className={`${myFont.className} input-label`}>
-                    {props.placeholder}
-                </label>
-                <input style={{direction : 'rtl'}} type="text" className="input-1" />
-            </div>
+
+  return (
+    <div className={`${myFont.className} NewInput`}>
+      <div className="input-box active-grey">
+        <label className={`${myFont.className} input-label`}>
+          {props.placeholder}
+        </label>
+        <input style={{ direction: 'rtl' }} type="text" className={`input-1 ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`} />
+        {props.selectable && <select className='absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent'
+          style={{ color: 'rgba(255, 255, 255, 0.27)', direction: 'rtl' }}>
+          <option> انتخاب کنید </option>
+        </select>}
+      </div>
 
 
-            <style>
-                {
-                    `
+      <style>
+        {
+          `
                     @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700");
 
 input {
@@ -78,7 +85,6 @@ input {
 }
 .input-box .input-1 {
   box-sizing: border-box;
-  height: 50px;
   width: 100%;
   border-radius: 8px;
   color: #fff;
@@ -166,10 +172,10 @@ input {
   clear: both;
 }
                     `
-                }
-            </style>
-        </div>
-    );
+        }
+      </style>
+    </div>
+  );
 };
 
 export default NewInput;
