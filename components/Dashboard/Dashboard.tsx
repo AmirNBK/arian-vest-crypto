@@ -22,6 +22,7 @@ import platform from '../../assets/icons/layers.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
 import AccountInfoComponent from '../AccountInfoComponent/AccountInfoComponent';
+import DashboardPaginationComponent from '../DashboardPaginationComponent/DashboardPaginationComponent';
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
@@ -112,25 +113,25 @@ const Dashboard = () => {
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             شروع
                         </h3>
-                        <StatisticsComponents dollar={true} value={350} isReferral />
+                        <StatisticsComponents dollar={false} value={'09/11/2023'} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             پایان
                         </h3>
-                        <StatisticsComponents dollar={false} value={'05'} isReferral />
+                        <StatisticsComponents dollar={false} value={'25/11/2025'} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             سایز حساب
                         </h3>
-                        <StatisticsComponents dollar={false} value={'09'} isReferral />
+                        <StatisticsComponents dollar={false} value={'300K'} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             مبلغ حساب
                         </h3>
-                        <StatisticsComponents dollar={true} value={950} isReferral />
+                        <StatisticsComponents dollar={false} value={'150k'} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
@@ -311,6 +312,254 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
+                <div className='flex flex-col lg:flex-row-reverse gap-2'>
+                    <div className='flex flex-row items-center gap-4'>
+                        <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
+                            تاریخچه حساب معاملاتی
+                        </h2>
+                        <Image src={certificateMini} alt='icon' unoptimized />
+                    </div>
+                </div>
+                <table className={`w-full mt-10`}>
+                    <tr
+                    >
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}> مدت‌زمان</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}> سود</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}> حد زیاد</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت بست</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}> تاریخ بست</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت باز</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}>تاریخ باز</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}>نوع</th>
+                        <th className={`${myFont.className} text-base text-right text-main-orange`}>
+                            نماد
+                        </th>
+                    </tr>
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#BF0000]'>
+                            -$415.28
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                        >
+                            خرید
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#BF0000]'>
+                            -$415.28
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(191, 0, 0, 0.25)' }}
+                        >
+                            فروش
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#159400]'>
+                            +$415
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(191, 0, 0, 0.25)' }}
+                        >
+                            فروش
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#159400]'>
+                            +$256.12
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                        >
+                            خرید
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#BF0000]'>
+                            -$415.28
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                        >
+                            خرید
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+                    <tr className={`text-white text-right`}>
+                        <td>
+                            24m 13s
+                        </td>
+                        <td className='text-[#159400]'>
+                            +$415.28
+                        </td>
+                        <td>
+                            8
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td>
+                            35674.56
+                        </td>
+                        <td>
+                            09/11/2023
+                        </td>
+                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                        >
+                            خرید
+                        </td>
+                        <td>
+                            us30
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div className='mt-10'>
+                    <DashboardPaginationComponent />
+                </div>
+            </div>
+
+            <style>
+                {
+                    `
+                    table {
+                        border - collapse: separate;
+                    border-spacing: 0 10px;
+      }
+
+      tr:nth-child(odd) {
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      th {
+        padding-left: 10px;
+        padding-right: 10px; 
+        padding-bottom: 25px;
+        padding-top : 30px;
+      }
+      
+                     td {
+                        padding-left: 10px;
+                        padding-right: 10px; 
+                        padding-bottom: 15px;
+                        padding-top : 20px;
+      }
+                    `
+                }
+            </style>
 
         </div>
     );
