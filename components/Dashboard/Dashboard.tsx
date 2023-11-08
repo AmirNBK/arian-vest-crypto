@@ -9,11 +9,19 @@ import trade from '../../assets/icons/trade.svg'
 import loss from '../../assets/icons/loss.svg'
 import profit from '../../assets/icons/profit2.svg'
 import profit2 from '../../assets/icons/profit3.svg'
+import profit3 from '../../assets/icons/profit4.svg';
+import dailyLoss from '../../assets/icons/dailyLoss4.svg';
+import totalLoss from '../../assets/icons/totalLoss4.svg';
+import tradeDays from '../../assets/icons/tradeDays4.svg';
+import profile from '../../assets/images/profilePic.png'
+import edit from '../../assets/icons/edit.svg'
+import range from '../../assets/images/whiteRange.svg'
 import server from '../../assets/icons/server.svg'
 import certificateMini from '../../assets/icons/certificateMini.svg';
 import platform from '../../assets/icons/layers.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
+import AccountInfoComponent from '../AccountInfoComponent/AccountInfoComponent';
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
@@ -79,36 +87,99 @@ const Dashboard = () => {
                 داشبورد
             </h2>
 
-            <div className='bg-[#272A2E] rounded-md px-8 py-4 w-full mt-6'>
-                <h2 className={`${myFont.className} Profile__title text-white text-xl 3xl:text-3xl w-fit ml-auto`}>
-                    اطلاعات کلی حساب
-                </h2>
-                <div className='mt-8 flex flex-row-reverse justify-between flex-wrap xl:gap-0 gap-6'>
-                    <StatisticsComponents dollar={false} title='تاریخ شروع ' value={'09/06/2023'} />
-                    <StatisticsComponents dollar={false} title='تاریخ پایان ' value={'09/06/2024'} />
-                    <StatisticsComponents dollar title='سایز حساب' value={150000} />
-                    <StatisticsComponents dollar title='مبلغ حساب' value={100000} />
-                    <StatisticsComponents dollar={false} isActive title='وضعیت حساب ' value={'فعال'} />
+            <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
+            justify-center items-center sm:items-end relative'
+                style={{ zIndex: '20' }}
+            >
+                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '1' }} />
+                <div className='flex flex-col sm:flex-row-reverse gap-4 items-center'>
+                    <Image src={profile} alt='profile' unoptimized style={{ zIndex: '20' }} />
+                    <div className='flex flex-col items-center sm:items-end gap-2'>
+                        <div className='flex flex-row gap-3'>
+                            <Image src={edit} alt='edit' />
+                            <p className={`${myFont.className} text-white text-3xl`}> محمد باقری </p>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
-            <div className='bg-[#272A2E] rounded-md px-8 py-4 w-full mt-6'>
-                <h2 className={`${myFont.className} Profile__title text-white text-xl w-fit ml-auto`}>
-                    اطلاعات حساب
-                </h2>
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6 relative'>
+                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
+                <div className='flex flex-row-reverse justify-center lg:justify-center mt-8 flex-wrap gap-16'
+                    style={{ zIndex: '20' }}
+                >
+                    <div>
+                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                            شروع
+                        </h3>
+                        <StatisticsComponents dollar={true} value={350} isReferral />
+                    </div>
+                    <div>
+                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                            پایان
+                        </h3>
+                        <StatisticsComponents dollar={false} value={'05'} isReferral />
+                    </div>
+                    <div>
+                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                            سایز حساب
+                        </h3>
+                        <StatisticsComponents dollar={false} value={'09'} isReferral />
+                    </div>
+                    <div>
+                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                            مبلغ حساب
+                        </h3>
+                        <StatisticsComponents dollar={true} value={950} isReferral />
+                    </div>
+                    <div>
+                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                            وضعیت حساب
+                        </h3>
+                        <StatisticsComponents dollar={false} value={
+                            <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+                            >
+                                فعال
+                            </button>
+                        } isReferral />
+                    </div>
+                </div>
+            </div>
 
-                <div className='mt-8 flex flex-row-reverse sm:justify-between justify-center gap-8 flex-wrap'>
-                    <DashboardInfoComponent title='سود حساب' loss={true} percent={23} mainPrice={1.832} total={8000} />
-                    <DashboardInfoComponent title='ضرر روزانه' loss={false} percent={0} mainPrice={0} total={5000} />
-                    <DashboardInfoComponent title='ضرر کلی' loss={false} percent={0} mainPrice={0} total={10000} />
-                    <DashboardInfoComponent title='روزهای ترید' loss={false} percent={100} mainPrice={17} total={3} />
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
+                <div className='flex flex-col lg:flex-row-reverse gap-2'>
+                    <div className='flex flex-row items-center gap-4'>
+                        <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
+                            اطلاعات حساب
+                        </h2>
+                        <Image src={certificateMini} alt='icon' unoptimized />
+                    </div>
+                </div>
+
+                <div className='flex flex-row-reverse justify-between'>
+                    <AccountInfoComponent
+                        total={'$8000'}
+                        title='سود حساب' value={1.650} percentage={20} icon={profit3} dollar
+                    />
+
+                    <AccountInfoComponent
+                        total={'$5000'}
+                        title='ضرر روزانه' value={0} percentage={0} icon={dailyLoss} dollar
+                    />
+
+                    <AccountInfoComponent
+                        total={'$10000'}
+                        title='ضرر کلی' value={0} percentage={0} icon={totalLoss} dollar
+                    />
+                    <AccountInfoComponent
+                        total={'D100'}
+                        title='روزهای ترید' value={'20D'} percentage={20} icon={tradeDays} dollar={false}
+                    />
                 </div>
             </div>
 
 
             <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
-
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
                         <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
