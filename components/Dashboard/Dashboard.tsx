@@ -49,7 +49,7 @@ const Dashboard = () => {
         };
         const options = {
             maintainAspectRatio: false,
-            aspectRatio: (size.width && size.width < 640) ? 1.5 : (size.width && size.width > 2000) ? 0.5 : 0.65,
+            aspectRatio: (size.width && size.width < 640) ? 1.5 : (size.width && size.width > 2000) ? 1 : 0.8,
             plugins: {
                 legend: {
                     labels: {
@@ -166,8 +166,8 @@ const Dashboard = () => {
                         total={'$5000'}
                         title='ضرر روزانه' value={0} percentage={0} icon={dailyLoss} dollar
                     />
-
                     <AccountInfoComponent
+
                         total={'$10000'}
                         title='ضرر کلی' value={0} percentage={0} icon={totalLoss} dollar
                     />
@@ -251,21 +251,59 @@ const Dashboard = () => {
             </div>
 
             <div className='flex flex-col sm:flex-row-reverse gap-4  bg-[#1D1D1D] mt-6'>
-                <div className='rounded-md px-2 py-4 w-full mt-6 flex-[0.3] flex flex-col gap-2'>
-                    <div className='flex flex-row gap-8 justify-center mb-4'>
-                        <div className='rounded-md flex flex-col items-center py-8' style={{ background: 'rgba(26, 28, 31, 0.5)' }}>
-                            <Image src={server} alt='server' className='mb-8' />
-                            <p className={`${myFontIran.className} text-white`}> سرور </p>
-                            <p className='text-gray-500 text-center text-sm mt-1'> ThinkMarkets-Demo </p>
+                <div className='rounded-md px-2 py-4 w-full mt-6 flex-[0.3] flex flex-col gap-2 justify-between'>
+                    <div className='flex flex-col gap-8 justify-center mb-4'>
+                        <div className='rounded-md flex flex-row items-start px-4 py-4 justify-between
+                        bg-[#202020]
+                        '>
+                            <div>
+                                <Image src={server} alt='server' className='' />
+                            </div>
+                            <div className='flex flex-col items-end'>
+                                <p className={`${myFont.className} text-white`}> سرور </p>
+                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> ThinkMarkets-Demo </p>
+                            </div>
                         </div>
-                        <div className='rounded-md flex flex-col items-center py-8' style={{ background: 'rgba(26, 28, 31, 0.5)' }}>
-                            <Image src={platform} alt='server' className='mb-8' />
-                            <p className={`${myFontIran.className} text-white`}> پلتفرم </p>
-                            <p className='text-gray-500 text-center text-sm mt-1'> ThinkMarkets-Demo </p>
+                        <div className='rounded-md flex flex-row items-start px-4 py-4 justify-between  bg-[#202020]'>
+                            <div>
+                                <Image src={platform} alt='server' className='' />
+                            </div>
+                            <div className='flex flex-col items-end'>
+                                <p className={`${myFont.className} text-white`}> پلتفرم </p>
+                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> ThinkMarkets-Demo </p>
+                            </div>
                         </div>
                     </div>
-                    <StatisticsComponents dollar={false} title='تاریخ شروع ' value={'09/06/2023'} />
-                    <StatisticsComponents dollar={false} title='تاریخ پایان ' value={'09/06/2024'} />
+
+                    <div className='relative bg-[#202020] w-full rounded-md px-8 py-4 mt-'>
+                        <div className='flex flex-row-reverse items-start justify-between pb-4 gap-16'
+                            style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}
+                        >
+                            <div>
+                                <p className={`${myFont.className} font-normal text-base text-white`}>
+                                    شروع
+                                </p>
+                            </div>
+                            <div>
+                                <p className='text-main-orange font-normal text-base'>
+                                    09/11/2023
+                                </p>
+                            </div>
+                        </div>
+                        <div className='flex flex-row-reverse items-start justify-between pb-4 gap-16 pt-4'
+                        >
+                            <div>
+                                <p className={`${myFont.className} font-normal text-base text-white`}>
+                                    پایان
+                                </p>
+                            </div>
+                            <div>
+                                <p className='text-main-orange font-normal text-base'>
+                                    09/11/2023
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='rounded-md px-8 py-4 w-full mt-6 flex-1'>
                     <div className='card'>
