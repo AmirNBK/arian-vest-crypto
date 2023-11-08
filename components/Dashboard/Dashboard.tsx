@@ -84,7 +84,7 @@ const Dashboard = () => {
 
     return (
         <div className='Dashboard'>
-            <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit ml-auto`}>
+            <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit ml-auto mb-6`}>
                 داشبورد
             </h2>
 
@@ -157,7 +157,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-row-reverse justify-between'>
+                <div className='flex flex-row-reverse justify-center sm:justify-between flex-wrap'>
                     <AccountInfoComponent
                         total={'$8000'}
                         title='سود حساب' value={1.650} percentage={20} icon={profit3} dollar
@@ -251,7 +251,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col sm:flex-row-reverse gap-4  bg-[#1D1D1D] mt-6'>
+            <div className='flex flex-col lg:flex-row-reverse gap-4  bg-[#1D1D1D] mt-6'>
                 <div className='rounded-md px-2 py-4 w-full mt-6 flex-[0.3] flex flex-col gap-2 justify-between'>
                     <div className='flex flex-col gap-8 justify-center mb-4'>
                         <div className='rounded-md flex flex-row items-start px-4 py-4 justify-between
@@ -322,210 +322,212 @@ const Dashboard = () => {
                         <Image src={certificateMini} alt='icon' unoptimized />
                     </div>
                 </div>
-                <table className={`w-full mt-10`}>
-                    <tr
-                    >
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}> مدت‌زمان</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}> سود</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}> حد زیاد</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت بست</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}> تاریخ بست</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت باز</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}>تاریخ باز</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}>نوع</th>
-                        <th className={`${myFont.className} text-base text-right text-main-orange`}>
-                            نماد
-                        </th>
-                    </tr>
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#BF0000]'>
-                            -$415.28
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                <div className='overflow-auto'>
+                    <table className={`w-full mt-10 overflow-auto`}>
+                        <tr
                         >
-                            خرید
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}> مدت‌زمان</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}> سود</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}> حد زیاد</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت بست</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}> تاریخ بست</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}>قیمت باز</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}>تاریخ باز</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}>نوع</th>
+                            <th className={`${myFont.className} text-base text-right text-main-orange`}>
+                                نماد
+                            </th>
+                        </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#BF0000]'>
+                                -$415.28
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                            >
+                                خرید
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
 
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#BF0000]'>
-                            -$415.28
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(191, 0, 0, 0.25)' }}
-                        >
-                            فروش
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#159400]'>
-                            +$415
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(191, 0, 0, 0.25)' }}
-                        >
-                            فروش
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#159400]'>
-                            +$256.12
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
-                        >
-                            خرید
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#BF0000]'>
-                            -$415.28
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
-                        >
-                            خرید
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
-                    <tr className={`text-white text-right`}>
-                        <td>
-                            24m 13s
-                        </td>
-                        <td className='text-[#159400]'>
-                            +$415.28
-                        </td>
-                        <td>
-                            8
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td>
-                            35674.56
-                        </td>
-                        <td>
-                            09/11/2023
-                        </td>
-                        <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                            style={{ background: 'rgba(21, 148, 0, 0.25)' }}
-                        >
-                            خرید
-                        </td>
-                        <td>
-                            us30
-                        </td>
-                    </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#BF0000]'>
+                                -$415.28
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(191, 0, 0, 0.25)' }}
+                            >
+                                فروش
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#159400]'>
+                                +$415
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#BF0000] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(191, 0, 0, 0.25)' }}
+                            >
+                                فروش
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#159400]'>
+                                +$256.12
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                            >
+                                خرید
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#BF0000]'>
+                                -$415.28
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                            >
+                                خرید
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
+                        <tr className={`text-white text-right`}>
+                            <td>
+                                24m 13s
+                            </td>
+                            <td className='text-[#159400]'>
+                                +$415.28
+                            </td>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td>
+                                35674.56
+                            </td>
+                            <td>
+                                09/11/2023
+                            </td>
+                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
+                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
+                            >
+                                خرید
+                            </td>
+                            <td>
+                                us30
+                            </td>
+                        </tr>
 
-                </table>
+                    </table>
+                </div>
 
                 <div className='mt-10'>
                     <DashboardPaginationComponent />
