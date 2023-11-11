@@ -18,9 +18,12 @@ const TariffComponent = (props: {
     return (
         <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-full lg:w-8/12 mx-auto p-6`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+            style={{
+                boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'
+            }}
         >
             <div className='TariffComponent__info text-main-orange flex items-center flex-col sm:flex-row sm:text-4xl text-3xl sm:gap-0 gap-4 justify-between'>
-                <p className='w-full text-center'> {props.title} </p>
+                <p className='w-full text-left'> {props.title} </p>
                 <p> {props.price}k </p>
             </div>
             <div className='mt-5 sm:mt-10'>
