@@ -21,7 +21,7 @@ const TariffTable = (props: {
     }, [])
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-0'}
-        ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12'} sm:mx-auto`}
+        ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 2xl:w-5/12'} sm:mx-auto`}
             style={{ backgroundColor: '#1D1D1D',
             borderRadius : '20px',
             boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'
@@ -34,32 +34,6 @@ const TariffTable = (props: {
                         <p className='text-main-orange text-3xl'> {props.title} </p>
                     </div>
             }
-            {/* <div className='tableItems flex flex-row-reverse justify-between'>
-                <div className='tableTitles my-10'>
-                    {props.data.map((item, index) => (
-                        <div key={index} className="px-14 p-4 flex flex-row-reverse justify-between">
-                            <h2 className={`text-base sm:text-${props.minimal ? 'xs' : 'base'} text-white rtl`}>{item.title}</h2>
-                        </div>
-                    ))}
-                </div>
-                <hr
-                    style={{
-                        background: '#252525',
-                        height: 'auto',
-                        width: '8px',
-                        border: 'none'
-                    }}
-                />
-                <div className='tableInfos flex flex-col justify-evenly text-center items-center ml-20 my-10'>
-                    {props.data.map((item, index) => (
-                        <div key={index} className="p-4 flex flex-row-reverse justify-between">
-                            <p className={`text-${props.minimal ? 'sm' : 'lg'}`}
-                                style={{ color: '#B3B3B3' }}
-                            >{item.info}</p>
-                        </div>
-                    ))}
-                </div>
-            </div> */}
 
             <div>
                 {props.data.map((item,index) => {
