@@ -37,6 +37,7 @@ import logout from '../../assets/icons/logout.svg'
 import authentication from '../../assets/icons/authentication.svg'
 import Authentication from '@/components/Authentication/Authentication';
 import Ticket from '@/components/Ticket/Ticket';
+import Link from 'next/link';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -117,7 +118,9 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className='flex flex-col lg:flex-row-reverse'>
                     <div className={`Sidebar lg:block hidden p-10 bg-[#1D1D1D]`}
                     >
+                        <Link href={'/'}>
                         <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto' />
+                        </Link>
                         <div className='flex flex-col gap-8'>
                             {panelItems.map((item) => {
                                 return (
