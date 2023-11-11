@@ -16,7 +16,7 @@ import Footer from '@/components/Footer/Footer';
 import Stats from '@/components/Stats/Stats';
 import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
-import profit from '../../assets/icons/profit.svg'
+import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
 import { getQueryAboutUs, getQueryFooter } from '@/lib/service';

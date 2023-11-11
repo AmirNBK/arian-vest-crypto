@@ -21,7 +21,7 @@ const TariffTable = (props: {
     }, [])
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-0'}
-        ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 2xl:w-5/12'} sm:mx-auto`}
+        ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}
             style={{ backgroundColor: '#1D1D1D',
             borderRadius : '20px',
             boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'

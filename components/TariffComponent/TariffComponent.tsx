@@ -16,7 +16,7 @@ const TariffComponent = (props: {
         AOS.init();
     }, [])
     return (
-        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-full lg:w-8/12 mx-auto p-6 2xl:w-6/12`}
+        <div className={`${myFontIran.className} relative TariffComponent bg-[#1D1D1D] rounded-xl w-full lg:w-8/12 mx-auto p-6 3xl:w-6/12`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             style={{
                 boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'
