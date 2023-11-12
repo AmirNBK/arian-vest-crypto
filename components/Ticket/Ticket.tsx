@@ -72,48 +72,44 @@ const Ticket = () => {
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <StatisticsComponents value={<div>
-                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
-                                    >
-                                        پاسخ داده شد
-                                    </button>
-                                </div>} dollar={false} />
+                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+                                >
+                                    پاسخ داده شد
+                                </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'02/09/2023'} dollar={true} />
+                                <StatisticsComponents fontSize='base' value={'02/09/2023'} dollar={true} />
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'مالی'} dollar={false} />
+                                <StatisticsComponents fontSize='base' value={'مالی'} dollar={false} />
 
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'ایراد در روند معامله'} dollar={false} />
+                                <StatisticsComponents fontSize='base' value={'ایراد در روند معامله'} dollar={false} />
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-6xl font-bold'> 01 </h2>
+                                <h2 className='text-main-orange text-5xl font-bold'> 01 </h2>
                             </td>
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <StatisticsComponents value={<div>
-                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
-                                    >
-                                        منقضی شده
-                                    </button>
-                                </div>} dollar={false} />
+                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'02/09/2023'} dollar={true} />
+                                <StatisticsComponents fontSize='base' value={'02/09/2023'} dollar={true} />
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'مالی'} dollar={false} />
+                                <StatisticsComponents fontSize='base' value={'مالی'} dollar={false} />
 
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'برداشت سود'} dollar={false} />
+                                <StatisticsComponents fontSize='base' value={'برداشت سود'} dollar={false} />
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-6xl font-bold'> 02 </h2>
+                                <h2 className='text-main-orange text-5xl font-bold'> 02 </h2>
                             </td>
                         </tr>
                     </table>

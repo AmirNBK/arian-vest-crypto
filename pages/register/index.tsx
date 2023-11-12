@@ -104,7 +104,7 @@ export default function Register({ footer }: { footer: any }) {
                             sessionStorage.setItem('authToken', result.login.authToken)
                         }
                         setTimeout(() => {
-                            router.push('/');
+                            router.push('/panel');
                         }, 2000);
                     }
                 } catch (error) {
@@ -164,7 +164,7 @@ export default function Register({ footer }: { footer: any }) {
                             sessionStorage.setItem('authToken', result.login.authToken)
                         }
                         setTimeout(() => {
-                            router.push('/');
+                            router.push('/panel');
                         }, 2000);
                     }
                 } catch (error) {
@@ -212,7 +212,8 @@ export default function Register({ footer }: { footer: any }) {
 
                     <div className='flex flex-col lg:flex-row-reverse w-full gap-10 2xl:w-10/12 3xl:w-7/12 mx-auto'>
                         <div className='flex-1'>
-                            <div style={{ background: '#1D1D1D', borderRadius: '20px' }} className='w-full px-8 py-8'>
+                            <div style={{ background: '#1D1D1D', borderRadius: '20px', boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }} className='w-full px-8 py-8'
+                            >
                                 <div className='flex flex-row gap-2 items-center justify-end'>
                                     <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> عضویت </p>
                                     <Image src={signUp} alt='signup' />
@@ -247,7 +248,9 @@ export default function Register({ footer }: { footer: any }) {
                         </div>
 
                         <div className='flex-1'>
-                            <div style={{ background: '#1D1D1D', borderRadius: '20px' }} className='w-full px-8 py-8 h-fit'>
+                            <div style={{ background: '#1D1D1D', borderRadius: '20px', boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }} className='w-full px-8 py-8 h-fit'
+
+                            >
                                 <div className='flex flex-row gap-2 items-center justify-end '>
                                     <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> ورود </p>
                                     <Image src={login} alt='login' />

@@ -39,7 +39,9 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
                                     pt={{
                                         headerIcon: <Image src={arrow} alt='arrow' />
                                     }}
-                                    className='text-white text-right' header={item.title}>
+                                    className='text-white text-right'
+                                    style={{boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'}}
+                                    header={item.title}>
                                     {item.description}
                                 </AccordionTab>
                             )

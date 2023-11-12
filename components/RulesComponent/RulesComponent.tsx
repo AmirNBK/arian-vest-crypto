@@ -26,7 +26,7 @@ const RulesComponent = (props: {
 
     return (
         <div
-            className={`${myFont.className} flex items-center px-12 lg:px-24 py-[100px] relative leading-relaxed cursor-pointer
+            className={`${myFont.className} flex items-center px-12 lg:px-24 py-[100px] relative leading-relaxed cursor-pointer mx-auto
           text-lg 3xl:text-2xl RulesComponent rounded-xl text-center text-white w-fit bg-new-black hover:bg-orange-400 transition duration-700`}
             style={{
                 maxWidth: '400px',

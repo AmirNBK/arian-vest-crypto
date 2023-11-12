@@ -25,7 +25,7 @@ const Footer = (props: {
         <div className='Footer relative'
         >
 
-            <div className='Footer__mobile sm:hidden block bg-[#F68D2F]'>
+            <div className='Footer__mobile sm:hidden block bg-[#F68D2F] w-[110%] translate-x-[-22px]'>
                 <div className={`${myFont.className} Footer__rightside px-12 pt-12`}>
                     <p className='text-white text-right mb-3 lg:text-base text-sm'>
                         همیشه به روز باشید

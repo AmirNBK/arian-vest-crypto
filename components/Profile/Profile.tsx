@@ -110,48 +110,44 @@ const Profile = () => {
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <StatisticsComponents value={<div>
-                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
-                                    >
-                                        پرداخت شده
-                                    </button>
-                                </div>} dollar={false} />
+                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+                                >
+                                    پرداخت شده
+                                </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'55.000.000'} dollar={true} />
+                                <StatisticsComponents fontSize='lg' value={'55.000.000'} dollar={true} />
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'Classic 5K'} dollar={false} />
+                                <StatisticsComponents fontSize='lg' value={'Classic 5K'} dollar={false} />
 
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'05/03/2023'} dollar={false} />
+                                <StatisticsComponents fontSize='lg' value={'05/03/2023'} dollar={false} />
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-6xl font-bold'> 01 </h2>
+                                <h2 className='text-main-orange text-5xl font-bold'> 01 </h2>
                             </td>
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <StatisticsComponents value={<div>
-                                    <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
-                                    >
-                                        منقضی شده
-                                    </button>
-                                </div>} dollar={false} />
+                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'55.000.000'} dollar={true} />
+                                <StatisticsComponents fontSize='lg' value={'55.000.000'} dollar={true} />
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'Classic 5K'} dollar={false} />
+                                <StatisticsComponents fontSize='lg' value={'Classic 5K'} dollar={false} />
 
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents value={'05/03/2023'} dollar={false} />
+                                <StatisticsComponents fontSize='lg' value={'05/03/2023'} dollar={false} />
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-6xl font-bold'> 02 </h2>
+                                <h2 className='text-main-orange text-5xl font-bold'> 02 </h2>
                             </td>
                         </tr>
                     </table>

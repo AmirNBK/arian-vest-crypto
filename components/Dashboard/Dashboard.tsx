@@ -88,7 +88,7 @@ const Dashboard = () => {
                 داشبورد
             </h2>
 
-            <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
+            {/* <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
             justify-center items-center sm:items-end relative'
                 style={{ zIndex: '20' }}
             >
@@ -102,10 +102,11 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6 relative'>
-                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
+                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
+                ' style={{ zIndex: '0' }} />
                 <div className='flex flex-row-reverse justify-center lg:justify-center mt-8 flex-wrap gap-16'
                     style={{ zIndex: '20' }}
                 >
@@ -133,16 +134,18 @@ const Dashboard = () => {
                         </h3>
                         <StatisticsComponents dollar={false} value={'150k'} isReferral />
                     </div>
-                    <div>
+                    <div
+                        style={{ zIndex: '25' }}
+                    >
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             وضعیت حساب
                         </h3>
-                        <StatisticsComponents dollar={false} value={
-                            <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
-                            >
-                                فعال
-                            </button>
-                        } isReferral />
+                        <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]
+                        mt-8
+                        `}
+                        >
+                            فعال
+                        </button>
                     </div>
                 </div>
             </div>
@@ -180,9 +183,10 @@ const Dashboard = () => {
             </div>
 
 
-            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6 relative'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
+                        <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
                         <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
                             آمار حساب
                         </h2>

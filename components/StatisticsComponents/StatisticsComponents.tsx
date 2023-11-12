@@ -14,14 +14,19 @@ const StatisticsComponents = (props: {
     isReferral?: boolean
     paddingY?: number
     havePlusButton?: boolean
+    fontSize?: string
+    width?:number
 }) => {
     return (
-        <div className={`StatisticsComponents bg-shadow mx-auto justify-center
-        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#202020]'} flex flex-row-reverse rounded-md ${props.paddingY ? `py-${props.paddingY}` : 'py-12'} w-64 px-5
+        <div
+            style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
+            className={`StatisticsComponents bg-shadow mx-auto justify-center
+        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#202020]'} flex flex-row-reverse rounded-md ${props.paddingY ? `py-${props.paddingY}` : 'py-10'}
+        ${props.width ? `w-${props.width}` : 'w-44'} px-5
          gap-4 items-center  ${myFontIran.className}`}>
             {props.havePlusButton && <Image src={plus} className='absolute left-0 bottom-0' alt='downloadIcon' />}
             <div className='flex flex-col items-end gap-2'>
-                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} text-2xl font-bold 3xl:text-lg `}>
+                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} ${props.fontSize ? `text-${props.fontSize}` : 'text-xl'} font-bold 3xl:text-lg `}>
                     <span className='text-main-orange'>
                         {props.dollar && '$'}
                     </span>

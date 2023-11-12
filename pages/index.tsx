@@ -45,6 +45,7 @@ import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
 import { GetStaticProps } from 'next';
 import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
+import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
 
 export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -135,7 +136,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </Link>
           </div>
 
-          <div className='relative lg:m-0 sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
+          <div className='relative lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
             <div className="card"
               style={{ margin: '0 auto', marginTop: '50px' }}
             >
@@ -161,7 +162,6 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </div>
             <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '-1' }} unoptimized />
           </div>
-
           <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
@@ -173,15 +173,18 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
                 data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
               />
-              <Image src={faqBull} alt='rulesPic' unoptimized className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
+              <Image src={faqBull} alt='rulesPic' unoptimized
+              className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
-            <Link href={'/rules'} className={`${myFontIran.className} text-main-orange text-center`}
+            <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-56 text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین
             </Link>
           </div>
+
           <TradeChallengesSection data={faqHomeSection.homepage.faqSection[0].question} />
+
           <div className='lg:py-32'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
@@ -207,38 +210,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </div>
           </div>
 
-          <div className='aboutUs sm:mx-0 mx-6 my-20 sm:my-40 relative'>
-            <Image src={pic1} className='3xl:w-[60%] lg:block hidden' alt='pic' unoptimized style={{ opacity: '0.5' }}
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-right"
-            />
-            <div className='sm:absolute right-0 top-12 3xl:w-[45%]'
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
-            >
-              <Image src={container} alt='container' className='sm:block hidden' />
-              <p className={`${myFont.className} text-white sm:w-max text-5xl text-center
-              sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
-              sm:absolute top-1/2 left-1/2`}
-              >
-                <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
-              </p>
-            </div>
-            <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-left"
-              data-aos-delay="500"
-            >
-              <Image src={container2} alt='container' className='sm:block hidden' />
-              <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
-              sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
-              >
-                {aboutUsSection?.homepage.aboutUs}
-              </p>
-              <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
-                style={{ textDecoration: 'underline' }}>
-                بیشتر بخوانید
-              </Link>
-              <Image src={goldBUll} unoptimized alt='bull' className='sm:block hidden absolute -left-36 -bottom-16 w-96' />
-            </div>
-          </div>
+          <HomepageAboutUs data={aboutUsSection?.homepage.aboutUs} />
 
           <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
@@ -291,6 +263,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </div>
           </div>
 
+
           <div className='successSteps p-6 sm:p-12 lg:py-56'>
             <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
@@ -303,6 +276,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               <StepsComponent data={successSteps.homepage.successSteps[0].item} />
             </div>
           </div>
+
           <Footer data={footer?.footer} />
         </div >
 

@@ -112,15 +112,16 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                     </p>
                 </div>
 
-                <div className='px-12 mt-20 flex flex-col sm:flex-row justify-center sm:gap-y-0 gap-y-12 gap-x-32 mb-32'
+                <div className='px-12 mt-20 flex flex-col lg:flex-row justify-center lg:gap-y-0 gap-y-12 gap-x-32 mb-32'
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
                 >
                     <RulesComponent onClick={() => setVisibleA(true)} translate={0} text='قوانین پلن کِلاس A' feature='(تارگت سود کمتر)' />
                     <RulesComponent onClick={() => setVisibleB(true)} translate={0} text='قوانین پلن کِلاس B' feature='(بدون محدودیت زمانی)' />
+                    <RulesComponent onClick={() => setVisibleB(true)} translate={0} text='قوانین پلن کِلاس c' feature='(بدون محدودیت زمانی)' />
                 </div>
 
                 <div className='relative'>
-                    <Image src={trading} alt='trading' unoptimized />
+                    <Image src={trading} alt='trading' unoptimized className='w-full' />
                     <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
                         style={{ transform: 'translate(-50%,-50%)' }}
                     />
