@@ -1,5 +1,6 @@
 import React from 'react';
 import localFont from 'next/font/local'
+import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
 import certificateMini from '../../assets/icons/certificateMini.svg';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
@@ -8,6 +9,9 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import buttonImage from '../../assets/images/profitButton.png'
 
 const ProfitWithdrawal = () => {
+
+    const size = useWindowSize();
+
     return (
         <div className='ProfitWithdrawal'>
             <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>

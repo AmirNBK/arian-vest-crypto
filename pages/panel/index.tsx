@@ -20,6 +20,7 @@ import menu from '../../assets/icons/menu.svg'
 import dashboard from '../../assets/icons/dashboard.svg'
 import profit from '../../assets/icons/money.svg'
 import profile from '../../assets/icons/profile2.svg'
+import useWindowSize from '@/Hooks/innerSize';
 import leaderboards from '../../assets/icons/leaderboard.svg'
 import download from '../../assets/icons/download.svg'
 import certificate from '../../assets/icons/certificate.svg'
@@ -44,6 +45,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
+    const size = useWindowSize();
     const [visible, setVisible] = useState<boolean>(false);
     const [fullSidebar, setFullSidebar] = useState(true)
     const panelItems = [
@@ -64,7 +66,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
             className={`flex min-h-screen w-full flex-col justify-between`}
         >
             <PrimeReactProvider>
-                <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: '25vw' }}
+                <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
                     className={`${myFontIran.className} rtl`} onHide={() => setVisible(false)}>
                     <div>
                         <p className="m-0">
@@ -105,7 +107,10 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                             if (item.link === 'logout') {
                                                 setVisible(true)
                                             }
-                                            else setActivePanel(item.link)
+                                            else {
+                                                setActivePanel(item.link)
+                                                setVisibleRight(false)
+                                            }
                                         }}
                                     > {item.title} </p>
                                     <Image width={35} src={item.icon} alt='icon' />
@@ -119,7 +124,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     <div className={`Sidebar lg:block hidden p-10 bg-[#1D1D1D]`}
                     >
                         <Link href={'/'}>
-                        <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto' />
+                            <Image src={logo} alt='logo' unoptimized className='mb-16 mx-auto' />
                         </Link>
                         <div className='flex flex-col gap-8'>
                             {panelItems.map((item) => {
@@ -149,7 +154,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
                     </div>
 
-                    <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
+                    <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
                         {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal /> : activePanel === 'profile' ? <Profile /> :
                                 activePanel === 'dashboard' ? <Dashboard /> : activePanel === 'download' ? <Download /> :

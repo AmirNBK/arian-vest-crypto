@@ -92,7 +92,7 @@ const Dashboard = () => {
             justify-center items-center sm:items-end relative'
                 style={{ zIndex: '20' }}
             >
-                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '1' }} />
+                <Image src={range} alt='range' className='sm:block hidden absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '1' }} />
                 <div className='flex flex-col sm:flex-row-reverse gap-4 items-center'>
                     <Image src={profile} alt='profile' unoptimized style={{ zIndex: '20' }} />
                     <div className='flex flex-col items-center sm:items-end gap-2'>
@@ -104,8 +104,8 @@ const Dashboard = () => {
                 </div>
             </div> */}
 
-            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6 relative'>
-                <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
+            <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full relative'>
+                <Image src={range} alt='range' className='sm:block hidden  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
                 ' style={{ zIndex: '0' }} />
                 <div className='flex flex-row-reverse justify-center lg:justify-center mt-8 flex-wrap gap-16'
                     style={{ zIndex: '20' }}
@@ -141,7 +141,7 @@ const Dashboard = () => {
                             وضعیت حساب
                         </h3>
                         <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]
-                        mt-8
+                        mt-4 mb-8 sm:mt-8 sm:mb-0
                         `}
                         >
                             فعال
@@ -186,7 +186,7 @@ const Dashboard = () => {
             <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6 relative'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
-                        <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
+                        <Image src={range} alt='range' className='sm:block hidden absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
                         <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
                             آمار حساب
                         </h2>
@@ -320,7 +320,7 @@ const Dashboard = () => {
             <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full mt-6'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
-                        <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
+                        <h2 className={`${myFont.className} Leaderboards__title text-white text-xl sm:text-2xl w-fit ml-auto`}>
                             تاریخچه حساب معاملاتی
                         </h2>
                         <Image src={certificateMini} alt='icon' unoptimized />

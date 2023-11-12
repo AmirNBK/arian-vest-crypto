@@ -22,39 +22,58 @@ const TariffTable = (props: {
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-0'}
         ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}
-            style={{ backgroundColor: '#1D1D1D',
-            borderRadius : '20px',
-            boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'
-        }}
+            style={{
+                backgroundColor: '#1D1D1D',
+                borderRadius: '20px',
+                boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'
+            }}
             data-aos-duration="2000" data-aos-once={true} data-aos="flip-left"
         >
-            {!(props.removeTitle) && 
-                        <div className='TariffTable__title gap-5 flex flex-col sm:flex-row-reverse items-center p-6'>
-                        <Image src={logo} alt='logo' />
-                        <p className='text-main-orange text-3xl'> {props.title} </p>
-                    </div>
+            {!(props.removeTitle) &&
+                <div className='TariffTable__title gap-5 flex flex-col sm:flex-row-reverse items-center p-6'>
+                    <Image src={logo} alt='logo' />
+                    <p className='text-main-orange text-3xl'> {props.title} </p>
+                </div>
             }
 
-            <div>
-                {props.data.map((item,index) => {
-                    return (
-                        <div key={index} className={`${index%2===0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse
+            <div className='flex flex-row-reverse w-full'>
+                <div className='flex-1 sm:block flex flex-col justify-between'>
+                    {props.data.map((item, index) => {
+                        return (
+                            <div key={index} className={`${index % 2 === 0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse
                         px-6 py-4
                         justify-between`}
-                        >
-                            <div>
-                            <h2 className={`text-base sm:text-${props.minimal ? 'xs' : 'base'}
-                            text-main-orange text-lg
+                                style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
+                            >
+                                <div>
+                                    <h2 className={`text-sm whitespace-nowrap	 sm:text-base sm:text-${props.minimal ? 'xs' : 'base'}
+                            text-main-orange
                             rtl`}>{item.title}</h2>
+                                </div>
                             </div>
-                            <div>
-                            <p className={`text-${props.minimal ? 'sm' : 'lg'}`}
-                                style={{ color: '#B3B3B3' }}
-                            >{item.info}</p>
+                        )
+                    })}
+                </div>
+
+                <div className='flex-1'
+                style={{borderRight : '1px solid rgba(246, 141, 46, 0.40)'}}
+                >
+                    {props.data.map((item, index) => {
+                        return (
+                            <div key={index} className={`${index % 2 === 0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse
+                        px-6 py-4
+                        justify-between`}
+                                style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
+                            >
+                                <div>
+                                    <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap`}
+                                        
+                                    >{item.info}</p>
+                                </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
 
             <div className='tablePrice flex flex-col sm:flex-row-reverse py-8 gap-8 sm:gap-56 font-bold items-center text-white text-2xl justify-center'>
@@ -68,21 +87,14 @@ const TariffTable = (props: {
                 <RegisterButton text='خرید' />
             </div>
 
-            {/* <p className='text-main-orange text-center py-6' style={{ textDecoration: 'underline' }}>
-                مقایسه تعرفه ها
-            </p> */}
-
-
-
             <style>
                 {
                     `
                     .bg-gradient {
-                        background : linear-gradient(90deg, rgba(255, 255, 255, 0.11) 20.73%, rgba(246, 141, 46, 0.00) 100%);
+                        background : 0px 0px 45px 0px rgba(246, 141, 46, 0.20);
                     }
                     .bg-gradient-2 {
-                        background : linear-gradient(270deg, rgba(255, 255, 255, 0.11) 20.73%, rgba(246, 141, 46, 0.00) 100%);
-                        box-shadow: 0px 5px 30px 0px rgba(246, 141, 46, 0.05);
+                        background : rgba(255, 255, 255, 0.05);
                     }
                     `
                 }

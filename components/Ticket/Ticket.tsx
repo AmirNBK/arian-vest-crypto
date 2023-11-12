@@ -30,7 +30,7 @@ const Ticket = () => {
                                 اگر احتیاج به آپلود فایل هستش در این بخش وارد کنید
                             </h2>
                         </div>
-                        <StatisticsComponents dollar={false} paddingY={2} value={<Image src={plus} alt='plus' />} />
+                        <StatisticsComponents width={36} paddingY={8} dollar={false} value={<Image src={plus} alt='plus' />} />
                         <Image src={ticketPic} alt='ticketPic' unoptimized />
                     </div>
 
@@ -61,56 +61,61 @@ const Ticket = () => {
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
 
-                <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto`}>
+                <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto rtl`}>
                     <table className='w-full'>
                         <tr>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
                             <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+                                <h2 className='text-main-orange text-4xl sm:text-5xl font-bold'> 01 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'ایراد در روند معامله'} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'مالی'} dollar={false} />
+
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'02/09/2023'} dollar={true} />
+                            </td>
+                            <td className='text-center wrap'>
+                                <button className={`${myFontIran.className} px-5 sm:px-10 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-base bg-[#159400]`}
                                 >
                                     پاسخ داده شد
                                 </button>
                             </td>
-                            <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'02/09/2023'} dollar={true} />
+                        </tr>
+                        <tr>
+                        <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-5xl font-bold'> 02 </h2>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'مالی'} dollar={false} />
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'برداشت سود'} dollar={false} />
+                            </td>
+                            <td className='text-center'>
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'مالی'} dollar={false} />
 
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'ایراد در روند معامله'} dollar={false} />
+                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'02/09/2023'} dollar={true} />
                             </td>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-5xl font-bold'> 01 </h2>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                            <td className='text-center wrap'
+                            >
+                                <button
+                                    className={`${myFontIran.className}
+                                px-5 sm:px-10 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-base
+                                bg-[#740000]`}
                                 >
                                     منقضی شده
                                 </button>
-                            </td>
-                            <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'02/09/2023'} dollar={true} />
-                            </td>
-                            <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'مالی'} dollar={false} />
-
-                            </td>
-                            <td className='text-center'>
-                                <StatisticsComponents fontSize='base' value={'برداشت سود'} dollar={false} />
-                            </td>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-5xl font-bold'> 02 </h2>
-                            </td>
+                            </td>                        
+                         
                         </tr>
                     </table>
 
@@ -121,6 +126,11 @@ const Ticket = () => {
             <style>
                 {
                     `
+                    .wrap {
+                        text-wrap: nowrap;
+                    }
+
+
                     table {
                         border - collapse: separate;
                     border-spacing: 0 10px;
