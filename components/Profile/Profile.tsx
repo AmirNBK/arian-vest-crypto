@@ -13,60 +13,6 @@ import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 
 
 const Profile = () => {
-    const [products, setProducts] = useState([
-        {
-            id: '1000',
-            status: <p className={`${myFontIran.className} rounded-md p-2 ml-auto w-fit text-[#21c21e] bg-green-200	`}>
-                پرداخت شده
-            </p>,
-            name: 'Bamboo Watch',
-            description: 'Product Description',
-            image: 'bamboo-watch.jpg',
-            price: <p className='text-green-600	 text-xl font-bold'>
-                $550,000,000
-            </p>,
-            account:
-                <div className='flex flex-row-reverse items-center gap-4 justify-start text-gray-400'>
-                    <div className='rounded-md text-lg bg-main-orange px-4 py-3 text-white font-bold w-fit'>
-                        5k
-                    </div>
-                    <p className='rtl text-lg'>
-                        5k classic challenge -  تعرفه classic challenge
-                    </p>
-                </div>,
-            date: <p className='text-gray-400'>
-                05/09/2023
-            </p>,
-            inventoryStatus: 'INSTOCK',
-            rating: 5
-        },
-        {
-            id: '1000',
-            status: <p className={`${myFontIran.className} rounded-md p-2 ml-auto w-fit text-red-400 bg-red-200	`}>
-                منقضی شده
-            </p>,
-            name: 'Bamboo Watch',
-            description: 'Product Description',
-            image: 'bamboo-watch.jpg',
-            price: <p className='text-green-600	 text-xl font-bold'>
-                $830,000,000
-            </p>,
-            account:
-                <div className='flex flex-row-reverse items-center gap-4 justify-start text-gray-400'>
-                    <div className='rounded-md text-lg bg-main-orange px-4 py-3 text-white font-bold w-fit'>
-                        100k
-                    </div>
-                    <p className='rtl text-lg'>
-                        100k classic challenge -  تعرفه classic challenge
-                    </p>
-                </div>,
-            date: <p className='text-gray-400'>
-                05/09/2023
-            </p>,
-            inventoryStatus: 'INSTOCK',
-            rating: 5
-        },
-    ]);
 
     return (
         <div className='Profile' style={{ zIndex: '-50' }}>
@@ -110,44 +56,161 @@ const Profile = () => {
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#159400]`}
+
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
                                 >
                                     پرداخت شده
                                 </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'55.000.000'} dollar={true} />
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'Classic 5K'} dollar={false} />
-
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'05/03/2023'} dollar={false} />
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-5xl font-bold'> 01 </h2>
+                                <h2 className='text-main-orange text-2xl font-bold'> 01 </h2>
                             </td>
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <button className={`${myFontIran.className} px-10 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                <button className={`${myFontIran.className} px-5 py-2 text-white rounded-lg text-base bg-[#740000]`}
                                 >
                                     منقضی شده
                                 </button>
+                                </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'55.000.000'} dollar={true} />
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'Classic 5K'} dollar={false} />
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-2xl font-bold'> 02 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
 
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پرداخت شده
+                                </button>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents fontSize='lg' value={'05/03/2023'} dollar={false} />
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-5xl font-bold'> 02 </h2>
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-2xl font-bold'> 03 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <button className={`${myFontIran.className} px-5 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                                </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-2xl font-bold'> 04 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پرداخت شده
+                                </button>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-2xl font-bold'> 05 </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <button className={`${myFontIran.className} px-5 py-2 text-white rounded-lg text-base bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                                </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    55.000.000
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    Classic 5K
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    05/03/2023
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-2xl font-bold'> 06 </h2>
                             </td>
                         </tr>
                     </table>
@@ -164,11 +227,18 @@ const Profile = () => {
                     border-spacing: 0 10px;
       }
     
-                    th, td {
-                        padding-left: 10px;
-                        padding-right: 10px; 
-                        padding-bottom: 25px;
-                        padding-top: 25px;
+      th {
+        padding-left: 5px;
+        padding-right: 5px; 
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+    
+                     td {
+                        padding-left: 5px;
+                        padding-right: 5px; 
+                        padding-bottom: 14px;
+                        padding-top: 14px;
       }   
       tr:not(:last-child,:first-child) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.10);

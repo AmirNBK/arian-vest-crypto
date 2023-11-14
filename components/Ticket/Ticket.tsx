@@ -72,7 +72,7 @@ const Ticket = () => {
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 01 </h2>
+                                <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 01 </h2>
                             </td>
                             <td className='text-center'>
                                 <p className='text-white'>
