@@ -62,61 +62,301 @@ const Ticket = () => {
                 </div>
 
                 <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto rtl`}>
-                    <table className='w-full'>
+                    <table className={`${myFontIran.className} w-full`}>
                         <tr>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
                             <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
                         </tr>
                         <tr>
                             <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-5xl font-bold'> 01 </h2>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 01 </h2>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'ایراد در روند معامله'} dollar={false} />
+                                <p className='text-white'>
+                                    ایراد در روند معامله
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'مالی'} dollar={false} />
-
+                                <p className='text-white'>
+                                    مالی
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'02/09/2023'} dollar={true} />
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
                             </td>
                             <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-10 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-base bg-[#159400]`}
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
                                 >
                                     پاسخ داده شد
                                 </button>
                             </td>
                         </tr>
                         <tr>
-                        <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-5xl font-bold'> 02 </h2>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 02 </h2>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'برداشت سود'} dollar={false} />
+                                <p className='text-white'>
+                                    برداشت سود
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'مالی'} dollar={false} />
-
+                                <p className='text-white'>
+                                    مالی
+                                </p>
                             </td>
                             <td className='text-center'>
-                                <StatisticsComponents width={36} paddingY={8} fontSize='sm sm:base' value={'02/09/2023'} dollar={true} />
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
                             </td>
                             <td className='text-center wrap'
                             >
                                 <button
                                     className={`${myFontIran.className}
-                                px-5 sm:px-10 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-base
+                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
                                 bg-[#740000]`}
                                 >
                                     منقضی شده
                                 </button>
-                            </td>                        
-                         
+                            </td>
+
                         </tr>
+
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 03 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    ایراد در روند معامله
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'>
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پاسخ داده شد
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 04 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    برداشت سود
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'
+                            >
+                                <button
+                                    className={`${myFontIran.className}
+                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
+                                bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 05 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    ایراد در روند معامله
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'>
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پاسخ داده شد
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 06 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    برداشت سود
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'
+                            >
+                                <button
+                                    className={`${myFontIran.className}
+                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
+                                bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 07 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    ایراد در روند معامله
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'>
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پاسخ داده شد
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 08 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    برداشت سود
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'
+                            >
+                                <button
+                                    className={`${myFontIran.className}
+                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
+                                bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 09 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    ایراد در روند معامله
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'>
+                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
+                                >
+                                    پاسخ داده شد
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='text-center'>
+                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 10 </h2>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    برداشت سود
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    مالی
+                                </p>
+                            </td>
+                            <td className='text-center'>
+                                <p className='text-white'>
+                                    02/09/2023
+                                </p>
+                            </td>
+                            <td className='text-center wrap'
+                            >
+                                <button
+                                    className={`${myFontIran.className}
+                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
+                                bg-[#740000]`}
+                                >
+                                    منقضی شده
+                                </button>
+                            </td>
+
+                        </tr>
+                        
                     </table>
 
                 </div>
@@ -135,12 +375,19 @@ const Ticket = () => {
                         border - collapse: separate;
                     border-spacing: 0 10px;
       }
+
+      th {
+        padding-left: 5px;
+        padding-right: 5px; 
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
     
-                    th, td {
-                        padding-left: 10px;
-                        padding-right: 10px; 
-                        padding-bottom: 25px;
-                        padding-top: 25px;
+                     td {
+                        padding-left: 5px;
+                        padding-right: 5px; 
+                        padding-bottom: 14px;
+                        padding-top: 14px;
       }   
       tr:not(:last-child,:first-child) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.10);
