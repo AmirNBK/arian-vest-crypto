@@ -177,7 +177,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
-            <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-56 text-center`}
+            <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
               style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
               مشاهده تمام قوانین
             </Link>

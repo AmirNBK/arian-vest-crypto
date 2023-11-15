@@ -17,7 +17,7 @@ const ArrowComponent = () => {
 
     return (
         <div
-            className={`ArrowComponent rounded-full w-fit w-64 h-64 absolute bottom-0 lg:block hidden`}
+            className={`ArrowComponent rounded-full w-fit w-64 h-64 absolute bottom-0 3xl:bottom-56 lg:block hidden`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
         >
