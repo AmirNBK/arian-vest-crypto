@@ -210,7 +210,7 @@ export default function Register({ footer }: { footer: any }) {
                         </div>
                     </div>
 
-                    <div className='flex flex-col lg:flex-row-reverse w-full gap-10 2xl:w-10/12 3xl:w-7/12 mx-auto'>
+                    <div className='flex flex-col-reverse lg:flex-row-reverse w-full gap-10 2xl:w-10/12 3xl:w-7/12 mx-auto'>
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px', boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }} className='w-full px-8 py-8'
                             >
