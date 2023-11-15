@@ -7,6 +7,7 @@ import { Chart } from 'primereact/chart';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import trade from '../../assets/icons/trade.svg'
 import loss from '../../assets/icons/loss.svg'
+import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import profit from '../../assets/icons/profit2.svg'
 import profit2 from '../../assets/icons/profit3.svg'
 import profit3 from '../../assets/icons/profit4.svg';
@@ -25,9 +26,21 @@ import AccountInfoComponent from '../AccountInfoComponent/AccountInfoComponent';
 import DashboardPaginationComponent from '../DashboardPaginationComponent/DashboardPaginationComponent';
 
 const Dashboard = () => {
+
+    interface Account {
+        name: string;
+        code: string;
+    }
+
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
     const size = useWindowSize();
+    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+    const cities: Account[] = [
+        { name: '2150678923', code: 'NY' },
+        { name: '2150678912', code: 'RM' },
+        { name: '6451678923', code: 'LDN' },
+    ];
 
 
     useEffect(() => {
@@ -84,9 +97,15 @@ const Dashboard = () => {
 
     return (
         <div className='Dashboard'>
-            <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit ml-auto mb-6`}>
-                داشبورد
-            </h2>
+            <div className='flex flex-row-reverse w-full justify-between items-baseline'>
+                <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit ml-auto mb-6`}>
+                    داشبورد
+                </h2>
+
+                <Dropdown value={selectedAccount} onChange={(e: DropdownChangeEvent) => setSelectedAccount(e.value)}
+                    options={cities} optionLabel="name" style={{ fontFamily: '__myFontIran_ca096e' }}
+                    placeholder="انتخاب حساب" className="w-fit rtl" />
+            </div>
 
             {/* <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
             justify-center items-center sm:items-end relative'
