@@ -15,12 +15,13 @@ const TariffTable = (props: {
     fullWidth?: boolean
     removeTitle?: boolean
     minimal?: boolean
+    hasRadius: boolean
 }) => {
     useEffect(() => {
         AOS.init();
     }, [])
     return (
-        <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-0'}
+        <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-4'}
         ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}
             style={{
                 backgroundColor: '#1D1D1D',
@@ -56,7 +57,7 @@ const TariffTable = (props: {
                 </div>
 
                 <div className='flex-1'
-                style={{borderRight : '1px solid rgba(246, 141, 46, 0.40)'}}
+                    style={{ borderRight: '1px solid rgba(246, 141, 46, 0.40)' }}
                 >
                     {props.data.map((item, index) => {
                         return (
@@ -67,7 +68,7 @@ const TariffTable = (props: {
                             >
                                 <div>
                                     <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap`}
-                                        
+
                                     >{item.info}</p>
                                 </div>
                             </div>

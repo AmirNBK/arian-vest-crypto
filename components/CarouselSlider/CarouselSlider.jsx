@@ -220,7 +220,6 @@ const CarouselSlider = ({ type, data }) => {
                 <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
                 <TariffTable removeTitle={true}
-                minimal
                 title='همیشه همراه شماییم' data={[
                     { title: 'مقدار سرمایه:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
                     { title: 'leverage حساب :', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },

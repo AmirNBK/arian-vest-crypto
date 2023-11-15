@@ -1,4 +1,6 @@
 import React from 'react';
+import localFont from 'next/font/local'
+const myFont = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 const RegisterTextarea = (props: {
     placeholder: string,
@@ -11,11 +13,10 @@ const RegisterTextarea = (props: {
     };
 
     return (
-        <textarea rows={7} className='RegisterTextArea text-white bg-transparent placeholder:text-white
-        border border-solid border-white rtl text-right w-full rounded-2xl px-6 py-7 placeholder:text-lg'
+        <textarea rows={7} className={`${myFont.className} RegisterTextArea text-white bg-transparent placeholder:text-white w-8/12
+        border border-solid border-white mx-auto text-right rounded-2xl px-6 py-7 placeholder:text-base`}
             value={props.value}
             onChange={handleInputChange}
-            style={{ direction: 'rtl' }}
             placeholder={props.placeholder} />
     );
 };

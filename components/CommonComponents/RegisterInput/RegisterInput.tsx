@@ -15,7 +15,9 @@ const RegisterInput = (props: {
 
     return (
         <>
-            <input className={`${myFont.className} RegisterInput text-white bg-transparent border border-solid border-white placeholder:text-right w-full rounded-lg px-3 py-3 sm:py-3 placeholder:text-base`}
+            <input className={`${myFont.className} RegisterInput
+            mx-auto
+            text-white bg-transparent border ml-auto w-8/12 border-solid border-white placeholder:text-right  rounded-lg px-3 py-3 sm:py-3 placeholder:text-base`}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={handleInputChange}
