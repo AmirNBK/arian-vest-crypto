@@ -21,7 +21,7 @@ const Leaderboards = () => {
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
             </div>
-            <div className='mt-6 flex flex-col gap-6'>
+            <div className='mt-6 flex flex-col gap-2'>
                 <LeaderboardComponent rank={'01'} name='Alex205197' profit={2899000} bgImage={pic}
                     accountSize={1000000} return={28.99} back={5.42} />
                 <LeaderboardComponent rank={'02'} name='Alex205197' profit={2899000} bgImage={pic2}

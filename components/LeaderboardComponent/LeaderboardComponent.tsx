@@ -3,8 +3,11 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { Chart } from 'primereact/chart';
-import line from '../../assets/images/LineWhite.svg'
+import line from '../../assets/images/LineWhite.svg';
 import Image from 'next/image';
+import firstPlace from '../../assets/icons/first-place.png'
+import secondPlace from '../../assets/icons/second-place.png' 
+import thirdPlace from '../../assets/icons/third-place.png' 
 
 const LeaderboardComponent = (props: {
     rank: number | string
@@ -38,7 +41,7 @@ const LeaderboardComponent = (props: {
         };
         const options = {
             maintainAspectRatio: true,
-            aspectRatio: 1.5,
+            aspectRatio: 2,
             plugins: {
                 legend: {
                     labels: {
@@ -71,20 +74,25 @@ const LeaderboardComponent = (props: {
     }, []);
 
     return (
-        <div className='LeaderboardComponent rounded-md py-12 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 lg:flex-row-reverse 
+        <div className='LeaderboardComponent rounded-md pb-3 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 lg:flex-row-reverse 
         justify-between items-center'
-            style={{borderBottom : '1px solid rgba(255, 255, 255, 0.10)'}}
+            style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}
         >
-            <h2 className='text-main-orange text-6xl font-bold'> {props.rank} </h2>
+            <h2 className='text-main-orange text-3xl font-bold'> {props.rank === '01' ? <Image src={firstPlace} alt='firstPlace' width={55}/> :
+            props.rank === '02' ? <Image src={secondPlace} alt='secondPlace' width={55}/> : props.rank === '03' ? <Image src={thirdPlace} alt='thirdPlace' width={55}/> : props.rank
+            } </h2>
             <div className='flex flex-col items-center gap-2'>
-                <h2 className={`${myFont.className} text-main-orange text-xl`}>
-                    سود و نام
-                </h2>
+                {props.rank === '01' &&
+                    <h2 className={`${myFont.className} text-main-orange text-lg`}>
+                        سود و نام
+                    </h2>
+                }
+
 
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
                     <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                        <h3 className='text-main-orange font-bold text-2xl'>  {props.name} </h3>
+                        <h3 className='text-main-orange font-bold text-lg'>  {props.name} </h3>
                         <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>
                                 $
@@ -94,14 +102,18 @@ const LeaderboardComponent = (props: {
                 </div>
             </div>
             <div className='flex flex-col items-center gap-2'>
-                <h2 className={`${myFont.className} text-main-orange text-xl`}>
-                    سایز حساب
-                </h2>
+                {
+                    props.rank === '01' &&
+                    <h2 className={`${myFont.className} text-main-orange text-lg`}>
+                        سایز حساب
+                    </h2>
+
+                }
 
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
                     <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                        <p className='text-white text-2xl font-bold'>
+                        <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>
                                 $
                             </span>
@@ -111,20 +123,23 @@ const LeaderboardComponent = (props: {
             </div>
 
             <div className='flex flex-col items-center gap-2'>
-                <h2 className={`${myFont.className} text-main-orange text-xl`}>
-                    برگشتی و بازگشتی
-                </h2>
+                {
+                    props.rank === '01' &&
+                    <h2 className={`${myFont.className} text-main-orange text-lg`}>
+                        برگشتی و بازگشتی
+                    </h2>
+                }
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' />
-                    <div className='flex flex-row gap-6 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                        <p className='text-white text-2xl font-bold'>
+                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
+                    <div className='flex flex-row gap-2 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>
                                 $
                             </span>
                             {props.back}
                         </p>
                         <Image src={line} alt='line' />
-                        <p className='text-white text-2xl font-bold'>
+                        <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>
                                 $
                             </span>
