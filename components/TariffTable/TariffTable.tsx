@@ -15,7 +15,7 @@ const TariffTable = (props: {
     fullWidth?: boolean
     removeTitle?: boolean
     minimal?: boolean
-    hasRadius: boolean
+    hasRadius?: boolean
 }) => {
     useEffect(() => {
         AOS.init();
