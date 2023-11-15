@@ -15,13 +15,17 @@ const StatisticsComponents = (props: {
     paddingY?: number
     havePlusButton?: boolean
     fontSize?: string
-    width?:number
+    width?: number
+    removeBg?: boolean
 }) => {
     return (
         <div
-            style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
+            style={{
+                boxShadow: `${!props.removeBg ? '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' : ''}`,
+                background: `${!props.removeBg ? '#202020' : ''}`
+            }}
             className={`StatisticsComponents bg-shadow mx-auto justify-center
-        ${props.isReferral ? 'bg-[#202020]' : 'bg-[#202020]'} flex flex-row-reverse rounded-md ${props.paddingY ? `py-${props.paddingY}` : 'py-10'}
+             flex flex-row-reverse rounded-md ${props.paddingY ? `py-${props.paddingY}` : 'py-10'}
         ${props.width ? `w-${props.width}` : 'w-44'} px-5
          gap-4 items-center  ${myFontIran.className}`}>
             {props.havePlusButton && <Image src={plus} className='absolute left-0 bottom-0' alt='downloadIcon' />}

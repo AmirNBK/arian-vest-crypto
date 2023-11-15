@@ -15,7 +15,7 @@ import Image from 'next/image';
 const Referral = () => {
     return (
         <div>
-            <div className='Referral bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
+            <div className='Referral bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-10'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
                         <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
@@ -69,7 +69,7 @@ const Referral = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-row-reverse w-full justify-between my-12 pb-12 overflow-auto gap-6'
+                <div className='flex flex-row-reverse w-full justify-between mt-8 pb-0 overflow-auto gap-0'
                 style={{borderBottom : '1px solid rgba(255, 255, 255, 0.10)'}}
                 >
                     <div>
@@ -77,43 +77,44 @@ const Referral = () => {
                             نام کاربر
                         </h3>
 
-                        <StatisticsComponents dollar={false} title=' ' value={'Hutan0021'} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} dollar={false} title=' ' fontSize='base'
+                        value={'Hutan0021'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             درصده افزوده
                         </h3>
 
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={0.1} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={0.1} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             تاریخ
                         </h3>
 
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             تعداد جوایز
                         </h3>
 
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral paddingY={4} />
                     </div>
                 </div>
 
-                <div className='flex flex-row-reverse justify-between mt-4 overflow-auto gap-6'>
+                <div className='flex flex-row-reverse justify-between mt-0 overflow-auto gap-6'>
                     <div>
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={'Mahi6583'} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'Mahi6583'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={0.7} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={0.7} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={3} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={3} icon={profile} isReferral paddingY={4} />
                     </div>
                 </div>
             </div>
