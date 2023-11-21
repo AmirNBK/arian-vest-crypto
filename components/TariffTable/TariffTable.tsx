@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
 import RegisterButton from '../CommonComponents/RegisterButton/RegisterButton';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Link from 'next/link';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 
 
@@ -85,7 +86,9 @@ const TariffTable = (props: {
             </div>
 
             <div className='w-6/12 mx-auto pb-10'>
-                <RegisterButton text='خرید' />
+                <Link href={'/payment'}>
+                    <RegisterButton text='خرید' />
+                </Link>
             </div>
 
             <style>
