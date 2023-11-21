@@ -35,7 +35,7 @@ const HomepageAboutUs = (props: {
                         data-aos-delay="500"
                     >
                         <Image src={container2} alt='container' className='sm:block hidden' />
-                        <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
+                        <p className={`${myFontIran.className} leading-[2.8rem] sm:my-3 my-12 text-white text-lg
               sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
                         >
                             {props.data}
