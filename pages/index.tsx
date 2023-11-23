@@ -44,13 +44,16 @@ import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
 import { GetStaticProps } from 'next';
-import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
+import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryCollabrationSuccessSectionTitle, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
 
-export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, successSteps: any, footer: any }) {
+export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
+
+  console.log(successSteps);
+  
 
   const cumulativeOffset = (element: any) => {
     let top = 0;
@@ -126,7 +129,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
-              <span className='text-3xl text-main-orange'> </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
+              {tariffSectionData.title}
             </p>
             <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
               {tariffSectionData.description}
@@ -174,7 +177,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
                 data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
               />
               <Image src={faqBull} alt='rulesPic' unoptimized
-              className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
+                className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
             <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
@@ -183,13 +186,14 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </Link>
           </div>
 
-          <TradeChallengesSection data={faqHomeSection.homepage.faqSection[0].question} />
+          <TradeChallengesSection data={faqHomeSection.homepage.faqSection[0]} />
 
           <div className='lg:py-32'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
-              <span className='text-3xl text-main-orange'> </span> برای موفقیت در <span style={{ color: '#F68D2E' }}> معامله های فارکس </span>
+              <span className='text-3xl text-main-orange'> </span> {successSection?.homepage.successSection[0].title[0].normaltitle}
+              <span style={{ color: '#F68D2E' }}> {successSection?.homepage.successSection[0].title[0].coloredtitle}</span>
             </p>
             <div className='flex flex-col items-center sm:flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
               <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
@@ -198,7 +202,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
                 data-aos-delay="800"
               >
                 <p className={`${myFontIran.className} text-white text-xl text-center rtl sm:px-0 px-6 leading-relaxed`}>
-                  {successSection?.homepage.successSection}
+                  {successSection?.homepage.successSection[0].description}
                 </p>
                 <Link href={'/register'}>
                   <Image src={button} alt='register' className='cursor-pointer' />
@@ -210,7 +214,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </div>
           </div>
 
-          <HomepageAboutUs data={aboutUsSection?.homepage.aboutUs} />
+          <HomepageAboutUs data={aboutUsSection?.homepage.aboutUs[0]} />
 
           <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
@@ -234,8 +238,8 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
-              </span>مزایای همکاری  <span style={{ color: '#F68D2E' }}>
-                با آرین وست </span>
+              </span> {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle}  <span style={{ color: '#F68D2E' }}>
+              {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle} </span>
             </p>
             <div className='flex flex-col gap-10 mt-6 relative'>
               <BenefitsComponent
@@ -269,8 +273,8 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
-              </span> مراحل موفقیت <span style={{ color: '#F68D2E' }}>
-                با تیم آرین وست </span>
+              </span> {successSteps.homepage.successSteps[0].title[0].normalTitle} <span style={{ color: '#F68D2E' }}>
+              {successSteps.homepage.successSteps[0].title[0].coloredTitle} </span>
             </p>
             <div className='pt-12'>
               <StepsComponent data={successSteps.homepage.successSteps[0].item} />
@@ -386,6 +390,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const aboutUsSection = await getQueryAboutUsSection();
   const accountGrowthSection = await getQueryAccountGrowthSection();
   const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
+  const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
   const successSteps = await getQuerySuccessSteps();
   const footer = await getQueryFooter();
 
@@ -398,6 +403,7 @@ export const getStaticProps: GetStaticProps = async () => {
       aboutUsSection,
       accountGrowthSection,
       collabrationSuccessSection,
+      collabrationSuccessSectionTitle,
       successSteps,
       footer
     },

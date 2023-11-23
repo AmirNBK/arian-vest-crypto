@@ -11,6 +11,9 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 const TradeChallengesSection = (props: {
     data: any
 }) => {
+    
+    console.log(props.data);
+    
 
     useEffect(() => {
         AOS.init();
@@ -25,11 +28,13 @@ const TradeChallengesSection = (props: {
             >
                 <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
                 >
-                    <span className='text-3xl text-main-orange'> </span>سوالات متداول <span style={{ color: '#F68D2E' }}> چالش های تریدینگ </span>
+                    <span className='text-3xl text-main-orange'> </span> {props.data.title[0].normalTitle} <span style={{ color: '#F68D2E' }}> 
+                    {props.data.title[0].coloredTitle}
+                     </span>
                 </p>
                 <Link href={'/faq'} className={`${myFontIran.className} text-main-orange text-center`}
                     style={{ textDecoration: 'underline' }}>
-                    مشاهده تمام سوالات
+                    {props.data.miniTitle}
                 </Link>
             </div>
 
@@ -37,7 +42,7 @@ const TradeChallengesSection = (props: {
                 <Accordion multiple className='flex flex-col gap-y-4 mx-12 mb-24 mt-8'
                     data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                 >
-                    {props.data?.map((item: any, index: number) => {
+                    {props.data?.question?.map((item: any, index: number) => {
                         const isEven = index % 2 === 0;
                         const marginStyle = isEven ? { marginRight: 'auto' } : { marginLeft: 'auto' };
 

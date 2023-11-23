@@ -66,21 +66,25 @@ export async function getQueryTariffs() {
 export async function getQueryFaqHomeSection() {
   const data = await fetchAPI(
     `
-
-        query faqHomeSection {
-            pages {
-              nodes {
-                homepage {
-                  faqSection {
-                    question {
-                      description
-                      title
-                    }
-                  }
-                }
+    query faqHomeSection {
+      pages {
+        nodes {
+          homepage {
+            faqSection {
+              question {
+                description
+                title
+              }
+              miniTitle
+              title {
+                coloredTitle
+                normalTitle
               }
             }
-          } 
+          }
+        }
+      }
+    }
       `,
   );
 
@@ -90,15 +94,21 @@ export async function getQueryFaqHomeSection() {
 export async function getQuerySuccessSection() {
   const data = await fetchAPI(
     `
-        query successSection {
-            pages {
-              nodes {
-                homepage {
-                  successSection
-                }
+    query successSection {
+      pages {
+        nodes {
+          homepage {
+            successSection {
+              description
+              title {
+                normaltitle
+                coloredtitle
               }
             }
           }
+        }
+      }
+    }
                   
       `,
   );
@@ -109,15 +119,19 @@ export async function getQuerySuccessSection() {
 export async function getQueryAboutUsSection() {
   const data = await fetchAPI(
     `
-        query aboutUsSection {
-            pages {
-              nodes {
-                homepage {
-                  aboutUs
-                }
-              }
+    query aboutUsSection {
+      pages {
+        nodes {
+          homepage {
+            aboutUs {
+              normaltitle
+              coloredtitle
+              description
             }
           }
+        }
+      }
+    }
                     
       `,
   );
@@ -169,6 +183,28 @@ export async function getQueryCollabrationSuccessSection() {
   return data?.pages?.nodes[2];
 }
 
+
+export async function getQueryCollabrationSuccessSectionTitle() {
+  const data = await fetchAPI(
+    `
+    query collabrationSuccessTitle {
+      pages {
+        nodes {
+          homepage {
+            collabrationSuccessTitle {
+              coloredTitle
+              normalTitle
+            }
+          }
+        }
+      }
+    }
+      `,
+  );
+
+  return data?.pages?.nodes[2];
+}
+
 export async function getQuerySuccessSteps() {
   const data = await fetchAPI(
     `
@@ -180,6 +216,10 @@ export async function getQuerySuccessSteps() {
                     item {
                       title
                       description
+                    }
+                    title {
+                      normalTitle
+                      coloredTitle
                     }
                   }
                 }

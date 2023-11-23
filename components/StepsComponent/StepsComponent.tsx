@@ -70,7 +70,8 @@ const StepsComponent = (props: {
                         color: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && 'white'}`
                     }}
                 >
-                    <p className='absolute font-light top-[-30px] text-base text-white'> {props.data[0].title} </p>
+                    <p className='absolute font-light top-[-30px] text-base text-white text-wrap'
+                    > {props.data[0].title} </p>
                     <p>
                         1
                     </p>
@@ -83,7 +84,7 @@ const StepsComponent = (props: {
                     }}
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
-                        <p className='absolute font-light top-[-30px] sm:-translate-x-[70px] -translate-x-[30px] text-base text-white'> {props.data[1].title}</p>
+                        <p className='absolute font-light top-[-30px] sm:-translate-x-[40px] -translate-x-[30px] text-base text-white'> {props.data[1].title}</p>
                     </span>
                 </button>
                 <div></div>
@@ -132,6 +133,9 @@ const StepsComponent = (props: {
             <style>
                 {
                     `
+                    .text-wrap {
+                        white-space: nowrap;
+                    }
                       .steps {
                         display: flex;
                         flex-direction: row-reverse;

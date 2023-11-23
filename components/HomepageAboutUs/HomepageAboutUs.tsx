@@ -12,6 +12,9 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 const HomepageAboutUs = (props: {
     data: any
 }) => {
+
+    console.log(props.data);
+
     return (
         <>
             <div className='HomepageAboutUs sm:block hidden'>
@@ -27,7 +30,8 @@ const HomepageAboutUs = (props: {
               sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
               sm:absolute top-1/2 left-1/2`}
                         >
-                            <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
+                            <span className='text-3xl text-main-orange'> </span> {props.data?.normaltitle}
+                            <span style={{ color: '#F68D2E' }}>  {props.data?.coloredtitle} </span>
                         </p>
                     </div>
                     <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
@@ -38,7 +42,7 @@ const HomepageAboutUs = (props: {
                         <p className={`${myFontIran.className} leading-[2.8rem] sm:my-3 my-12 text-white text-lg
               sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
                         >
-                            {props.data}
+                            {props.data?.description}
                         </p>
                         <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
                             style={{ textDecoration: 'underline' }}>
@@ -60,7 +64,8 @@ const HomepageAboutUs = (props: {
               sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
               sm:absolute top-1/2 left-1/2`}
                         >
-                            <span className='text-3xl text-main-orange'> </span>بیشتر درباره <span style={{ color: '#F68D2E' }}> آرین وست بدانید </span>
+                            <span className='text-3xl text-main-orange'> </span>  {props.data?.normaltitle}
+                            <span style={{ color: '#F68D2E' }}>  {props.data?.coloredtitle} </span>
                         </p>
                     </div>
                     <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
@@ -69,7 +74,7 @@ const HomepageAboutUs = (props: {
                         <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
               sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
                         >
-                            {props.data}
+                            {props.data?.description}
                         </p>
                         <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
                             style={{ textDecoration: 'underline' }}>
