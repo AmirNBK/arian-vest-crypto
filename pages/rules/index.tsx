@@ -30,8 +30,28 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
         AOS.init();
     }, [])
     const size = useWindowSize();
-    const [visibleA, setVisibleA] = useState<boolean>(false);
-    const [visibleB, setVisibleB] = useState<boolean>(false);
+    const [visibleDialog, setVisibleDialog] = useState<boolean>(false);
+    const [clickedRule, setClickedRule] = useState<number>(0);
+
+    console.log(data);
+
+    type ItemType = {
+        title: string;
+        description: string;
+    };
+
+
+    type rulesType = {
+        feature: string;
+        items: ItemType[];
+        title: string;
+    };
+
+    const rulesClickHandler = (index: number) => {
+        setVisibleDialog(true);
+        setClickedRule(index);
+    }
+
 
     return (
         <main
@@ -39,44 +59,18 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
         >
             <PrimeReactProvider>
                 <Dialog
-                    header="پلن قدیمی، محبوب و خاص SGB، برای عموم تریدرهای مجموعه" visible={visibleA} style={{
-                        width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
-                        backgroundColor: '#252525'
-                    }}
-                    className={`${myFont.className} font-normal`}
-                    onHide={() => setVisibleA(false)}
-                >
-                    <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-                    <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                        {data.classRules[0].items.map((item: any, index: number) => (
-                            <AccordionTab
-                                key={index}
-                                style={{ width: '100%' }}
-                                className='text-white text-right w-full'
-                                header={item.title}
-                            >
-                                <p
-                                    className={`m-0 ${myFontIran.className} text-right`}
-                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
-                                />
-                            </AccordionTab>
-                        ))}
-                    </Accordion>
-
-                </Dialog>
-                <Dialog
                     header="SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.
-                    " visible={visibleB} style={{
+                    " visible={visibleDialog} style={{
                         width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
                         backgroundColor: '#252525'
                     }}
                     className={`${myFont.className} font-normal`}
-                    onHide={() => setVisibleB(false)}
+                    onHide={() => setVisibleDialog(false)}
                 >
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
                     <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                        {data.classRules[1].items.map((item: any, index: number) => (
+                        {data.classRules[clickedRule].items.map((item: any, index: number) => (
                             <AccordionTab
                                 key={index}
                                 style={{ width: '100%' }}
@@ -114,9 +108,12 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                 <div className='px-12 mt-20 flex flex-col lg:flex-row justify-center lg:gap-y-0 gap-y-12 gap-x-32 mb-32'
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
                 >
-                    <RulesComponent onClick={() => setVisibleA(true)} translate={0} text='قوانین پلن کِلاس A' feature='(تارگت سود کمتر)' />
-                    <RulesComponent onClick={() => setVisibleB(true)} translate={0} text='قوانین پلن کِلاس B' feature='(بدون محدودیت زمانی)' />
-                    <RulesComponent onClick={() => setVisibleB(true)} translate={0} text='قوانین پلن کِلاس c' feature='(بدون محدودیت زمانی)' />
+                    {data.classRules.map((item: rulesType, index: number) => {
+                        return (
+                            <RulesComponent onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+
+                        )
+                    })}
                 </div>
 
                 <div className='relative'>
