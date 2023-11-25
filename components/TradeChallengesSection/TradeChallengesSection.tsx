@@ -48,7 +48,7 @@ const TradeChallengesSection = (props: {
 
                         return (
                             <AccordionTab
-                                style={{ ...marginStyle, width: `${(size.width && size.width < 640) ? '100%' : '80%'}` }}
+                                style={{ ...marginStyle, width: `${(size.width && size.width < 640) ? '100%' : '80%'}` , boxShadow : '0px 0px 20px 0px rgba(246, 141, 46, 0.20)' }}
                                 className='text-white text-right' header={item?.title}
                             >
                                 <p className={`m-0 ${myFontIran.className} text-right`}>
