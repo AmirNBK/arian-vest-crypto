@@ -8,7 +8,7 @@ import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import trading from '../../assets/icons/Range_trading.png'
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
-import rules from '../../assets/icons/rules.svg'
+import rules from '../../assets/icons/justice.svg'
 import Footer from '@/components/Footer/Footer'
 import RulesComponent from '@/components/RulesComponent/RulesComponent';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
@@ -19,7 +19,6 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Dialog } from 'primereact/dialog';
 import AOS from 'aos';
 import logo from '../../assets/icons/rulesLogo.svg'
-
 import 'aos/dist/aos.css';
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
