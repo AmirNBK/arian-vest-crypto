@@ -219,8 +219,9 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
           <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
             <div className='relative lg:p-0 pt-24'>
-              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
+              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl relative leading-tight`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                style={{ zIndex : '5' }}
               >
                 <span className='text-3xl text-main-orange text-center '>
                 </span>{accountGrowthSection?.homepage.accountGrowth[0].normalTitle} <span style={{ color: '#F68D2E' }}>
