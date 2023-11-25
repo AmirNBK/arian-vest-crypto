@@ -105,7 +105,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                     </p>
                 </div>
 
-                <div className='px-12 mt-20 flex flex-col lg:flex-row justify-center lg:gap-y-0 gap-y-12 gap-x-32 mb-32'
+                <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
                     data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
                 >
                     {data.classRules.map((item: rulesType, index: number) => {

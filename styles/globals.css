@@ -44,6 +44,9 @@ body {
   overflow-x: hidden;
   background-color: #0E0E0E;
   color: rgb(var(--foreground-rgb));
+  .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+    box-shadow: 0 0 0 0.2rem #F68D2E;
+  }
   /* background: linear-gradient(
       to bottom,
       transparent,
