@@ -131,7 +131,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                 </div>
 
                 <div>
-                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:ml-12 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
+                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
                         {data.allRules.map((item: any, index: number) => {
                             return (
                                 <AccordionTab
