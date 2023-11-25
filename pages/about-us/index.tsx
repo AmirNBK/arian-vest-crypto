@@ -25,7 +25,15 @@ import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
 
     const size = useWindowSize();
-    
+
+    console.log(data);
+
+    type ItemType = {
+        item: string;
+    };
+
+
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -36,7 +44,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
-                        درباره <span style={{ color: '#F68D2E' }}>  تیم ما <span className='text-3xl'> (ارین وست) </span> </span>
+                        {data.title[0].mainTitle} <span style={{ color: '#F68D2E' }}> <span className='text-3xl'> {data.title[0].miniTitle} </span> </span>
                     </p>
                 </div>
 
@@ -50,9 +58,14 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className='flex flex-col sm:flex-row-reverse justify-center mb-8 mt-4 mx-8 items-center sm:m-24'>
                     <Image src={shape} className='w-56 lg:w-fit 3xl:w-96' alt='shape' unoptimized />
                     <div className='flex flex-col justify-around sm:mr-20 gap-8 mt-8'>
-                        <AboutUsItems delay={0} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش کلاهبرداری های اینترنتی' />
+                        {data.features.map((item: ItemType, index: number) => {
+                            return (
+                                <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                            )
+                        })}
+                        {/* <AboutUsItems delay={0} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش کلاهبرداری های اینترنتی' />
                         <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
-                        <AboutUsItems delay={1000} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش خطرات تحریم بر کارکرد' />
+                        <AboutUsItems delay={1000} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش خطرات تحریم بر کارکرد' /> */}
                     </div>
                 </div>
 

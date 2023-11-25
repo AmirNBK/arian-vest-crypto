@@ -317,6 +317,10 @@ export async function getQueryAboutUs() {
       pages {
         nodes {
           aboutus {
+            title {
+              mainTitle
+              miniTitle
+            }
             description
             features {
               item
