@@ -32,7 +32,10 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         item: string;
     };
 
-
+    type StatsType = {
+        stat: string
+        title: string
+    };
 
     return (
         <main
@@ -63,20 +66,21 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                 <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                             )
                         })}
-                        {/* <AboutUsItems delay={0} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش کلاهبرداری های اینترنتی' />
-                        <AboutUsItems delay={500} translate={0} text='تامین سرمایه معامله گران فعال در بازار سرمایه' />
-                        <AboutUsItems delay={1000} translate={size.width && size.width > 640 ? 60 : 0} text='کاهش خطرات تحریم بر کارکرد' /> */}
                     </div>
                 </div>
 
                 <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-4 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
                     <p className='text-white text-5xl sm:text-end text-center'>
-                        آمار کاربران <span style={{ color: '#F68D2E' }}> سایت ارین وست <span className='text-3xl'> (1402) </span> </span>
+                        {data.statsTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {data.statsTitle[0].coloredTitle} <span className='text-3xl'> {data.statsTitle[0].miniTitle} </span> </span>
                     </p>
                     <div className='mt-12 sm:mt-24 flex flex-col sm:flex-row gap-20 sm:gap-24'>
-                        <Stats fadePosition='right' icon={profit} text='بزرگترین پرداخت سود' stat='+25000$' translate={0} />
-                        <Stats fadePosition='up' icon={users} text='تعداد کاربران' stat='+68589' translate={size.width && size.width > 640 ? 40 : 0} />
-                        <Stats fadePosition='left' icon={payment} text='مجموع پرداخت‌ها' stat='+3,000,000$' translate={0} />
+                        {data.stats[0].item.map((item: StatsType, index: number) => {
+                            return (
+                                <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
+                                    icon={index === 0 ? profit : index === 1 ? users : index === 2 ? payment : ''}
+                                    text={item.title} stat={item.stat} translate={index === 1 && size.width && size.width > 640 ? 40 : 0} />
+                            )
+                        })}
                     </div>
                 </div>
                 <Footer data={footer?.footer} />

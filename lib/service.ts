@@ -325,6 +325,11 @@ export async function getQueryAboutUs() {
             features {
               item
             }
+            statsTitle {
+              normalTitle
+              coloredTitle
+              miniTitle
+            }
             stats {
               item {
                 title
