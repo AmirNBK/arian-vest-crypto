@@ -289,6 +289,28 @@ export async function getQueryRules() {
 }
 
 
+export async function getQueryDiscountCodes() {
+  const data = await fetchAPI(
+    `
+    query discount {
+      pages {
+        nodes {
+          discountCoupon {
+            discountCode {
+              code
+              discountAmount
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].discountCoupon;
+}
+
+
 export async function getQueryFaq() {
   const data = await fetchAPI(
     `

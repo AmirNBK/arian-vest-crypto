@@ -1,27 +1,96 @@
-import { useState } from 'react'
+import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import Image from 'next/image'
+import { Toast, ToastMessage } from 'primereact/toast';
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { useQuery, gql } from '@apollo/client';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 import buy from '../../assets/icons/buy.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
-import Footer from '@/components/Footer/Footer';
-import { GetStaticProps } from 'next';
-import { getQueryFooter } from '@/lib/service';
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
 
-export default function Payment({ footer }: { footer: any }) {
+const GET_DISCOUNT_CODES = gql`
+query discount {
+  pages {
+    nodes {
+      discountCoupon {
+        discountCode {
+          code
+          discountAmount
+        }
+      }
+    }
+  }
+}
+`;
 
+const GET_FOOTER = gql`
+query Footer {
+    pages {
+      nodes {
+        footer {
+          phone
+          email
+          address
+        }
+      }
+    }
+  } 
+`;
+
+
+export default function Payment() {
     const nationality = ['ایران', 'آمریکا', 'عربستان']
     const socialMedia = ['instagram', 'whatsapp', 'telegram']
     const tariff = ['Traders Choice', 'Classic Challenge']
+    const { data } = useQuery(GET_DISCOUNT_CODES);
+    const [chosenTariff, setChosenTariff] = useState(0);
+    const [discountCode, setDiscountCode] = useState('');
+    const [initialPrice, setInitialPrice] = useState<number | null>(null);
+    const [finalPrice, setFinalPrice] = useState<number | null>(null);
+    const toastBottomRight = useRef<Toast>(null);
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setDiscountCode(event.target.value);
+    };
 
-    const [chosenTariff, setChosenTariff] = useState(0)
+    const discountValidation = () => {
+        const enteredCode = discountCode.trim();
+        const matchingCode = data?.pages?.nodes[2].discountCoupon.discountCode.find((codeObj: any) => codeObj.code === enteredCode);
+
+        if (matchingCode) {
+            setDiscountAmount(matchingCode.discountAmount);
+
+        } else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'کد تخفیف معتبر نمیباشد',
+                life: 3000,
+            });
+            setDiscountAmount(0);
+        }
+    };
+
+    useEffect(() => {
+        const price = sessionStorage.getItem('buying price');
+        setInitialPrice(price ? parseFloat(price) : null);
+        if (!price) {
+            setInitialPrice(0);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (discountAmount > 0) {
+            const discountedPrice = initialPrice && initialPrice - (initialPrice * discountAmount) / 100;
+            setFinalPrice(discountedPrice);
+        }
+    }, [discountAmount])
 
 
     return (
@@ -30,6 +99,8 @@ export default function Payment({ footer }: { footer: any }) {
         >
             <PrimeReactProvider>
                 <Header active={''} />
+
+                <Toast ref={toastBottomRight} position="bottom-right" />
 
                 <div className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
 
@@ -80,11 +151,11 @@ export default function Payment({ footer }: { footer: any }) {
                         {tariff.map((item, index) => {
                             return (
                                 <div
-                                className={`${index === chosenTariff ? 'bg-[#F68D2E] text-white' : 'bg-[#272727] text-gray-400'}
+                                    className={`${index === chosenTariff ? 'bg-[#F68D2E] text-white' : 'bg-[#272727] text-gray-400'}
                                 text-center rounded-md py-6 text-lg flex-1 cursor-pointer`}
-                                onClick={() => {
-                                    setChosenTariff(index)
-                                }}
+                                    onClick={() => {
+                                        setChosenTariff(index)
+                                    }}
                                 >
                                     {item}
                                 </div>
@@ -163,12 +234,30 @@ export default function Payment({ footer }: { footer: any }) {
 
 
                     <div className='w-full relative'>
-                        <input placeholder='کد تخفیف' className='text-xs rounded-md w-full px-6 py-8 bg-transparent rtl'
+                        <input placeholder='کد تخفیف' className='placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent rtl'
+                            value={discountCode}
+                            onChange={handleInputChange}
                             style={{ border: '1px solid #6B7280' }}
                         />
-                        <button className='text-white absolute left-2 text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange'>
+                        <button
+                            onClick={() => {
+                                discountValidation()
+                            }}
+                            className='text-white absolute left-2 text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange'>
                             تایید اعتبار
                         </button>
+                    </div>
+
+                    <div className='text-center text-[#0A8100] mt-12'>
+                        <p className={`${discountAmount > 0 ? 'line-through text-2xl text-[#ef4444]' : 'text-4xl'} font-bold`}>
+                            ${initialPrice}
+                        </p>
+
+                        {discountAmount > 0 &&
+                            <p className='text-4xl font-bold mt-8'>
+                                ${finalPrice}
+                            </p>
+                        }
                     </div>
 
                     <div className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-start'>
@@ -178,22 +267,20 @@ export default function Payment({ footer }: { footer: any }) {
 
                 </div>
 
-                <Footer data={footer?.footer} />
+                {/* <Footer data={footerData?.pages?.nodes[2].footer?.footer} /> */}
+
+
+                <style>
+                    {
+                        `
+                    .p-toast-detail {
+                        text-align : right;
+                    }
+                    `
+                    }
+                </style>
             </PrimeReactProvider>
 
         </main>
     )
 }
-
-
-export const getStaticProps: GetStaticProps = async () => {
-
-    const footer = await getQueryFooter();
-
-    return {
-        props: {
-            footer
-        },
-        revalidate: 3600,
-    };
-};

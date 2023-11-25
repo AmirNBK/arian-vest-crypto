@@ -85,7 +85,11 @@ const TariffTable = (props: {
                 <h2> {props.price} <span className='text-main-orange -ml-1'> $ </span> </h2>
             </div>
 
-            <div className='w-6/12 mx-auto pb-10'>
+            <div className='w-6/12 mx-auto pb-10'
+                onClick={() => {
+                    sessionStorage.setItem('buying price', props.price.toLocaleString())
+                }}
+            >
                 <Link href={'/payment'}>
                     <RegisterButton text='خرید' />
                 </Link>
