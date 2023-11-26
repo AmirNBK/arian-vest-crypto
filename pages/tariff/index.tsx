@@ -99,7 +99,7 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
                                         { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
                                         { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
                                     ]}
-                                        price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74}
+                                        price={item.dollarPrice}
                                     />
                                 </TabPanel>
                             )
