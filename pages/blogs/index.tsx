@@ -36,7 +36,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         setRows(rows.map((r, i) => (index === i ? e.rows : r)));
     };
 
-    const getTranslationValue = (index, size) => {
+    const getTranslationValue = (index: number, size: any) => {
         if ((index - 1) % 3 === 0) {
             return size.width && size.width < 1024 ? 0 : 30;
         }
@@ -47,9 +47,6 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         image: any,
         title: string
     }
-
-    console.log(data);
-
 
     return (
         <main
