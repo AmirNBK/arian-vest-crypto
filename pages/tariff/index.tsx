@@ -16,13 +16,23 @@ import TariffTable from '@/components/TariffTable/TariffTable';
 import Footer from '@/components/Footer/Footer';
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
-import { getQueryFooter } from '@/lib/service';
+import { getQueryFooter, getQueryTariffTitles, getQueryTariffs } from '@/lib/service';
 
 
-export default function Rules({ footer }: { footer: any }) {
+export default function Rules({ footer, data, titles }: { footer: any, data: any, titles: any }) {
 
     const [selectedTab, setSelectedTab] = useState<number>(0)
     const size = useWindowSize()
+
+    type tariffType = {
+        type: string,
+        description: string,
+        pricesInfo: {}[],
+        title: string
+    }
+
+    console.log(titles);
+
 
     return (
         <main
@@ -35,14 +45,15 @@ export default function Rules({ footer }: { footer: any }) {
                         <div className={`${myFont.className} justify-right flex flex-col sm:flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
                             <Image src={tariff} alt='faq' />
                             <p className='text-white text-5xl sm:text-end text-center'>
-                                <span className='text-3xl text-main-orange'> {selectedTab === 0 ? '(classic)' : selectedTab === 1 ? '(one-step)' : '(rapid)'}
+                                <span className='text-3xl text-main-orange'>
+                                    ({data.tariffs[selectedTab].type})
 
-                                </span> تعرفه های <span style={{ color: '#F68D2E' }}> ارین وست </span>
+                                </span> {titles.normalTitle}  <span style={{ color: '#F68D2E' }}> {titles.coloredTitle} </span>
                             </p>
                         </div>
                         <div>
                             <p className={`${myFontIran.className} sm:text-right rtl text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
-                                {selectedTab === 0 ? 'طرح کلاسیک به عنوان یکی از پرطرفدارترین گزینه‌ها در وب‌سایت فارکس ما شناخته می‌شود.' : selectedTab === 1 ? 'طرح یک مرحله‌ای مناسب برای تریدرهای حرفه‌ای با تجربه است.' : 'طرح رپید برای کسانی مناسب است که به دنبال معاملات سریع و اجازه استفاده از ربات می‌باشند.'}
+                                {data.tariffs[selectedTab].title}
                             </p>
                         </div>
                     </div>
@@ -54,12 +65,12 @@ export default function Rules({ footer }: { footer: any }) {
                                 setSelectedTab(e.index)
                             }}
                         >
-                            <TabPanel header="Classic">
-                            </TabPanel>
-                            <TabPanel header="One-Step">
-                            </TabPanel>
-                            <TabPanel header="Rapid">
-                            </TabPanel>
+                            {data.tariffs.map((item: tariffType, index: number) => {
+                                return (
+                                    <TabPanel header={item.type}>
+                                    </TabPanel>
+                                )
+                            })}
                         </TabView>
                     </div>
 
@@ -68,188 +79,31 @@ export default function Rules({ footer }: { footer: any }) {
                     style={{ margin: '0 auto', marginTop: '50px' }}
                 >
                     <TabView>
-                        <TabPanel header="5k">
-                            <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
-                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                        selectedTab === 1 ? 'چالش های یک مرحله ای ما مناسب برای تریدر های حرفه ای هست که تسلط کافی برروی استراتژِی خود دارند و دنبال یک راه برای رسیدن به حساب real برای ترید در فرصت کمتری هستند یعنی با حداقل روزهای معاملاتی میتوانند حساب real خود را تحویل بگیرند.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                        }`} />
-                            </div>
-
-                            <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'مقدار سرمایه:', info: '5k' },
-                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'target فاز 1:', info: '8%' },
-                                { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: selectedTab === 2 ? 'دارد' : 'ندارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                            ]}
-                                price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74}
-                            />
-                        </TabPanel>
-                        <TabPanel header="10k">
-                            <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
-                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                        selectedTab === 1 ? 'چالش های یک مرحله ای ما مناسب برای تریدر های حرفه ای هست که تسلط کافی برروی استراتژِی خود دارند و دنبال یک راه برای رسیدن به حساب real برای ترید در فرصت کمتری هستند یعنی با حداقل روزهای معاملاتی میتوانند حساب real خود را تحویل بگیرند.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                        }`} />
-                            </div>
-
-                            <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'مقدار سرمایه:', info: '10k' },
-                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'target فاز 1:', info: '8%' },
-                                { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                            ]}
-                                price={selectedTab === 0 ? 88 : selectedTab === 1 ? 92 : 118}
-                            />
-                        </TabPanel>
-                        <TabPanel header="15k">
-                            <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
-                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                        selectedTab === 1 ? 'چالش های یک مرحله ای ما مناسب برای تریدر های حرفه ای هست که تسلط کافی برروی استراتژِی خود دارند و دنبال یک راه برای رسیدن به حساب real برای ترید در فرصت کمتری هستند یعنی با حداقل روزهای معاملاتی میتوانند حساب real خود را تحویل بگیرند.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                        }`} />
-                            </div>
-
-                            <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'مقدار سرمایه:', info: '15k' },
-                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'target فاز 1:', info: '8%' },
-                                { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                            ]}
-                                price={selectedTab === 0 ? 99 : selectedTab === 1 ? 105 : 133}
-                            />
-                        </TabPanel>
-                        <TabPanel header="25k">
-                            <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
-                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                        selectedTab === 1 ? 'چالش های یک مرحله ای ما مناسب برای تریدر های حرفه ای هست که تسلط کافی برروی استراتژِی خود دارند و دنبال یک راه برای رسیدن به حساب real برای ترید در فرصت کمتری هستند یعنی با حداقل روزهای معاملاتی میتوانند حساب real خود را تحویل بگیرند.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                        }`} />
-                            </div>
-
-                            <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'مقدار سرمایه:', info: '25k' },
-                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'target فاز 1:', info: '8%' },
-                                { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                            ]}
-                                price={selectedTab === 0 ? 155 : selectedTab === 1 ? 170 : 209}
-                            />
-                        </TabPanel>
-                        <TabPanel header="50k">
-                            <div className='mt-12'>
-                                <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : selectedTab === 1 ? 'One-Step' : 'Rapid'} challenge-`} price={5}
-                                    description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                        selectedTab === 1 ? 'چالش های یک مرحله ای ما مناسب برای تریدر های حرفه ای هست که تسلط کافی برروی استراتژِی خود دارند و دنبال یک راه برای رسیدن به حساب real برای ترید در فرصت کمتری هستند یعنی با حداقل روزهای معاملاتی میتوانند حساب real خود را تحویل بگیرند.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                        }`} />
-                            </div>
-
-                            <TariffTable title='همیشه همراه شماییم' data={[
-                                { title: 'مقدار سرمایه:', info: '50k' },
-                                { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                { title: 'target فاز 1:', info: '8%' },
-                                { title: 'target فاز 2:', info: '5%' },
-                                { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                { title: 'news trading:', info: 'دارد' },
-                            ]}
-                                price={selectedTab === 0 ? 304 : selectedTab === 1 ? 355 : 410}
-                            />
-                        </TabPanel>
-                        {(selectedTab === 0 || selectedTab === 2) &&
-                            <TabPanel header="100k">
-                                <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : 'Rapid'} challenge-`} price={5}
-                                        description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                            }`} />
-                                </div>
-
-                                <TariffTable title='همیشه همراه شماییم' data={[
-                                    { title: 'مقدار سرمایه:', info: '100k' },
-                                    { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                    { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                    { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                    { title: 'target فاز 1:', info: '8%' },
-                                    { title: 'target فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                    { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                    { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                    { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                    { title: 'news trading:', info: 'دارد' },
-                                ]}
-                                    price={selectedTab === 0 ? 512 : 691}
-                                />
-                            </TabPanel>
-                        }
-                        {(selectedTab === 0 || selectedTab === 2) &&
-                            <TabPanel header="200k">
-                                <div className='mt-12'>
-                                    <TariffComponent title={`-${selectedTab === 0 ? 'Classic' : 'Rapid'} challenge-`} price={5}
-                                        description={`${selectedTab === 0 ? ' چالش های کلاسیک جزو مرسوم ترین و پرطرفدارترین  چالش ها در بین پراپ فرم ها هستند که که زمان زیادی نمی برد تا یک تریدر بتواند آن ها را پاس کند و و سرمایه موردنظر را دریافت کند و با توجه به اینکه ریسک این چالش نسبت به بقیه چالش های کمتر است برای مخاطب گزینه مناسبی هست تا از آن استفاده کند و سرمایه موردنظر خود را دریافت نماید.' :
-                                            'این سبک از plan ها برای کسانی تعریف شده است که دوست دارند بسیار سریع به حساب live معاملات برسند واستفاده از ربات در این تعرفه مجاز است. شرایط برداشت و قانونش در در حساب واقعی با بقیه حساب ها متفاوت است'
-                                            }`} />
-                                </div>
-
-                                <TariffTable title='همیشه همراه شماییم' data={[
-                                    { title: 'مقدار سرمایه:', info: '200k' },
-                                    { title: 'leverage حساب :', info: selectedTab === 0 ? '1:100' : '1:60' },
-                                    { title: 'حداقل روزهای معاملاتی:', info: '3' },
-                                    { title: 'حداکثر روزهای معاملاتی:', info: 'بدون محدودیت' },
-                                    { title: 'target فاز 1:', info: '8%' },
-                                    { title: 'target فاز 2:', info: '5%' },
-                                    { title: 'حداکثر ضرر روزانه:', info: '6%' },
-                                    { title: 'حداکثر ضرر کلی:', info: '13%' },
-                                    { title: 'استفاده از ربات:', info: selectedTab === 2 ? 'مجاز' : 'مجاز نیست' },
-                                    { title: 'refund:', info: selectedTab === 2 ? 'ندارد' : 'دارد' },
-                                    { title: 'news trading:', info: 'دارد' },
-                                ]}
-                                    price={selectedTab === 0 ? 889 : 1200}
-                                />
-                            </TabPanel>
-                        }
-
+                        {data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
+                            return (
+                                <TabPanel header={item.price + 'k'}>
+                                    <div className='mt-12'>
+                                        <TariffComponent title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
+                                            description={data.tariffs[selectedTab].desccription} />
+                                    </div>
+                                    <TariffTable title={titles.tableTitle} data={[
+                                        { title: 'مقدار سرمایه:', info: item.price + 'k' },
+                                        { title: 'leverage حساب :', info: item.leverage },
+                                        { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                        { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
+                                        { title: 'target فاز 1:', info: item.target1 },
+                                        { title: 'target فاز 2:', info: item.target2 },
+                                        { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
+                                        { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
+                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
+                                        { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
+                                        { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                    ]}
+                                        price={selectedTab === 0 ? 55 : selectedTab === 1 ? 59 : 74}
+                                    />
+                                </TabPanel>
+                            )
+                        })}
                     </TabView>
                 </div>
                 <Footer data={footer?.footer} />
@@ -277,10 +131,16 @@ export default function Rules({ footer }: { footer: any }) {
 export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
+    const data = await getQueryTariffs();
+    const titles = await getQueryTariffTitles();
+
+
 
     return {
         props: {
-            footer
+            footer,
+            data,
+            titles
         },
         revalidate: 3600,
     };

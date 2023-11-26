@@ -21,6 +21,28 @@ export async function getQueryTariffSection() {
   return data?.pages?.nodes[2].homepage?.tariffSection[0];
 }
 
+export async function getQueryTariffTitles() {
+  const data = await fetchAPI(
+    `
+    query tariffTitles {
+      pages {
+        nodes {
+          tariffsTitles {
+            allTitles {
+              normalTitle
+              coloredTitle
+              tableTitle
+            }
+          }
+        }
+      }
+    }
+      `,
+  );
+
+  return data?.pages?.nodes[2].tariffsTitles.allTitles[0];
+}
+
 export async function getQueryTariffs() {
   const data = await fetchAPI(
     `
@@ -29,6 +51,7 @@ export async function getQueryTariffs() {
               nodes {
                 tariffs {
                   tariffs {
+                    type
                     desccription
                     title
                     range
