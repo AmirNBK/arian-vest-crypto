@@ -3,18 +3,21 @@ import { fetchAPI } from "./base";
 export async function getQueryTariffSection() {
   const data = await fetchAPI(
     `
-        query TariffSection {
-            pages {
-              nodes {
-                homepage {
-                  tariffSection {
-                    description
-                    title
-                  }
-                }
+    query TariffSection {
+      pages {
+        nodes {
+          homepage {
+            tariffSection {
+              description
+              title {
+                normalTitle
+                coloredTitle
               }
             }
           }
+        }
+      }
+    }
       `,
   );
 
@@ -353,6 +356,29 @@ export async function getQueryFaq() {
   );
 
   return data?.pages?.nodes[2].faq.question;
+}
+
+export async function getQueryBlogs() {
+  const data = await fetchAPI(
+    `
+    query blogs {
+      pages {
+        nodes {
+          blog {
+            blogs {
+              title
+              image {
+                mediaItemUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].blog.blogs;
 }
 
 export async function getQueryAboutUs() {

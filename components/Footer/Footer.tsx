@@ -111,7 +111,7 @@ const Footer = (props: {
                         </p>
                         <FooterInfo title='شماره تماس' info={props.data.phone} />
                         <FooterInfo title='ایمیل' info={props.data.email} />
-                        <p className='text-xl lg:text-xl text-right'>
+                        <p className='text-xl lg:text-xl text-right rtl'>
                             <span className='font-semibold'> آدرس: </span> {props.data.address} <span className='text-white'>  </span>
                         </p>
                     </div>

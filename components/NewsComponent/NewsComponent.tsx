@@ -16,11 +16,11 @@ const NewsComponent = (props: {
         text-lg RulesComponent rounded-xl text-center text-white w-fit bg-new-black transition duration-700	`}
             style={{ maxWidth: '350px', height: '450px', transform: `translateY(${props.translate}px)` }}
         >
-            <Image src={props.image} alt='logo' className='absolute right-1/2 translate-x-1/2' unoptimized
+            <Image src={props.image} alt='logo' width={270} height={270} className='absolute rounded-lg right-1/2 h-[290px] object-cover translate-x-1/2' unoptimized
                 style={{ top: '-15%' }}
             />
 
-            <div style={{ marginBottom: '-250px'}}>
+            <div style={{ marginBottom: '-250px' }}>
                 <p style={{ direction: 'rtl' }} className={`${myFontIranLight.className} mb-6 duration-700 font-light`}
                 >
                     {props.text}

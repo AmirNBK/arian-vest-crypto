@@ -20,8 +20,10 @@ import {
 } from 'primereact/paginator';
 import template1 from '@/functions/function';
 import useWindowSize from '@/Hooks/innerSize';
+import { GetStaticProps } from 'next';
+import { getQueryBlogs, getQueryFooter } from '@/lib/service';
 
-export default function SingleBlog() {
+export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
 
     const [first, setFirst] = useState<number[]>([0, 0, 0]);
     const [rows, setRows] = useState([10, 10, 10]);
@@ -34,6 +36,19 @@ export default function SingleBlog() {
         setRows(rows.map((r, i) => (index === i ? e.rows : r)));
     };
 
+    const getTranslationValue = (index, size) => {
+        if ((index - 1) % 3 === 0) {
+            return size.width && size.width < 1024 ? 0 : 30;
+        }
+        return 0;
+    };
+
+    type blogItem = {
+        image: any,
+        title: string
+    }
+
+    console.log(data);
 
 
     return (
@@ -52,15 +67,19 @@ export default function SingleBlog() {
 
 
                 <div className='px-12 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
-                    <NewsComponent text='مدیریت نوسانات بازار فارکس و استراتژی‌های موفقیت' translate={0} image={pic} />
-                    <NewsComponent text='لاکچین فراتر از فارکس و کاوش در کاربردهای واقعی' translate={size.width && size.width < 1024 ? 0 : 30} image={pic} />
-                    <NewsComponent text='صعود NFT‌ها و انقلاب دیجیتالی کشف شده' translate={0} image={pic} />
+                    {data.map((item: blogItem, index: number) => {
+                        return (
+                            <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
+                                key={index} image={item.image?.mediaItemUrl} />
+                        )
+                    })}
                 </div>
 
-                <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={120}
+                <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={data.length} className='mb-16'
                     style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
 
-                {/* <Footer /> */}
+                <Footer data={footer?.footer} />
+
 
 
                 <style>
@@ -120,3 +139,20 @@ export default function SingleBlog() {
         </main>
     )
 }
+
+
+
+export const getStaticProps: GetStaticProps = async () => {
+
+    const footer = await getQueryFooter();
+    const data = await getQueryBlogs();
+
+
+    return {
+        props: {
+            footer,
+            data
+        },
+        revalidate: 3600,
+    };
+};

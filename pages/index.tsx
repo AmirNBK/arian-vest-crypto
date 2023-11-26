@@ -52,9 +52,6 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
 
-  console.log(successSteps);
-  
-
   const cumulativeOffset = (element: any) => {
     let top = 0;
     let left = 0;
@@ -129,7 +126,8 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
-              {tariffSectionData.title}
+              <span className='text-3xl text-main-orange'> </span>               {tariffSectionData.title[0].normalTitle}
+              <span style={{ color: '#F68D2E' }}>               {tariffSectionData.title[0].coloredTitle} </span>
             </p>
             <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
               {tariffSectionData.description}
@@ -169,15 +167,17 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             >
-              <span className='text-3xl text-main-orange'> </span> قوانین <span style={{ color: '#F68D2E' }}> ترید </span>
+              <span className='text-3xl text-main-orange'> </span> نحوه دریافت سرمایه از <span style={{ color: '#F68D2E' }}>
+                ویرا فاندینگ
+              </span>
             </p>
 
             <div className='relative'>
-              <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto'
+              <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto mt-6'
                 data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
               />
               <Image src={faqBull} alt='rulesPic' unoptimized
-                className='mx-auto absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
+                className='mx-auto w-56 md:w-fit absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
             <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
@@ -221,7 +221,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             <div className='relative lg:p-0 pt-24'>
               <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl relative leading-tight`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                style={{ zIndex : '5' }}
+                style={{ zIndex: '5' }}
               >
                 <span className='text-3xl text-main-orange text-center '>
                 </span>{accountGrowthSection?.homepage.accountGrowth[0].normalTitle} <span style={{ color: '#F68D2E' }}>
@@ -240,7 +240,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             >
               <span className='text-3xl text-main-orange text-center'>
               </span> {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle}  <span style={{ color: '#F68D2E' }}>
-              {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle} </span>
+                {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle} </span>
             </p>
             <div className='flex flex-col gap-10 mt-6 relative'>
               <BenefitsComponent
@@ -275,7 +275,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             >
               <span className='text-3xl text-main-orange text-center'>
               </span> {successSteps.homepage.successSteps[0].title[0].normalTitle} <span style={{ color: '#F68D2E' }}>
-              {successSteps.homepage.successSteps[0].title[0].coloredTitle} </span>
+                {successSteps.homepage.successSteps[0].title[0].coloredTitle} </span>
             </p>
             <div className='pt-12'>
               <StepsComponent data={successSteps.homepage.successSteps[0].item} />

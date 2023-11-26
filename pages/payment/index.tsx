@@ -4,6 +4,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import axios from 'axios';
 import "primereact/resources/primereact.min.css";
 import { useQuery, gql } from '@apollo/client';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
@@ -55,9 +56,35 @@ export default function Payment() {
     const [finalPrice, setFinalPrice] = useState<number | null>(null);
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
+    const [toomanPrice, setToomanPrice] = useState(0)
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
     };
+
+    const currencyConverter = async () => {
+        try {
+            var formdata = new FormData();
+            formdata.append("srcCurrency", "btc");
+            formdata.append("dstCurrency", "rls");
+
+            var requestOptions = {
+                method: 'POST',
+                body: formdata,
+            };
+
+            const response = await fetch("https://api.nobitex.ir/market/stats", requestOptions);
+            const result = await response.json();
+
+            console.log(result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
+    useEffect(() => {
+        currencyConverter()
+    }, [])
 
     const discountValidation = () => {
         const enteredCode = discountCode.trim();

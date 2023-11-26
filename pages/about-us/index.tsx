@@ -26,8 +26,6 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
     const size = useWindowSize();
 
-    console.log(data);
-
     type ItemType = {
         item: string;
     };
@@ -73,7 +71,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     <p className='text-white text-5xl sm:text-end text-center'>
                         {data.statsTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {data.statsTitle[0].coloredTitle} <span className='text-3xl'> {data.statsTitle[0].miniTitle} </span> </span>
                     </p>
-                    <div className='mt-12 sm:mt-24 flex flex-col sm:flex-row gap-20 sm:gap-24'>
+                    <div className='mt-12 sm:mt-36 flex flex-col sm:flex-row gap-20 sm:gap-24'>
                         {data.stats[0].item.map((item: StatsType, index: number) => {
                             return (
                                 <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
