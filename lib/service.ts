@@ -370,6 +370,7 @@ export async function getQueryBlogs() {
               image {
                 mediaItemUrl
               }
+              content
             }
           }
         }

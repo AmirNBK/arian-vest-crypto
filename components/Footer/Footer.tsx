@@ -109,10 +109,10 @@ const Footer = (props: {
                         <p className='text-white text-right mb-3'>
                             راه های ارتباط با ما
                         </p>
-                        <FooterInfo title='شماره تماس' info={props.data.phone} />
-                        <FooterInfo title='ایمیل' info={props.data.email} />
+                        <FooterInfo title='شماره تماس' info={props.data?.phone} />
+                        <FooterInfo title='ایمیل' info={props.data?.email} />
                         <p className='text-xl lg:text-xl text-right rtl'>
-                            <span className='font-semibold'> آدرس: </span> {props.data.address} <span className='text-white'>  </span>
+                            <span className='font-semibold'> آدرس: </span> {props.data?.address} <span className='text-white'>  </span>
                         </p>
                     </div>
 

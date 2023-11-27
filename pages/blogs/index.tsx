@@ -67,7 +67,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     {data.map((item: blogItem, index: number) => {
                         return (
                             <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
-                                key={index} image={item.image?.mediaItemUrl} />
+                                key={index} image={item.image?.mediaItemUrl} id={index} />
                         )
                     })}
                 </div>

@@ -10,9 +10,10 @@ const NewsComponent = (props: {
     image: StaticImageData
     text: string
     translate: number
+    id: number
 }) => {
     return (
-        <Link href={'/blogs/id'} className={`${myFontIran.className} flex items-center px-6 relative leading-relaxed cursor-pointer
+        <Link href={`/blogs/${props.id}`} className={`${myFontIran.className} flex items-center px-6 relative leading-relaxed cursor-pointer
         text-lg RulesComponent rounded-xl text-center text-white w-fit bg-new-black transition duration-700	`}
             style={{ maxWidth: '350px', height: '450px', transform: `translateY(${props.translate}px)` }}
         >

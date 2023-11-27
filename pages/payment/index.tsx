@@ -14,6 +14,7 @@ import buy from '../../assets/icons/buy.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
+import Footer from '@/components/Footer/Footer';
 
 const GET_DISCOUNT_CODES = gql`
 query discount {
@@ -49,7 +50,8 @@ export default function Payment() {
     const nationality = ['ایران', 'آمریکا', 'عربستان']
     const socialMedia = ['instagram', 'whatsapp', 'telegram']
     const tariff = ['Traders Choice', 'Classic Challenge']
-    const { data } = useQuery(GET_DISCOUNT_CODES);
+    const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
+    const { data: footerData } = useQuery(GET_FOOTER);
     const [chosenTariff, setChosenTariff] = useState(0);
     const [discountCode, setDiscountCode] = useState('');
     const [initialPrice, setInitialPrice] = useState<number | null>(null);
@@ -61,24 +63,25 @@ export default function Payment() {
         setDiscountCode(event.target.value);
     };
 
-    const currencyConverter = async () => {
-        try {
-            var formdata = new FormData();
-            formdata.append("srcCurrency", "btc");
-            formdata.append("dstCurrency", "rls");
 
-            var requestOptions = {
-                method: 'POST',
-                body: formdata,
-            };
+    const currencyConverter = () => {
+        var formdata = new FormData();
+        formdata.append("srcCurrency", "btc");
+        formdata.append("dstCurrency", "rls");
 
-            const response = await fetch("https://api.nobitex.ir/market/stats", requestOptions);
-            const result = await response.json();
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+            withCredentials: true,
+            crossorigin: true,
+            mode: 'no-cors',
+            redirect: 'follow'
+        };
 
-            console.log(result);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        fetch("https://api.nobitex.ir/market/stats")
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     };
 
 
@@ -88,7 +91,7 @@ export default function Payment() {
 
     const discountValidation = () => {
         const enteredCode = discountCode.trim();
-        const matchingCode = data?.pages?.nodes[2].discountCoupon.discountCode.find((codeObj: any) => codeObj.code === enteredCode);
+        const matchingCode = discountData?.pages?.nodes[2].discountCoupon.discountCode.find((codeObj: any) => codeObj.code === enteredCode);
 
         if (matchingCode) {
             setDiscountAmount(matchingCode.discountAmount);
@@ -294,7 +297,7 @@ export default function Payment() {
 
                 </div>
 
-                {/* <Footer data={footerData?.pages?.nodes[2].footer?.footer} /> */}
+                <Footer data={footerData?.pages?.nodes[2].footer} />
 
 
                 <style>
