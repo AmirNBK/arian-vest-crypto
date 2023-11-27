@@ -53,7 +53,7 @@ export default function SingleBlog() {
     const { data: footerData } = useQuery(GET_FOOTER);
     const { data: blogData, loading: blogLoading } = useQuery(GET_CONTENT);
     const router = useRouter()
-    const id = parseInt(router.query.slug);
+    const id = Number(router.query.slug);
     const data = blogData?.pages?.nodes[2]?.blog?.blogs[id];
 
     const sanitizedHTML = DOMPurify.sanitize(data?.content);
