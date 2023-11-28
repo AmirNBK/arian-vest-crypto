@@ -407,7 +407,6 @@ export async function getQueryAboutUs() {
       pages {
         nodes {
           aboutus {
-            description
             features {
               item
             }
@@ -443,6 +442,7 @@ export async function getQueryAboutUsTitles() {
               normalTitle
               coloredTitle
               miniTitle
+              description
             }
           }
         }

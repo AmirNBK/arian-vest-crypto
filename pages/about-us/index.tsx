@@ -35,6 +35,7 @@ export default function SingleBlog({ footer, data, titles }: { footer: any, data
         title: string
     };
 
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -50,7 +51,7 @@ export default function SingleBlog({ footer, data, titles }: { footer: any, data
                 </div>
 
                 <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
-                    {data.description}
+                    {titles.description}
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
