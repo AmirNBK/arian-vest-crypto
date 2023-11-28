@@ -454,6 +454,29 @@ export async function getQueryAboutUsTitles() {
   return data?.pages?.nodes[2].aboutUsTitles.titles[0];
 }
 
+export async function getQueryAboutUsTitlesEng() {
+  const data = await fetchAPI(
+    `
+    query aboutUsTitlesEng {
+      pages {
+        nodes {
+          englishAboutUsTitles {
+            engTitles {
+              normalTitle
+              miniTitle
+              coloredTitle
+              description
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].englishAboutUsTitles.engTitles[0];
+}
+
 export async function registerUserMutation(input: any) {
   const mutation = `
     mutation RegisterUser($input: RegisterUserInput!) {

@@ -19,12 +19,18 @@ import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
-import { getQueryAboutUs, getQueryAboutUsTitles, getQueryFooter } from '@/lib/service';
+import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryFooter } from '@/lib/service';
+import { useEffect } from 'react';
+import useLocationData from '../../Hooks/location'
 
 
-export default function SingleBlog({ footer, data, titles }: { footer: any, data: any, titles: any }) {
+export default function SingleBlog({ footer, data, titles, titlesEng }: { footer: any, data: any, titles: any, titlesEng: any }) {
 
     const size = useWindowSize();
+    const { locationData, error, loading } = useLocationData();
+
+    let country = locationData
+
 
     type ItemType = {
         item: string;
@@ -46,12 +52,18 @@ export default function SingleBlog({ footer, data, titles }: { footer: any, data
                 <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
-                        {titles.normalTitle} <span style={{ color: '#F68D2E' }}> {titles.coloredTitle} <span className='text-3xl'> {titles.miniTitle} </span> </span>
+                        {country === 'Iran' ? titles.normalTitle : titlesEng.normalTitle}
+
+                        <span style={{ color: '#F68D2E' }}>
+                            {country === 'Iran' ? titles.coloredTitle : titlesEng.coloredTitle}
+                            <span className='text-3xl'>
+                                {country === 'Iran' ? titles.miniTitle : titlesEng.miniTitle}
+                            </span> </span>
                     </p>
                 </div>
 
                 <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
-                    {titles.description}
+                    {country === 'Iran' ? titles.description : titlesEng.description}
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
@@ -95,13 +107,15 @@ export const getStaticProps: GetStaticProps = async () => {
     const footer = await getQueryFooter();
     const data = await getQueryAboutUs();
     const titles = await getQueryAboutUsTitles();
+    const titlesEng = await getQueryAboutUsTitlesEng();
 
 
     return {
         props: {
             footer,
             data,
-            titles
+            titles,
+            titlesEng
         },
         revalidate: 3600,
     };
