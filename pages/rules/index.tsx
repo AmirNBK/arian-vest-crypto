@@ -33,8 +33,6 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
     const [visibleDialog, setVisibleDialog] = useState<boolean>(false);
     const [clickedRule, setClickedRule] = useState<number>(0);
 
-    console.log(data);
-
     type ItemType = {
         title: string;
         description: string;
@@ -51,7 +49,6 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
         setVisibleDialog(true);
         setClickedRule(index);
     }
-
 
     return (
         <main
@@ -70,7 +67,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                     <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
                     <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                        {data.classRules[clickedRule].items.map((item: any, index: number) => (
+                        {data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
                             <AccordionTab
                                 key={index}
                                 style={{ width: '100%' }}
@@ -135,6 +132,7 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                         {data.allRules.map((item: any, index: number) => {
                             return (
                                 <AccordionTab
+                                    key={index}
                                     className='text-white text-right'
                                     header={item.title}
                                 >

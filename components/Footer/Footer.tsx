@@ -51,10 +51,10 @@ const Footer = (props: {
                     <p className='text-white text-right mb-3'>
                         راه های ارتباط با ما
                     </p>
-                    <FooterInfo title='شماره تماس' info='به زودی' />
-                    <FooterInfo title='ایمیل' info='Arianvest@gmail.com' />
-                    <p className='text-base sm:text-xl lg:text-2xl text-right'>
-                        <span className='font-semibold'> آدرس: </span> مطهری ، میرعماد ، کوچه یازدهم ، پلاک 23 شرکت ، <span className='text-white'> آریان‌وست </span>
+                    <FooterInfo title='شماره تماس' info={props.data?.phone} />
+                    <FooterInfo title='ایمیل' info={props.data?.email} />
+                    <p className='text-base sm:text-xl lg:text-2xl text-right rtl'>
+                        <span className='font-semibold rtl'> آدرس: </span> {props.data?.address} <span className='text-white'> آریان‌وست </span>
                     </p>
                 </div>
 
