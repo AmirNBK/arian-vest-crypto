@@ -22,9 +22,9 @@ import logo from '../../assets/icons/rulesLogo.svg'
 import 'aos/dist/aos.css';
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
-import { getQueryFooter, getQueryRules } from '@/lib/service';
+import { getQueryFooter, getQueryRules, getQueryRulesTitles } from '@/lib/service';
 
-export default function Rules({ footer, data }: { footer: any, data: any }) {
+export default function Rules({ footer, data, titles }: { footer: any, data: any, titles: any }) {
 
     useEffect(() => {
         AOS.init();
@@ -86,7 +86,10 @@ export default function Rules({ footer, data }: { footer: any, data: any }) {
                 <div className='text-white w-10/12 mx-auto mt-20'>
                     <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
                     >
-                        {data.title[0].normalTitle} <span style={{ color: '#F68D2E' }}> {data.title[0].coloredTitle} </span>
+                        {titles.title}
+                        <span style={{ color: '#F68D2E' }}>
+                            {titles.coloredTitle}
+                        </span>
                     </h2>
                     <p className={`${myFontIran.className} text-center 3xl:text-xl rtl`} style={{ lineHeight: '2' }}>
                         {data.description}
@@ -262,12 +265,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
     const data = await getQueryRules();
-
+    const titles = await getQueryRulesTitles();
 
     return {
         props: {
             footer,
-            data
+            data,
+            titles
         },
         revalidate: 3600,
     };

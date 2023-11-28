@@ -286,11 +286,6 @@ export async function getQueryRules() {
         pages {
           nodes {
             rules {
-              title {
-                coloredTitle
-                fieldGroupName
-                normalTitle
-              }
               description
               classRules {
                 title
@@ -312,6 +307,29 @@ export async function getQueryRules() {
   );
 
   return data?.pages?.nodes[2].rules;
+}
+
+
+
+export async function getQueryRulesTitles() {
+  const data = await fetchAPI(
+    `
+    query rulesTitles {
+      pages {
+        nodes {
+          rulesTitles {
+            mainTitles {
+              title
+              coloredTitle
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].rulesTitles.mainTitles[0];
 }
 
 
@@ -389,10 +407,6 @@ export async function getQueryAboutUs() {
       pages {
         nodes {
           aboutus {
-            title {
-              mainTitle
-              miniTitle
-            }
             description
             features {
               item
@@ -416,6 +430,28 @@ export async function getQueryAboutUs() {
   );
 
   return data?.pages?.nodes[2].aboutus;
+}
+
+export async function getQueryAboutUsTitles() {
+  const data = await fetchAPI(
+    `
+    query aboutUsTitles {
+      pages {
+        nodes {
+          aboutUsTitles {
+            titles {
+              normalTitle
+              coloredTitle
+              miniTitle
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].aboutUsTitles.titles[0];
 }
 
 export async function registerUserMutation(input: any) {

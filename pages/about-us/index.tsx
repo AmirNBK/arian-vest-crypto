@@ -19,10 +19,10 @@ import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import { GetStaticProps } from 'next';
-import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
+import { getQueryAboutUs, getQueryAboutUsTitles, getQueryFooter } from '@/lib/service';
 
 
-export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
+export default function SingleBlog({ footer, data, titles }: { footer: any, data: any, titles: any }) {
 
     const size = useWindowSize();
 
@@ -45,7 +45,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
-                        {data.title[0].mainTitle} <span style={{ color: '#F68D2E' }}> <span className='text-3xl'> {data.title[0].miniTitle} </span> </span>
+                        {titles.normalTitle} <span style={{ color: '#F68D2E' }}> {titles.coloredTitle} <span className='text-3xl'> {titles.miniTitle} </span> </span>
                     </p>
                 </div>
 
@@ -93,11 +93,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
     const data = await getQueryAboutUs();
+    const titles = await getQueryAboutUsTitles();
+
 
     return {
         props: {
             footer,
-            data
+            data,
+            titles
         },
         revalidate: 3600,
     };
