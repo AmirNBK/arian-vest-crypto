@@ -41,7 +41,6 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
         title: string
     };
 
-
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -52,18 +51,18 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
                 <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
-                        {country === 'Iran' ? titles.normalTitle : titlesEng.normalTitle}
+                        {(country === 'Iran' || !country) ? titles.normalTitle : titlesEng.normalTitle}
 
                         <span style={{ color: '#F68D2E' }}>
-                            {country === 'Iran' ? titles.coloredTitle : titlesEng.coloredTitle}
+                            {(country === 'Iran' || !country) ? titles.coloredTitle : titlesEng.coloredTitle}
                             <span className='text-3xl'>
-                                {country === 'Iran' ? titles.miniTitle : titlesEng.miniTitle}
+                                {(country === 'Iran' || !country) ? titles.miniTitle : titlesEng.miniTitle}
                             </span> </span>
                     </p>
                 </div>
 
                 <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
-                    {country === 'Iran' ? titles.description : titlesEng.description}
+                    {(country === 'Iran' || !country) ? titles.description : titlesEng.description}
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
