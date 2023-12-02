@@ -11,7 +11,6 @@ import { Sidebar } from 'primereact/sidebar';
 import withAuth from '../../HOC/withAuth';
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import menu from '../../assets/icons/hamburgerMenu.png'
-import useLocationData from '@/Hooks/location';
 
 const Header = (props: {
     active?: number | string

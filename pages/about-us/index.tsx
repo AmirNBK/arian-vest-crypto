@@ -144,7 +144,9 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
 export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
     const data = await getQueryAboutUs();
+    const dataEng = await getQueryEngAboutUs();
     const titles = await getQueryAboutUsTitles();
     const titlesEng = await getQueryAboutUsTitlesEng();
 
@@ -154,7 +156,9 @@ export const getStaticProps: GetStaticProps = async () => {
             footer,
             data,
             titles,
-            titlesEng
+            titlesEng,
+            footerEng,
+            dataEng
         },
         revalidate: 3600,
     };

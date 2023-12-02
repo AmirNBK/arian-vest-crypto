@@ -202,13 +202,15 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
 export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
     const data = await getQueryBlogs();
 
 
     return {
         props: {
             footer,
-            data
+            data,
+            footerEng
         },
         revalidate: 3600,
     };

@@ -382,6 +382,10 @@ export async function getQueryFaq() {
       pages {
         nodes {
           faq {
+            engQuestion {
+              title
+              description
+            }
             question {
               title
               description
@@ -393,7 +397,7 @@ export async function getQueryFaq() {
     `,
   );
 
-  return data?.pages?.nodes[2].faq.question;
+  return data?.pages?.nodes[2].faq;
 }
 
 export async function getQueryBlogs() {

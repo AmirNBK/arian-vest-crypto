@@ -28,9 +28,6 @@ const Footer = (props: {
 
     const policiesToRender = isLocationInIran ? policies : englishPolicies;
 
-    console.log(props.data);
-
-
     return (
         <div className='Footer relative'
         >
