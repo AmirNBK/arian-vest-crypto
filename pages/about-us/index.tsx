@@ -45,44 +45,44 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={5} isLocationInIran={locationData === 'Iran' || !locationData} />
+                <Header active={5} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
 
                 <div className={`${myFont.className} justify-center flex flex-col
-                ${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center sm:mr-12 mt-8`}>
+                ${(country === 'Iran (Islamic Republic of)' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
-                        {(country === 'Iran' || !country) ? titles.normalTitle : titlesEng.normalTitle}
+                        {(country === 'Iran (Islamic Republic of)' || !country) ? titles.normalTitle : titlesEng.normalTitle}
 
                         <span style={{ color: '#F68D2E' }}>
-                            {(country === 'Iran' || !country) ? titles.coloredTitle : titlesEng.coloredTitle}
+                            {(country === 'Iran (Islamic Republic of)' || !country) ? titles.coloredTitle : titlesEng.coloredTitle}
                             <span className='text-3xl'>
-                                {(country === 'Iran' || !country) ? titles.miniTitle : titlesEng.miniTitle}
+                                {(country === 'Iran (Islamic Republic of)' || !country) ? titles.miniTitle : titlesEng.miniTitle}
                             </span> </span>
                     </p>
                 </div>
 
                 <p className={`${myFontIran.className} 3xl:text-xl text-center leading-loose text-white w-10/12 mx-auto mt-12 rtl`}>
-                    {(country === 'Iran' || !country) ? titles.description : titlesEng.description}
+                    {(country === 'Iran (Islamic Republic of)' || !country) ? titles.description : titlesEng.description}
                 </p>
                 <div className='mt-24 img-wrap' style={{ opacity: '0.3' }}>
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
                 </div>
 
-                <div className={`${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+                <div className={`${(country === 'Iran (Islamic Republic of)' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'}
                 flex flex-col justify-center mb-8 mt-4 mx-8 items-center sm:m-24`}>
                     <Image src={shape} className='w-56 lg:w-fit 3xl:w-96' alt='shape' unoptimized />
-                    <div className={`flex flex-col justify-around ${(country === 'Iran' || !country) ? 'sm:mr-20' : 'sm:ml-20'}
+                    <div className={`flex flex-col justify-around ${(country === 'Iran (Islamic Republic of)' || !country) ? 'sm:mr-20' : 'sm:ml-20'}
                     gap-8 mt-8`}>
-                        {(country === 'Iran' || !country) ?
+                        {(country === 'Iran (Islamic Republic of)' || !country) ?
                             data.features.map((item: ItemType, index: number) => {
                                 return (
-                                    <AboutUsItems isLocationIran={locationData === 'Iran' || !locationData} delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                    <AboutUsItems isLocationIran={locationData === 'Iran (Islamic Republic of)' || !locationData} delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                 )
                             })
                             :
                             dataEng.engFeatures.map((item: ItemType, index: number) => {
                                 return (
-                                    <AboutUsItems delay={index * 500} isLocationIran={locationData === 'Iran' || !locationData} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                    <AboutUsItems delay={index * 500} isLocationIran={locationData === 'Iran (Islamic Republic of)' || !locationData} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                 )
                             })
                         }
@@ -92,7 +92,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                 <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-4 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
                     <p className='text-white text-5xl sm:text-end text-center'>
                         {
-                            (country === 'Iran' || !country) ? (
+                            (country === 'Iran (Islamic Republic of)' || !country) ? (
                                 <span>
                                     {data.statsTitle[0].normalTitle}{' '}
                                     <span style={{ color: '#F68D2E' }}>
@@ -114,7 +114,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                     </p>
                     <div className='mt-12 sm:mt-36 flex flex-col sm:flex-row gap-20 sm:gap-24'>
                         {
-                            (country === 'Iran' || !country) ?
+                            (country === 'Iran (Islamic Republic of)' || !country) ?
                                 data.stats[0].item.map((item: StatsType, index: number) => {
                                     return (
                                         <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
@@ -133,7 +133,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                         }
                     </div>
                 </div>
-                <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
+                <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
 
             </PrimeReactProvider>
         </main>
