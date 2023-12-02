@@ -25,6 +25,7 @@ import template1 from '@/functions/function';
 import useWindowSize from '@/Hooks/innerSize';
 import { getQueryBlogs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
 import useLocationData from '@/Hooks/location';
+import { GetStaticProps } from 'next';
 
 export default function SingleBlog({ footer, data, footerEng }: { footer: any, data: any, footerEng: any }) {
 
@@ -197,15 +198,18 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
     )
 }
 
-export async function getServerSideProps() {
+
+export const getStaticProps: GetStaticProps = async () => {
+
     const footer = await getQueryFooter();
-    const footerEng = await getQueryEngFooter();
     const data = await getQueryBlogs();
+
+
     return {
         props: {
             footer,
-            footerEng,
             data
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

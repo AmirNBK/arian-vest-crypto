@@ -38,6 +38,7 @@ import authentication from '../../assets/icons/authentication.svg'
 import Authentication from '@/components/Authentication/Authentication';
 import Ticket from '@/components/Ticket/Ticket';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -255,13 +256,17 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     )
 }
 
-export async function getServerSideProps() {
+
+export const getStaticProps: GetStaticProps = async () => {
+
     const footer = await getQueryFooter();
     const data = await getQueryAboutUs();
+
     return {
         props: {
             footer,
             data
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

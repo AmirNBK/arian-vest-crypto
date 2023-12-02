@@ -14,6 +14,7 @@ import { getQueryFaq, getQueryFooter } from '@/lib/service';
 import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../assets/images/succesfull-payment.png'
 import unsuccessful from '../../assets/images/unsuccesful-payment.png'
+import { GetStaticProps } from 'next';
 
 
 export default function SingleBlog({ footer, questions }: { footer: any, questions: any }) {
@@ -32,14 +33,18 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
     )
 }
 
-export async function getServerSideProps() {
+
+export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
     const questions = await getQueryFaq();
+
+
     return {
         props: {
             footer,
             questions
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

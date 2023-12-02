@@ -22,6 +22,7 @@ import logo from '../../assets/icons/rulesLogo.svg'
 import 'aos/dist/aos.css';
 import useWindowSize from '@/Hooks/innerSize';
 import { getQueryFooter, getQueryRules, getQueryRulesTitles } from '@/lib/service';
+import { GetStaticProps } from 'next';
 
 export default function Rules({ footer, data, titles }: { footer: any, data: any, titles: any }) {
 
@@ -259,15 +260,18 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
     )
 }
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps = async () => {
+
     const footer = await getQueryFooter();
     const data = await getQueryRules();
     const titles = await getQueryRulesTitles();
+
     return {
         props: {
             footer,
             data,
             titles
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

@@ -22,6 +22,7 @@ import { getQueryFooter, loginMutation, registerUserMutation } from '@/lib/servi
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
+import { GetStaticProps } from 'next'
 
 export default function Register({ footer }: { footer: any }) {
 
@@ -292,11 +293,13 @@ export default function Register({ footer }: { footer: any }) {
     )
 }
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps = async () => {
     const footer = await getQueryFooter();
+
     return {
         props: {
-            footer,
+            footer
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

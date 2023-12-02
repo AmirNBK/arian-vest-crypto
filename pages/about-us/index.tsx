@@ -21,6 +21,7 @@ import useWindowSize from '@/Hooks/innerSize';
 import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryEngAboutUs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
 import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
+import { GetStaticProps } from 'next';
 
 
 export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, footerEng }: { footer: any, data: any, titles: any, titlesEng: any, dataEng: any, footerEng: any }) {
@@ -140,22 +141,21 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
     )
 }
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps = async () => {
+
     const footer = await getQueryFooter();
-    const footerEng = await getQueryEngFooter();
     const data = await getQueryAboutUs();
     const titles = await getQueryAboutUsTitles();
     const titlesEng = await getQueryAboutUsTitlesEng();
-    const dataEng = await getQueryEngAboutUs();
+
 
     return {
         props: {
             footer,
-            footerEng,
             data,
             titles,
-            titlesEng,
-            dataEng
+            titlesEng
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

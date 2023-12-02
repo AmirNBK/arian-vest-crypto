@@ -77,7 +77,6 @@ const Header = (props: {
                 <div className={`${myFont.className} flex flex-col gap-8`}>
                     {
                         isLocationInIran ?
-
                             header.map((item, index) => (
                                 <Link
                                     key={index}

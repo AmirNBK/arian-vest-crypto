@@ -14,6 +14,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import arrow from '../../assets/icons/arrow2.svg'
 import Footer from '@/components/Footer/Footer';
 import { getQueryFaq, getQueryFooter } from '@/lib/service';
+import { GetStaticProps } from 'next';
 
 export default function SingleBlog({ footer, questions }: { footer: any, questions: any }) {
 
@@ -135,14 +136,17 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
 }
 
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps = async () => {
+
     const footer = await getQueryFooter();
     const questions = await getQueryFaq();
+
 
     return {
         props: {
             footer,
             questions
         },
-    }
-}
+        revalidate: 3600,
+    };
+};

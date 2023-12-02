@@ -382,34 +382,6 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   )
 }
 
-
-// export async function getServerSideProps() {
-//   const tariffSectionData = await getQueryTariffSection();
-//   const tariffs = await getQueryTariffs();
-//   const faqHomeSection = await getQueryFaqHomeSection();
-//   const successSection = await getQuerySuccessSection();
-//   const aboutUsSection = await getQueryAboutUsSection();
-//   const accountGrowthSection = await getQueryAccountGrowthSection();
-//   const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
-//   const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
-//   const successSteps = await getQuerySuccessSteps();
-//   const footer = await getQueryFooter();
-//   return {
-//     props: {
-//       tariffSectionData,
-//       tariffs,
-//       faqHomeSection,
-//       successSection,
-//       aboutUsSection,
-//       accountGrowthSection,
-//       collabrationSuccessSection,
-//       collabrationSuccessSectionTitle,
-//       successSteps,
-//       footer
-//     },
-//   }
-// }
-
 export const getStaticProps: GetStaticProps = async () => {
   const tariffSectionData = await getQueryTariffSection();
   const tariffs = await getQueryTariffs();
