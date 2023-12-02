@@ -18,12 +18,12 @@ import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
-import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryEngAboutUs, getQueryFooter } from '@/lib/service';
+import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryEngAboutUs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
 import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
 
 
-export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }: { footer: any, data: any, titles: any, titlesEng: any, dataEng: any }) {
+export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, footerEng }: { footer: any, data: any, titles: any, titlesEng: any, dataEng: any, footerEng: any }) {
 
     const size = useWindowSize();
     const { locationData, error, loading } = useLocationData();
@@ -40,15 +40,12 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }:
         title: string
     };
 
-    console.log(dataEng);
-
-
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={5} />
+                <Header active={5} isLocationInIran={locationData === 'Iran' || !locationData} />
 
                 <div className={`${myFont.className} justify-center flex flex-col
                 ${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center sm:mr-12 mt-8`}>
@@ -79,13 +76,13 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }:
                         {(country === 'Iran' || !country) ?
                             data.features.map((item: ItemType, index: number) => {
                                 return (
-                                    <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                    <AboutUsItems isLocationIran={locationData === 'Iran' || !locationData} delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                 )
                             })
                             :
                             dataEng.engFeatures.map((item: ItemType, index: number) => {
                                 return (
-                                    <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                    <AboutUsItems delay={index * 500} isLocationIran={locationData === 'Iran' || !locationData} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                 )
                             })
                         }
@@ -136,7 +133,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }:
                         }
                     </div>
                 </div>
-                <Footer data={footer?.footer} />
+                <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
 
             </PrimeReactProvider>
         </main>
@@ -145,6 +142,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }:
 
 export async function getServerSideProps() {
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
     const data = await getQueryAboutUs();
     const titles = await getQueryAboutUsTitles();
     const titlesEng = await getQueryAboutUsTitlesEng();
@@ -153,6 +151,7 @@ export async function getServerSideProps() {
     return {
         props: {
             footer,
+            footerEng,
             data,
             titles,
             titlesEng,

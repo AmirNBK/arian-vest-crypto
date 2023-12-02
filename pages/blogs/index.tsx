@@ -4,6 +4,12 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import {
+    PaginatorNextPageLinkOptions, PaginatorPageLinksOptions, PaginatorPrevPageLinkOptions,
+} from 'primereact/paginator';
+import { classNames } from 'primereact/utils';
+import { Ripple } from 'primereact/ripple';
+
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
@@ -11,23 +17,24 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import newspaper from '../../assets/icons/newspaper2.svg'
 import NewsComponent from '@/components/NewsComponent/NewsComponent';
-import pic from '../../assets/images/newsPic.png'
-import { classNames } from 'primereact/utils';
-import { Ripple } from 'primereact/ripple';
 import Footer from '@/components/Footer/Footer';
 import {
-    Paginator, PaginatorPageChangeEvent, PaginatorNextPageLinkOptions, PaginatorPageLinksOptions, PaginatorPrevPageLinkOptions,
+    Paginator, PaginatorPageChangeEvent
 } from 'primereact/paginator';
 import template1 from '@/functions/function';
 import useWindowSize from '@/Hooks/innerSize';
-import { getQueryBlogs, getQueryFooter } from '@/lib/service';
+import { getQueryBlogs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
+import useLocationData from '@/Hooks/location';
 
-export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
+export default function SingleBlog({ footer, data, footerEng }: { footer: any, data: any, footerEng: any }) {
 
     const [first, setFirst] = useState<number[]>([0, 0, 0]);
     const [rows, setRows] = useState([10, 10, 10]);
 
     const size = useWindowSize();
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran' || !locationData;
+
 
 
     const onPageChange = (e: PaginatorPageChangeEvent, index: number) => {
@@ -47,36 +54,90 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         title: string
     }
 
+    const template1 = {
+        layout: 'PrevPageLink PageLinks NextPageLink RowsPerPageDropdown CurrentPageReport',
+        PrevPageLink: (options: PaginatorPrevPageLinkOptions) => {
+            return (
+                <button type="button" className={classNames(options.className, 'border-round')} onClick={options.onClick} disabled={options.disabled}>
+                    <span className={`${myFontIran.className} p-3 text-white`}>
+                        {isLocationInIran ? 'قبلی' : 'Previous'}
+                    </span>
+                    <Ripple />
+                </button>
+            );
+        },
+        NextPageLink: (options: PaginatorNextPageLinkOptions) => {
+            return (
+                <button type="button" className={classNames(options.className, 'border-round')} onClick={options.onClick} disabled={options.disabled}>
+                    <span className={`${myFontIran.className} p-3 text-main-orange`}>
+                        {isLocationInIran ? 'بعدي' : 'Next'}
+
+                    </span>
+                    <Ripple />
+                </button>
+            );
+        },
+        PageLinks: (options: PaginatorPageLinksOptions) => {
+            if ((options.view.startPage === options.page && options.view.startPage !== 0) || (options.view.endPage === options.page && options.page + 1 !== options.totalPages)) {
+                const className = classNames(options.className, { 'p-disabled': true });
+
+                return (
+                    <span className={className} style={{ userSelect: 'none' }}>
+                        ...
+                    </span>
+                );
+            }
+
+            return (
+                <button type="button" className={options.className} onClick={options.onClick}>
+                    {options.page + 1}
+                    <Ripple />
+                </button>
+            );
+        },
+    };
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={6} />
+                <Header active={6} isLocationInIran={isLocationInIran} />
 
-                <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
+                <div className={`${myFont.className} justify-center flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center text-center sm:mr-12 mt-8`}>
                     <Image src={newspaper} alt='faq' />
                     <p className='text-white text-4xl'>
-                        آرشیو <span style={{ color: '#F68D2E' }}>  اخبار و مقالات </span>
+                        {isLocationInIran ? data.blogTitle[0].normalTitle : data.engBlogTitle[0].normalTitle}
+                        <span style={{ color: '#F68D2E' }}>
+                            {isLocationInIran ? data.blogTitle[0].coloredTitle : data.engBlogTitle[0].coloredTitle}
+                        </span>
                     </p>
                 </div>
 
 
                 <div className='px-12 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
-                    {data.map((item: blogItem, index: number) => {
-                        return (
-                            <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
-                                key={index} image={item.image?.mediaItemUrl} id={index} />
-                        )
-                    })}
+                    {
+                        isLocationInIran ?
+                            data.blogs.map((item: blogItem, index: number) => {
+                                return (
+                                    <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
+                                        key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran />
+                                )
+                            })
+                            :
+                            data.engBlogs.map((item: blogItem, index: number) => {
+                                return (
+                                    <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
+                                        key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran={false} />
+                                )
+                            })
+                    }
                 </div>
 
                 <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={data.length} className='mb-16'
                     style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
 
-                <Footer data={footer?.footer} />
-
-
+                <Footer data={isLocationInIran ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
                 <style>
 
@@ -138,10 +199,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
 export async function getServerSideProps() {
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
     const data = await getQueryBlogs();
     return {
         props: {
             footer,
+            footerEng,
             data
         },
     }

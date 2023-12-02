@@ -11,6 +11,7 @@ const NewsComponent = (props: {
     text: string
     translate: number
     id: number
+    isLocationIran?: boolean
 }) => {
     return (
         <Link href={`/blogs/${props.id}`} className={`${myFontIran.className} flex items-center px-6 relative leading-relaxed cursor-pointer
@@ -28,7 +29,8 @@ const NewsComponent = (props: {
                 </p>
 
                 <p className='text-main-orange' style={{ textDecoration: 'underline' }}>
-                    اطلاعات بیشتر
+                    {props.isLocationIran ? ' اطلاعات بیشتر' : 'More information'}
+
                 </p>
             </div>
         </Link>

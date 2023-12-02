@@ -278,6 +278,26 @@ export async function getQueryFooter() {
   return data?.pages?.nodes[2];
 }
 
+export async function getQueryEngFooter() {
+  const data = await fetchAPI(
+    `
+    query engFooter {
+      pages {
+        nodes {
+          engFooter {
+            engPhone
+            engEmail
+            engAddress
+          }
+        }
+      }
+    }
+      `,
+  );
+
+  return data?.pages?.nodes[2];
+}
+
 
 export async function getQueryRules() {
   const data = await fetchAPI(
@@ -383,7 +403,22 @@ export async function getQueryBlogs() {
       pages {
         nodes {
           blog {
+            blogTitle {
+              normalTitle
+              coloredTitle
+            }
+            engBlogTitle {
+              normalTitle
+              coloredTitle
+            }
             blogs {
+              title
+              image {
+                mediaItemUrl
+              }
+              content
+            }
+            engBlogs {
               title
               image {
                 mediaItemUrl
@@ -397,7 +432,7 @@ export async function getQueryBlogs() {
     `,
   );
 
-  return data?.pages?.nodes[2].blog.blogs;
+  return data?.pages?.nodes[2].blog;
 }
 
 export async function getQueryAboutUs() {
