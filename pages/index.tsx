@@ -45,6 +45,7 @@ import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
 import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryCollabrationSuccessSectionTitle, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
+import { GetStaticProps } from 'next';
 
 export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -381,11 +382,35 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   )
 }
 
-export const config = {
-  maxDuration: 25,
-};
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
+//   const tariffSectionData = await getQueryTariffSection();
+//   const tariffs = await getQueryTariffs();
+//   const faqHomeSection = await getQueryFaqHomeSection();
+//   const successSection = await getQuerySuccessSection();
+//   const aboutUsSection = await getQueryAboutUsSection();
+//   const accountGrowthSection = await getQueryAccountGrowthSection();
+//   const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
+//   const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
+//   const successSteps = await getQuerySuccessSteps();
+//   const footer = await getQueryFooter();
+//   return {
+//     props: {
+//       tariffSectionData,
+//       tariffs,
+//       faqHomeSection,
+//       successSection,
+//       aboutUsSection,
+//       accountGrowthSection,
+//       collabrationSuccessSection,
+//       collabrationSuccessSectionTitle,
+//       successSteps,
+//       footer
+//     },
+//   }
+// }
+
+export const getStaticProps: GetStaticProps = async () => {
   const tariffSectionData = await getQueryTariffSection();
   const tariffs = await getQueryTariffs();
   const faqHomeSection = await getQueryFaqHomeSection();
@@ -396,6 +421,7 @@ export async function getServerSideProps() {
   const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
   const successSteps = await getQuerySuccessSteps();
   const footer = await getQueryFooter();
+
   return {
     props: {
       tariffSectionData,
@@ -409,6 +435,6 @@ export async function getServerSideProps() {
       successSteps,
       footer
     },
-    maxDuration: 250000000,
-  }
-}
+    revalidate: 3600,
+  };
+};
