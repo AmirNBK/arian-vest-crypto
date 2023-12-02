@@ -406,5 +406,6 @@ export async function getServerSideProps() {
       successSteps,
       footer
     },
+    maxDuration: 250000000,
   }
 }
