@@ -5,18 +5,21 @@ import 'aos/dist/aos.css';
 import localFont from 'next/font/local'
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
+import useLocationData from '@/Hooks/location';
 
 const AboutUsItems = (props: {
     text: string
     translate: number
     delay: number
 }) => {
+    const { locationData, error, loading } = useLocationData();
+
     useEffect(() => {
         AOS.init();
     }, []);
 
     return (
-        <div className='AboutUsItems flex flex-row-reverse gap-4 items-center'
+        <div className={`${(locationData === 'Iran' || !locationData) ? 'flex-row-reverse' : 'flex-row'} AboutUsItems flex gap-4 items-center`}
             data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in-right"
             data-aos-delay={props.delay}
             style={{ transform: `translateX(${props.translate}px)` }}

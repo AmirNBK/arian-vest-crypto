@@ -18,12 +18,12 @@ import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
-import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryFooter } from '@/lib/service';
+import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryEngAboutUs, getQueryFooter } from '@/lib/service';
 import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
 
 
-export default function SingleBlog({ footer, data, titles, titlesEng }: { footer: any, data: any, titles: any, titlesEng: any }) {
+export default function SingleBlog({ footer, data, titles, titlesEng, dataEng }: { footer: any, data: any, titles: any, titlesEng: any, dataEng: any }) {
 
     const size = useWindowSize();
     const { locationData, error, loading } = useLocationData();
@@ -40,6 +40,9 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
         title: string
     };
 
+    console.log(dataEng);
+
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -47,7 +50,8 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
             <PrimeReactProvider>
                 <Header active={5} />
 
-                <div className={`${myFont.className} justify-center flex flex-col sm:flex-row-reverse gap-4 items-center sm:mr-12 mt-8`}>
+                <div className={`${myFont.className} justify-center flex flex-col
+                ${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center sm:mr-12 mt-8`}>
                     <Image src={team} alt='faq' />
                     <p className='text-white text-5xl text-center sm:text-end'>
                         {(country === 'Iran' || !country) ? titles.normalTitle : titlesEng.normalTitle}
@@ -67,29 +71,69 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
                     <Image src={range} alt='rangeTrading' className='3xl:w-full sm:block hidden' />
                 </div>
 
-                <div className='flex flex-col sm:flex-row-reverse justify-center mb-8 mt-4 mx-8 items-center sm:m-24'>
+                <div className={`${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+                flex flex-col justify-center mb-8 mt-4 mx-8 items-center sm:m-24`}>
                     <Image src={shape} className='w-56 lg:w-fit 3xl:w-96' alt='shape' unoptimized />
-                    <div className='flex flex-col justify-around sm:mr-20 gap-8 mt-8'>
-                        {data.features.map((item: ItemType, index: number) => {
-                            return (
-                                <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
-                            )
-                        })}
+                    <div className={`flex flex-col justify-around ${(country === 'Iran' || !country) ? 'sm:mr-20' : 'sm:ml-20'}
+                    gap-8 mt-8`}>
+                        {(country === 'Iran' || !country) ?
+                            data.features.map((item: ItemType, index: number) => {
+                                return (
+                                    <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                )
+                            })
+                            :
+                            dataEng.engFeatures.map((item: ItemType, index: number) => {
+                                return (
+                                    <AboutUsItems delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                )
+                            })
+                        }
                     </div>
                 </div>
 
                 <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-4 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
                     <p className='text-white text-5xl sm:text-end text-center'>
-                        {data.statsTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {data.statsTitle[0].coloredTitle} <span className='text-3xl'> {data.statsTitle[0].miniTitle} </span> </span>
+                        {
+                            (country === 'Iran' || !country) ? (
+                                <span>
+                                    {data.statsTitle[0].normalTitle}{' '}
+                                    <span style={{ color: '#F68D2E' }}>
+                                        {data.statsTitle[0].coloredTitle}{' '}
+                                        <span className='text-3xl'>{data.statsTitle[0].miniTitle}</span>
+                                    </span>
+                                </span>
+                            ) : (
+                                <span>
+                                    {dataEng.engStatsTitle[0].normalTitle}{' '}
+                                    <span style={{ color: '#F68D2E' }}>
+                                        {dataEng.engStatsTitle[0].coloredTitle}{' '}
+                                        <span className='text-3xl'>{dataEng.engStatsTitle[0].miniTitle}</span>
+                                    </span>
+                                </span>
+                            )
+                        }
+
                     </p>
                     <div className='mt-12 sm:mt-36 flex flex-col sm:flex-row gap-20 sm:gap-24'>
-                        {data.stats[0].item.map((item: StatsType, index: number) => {
-                            return (
-                                <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
-                                    icon={index === 0 ? profit : index === 1 ? users : index === 2 ? payment : ''}
-                                    text={item.title} stat={item.stat} translate={index === 1 && size.width && size.width > 640 ? 40 : 0} />
-                            )
-                        })}
+                        {
+                            (country === 'Iran' || !country) ?
+                                data.stats[0].item.map((item: StatsType, index: number) => {
+                                    return (
+                                        <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
+                                            icon={index === 0 ? profit : index === 1 ? users : index === 2 ? payment : ''}
+                                            text={item.title} stat={item.stat} translate={index === 1 && size.width && size.width > 640 ? 40 : 0} />
+                                    )
+                                })
+                                :
+                                dataEng.engStats[0].item.map((item: StatsType, index: number) => {
+                                    return (
+                                        <Stats fadePosition={index === 0 ? 'right' : index === 1 ? 'up' : index === 2 ? 'left' : ''}
+                                            icon={index === 0 ? profit : index === 1 ? users : index === 2 ? payment : ''}
+                                            text={item.title} stat={item.stat} translate={index === 1 && size.width && size.width > 640 ? 40 : 0} />
+                                    )
+                                })
+                        }
                     </div>
                 </div>
                 <Footer data={footer?.footer} />
@@ -104,12 +148,15 @@ export async function getServerSideProps() {
     const data = await getQueryAboutUs();
     const titles = await getQueryAboutUsTitles();
     const titlesEng = await getQueryAboutUsTitlesEng();
+    const dataEng = await getQueryEngAboutUs();
+
     return {
         props: {
             footer,
             data,
             titles,
-            titlesEng
+            titlesEng,
+            dataEng
         },
     }
 }

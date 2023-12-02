@@ -431,6 +431,38 @@ export async function getQueryAboutUs() {
   return data?.pages?.nodes[2].aboutus;
 }
 
+export async function getQueryEngAboutUs() {
+  const data = await fetchAPI(
+    `
+    query engAboutUs {
+      pages {
+        nodes {
+          englishAboutus {
+            engStatsTitle {
+              normalTitle
+              miniTitle
+              coloredTitle
+            }
+            engStats {
+              item {
+                title
+                stat
+              }
+            }
+            engFeatures {
+              item
+            }
+          }
+        }
+      }
+    }
+    `,
+  );
+
+  return data?.pages?.nodes[2].englishAboutus;
+}
+
+
 export async function getQueryAboutUsTitles() {
   const data = await fetchAPI(
     `
