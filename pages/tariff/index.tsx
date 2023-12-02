@@ -15,7 +15,6 @@ import TariffComponent from '@/components/TariffComponent/TariffComponent';
 import TariffTable from '@/components/TariffTable/TariffTable';
 import Footer from '@/components/Footer/Footer';
 import useWindowSize from '@/Hooks/innerSize';
-import { GetStaticProps } from 'next';
 import { getQueryFooter, getQueryTariffTitles, getQueryTariffs } from '@/lib/service';
 
 
@@ -126,22 +125,15 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
     )
 }
 
-
-
-export const getStaticProps: GetStaticProps = async () => {
-
+export async function getServerSideProps() {
     const footer = await getQueryFooter();
     const data = await getQueryTariffs();
     const titles = await getQueryTariffTitles();
-
-
-
     return {
         props: {
             footer,
             data,
             titles
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

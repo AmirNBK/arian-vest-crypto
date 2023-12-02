@@ -12,7 +12,6 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { Sidebar } from 'primereact/sidebar';
-import { GetStaticProps } from 'next';
 import support from '../../assets/icons/support.svg'
 import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 import { useState } from 'react';
@@ -256,17 +255,13 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     )
 }
 
-
-export const getStaticProps: GetStaticProps = async () => {
-
+export async function getServerSideProps() {
     const footer = await getQueryFooter();
     const data = await getQueryAboutUs();
-
     return {
         props: {
             footer,
             data
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

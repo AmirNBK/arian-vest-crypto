@@ -13,11 +13,10 @@ import faq from '../../assets/icons/faq.svg'
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import arrow from '../../assets/icons/arrow2.svg'
 import Footer from '@/components/Footer/Footer';
-import { GetStaticProps } from 'next';
 import { getQueryFaq, getQueryFooter } from '@/lib/service';
 
 export default function SingleBlog({ footer, questions }: { footer: any, questions: any }) {
-    
+
     return (
         <main
             className={`flex min-h-screen flex-col justify-between ${inter.className}`}
@@ -40,7 +39,7 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
                                         headerIcon: <Image src={arrow} alt='arrow' />
                                     }}
                                     className='text-white text-right'
-                                    style={{boxShadow : '0px 0px 45px 0px rgba(246, 141, 46, 0.20)'}}
+                                    style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
                                     header={item.title}>
                                     {item.description}
                                 </AccordionTab>
@@ -136,17 +135,14 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
-
+export async function getServerSideProps() {
     const footer = await getQueryFooter();
     const questions = await getQueryFaq();
-
 
     return {
         props: {
             footer,
             questions
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

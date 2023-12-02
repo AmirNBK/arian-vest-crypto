@@ -43,7 +43,6 @@ import line from '../assets/icons/line.svg'
 import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
-import { GetStaticProps } from 'next';
 import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryCollabrationSuccessSectionTitle, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
 
@@ -383,7 +382,7 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
   const tariffSectionData = await getQueryTariffSection();
   const tariffs = await getQueryTariffs();
   const faqHomeSection = await getQueryFaqHomeSection();
@@ -394,7 +393,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
   const successSteps = await getQuerySuccessSteps();
   const footer = await getQueryFooter();
-
   return {
     props: {
       tariffSectionData,
@@ -408,6 +406,5 @@ export const getStaticProps: GetStaticProps = async () => {
       successSteps,
       footer
     },
-    revalidate: 3600,
-  };
-};
+  }
+}

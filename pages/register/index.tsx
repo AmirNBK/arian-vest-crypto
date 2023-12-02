@@ -18,7 +18,6 @@ const inter = Inter({ subsets: ['latin'] })
 import { Toast, ToastMessage } from 'primereact/toast';
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
-import { GetStaticProps } from 'next'
 import { getQueryFooter, loginMutation, registerUserMutation } from '@/lib/service'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -293,14 +292,11 @@ export default function Register({ footer }: { footer: any }) {
     )
 }
 
-
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
     const footer = await getQueryFooter();
-
     return {
         props: {
-            footer
+            footer,
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

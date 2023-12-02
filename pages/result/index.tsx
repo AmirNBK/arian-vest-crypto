@@ -10,7 +10,6 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import Footer from '@/components/Footer/Footer';
-import { GetStaticProps } from 'next';
 import { getQueryFaq, getQueryFooter } from '@/lib/service';
 import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../assets/images/succesfull-payment.png'
@@ -33,18 +32,14 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
     )
 }
 
-
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
 
     const footer = await getQueryFooter();
     const questions = await getQueryFaq();
-
-
     return {
         props: {
             footer,
             questions
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

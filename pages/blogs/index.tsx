@@ -20,7 +20,6 @@ import {
 } from 'primereact/paginator';
 import template1 from '@/functions/function';
 import useWindowSize from '@/Hooks/innerSize';
-import { GetStaticProps } from 'next';
 import { getQueryBlogs, getQueryFooter } from '@/lib/service';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -137,19 +136,13 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     )
 }
 
-
-
-export const getStaticProps: GetStaticProps = async () => {
-
+export async function getServerSideProps() {
     const footer = await getQueryFooter();
     const data = await getQueryBlogs();
-
-
     return {
         props: {
             footer,
             data
         },
-        revalidate: 3600,
-    };
-};
+    }
+}

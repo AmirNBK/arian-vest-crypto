@@ -18,7 +18,6 @@ import users from '../../assets/icons/users.svg'
 import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
-import { GetServerSideProps, GetStaticProps } from 'next';
 import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryFooter } from '@/lib/service';
 import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
@@ -99,26 +98,6 @@ export default function SingleBlog({ footer, data, titles, titlesEng }: { footer
         </main>
     )
 }
-
-
-// export const GetServerSideProps: GetServerSideProps = async () => {
-
-//     const footer = await getQueryFooter();
-//     const data = await getQueryAboutUs();
-//     const titles = await getQueryAboutUsTitles();
-//     const titlesEng = await getQueryAboutUsTitlesEng();
-
-
-//     return {
-//         props: {
-// footer,
-// data,
-// titles,
-// titlesEng
-//         },
-//         revalidate: 3600,
-//     };
-// };
 
 export async function getServerSideProps() {
     const footer = await getQueryFooter();
