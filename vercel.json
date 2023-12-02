@@ -1,6 +1,6 @@
 {
     "functions": {
-      "pages": {
+      "/pages/index.tsx": {
         "maxDuration": 5
       }
     }
