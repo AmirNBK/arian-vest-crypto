@@ -381,6 +381,9 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   )
 }
 
+export const config = {
+  maxDuration: 25,
+};
 
 export async function getServerSideProps() {
   const tariffSectionData = await getQueryTariffSection();
