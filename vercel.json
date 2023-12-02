@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "/pages/index.tsx": {
-        "maxDuration": 5
-      }
-    }
-  }
