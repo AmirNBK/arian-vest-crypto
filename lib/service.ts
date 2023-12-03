@@ -306,6 +306,27 @@ export async function getQueryRules() {
         pages {
           nodes {
             rules {
+              engAllRules {
+                title
+                description
+              }
+              engClassRules {
+                title
+                feature
+                items {
+                  title
+                  description
+                }
+              }
+              engTitle {
+                normalTitle
+                coloredTitle
+              }
+              engDescription
+              title {
+                normalTitle
+                coloredTitle
+              }
               description
               classRules {
                 title
@@ -342,6 +363,10 @@ export async function getQueryRulesTitles() {
               title
               coloredTitle
             }
+            engMainTitles {
+              title
+              coloredTitle
+            }
           }
         }
       }
@@ -349,7 +374,7 @@ export async function getQueryRulesTitles() {
     `,
   );
 
-  return data?.pages?.nodes[2].rulesTitles.mainTitles[0];
+  return data?.pages?.nodes[2].rulesTitles;
 }
 
 

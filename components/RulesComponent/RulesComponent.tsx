@@ -12,6 +12,7 @@ const RulesComponent = (props: {
     translate: number
     feature: string
     onClick: () => void
+    isLocationIran: boolean
 }) => {
     const [hovered, setHovered] = useState(false);
 
@@ -66,7 +67,8 @@ const RulesComponent = (props: {
                     {props.feature}
                 </p>
                 <p className='font-bold text-2xl'>
-                    مشاهده قوانین
+                    {props.isLocationIran ? 'مشاهده قوانین' : 'view rules'}
+
                 </p>
             </p>
         </div>
