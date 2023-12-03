@@ -15,13 +15,16 @@ import TariffComponent from '@/components/TariffComponent/TariffComponent';
 import TariffTable from '@/components/TariffTable/TariffTable';
 import Footer from '@/components/Footer/Footer';
 import useWindowSize from '@/Hooks/innerSize';
-import { getQueryFooter, getQueryTariffTitles, getQueryTariffs } from '@/lib/service';
+import { getQueryEngFooter, getQueryFooter, getQueryTariffTitles, getQueryTariffs } from '@/lib/service';
 import { GetStaticProps } from 'next';
+import useLocationData from '@/Hooks/location';
 
 
-export default function Rules({ footer, data, titles }: { footer: any, data: any, titles: any }) {
+export default function Rules({ footer, data, titles, footerEng }: { footer: any, data: any, titles: any, footerEng: any }) {
 
     const [selectedTab, setSelectedTab] = useState<number>(0)
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const size = useWindowSize()
 
     type tariffType = {
@@ -31,29 +34,40 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
         title: string
     }
 
-    console.log(titles);
-
-
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <PrimeReactProvider>
-                <Header active={2} />
-                <div className='flex flex-col lg:flex-row-reverse items-center'>
+                <Header active={2} isLocationInIran={isLocationInIran} />
+                <div className={`${isLocationInIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex flex-col items-center`}>
                     <div className='flex flex-col flex-1 lg:my-0 my-16'>
-                        <div className={`${myFont.className} justify-right flex flex-col sm:flex-row-reverse gap-4 items-center lg:mr-12 mt-8`}>
+                        <div className={`${myFont.className} justify-right flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse lg:mr-12' : 'sm:flex-row lg:ml-12'} gap-4 items-center  mt-8`}>
                             <Image src={tariff} alt='faq' />
-                            <p className='text-white text-5xl sm:text-end text-center'>
-                                <span className='text-3xl text-main-orange'>
-                                    ({data.tariffs[selectedTab].type})
-
-                                </span> {titles.normalTitle}  <span style={{ color: '#F68D2E' }}> {titles.coloredTitle} </span>
-                            </p>
+                            {isLocationInIran ?
+                                <p className='text-white text-5xl sm:text-end text-center'>
+                                    <span className='text-3xl text-main-orange'>
+                                        ({data.tariffs[selectedTab].type})
+                                    </span> {titles.allTitles[0].normalTitle}
+                                    <span style={{ color: '#F68D2E' }}>
+                                        {titles.allTitles[0].coloredTitle}
+                                    </span>
+                                </p>
+                                :
+                                <p className='text-white text-5xl sm:text-start text-center'>
+                                    {titles.engAllTitles[0].normalTitle}
+                                    <span style={{ color: '#F68D2E' }}>
+                                        {titles.engAllTitles[0].coloredTitle}
+                                    </span>
+                                    <span className='text-3xl text-main-orange'>
+                                        ({data.engTariffs[selectedTab].type})
+                                    </span>
+                                </p>
+                            }
                         </div>
                         <div>
-                            <p className={`${myFontIran.className} sm:text-right rtl text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
-                                {data.tariffs[selectedTab].title}
+                            <p className={`${myFontIran.className} ${isLocationInIran ? 'rtl sm:text-right' : 'ltr sm:text-left'} text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
+                                {isLocationInIran ? data.tariffs[selectedTab].title : data.engTariffs[selectedTab].title}
                             </p>
                         </div>
                     </div>
@@ -65,12 +79,22 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
                                 setSelectedTab(e.index)
                             }}
                         >
-                            {data.tariffs.map((item: tariffType, index: number) => {
-                                return (
-                                    <TabPanel header={item.type}>
-                                    </TabPanel>
-                                )
-                            })}
+                            {
+                                isLocationInIran ?
+                                    data.tariffs.map((item: tariffType, index: number) => {
+                                        return (
+                                            <TabPanel header={item.type}>
+                                            </TabPanel>
+                                        )
+                                    })
+                                    :
+                                    data.engTariffs.map((item: tariffType, index: number) => {
+                                        return (
+                                            <TabPanel header={item.type}>
+                                            </TabPanel>
+                                        )
+                                    })
+                            }
                         </TabView>
                     </div>
 
@@ -79,34 +103,74 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
                     style={{ margin: '0 auto', marginTop: '50px' }}
                 >
                     <TabView>
-                        {data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
-                            return (
-                                <TabPanel header={item.price + 'k'}>
-                                    <div className='mt-12'>
-                                        <TariffComponent title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
-                                            description={data.tariffs[selectedTab].desccription} />
-                                    </div>
-                                    <TariffTable title={titles.tableTitle} data={[
-                                        { title: 'مقدار سرمایه:', info: item.price + 'k' },
-                                        { title: 'leverage حساب :', info: item.leverage },
-                                        { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
-                                        { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
-                                        { title: 'target فاز 1:', info: item.target1 },
-                                        { title: 'target فاز 2:', info: item.target2 },
-                                        { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
-                                        { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
-                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
-                                        { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
-                                        { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
-                                    ]}
-                                        price={item.dollarPrice}
-                                    />
-                                </TabPanel>
-                            )
-                        })}
+                        {
+                            isLocationInIran ?
+                                data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
+                                    return (
+                                        <TabPanel header={item.price + 'k'}>
+                                            <div className='mt-12'>
+                                                <TariffComponent
+                                                isLocationIran
+                                                title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
+                                                    description={data.tariffs[selectedTab].desccription} />
+                                            </div>
+                                            <TariffTable
+                                                isLocationIran
+                                                title={titles.tableTitle} data={[
+                                                    { title: 'مقدار سرمایه:', info: item.price + 'k' },
+                                                    { title: 'leverage حساب :', info: item.leverage },
+                                                    { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                    { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
+                                                    { title: 'target فاز 1:', info: item.target1 },
+                                                    { title: 'target فاز 2:', info: item.target2 },
+                                                    { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
+                                                    { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
+                                                    { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
+                                                    { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
+                                                    { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                ]}
+                                                price={item.dollarPrice}
+                                            />
+                                        </TabPanel>
+                                    )
+                                })
+                                :
+                                data.engTariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
+                                    return (
+                                        <TabPanel header={item.price + 'k'}>
+                                            <div className='mt-12'>
+                                                <TariffComponent
+                                                    isLocationIran={false}
+                                                    title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
+                                                    description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
+                                            </div>
+                                            <TariffTable
+                                                isLocationIran={false}
+                                                title={titles.tableTitle}
+                                                data={[
+                                                    { title: 'Capital amount:', info: item.price + 'k' },
+                                                    { title: 'Leverage account:', info: item.leverage },
+                                                    { title: 'Minimum trading days:', info: item.minDays },
+                                                    { title: 'Maximum trading days:', info: item.maxDays },
+                                                    { title: 'Target Phase 1:', info: item.target1 },
+                                                    { title: 'Target Phase 2:', info: item.target2 },
+                                                    { title: 'Maximum daily loss:', info: item.dailyLoss },
+                                                    { title: 'Total maximum loss:', info: item.totalLoss },
+                                                    { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
+                                                    { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
+                                                    { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
+                                                ]}
+                                                price={item.dollarPrice}
+                                            />
+
+                                        </TabPanel>
+                                    )
+                                })
+                        }
                     </TabView>
                 </div>
-                <Footer data={footer?.footer} />
+                <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
                 <style>
                     {
                         `
@@ -129,6 +193,7 @@ export default function Rules({ footer, data, titles }: { footer: any, data: any
 export const getStaticProps: GetStaticProps = async () => {
 
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
     const data = await getQueryTariffs();
     const titles = await getQueryTariffTitles();
 
@@ -138,7 +203,8 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             footer,
             data,
-            titles
+            titles,
+            footerEng
         },
         revalidate: 3600,
     };

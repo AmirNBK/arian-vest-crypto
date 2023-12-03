@@ -36,6 +36,11 @@ export async function getQueryTariffTitles() {
               coloredTitle
               tableTitle
             }
+            engAllTitles {
+              normalTitle
+              coloredTitle
+              tableTitle
+            }
           }
         }
       }
@@ -43,7 +48,7 @@ export async function getQueryTariffTitles() {
       `,
   );
 
-  return data?.pages?.nodes[2].tariffsTitles.allTitles[0];
+  return data?.pages?.nodes[2].tariffsTitles;
 }
 
 export async function getQueryTariffs() {
@@ -54,6 +59,29 @@ export async function getQueryTariffs() {
               nodes {
                 tariffs {
                   tariffs {
+                    type
+                    desccription
+                    title
+                    range
+                    pricesInfo {
+                      item {
+                        dailyLoss
+                        dollarPrice
+                        fieldGroupName
+                        leverage
+                        maxDays
+                        minDays
+                        newsTrading
+                        price
+                        refund
+                        robot
+                        target1
+                        target2
+                        totalLoss
+                      }
+                    }
+                  }
+                  engTariffs {
                     type
                     desccription
                     title

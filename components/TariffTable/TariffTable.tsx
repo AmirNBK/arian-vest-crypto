@@ -17,6 +17,7 @@ const TariffTable = (props: {
     removeTitle?: boolean
     minimal?: boolean
     hasRadius?: boolean
+    isLocationIran?: boolean
 }) => {
     useEffect(() => {
         AOS.init();
@@ -38,19 +39,19 @@ const TariffTable = (props: {
                 </div>
             }
 
-            <div className='flex flex-row-reverse w-full'>
+            <div className={`${props.isLocationIran ? 'flex-row-reverse' : 'flex-row'} flex w-full`}>
                 <div className='flex-1 sm:block flex flex-col justify-between'>
                     {props.data.map((item, index) => {
                         return (
                             <div key={index} className={`${index % 2 === 0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse
                         px-6 py-4
-                        justify-between`}
+                         ${props.isLocationIran ? 'justify-between' : 'justify-end'}`}
                                 style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
                             >
                                 <div>
                                     <h2 className={`text-sm whitespace-nowrap	 sm:text-base sm:text-${props.minimal ? 'xs' : 'base'}
                             text-main-orange
-                            rtl`}>{item.title}</h2>
+                            ${props.isLocationIran ? 'rtl' : 'ltr'}`}>{item.title}</h2>
                                 </div>
                             </div>
                         )
@@ -78,9 +79,10 @@ const TariffTable = (props: {
                 </div>
             </div>
 
-            <div className='tablePrice flex flex-col sm:flex-row-reverse py-8 gap-8 sm:gap-56 font-bold items-center text-white text-2xl justify-center'>
+            <div className={`tablePrice flex flex-col ${props.isLocationIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} py-8 gap-8 sm:gap-56 font-bold items-center text-white text-2xl justify-center`}>
                 <h2>
-                    هزینه حساب کاربری
+                    {props.isLocationIran ? 'هزینه حساب کاربری' : 'User account fee'}
+
                 </h2>
                 <h2> {props.price} <span className='text-main-orange -ml-1'> $ </span> </h2>
             </div>
@@ -91,7 +93,7 @@ const TariffTable = (props: {
                 }}
             >
                 <Link href={'/payment'}>
-                    <RegisterButton text='خرید' />
+                    <RegisterButton text={props.isLocationIran ? 'خرید' : 'Purchase'} />
                 </Link>
             </div>
 
