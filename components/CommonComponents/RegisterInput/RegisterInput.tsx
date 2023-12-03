@@ -7,6 +7,7 @@ const RegisterInput = (props: {
     value: string,
     onChange: (value: string) => void,
     type: string
+    isLocationIran: boolean
 }) => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
@@ -17,7 +18,7 @@ const RegisterInput = (props: {
         <>
             <input className={`${myFont.className} RegisterInput
             mx-auto
-            text-white bg-transparent border ml-auto sm:w-8/12 w-full border-solid border-white placeholder:text-right  rounded-lg px-3 py-3 sm:py-3 placeholder:text-base`}
+            text-white bg-transparent border ml-auto sm:w-8/12 w-full border-solid border-white ${props.isLocationIran ? 'placeholder:text-right' : 'placeholder:text-left'}  rounded-lg px-3 py-3 sm:py-3 placeholder:text-base`}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={handleInputChange}

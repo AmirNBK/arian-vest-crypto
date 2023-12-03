@@ -18,20 +18,24 @@ const inter = Inter({ subsets: ['latin'] })
 import { Toast, ToastMessage } from 'primereact/toast';
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
-import { getQueryFooter, loginMutation, registerUserMutation } from '@/lib/service'
+import { getQueryEngFooter, getQueryFooter, loginMutation, registerUserMutation } from '@/lib/service'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
 import { GetStaticProps } from 'next'
+import useLocationData from '@/Hooks/location'
 
-export default function Register({ footer }: { footer: any }) {
+export default function Register({ footer, footerEng }: { footer: any, footerEng: any }) {
 
     const [checked, setChecked] = useState<any>(false);
     const router = useRouter();
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const checkPasswordStrength = usePasswordStrengthCheck();
     const toastBottomRight = useRef<Toast>(null);
     const showMessage = (event: React.MouseEvent<HTMLButtonElement>, ref: React.RefObject<Toast>, severity: ToastMessage['severity']) => {
         const target = event.target as HTMLButtonElement;
+
         const label = target.innerText;
 
         ref.current?.show({ severity: severity, summary: label, detail: label, life: 3000 });
@@ -196,17 +200,31 @@ export default function Register({ footer }: { footer: any }) {
         >
             <Toast ref={toastBottomRight} position="bottom-right" />
             <PrimeReactProvider>
-                <Header />
-                <div className='Register__title flex flex-col gap-4 mt-16 justify-center p-12'>
+                <Header isLocationInIran={isLocationInIran} />
+                <div className='Register__title flex flex-col gap-4 mt-4 justify-center p-12'>
                     <div className='flex flex-col sm:flex-row-reverse w-full items-center justify-center mb-8 sm:mb-24 gap-5'>
                         <Image src={icon} alt='registerIcon' />
                         <div className={`${myFont.className} text-end text-3xl sm:text-5xl flex flex-row-reverse gap-1`}>
-                            <p className='text-white'>
-                                فرآیند
-                            </p>
-                            <p style={{ color: '#F68D2E' }}>
-                                عضویت یا ورود
-                            </p>
+                            {isLocationInIran ? (
+                                <>
+                                    <p className='text-white'>
+                                        فرآیند
+                                    </p>
+                                    <p style={{ color: '#F68D2E' }}>
+                                        عضویت یا ورود
+                                    </p>
+                                </>
+                            ) : (
+                                <>
+                                    <p className='text-white ml-2'>
+                                        Process
+                                    </p>
+                                    <p style={{ color: '#F68D2E' }}>
+                                        Sign Up or Log In
+                                    </p>
+                                </>
+                            )}
+
                         </div>
                     </div>
 
@@ -214,70 +232,111 @@ export default function Register({ footer }: { footer: any }) {
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px', boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }} className='w-full px-8 py-8'
                             >
-                                <div className='flex flex-row gap-2 items-center justify-end'>
-                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> عضویت </p>
+                                <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center justify-end`}>
+                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}>
+                                        {isLocationInIran ? 'عضویت' : 'Register'}
+                                    </p>
                                     <Image src={signUp} alt='signup' />
                                 </div>
                                 <form onSubmit={handleRegistration} className='mt-16 flex flex-col gap-10'>
-                                    <RegisterInput placeholder='نام کاربری' value={registrationData.username}
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'نام کاربری' : 'Username'}
+                                        value={registrationData.username}
                                         onChange={(value) => handleInputChange("username", value)}
                                         type='text'
                                     />
-                                    <RegisterInput placeholder='محل سکونت' value={registrationData.locale}
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'محل سکونت' : 'Location'}
+                                        value={registrationData.locale}
                                         onChange={(value) => handleInputChange("locale", value)}
                                         type='text'
                                     />
-                                    <RegisterInput placeholder='آدرس ایمیل' value={registrationData.email}
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'آدرس ایمیل' : 'Email Address'}
+                                        value={registrationData.email}
                                         onChange={(value) => handleInputChange("email", value)}
                                         type='email'
                                     />
-                                    <RegisterInput placeholder='رمز عبور' value={registrationData.password}
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'رمز عبور' : 'Password'}
+                                        value={registrationData.password}
                                         onChange={(value) => handleInputChange("password", value)}
                                         type='password'
                                     />
-                                    <RegisterTextarea placeholder='چه مقدار سابقه کار در بازار مالی را دارید؟'
+                                    <RegisterTextarea
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'چه مقدار سابقه کار در بازار مالی را دارید؟' : 'What is your experience in the financial market?'}
                                         value={registrationData.description}
                                         onChange={(value) => handleInputChange("description", value)}
                                     />
-                                    <RegisterButton text='عضویت' />
+                                    <RegisterButton text={isLocationInIran ? 'عضویت' : 'Register'} />
                                 </form>
+
                             </div>
                             <p className={`${myFontIran.className} text-white text-center mt-4 text-base`}>
-                                اطلاعات شخصی شما برای پردازش سفارش شما استفاده می‌شود، و پشتیبانی از تجربه شما در این وبسایت، و برای اهداف دیگری که در  <span className='inline text-underline' style={{ color: '#F68D2E', textDecoration: 'underline' }}> سیاست حفظ حریم خصوصی </span> توضیح داده شده است.
+                                {isLocationInIran ? (
+                                    'اطلاعات شخصی شما برای پردازش سفارش شما استفاده می‌شود، و پشتیبانی از تجربه شما در این وبسایت، و برای اهداف دیگری که در'
+                                ) : (
+                                    'Your personal information is used to process your order, support your experience throughout this website, and for other purposes as explained in the'
+                                )}
+                                <span className='inline text-underline' style={{ color: '#F68D2E', textDecoration: 'underline' }}>
+                                    {' '}
+                                    {isLocationInIran ? 'سیاست حفظ حریم خصوصی' : 'Privacy Policy'}
+                                </span>
+                                {isLocationInIran ? ' توضیح داده شده است.' : ' explained therein.'}
                             </p>
+
                         </div>
 
                         <div className='flex-1'>
                             <div style={{ background: '#1D1D1D', borderRadius: '20px', boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }} className='w-full px-8 py-8 h-fit'
 
                             >
-                                <div className='flex flex-row gap-2 items-center justify-end '>
-                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}> ورود </p>
+                                <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center justify-end `}>
+                                    <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}>
+                                        {isLocationInIran ? 'ورود' : 'Login'}
+                                    </p>
                                     <Image src={login} alt='login' />
                                 </div>
                                 <form onSubmit={handleLogin} className='mt-12 flex flex-col gap-10'>
-                                    <RegisterInput placeholder='نام کاربری یا ایمیل' value={loginData.username}
-                                        onChange={(value) => handleInputChangeLogin("username", value)} type='text' />
-                                    <RegisterInput placeholder='رمز عبور' value={loginData.password}
-                                        onChange={(value) => handleInputChangeLogin("password", value)} type='password' />
-                                    <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base text-right`}>
-                                        رمز عبور خود را فراموش کرده اید؟
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
+                                        value={loginData.username}
+                                        onChange={(value) => handleInputChangeLogin("username", value)}
+                                        type='text'
+                                    />
+                                    <RegisterInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'رمز عبور' : 'Password'}
+                                        value={loginData.password}
+                                        onChange={(value) => handleInputChangeLogin("password", value)}
+                                        type='password'
+                                    />
+                                    <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base ${isLocationInIran && 'text-right'}`}>
+                                        {isLocationInIran ? 'رمز عبور خود را فراموش کرده اید؟' : 'Forgot your password?'}
                                     </p>
-                                    <div className='flex flex-row items-center gap-2 text-right justify-end'>
+                                    <div className={`flex flex-row items-center gap-2 ${isLocationInIran && 'text-right justify-end'}`}>
                                         <p className={`${myFontIran.className} text-white text-base`}>
-                                            مرا به خاطر بسپار
+                                            {isLocationInIran ? 'مرا به خاطر بسپار' : 'Remember me'}
                                         </p>
                                         <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
                                     </div>
-                                    <RegisterButton text='ورود' />
+                                    <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
                                 </form>
+
                             </div>
 
                             <Image src={chart} alt='chart' className='lg:block hidden' style={{ opacity: '0.3' }} />
                         </div>
                     </div>
                 </div>
-                <Footer data={footer?.footer} />
+                <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
             </PrimeReactProvider>
 
             <style>
@@ -295,10 +354,13 @@ export default function Register({ footer }: { footer: any }) {
 
 export const getStaticProps: GetStaticProps = async () => {
     const footer = await getQueryFooter();
+    const footerEng = await getQueryEngFooter();
+
 
     return {
         props: {
-            footer
+            footer,
+            footerEng
         },
         revalidate: 3600,
     };

@@ -46,7 +46,7 @@ const Footer = (props: {
                         <input placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
                             style={{ borderBottom: '3px solid #101010', direction: 'ltr' }}
                         />
-                        <Image src={arrow} alt='arrow' className='cursor-pointer lg:w-fit w-12' />
+                        <Image src={arrow} alt='arrow' className={`cursor-pointer lg:w-fit w-12`} />
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@ const Footer = (props: {
                             <input placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
                                 style={{ borderBottom: '3px solid #101010', direction: 'ltr' }}
                             />
-                            <Image src={arrow} alt='arrow' className='cursor-pointer lg:w-fit w-12' />
+                            <Image src={arrow} alt='arrow' className={`${!isLocationInIran && 'rotate-180'} cursor-pointer lg:w-fit w-12`} />
                         </div>
                     </div>
 
