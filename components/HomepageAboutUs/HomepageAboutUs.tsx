@@ -43,7 +43,7 @@ const HomepageAboutUs = (props: {
                         >
                             {props.isLocationIran ? props.data?.aboutUs[0].description : props.data?.engAboutUs[0].description}
                         </p>
-                        <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
+                        <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute ${props.isLocationIran ? 'right-10 bottom-16' : 'left-[150px] bottom-10'} 3xl:right-[20%]`}
                             style={{ textDecoration: 'underline' }}>
                             {props.isLocationIran ?
                                 'بیشتر بخوانید' : 'Read more'

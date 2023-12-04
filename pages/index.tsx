@@ -95,7 +95,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
     }
   };
 
-  console.log(aboutUsSection);
+  console.log(collabrationSuccessSection);
 
 
   return (
@@ -262,11 +262,27 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 style={{ zIndex: '5' }}
               >
                 <span className='text-3xl text-main-orange text-center '>
-                </span>{accountGrowthSection?.homepage.accountGrowth[0].normalTitle} <span style={{ color: '#F68D2E' }}>
-                  {accountGrowthSection?.homepage.accountGrowth[0].coloredTitle} </span>
+                </span>{
+                  isLocationInIran ?
+                    accountGrowthSection?.homepage.accountGrowth[0].normalTitle
+                    :
+                    accountGrowthSection?.homepage.accountGrowthCop[0].normalTitle
+                } <span style={{ color: '#F68D2E' }}>
+                  {
+                    isLocationInIran ?
+                      accountGrowthSection?.homepage.accountGrowth[0].coloredTitle
+                      :
+                      accountGrowthSection?.homepage.accountGrowthCop[0].coloredTitle
+
+                  } </span>
               </p>
               <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
-                {accountGrowthSection?.homepage.accountGrowth[0].description}
+                {
+                  isLocationInIran ?
+                    accountGrowthSection?.homepage.accountGrowth[0].description
+                    :
+                    accountGrowthSection?.homepage.accountGrowthCop[0].description
+                }
               </p>
               <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
             </div>
@@ -277,31 +293,91 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
             >
               <span className='text-3xl text-main-orange text-center'>
-              </span> {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle}  <span style={{ color: '#F68D2E' }}>
-                {collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle} </span>
+              </span> {
+                isLocationInIran ?
+                  collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle
+                  :
+                  collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].normalTitle
+              }  <span style={{ color: '#F68D2E' }}>
+                {
+                  isLocationInIran ?
+                    collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle
+                    :
+                    collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].coloredTitle
+                } </span>
             </p>
             <div className='flex flex-col gap-10 mt-6 relative'>
               <BenefitsComponent
-                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].normalTitle}
-                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].coloredTitle}
-                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[0].description}
+                isLocationIran={isLocationInIran}
+                title={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[0].normalTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].normalTitle
+                }
+                highlightTitle={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[0].coloredTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].coloredTitle
+                }
+                description={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[0].description
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].description
+                }
                 image={benefitsPic}
                 position='normal'
               />
               <BenefitsComponent
-                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].normalTitle}
-                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].coloredTitle}
-                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[1].description}
+                isLocationIran={isLocationInIran}
+
+                title={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[1].normalTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].normalTitle
+                }
+                highlightTitle={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[1].coloredTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].coloredTitle
+                }
+                description={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[1].description
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].description
+                }
                 image={benefitsPic2}
                 position=''
               />
               <BenefitsComponent
-                title={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].normalTitle}
-                highlightTitle={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].coloredTitle}
-                description={collabrationSuccessSection?.homepage.collabrationSuccessSection[2].description}
+                isLocationIran={isLocationInIran}
+                title={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[2].normalTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].normalTitle
+                }
+                highlightTitle={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[2].coloredTitle
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].coloredTitle
+                }
+                description={
+                  isLocationInIran ?
+                    collabrationSuccessSection?.homepage.collabrationSuccessSection[2].description
+                    :
+                    collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].description
+                }
                 image={benefitsPic3}
                 position='normal'
               />
+
               <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1] lg:block hidden' />
             </div>
           </div>
@@ -316,7 +392,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 {successSteps.homepage.successSteps[0].title[0].coloredTitle} </span>
             </p>
             <div className='pt-12'>
-              <StepsComponent data={successSteps.homepage.successSteps[0].item} />
+              <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
             </div>
           </div>
 

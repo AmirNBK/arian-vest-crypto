@@ -10,6 +10,7 @@ import 'aos/dist/aos.css';
 
 const StepsComponent = (props: {
     data: any
+    isLocationIran: boolean
 }) => {
     const [current, setCurrent] = useState(1);
     const [activeStep, setActiveStep] = useState(1);
@@ -52,8 +53,6 @@ const StepsComponent = (props: {
                         stepsNode.querySelector(`div:nth-of-type(${i})`)?.classList.add('active');
                     }
                 }
-
-                // Update the current step state
                 setCurrent(targetStep);
                 setActiveStep(targetStep);
             });
@@ -71,7 +70,11 @@ const StepsComponent = (props: {
                     }}
                 >
                     <p className='absolute font-light top-[-30px] text-base text-white text-wrap'
-                    > {props.data[0].title} </p>
+                    > {
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[0].title
+                                : props.data.engSuccessSteps[0].item[0].title
+                        } </p>
                     <p>
                         1
                     </p>
@@ -84,7 +87,12 @@ const StepsComponent = (props: {
                     }}
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
-                        <p className='absolute font-light top-[-30px] sm:-translate-x-[40px] -translate-x-[30px] text-base text-white'> {props.data[1].title}</p>
+                        <p className='absolute font-light top-[-30px] sm:-translate-x-[40px] -translate-x-[30px] text-base text-white'> {
+                        props.isLocationIran ? 
+                        props.data.successSteps[0].item[1].title
+                    :
+                    props.data.engSuccessSteps[0].item[1].title
+                    }</p>
                     </span>
                 </button>
                 <div></div>
@@ -96,29 +104,46 @@ const StepsComponent = (props: {
                 >
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
                     <p className='absolute sm:-translate-x-[0px] translate-x-[10px]
-                    font-light top-[-30px] w-max text-base text-white'> {props.data[2].title} </p>
+                    font-light top-[-30px] w-max text-base text-white'> {
+                    props.isLocationIran ? 
+                    props.data.successSteps[0].item[2].title : props.data.engSuccessSteps[0].item[2].title} </p>
                 </button>
             </div>
             <div id="contents" className={`${myFontIran.className}`} >
                 <div className="content active" data-step="1"
 
                 >
-                    <div className="content__box rtl">
-                        {props.data[0].description}
+                    <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
+                        {
+                        props.isLocationIran ? 
+                        props.data.successSteps[0].item[0].description
+                    :
+                    props.data.engSuccessSteps[0].item[0].description
+                    }
                     </div>
                 </div>
                 <div className="content" data-step="2"
 
                 >
-                    <div className="content__box rtl">
-                        {props.data[1].description}
+                    <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
+                        {
+                        props.isLocationIran ?
+                        props.data.successSteps[0].item[1].description
+                    :
+                    props.data.engSuccessSteps[0].item[1].description
+                    }
                     </div>
                 </div>
                 <div className="content" data-step="3"
 
                 >
-                    <div className="content__box rtl">
-                        {props.data[2].description}
+                    <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
+                        {
+                        props.isLocationIran ? 
+                        props.data.successSteps[0].item[2].description
+                    :
+                    props.data.engSuccessSteps[0].item[2].description
+                    }
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>

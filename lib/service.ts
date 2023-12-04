@@ -235,6 +235,11 @@ export async function getQueryAccountGrowthSection() {
                     coloredTitle
                     description
                   }
+                  accountGrowthCop {
+                    normalTitle
+                    description
+                    coloredTitle
+                  }
                 }
               }
             }
@@ -253,6 +258,11 @@ export async function getQueryCollabrationSuccessSection() {
               nodes {
                 homepage {
                   collabrationSuccessSection {
+                    normalTitle
+                    coloredTitle
+                    description
+                  }
+                  engCollabrationSuccessSection {
                     normalTitle
                     coloredTitle
                     description
@@ -279,6 +289,10 @@ export async function getQueryCollabrationSuccessSectionTitle() {
               coloredTitle
               normalTitle
             }
+            engCollabrationSuccessTitle {
+              coloredTitle
+              normalTitle
+            }
           }
         }
       }
@@ -297,6 +311,16 @@ export async function getQuerySuccessSteps() {
               nodes {
                 homepage {
                   successSteps {
+                    item {
+                      title
+                      description
+                    }
+                    title {
+                      normalTitle
+                      coloredTitle
+                    }
+                  }
+                engSuccessSteps {
                     item {
                       title
                       description

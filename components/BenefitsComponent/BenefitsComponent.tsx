@@ -13,6 +13,7 @@ const BenefitsComponent = (props: {
     description: string
     image: StaticImageData
     position: string
+    isLocationIran: boolean
 }) => {
 
     useEffect(() => {
@@ -26,11 +27,11 @@ const BenefitsComponent = (props: {
                     data-aos-duration="2000" data-aos-once={true} data-aos={`${props.position === 'normal' ? 'fade-left' : 'fade-right'}`}
                 >
                     <h2 className='cooroprate__Benefits__firstSection__info__title rtl'>
-                        <p className={`${myFont.className} text-white text-2xl lg:text-3xl 3xl:text-5xl pb-4 lg:py-12`}>
+                        <p className={`${myFont.className} ${!props.isLocationIran && 'text-left'} text-white text-2xl lg:text-3xl 3xl:text-5xl pb-4 lg:py-12`}>
                             <span className='text-3xl text-main-orange'> </span> {props.title} <span style={{ color: '#F68D2E' }}> {props.highlightTitle} </span>
                         </p>
                     </h2>
-                    <p className={`${myFontIran.className} cooroprate__Benefits__firstSection__info__description rtl
+                    <p className={`${myFontIran.className} cooroprate__Benefits__firstSection__info__description ${props.isLocationIran ? 'rtl' : 'text-left'}
                 text-sm lg:text-base 3xl:text-2xl
                 text-white`}>
                         {props.description}
