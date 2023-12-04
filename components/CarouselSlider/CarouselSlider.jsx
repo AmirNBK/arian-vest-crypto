@@ -12,7 +12,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
 import TariffTable from '../TariffTable/TariffTable';
 
-const CarouselSlider = ({ type, data }) => {
+const CarouselSlider = ({ type, data, isLocationIran }) => {
     const [visible, setVisible] = useState(false);
     const [clickedTariff, setClickedTariff] = useState(1);
 
@@ -219,73 +219,115 @@ const CarouselSlider = ({ type, data }) => {
             >
                 <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                <TariffTable removeTitle={true}
-                title='همیشه همراه شماییم' data={[
-                    { title: 'مقدار سرمایه:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
-                    { title: 'leverage حساب :', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
-                    { title: 'حداقل روزهای معاملاتی:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}`}` },
-                    { title: 'حداکثر روزهای معاملاتی:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
-                    { title: 'target فاز 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
-                    { title: 'target فاز 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
-                    { title: 'حداکثر ضرر روزانه:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
-                    { title: 'حداکثر ضرر کلی:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
-                    {
-                        title: 'استفاده از ربات:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}`
-                    },
-                    { title: 'refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
-                    { title: 'news trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
-                ]}
+                <TariffTable
+                    removeTitle={true}
+                    title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                    data={[
+                        { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                        { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                        { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}`}` },
+                        { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                        { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                        { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
+                        { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                        { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                        { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
+                        { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
+                        { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
+                    ]}
                     fullWidth
                     price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
                 />
+
+
             </Dialog>
             <div id="contentContainer" className="trans3d">
                 <section id="carouselContainer" className="trans3d">
-                    <figure id="item1" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(7)}
+                    {type !== 'one-step' ?
+                        <figure id="item1" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(7)}
 
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/3762/5f55/25836ab708fe28a431cba320d02b93fe?Expires=1698019200&Signature=ec7ODiZPTqznUnMV3LfCEZMReL9Dgt9TNsLhyZ9LU92STauQiJLTqcLO9rr4rO1TyJp5s4ZT10KYsTRNX1XGKymFyj3aHPhytz3NN1lgXEQXZ6ju3cnqYFIucNLfY4jwWjpKAe7Ndp2E8vwMHEAZIPX6UhzSdU82ZVoqokDh3A9MKZqgu0voTqMKC~8lCWH6wtty4~UamF925R1uOwt6QuYmGbqFtD3qeGRkYTzy4XhDb~Vs0uSEjunLtKzO4PtxdEeq0~irU2yMSnzIvMWqgSzBi~ewPKN1PV9TYoryJQDgPZsB-t0tTZydLyej1RQM996lPFI030KykMRL~iA5GQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
                         >
-                            تعرفه شماره 7
-                        </div>
-                    </figure>
-                    <figure id="item2" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(6)}
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1698019200&Signature=DKiPsm~zfsaV9TlqobYjt0Ww0cBxpfh2ZX~1MKeHyOu8XC5UG3JfW~omPpmdFdetdOAb9FoSCJDSXFLZzY64nusQ~hZXx4nSi0xcGLPTDdUFJJFcg8DcfT7q-NMcUs-9K0cP~MpBPDi5iGDucPcaHLO7mx4Kw8IHQ0m0oXPvCkKfXKqgMfQ~yWjicaUqEgu~9hs2XBlfBmAuuO5z3N8onUm88xjzs5xTDZjhwz9dxDYCPwc6gYrq8Ok9nO8jJs8J124NlOpEv5o14EJKIRgD10QtXC-ixf9DVZuFbU2RLgq7exnXYDsuCbkxU~tYEN5yOnC19nPA0-pWzR~Y-zYeFg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+                            </div>
+                        </figure>
+                        :
+                        <figure id="item1" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(5)}
+
                         >
-                            تعرفه شماره 6
-                        </div>
-                    </figure>
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+                            </div>
+                        </figure>
+                    }
+                    {type !== 'one-step' ?
+                        <figure id="item2" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(6)}
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100.png")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+
+                            </div>
+                        </figure>
+                        :
+                        <figure id="item2" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(4)}
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+
+                            </div>
+                        </figure>
+                    }
                     <figure id="item3" className="carouselItem trans3d"
                         onClick={() => tariffClickHandler(5)}
 
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/f198/5937/0ed9d7e64e562978fc5c069751a2ce1b?Expires=1698019200&Signature=FvmuyZ2dSBSQStjAzC~ecdzIBQdAQcvq2EN1cW-Y5FKvll012d24Y~ArHrPxR729dgZgwb95-7h7crEg0mct5Fnc2NNLzDShSRVdm5RwBgBlo23cSn5fafJeZYx~covLqQ85xNimG5qKVhUh822yQi6lKLlxOYQnEJ1AYErfgzG031dt-HBEJKxVrvF2siXsPOahItDR-E3io4Gwryho0oA9MUA7NoUN7xSpHgHfl-05DbJdJD1yesl3LoYTUmKDbnTXMjKYtTKNppOxXcDKqNYlWM-56cKDhx~ynS4Bk6esqEFsO0qblcZM5EP0MfDN4iCyhyjxUbD~ffdH6D7BwA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 5
+
+
                         </div>
                     </figure>
                     <figure id="item4" className="carouselItem trans3d"
@@ -294,14 +336,15 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1698019200&Signature=DKiPsm~zfsaV9TlqobYjt0Ww0cBxpfh2ZX~1MKeHyOu8XC5UG3JfW~omPpmdFdetdOAb9FoSCJDSXFLZzY64nusQ~hZXx4nSi0xcGLPTDdUFJJFcg8DcfT7q-NMcUs-9K0cP~MpBPDi5iGDucPcaHLO7mx4Kw8IHQ0m0oXPvCkKfXKqgMfQ~yWjicaUqEgu~9hs2XBlfBmAuuO5z3N8onUm88xjzs5xTDZjhwz9dxDYCPwc6gYrq8Ok9nO8jJs8J124NlOpEv5o14EJKIRgD10QtXC-ixf9DVZuFbU2RLgq7exnXYDsuCbkxU~tYEN5yOnC19nPA0-pWzR~Y-zYeFg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 3
+
+
                         </div>
                     </figure>
                     <div id="item5" className="carouselItem trans3d"
@@ -310,14 +353,15 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/3762/5f55/25836ab708fe28a431cba320d02b93fe?Expires=1698019200&Signature=ec7ODiZPTqznUnMV3LfCEZMReL9Dgt9TNsLhyZ9LU92STauQiJLTqcLO9rr4rO1TyJp5s4ZT10KYsTRNX1XGKymFyj3aHPhytz3NN1lgXEQXZ6ju3cnqYFIucNLfY4jwWjpKAe7Ndp2E8vwMHEAZIPX6UhzSdU82ZVoqokDh3A9MKZqgu0voTqMKC~8lCWH6wtty4~UamF925R1uOwt6QuYmGbqFtD3qeGRkYTzy4XhDb~Vs0uSEjunLtKzO4PtxdEeq0~irU2yMSnzIvMWqgSzBi~ewPKN1PV9TYoryJQDgPZsB-t0tTZydLyej1RQM996lPFI030KykMRL~iA5GQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 2
+
+
                         </div>
                     </div>
                     <figure id="item6" className="carouselItem trans3d"
@@ -326,14 +370,14 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a0cc/c21f/0cc53cc8a38222f1d3eca8fd2ecfb197?Expires=1698019200&Signature=BM~l57AISMWCKoIJEzSa60Ys1hSpZudsopwQyWMETfSNcbOOKibH5HX8ZxYpNxuAd-6KTgGB2kykI6sT1nTJv05ORakB3HrOC-cJeD6pyLzXXJG2PZ9YUB-f1k5YALjX0BlBmzov9KhKA2twpG7XbiBHF1DXI7WTC0U2iaE9ng5KpVggf0iQ96AW7AEqvOsp7UG5agl8c4Lqv1qwGyBkhSB-BicR5gMjJshhI-QBCxCcNnhy1lu~4u8xF-3buGKnBBc1rwEjghzV5HwZpvLK9NLRPlVZgCPGtfGfXoPWwMcPScdOsBTL5wiVCcWhgAFAPsdfhD6Y~kUHL0gUwvTm7w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
                                 backgroundSize: 'cover',
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 1
+
                         </div>
                     </figure>
                     <figure id="item7" className="carouselItem trans3d"
@@ -342,14 +386,14 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url(https://s3-alpha-sig.figma.com/img/f198/5937/0ed9d7e64e562978fc5c069751a2ce1b?Expires=1698019200&Signature=FvmuyZ2dSBSQStjAzC~ecdzIBQdAQcvq2EN1cW-Y5FKvll012d24Y~ArHrPxR729dgZgwb95-7h7crEg0mct5Fnc2NNLzDShSRVdm5RwBgBlo23cSn5fafJeZYx~covLqQ85xNimG5qKVhUh822yQi6lKLlxOYQnEJ1AYErfgzG031dt-HBEJKxVrvF2siXsPOahItDR-E3io4Gwryho0oA9MUA7NoUN7xSpHgHfl-05DbJdJD1yesl3LoYTUmKDbnTXMjKYtTKNppOxXcDKqNYlWM-56cKDhx~ynS4Bk6esqEFsO0qblcZM5EP0MfDN4iCyhyjxUbD~ffdH6D7BwA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4)',
+                                backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 4
+
                         </div>
                     </figure>
                     <figure id="item8" className="carouselItem trans3d"
@@ -358,62 +402,101 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url(https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1698019200&Signature=DKiPsm~zfsaV9TlqobYjt0Ww0cBxpfh2ZX~1MKeHyOu8XC5UG3JfW~omPpmdFdetdOAb9FoSCJDSXFLZzY64nusQ~hZXx4nSi0xcGLPTDdUFJJFcg8DcfT7q-NMcUs-9K0cP~MpBPDi5iGDucPcaHLO7mx4Kw8IHQ0m0oXPvCkKfXKqgMfQ~yWjicaUqEgu~9hs2XBlfBmAuuO5z3N8onUm88xjzs5xTDZjhwz9dxDYCPwc6gYrq8Ok9nO8jJs8J124NlOpEv5o14EJKIRgD10QtXC-ixf9DVZuFbU2RLgq7exnXYDsuCbkxU~tYEN5yOnC19nPA0-pWzR~Y-zYeFg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4)',
+                                backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 5
-                        </div>
-                    </figure>
-                    <figure id="item9" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(6)}
 
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a0cc/c21f/0cc53cc8a38222f1d3eca8fd2ecfb197?Expires=1698019200&Signature=BM~l57AISMWCKoIJEzSa60Ys1hSpZudsopwQyWMETfSNcbOOKibH5HX8ZxYpNxuAd-6KTgGB2kykI6sT1nTJv05ORakB3HrOC-cJeD6pyLzXXJG2PZ9YUB-f1k5YALjX0BlBmzov9KhKA2twpG7XbiBHF1DXI7WTC0U2iaE9ng5KpVggf0iQ96AW7AEqvOsp7UG5agl8c4Lqv1qwGyBkhSB-BicR5gMjJshhI-QBCxCcNnhy1lu~4u8xF-3buGKnBBc1rwEjghzV5HwZpvLK9NLRPlVZgCPGtfGfXoPWwMcPScdOsBTL5wiVCcWhgAFAPsdfhD6Y~kUHL0gUwvTm7w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
-                        >
-                            تعرفه شماره 6
-                        </div>
-                    </figure>
-                    <figure id="item10" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(7)}
 
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1698019200&Signature=DKiPsm~zfsaV9TlqobYjt0Ww0cBxpfh2ZX~1MKeHyOu8XC5UG3JfW~omPpmdFdetdOAb9FoSCJDSXFLZzY64nusQ~hZXx4nSi0xcGLPTDdUFJJFcg8DcfT7q-NMcUs-9K0cP~MpBPDi5iGDucPcaHLO7mx4Kw8IHQ0m0oXPvCkKfXKqgMfQ~yWjicaUqEgu~9hs2XBlfBmAuuO5z3N8onUm88xjzs5xTDZjhwz9dxDYCPwc6gYrq8Ok9nO8jJs8J124NlOpEv5o14EJKIRgD10QtXC-ixf9DVZuFbU2RLgq7exnXYDsuCbkxU~tYEN5yOnC19nPA0-pWzR~Y-zYeFg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
-                        >
-                            تعرفه شماره 7
                         </div>
                     </figure>
+                    {type !== 'one-step' ?
+                        <figure id="item2" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(6)}
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100.png")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+
+                            </div>
+                        </figure>
+                        :
+                        <figure id="item2" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(4)}
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+
+                            </div>
+                        </figure>
+                    }
+                    {type !== 'one-step' ?
+                        <figure id="item1" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(7)}
+
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+                            </div>
+                        </figure>
+                        :
+                        <figure id="item1" className="carouselItem trans3d"
+                            onClick={() => tariffClickHandler(5)}
+
+                        >
+                            <div className="carouselItemInner trans3d"
+                                style={{
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
+                                    backgroundSize: 'cover'
+                                }}
+                            ></div>
+                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                            >
+
+                            </div>
+                        </figure>
+                    }
                     <figure id="item11" className="carouselItem trans3d"
                         onClick={() => tariffClickHandler(1)}
 
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/3762/5f55/25836ab708fe28a431cba320d02b93fe?Expires=1698019200&Signature=ec7ODiZPTqznUnMV3LfCEZMReL9Dgt9TNsLhyZ9LU92STauQiJLTqcLO9rr4rO1TyJp5s4ZT10KYsTRNX1XGKymFyj3aHPhytz3NN1lgXEQXZ6ju3cnqYFIucNLfY4jwWjpKAe7Ndp2E8vwMHEAZIPX6UhzSdU82ZVoqokDh3A9MKZqgu0voTqMKC~8lCWH6wtty4~UamF925R1uOwt6QuYmGbqFtD3qeGRkYTzy4XhDb~Vs0uSEjunLtKzO4PtxdEeq0~irU2yMSnzIvMWqgSzBi~ewPKN1PV9TYoryJQDgPZsB-t0tTZydLyej1RQM996lPFI030KykMRL~iA5GQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 1
+
                         </div>
                     </figure>
                     <figure id="item12" className="carouselItem trans3d"
@@ -422,14 +505,14 @@ const CarouselSlider = ({ type, data }) => {
                     >
                         <div className="carouselItemInner trans3d"
                             style={{
-                                backgroundImage: 'url("https://s3-alpha-sig.figma.com/img/a556/4129/ad3f36e8b58485474a21b84fecea194b?Expires=1698019200&Signature=DKiPsm~zfsaV9TlqobYjt0Ww0cBxpfh2ZX~1MKeHyOu8XC5UG3JfW~omPpmdFdetdOAb9FoSCJDSXFLZzY64nusQ~hZXx4nSi0xcGLPTDdUFJJFcg8DcfT7q-NMcUs-9K0cP~MpBPDi5iGDucPcaHLO7mx4Kw8IHQ0m0oXPvCkKfXKqgMfQ~yWjicaUqEgu~9hs2XBlfBmAuuO5z3N8onUm88xjzs5xTDZjhwz9dxDYCPwc6gYrq8Ok9nO8jJs8J124NlOpEv5o14EJKIRgD10QtXC-ixf9DVZuFbU2RLgq7exnXYDsuCbkxU~tYEN5yOnC19nPA0-pWzR~Y-zYeFg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")',
+                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
                                 backgroundSize: 'cover'
                             }}
                         ></div>
                         <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg)' }}
+                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                         >
-                            تعرفه شماره 2
+
                         </div>
                     </figure>
                 </section>
@@ -467,8 +550,8 @@ const CarouselSlider = ({ type, data }) => {
   font-family: "quicksandlight", Helvetica, Arial;
   color: #ffffff;
   text-shadow: -1px -1px 4px rgba(0, 0, 0, 0.35);
-  filter: dropshadow(color=#000000, offx=1, offy=1);
   overflow: hidden;
+
 }
 
 
@@ -536,7 +619,8 @@ const CarouselSlider = ({ type, data }) => {
   text-align: center;
   padding-top: 50px;
   border-radius : 15px;
-  background-position : cover;
+  background-position : center;
+  transform :scaleX(-1);
 
 
   @media (max-width: 640px) { 

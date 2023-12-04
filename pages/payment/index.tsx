@@ -15,6 +15,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
 import Footer from '@/components/Footer/Footer';
+import useLocationData from '@/Hooks/location';
 
 const GET_DISCOUNT_CODES = gql`
 query discount {
@@ -45,6 +46,20 @@ query Footer {
   } 
 `;
 
+const GET_FOOTER_ENG = gql`
+query engFooter {
+    pages {
+      nodes {
+        engFooter {
+          engPhone
+          engEmail
+          engAddress
+        }
+      }
+    }
+  }
+`;
+
 
 export default function Payment() {
     const nationality = ['ایران', 'آمریکا', 'عربستان']
@@ -52,12 +67,15 @@ export default function Payment() {
     const tariff = ['Traders Choice', 'Classic Challenge']
     const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
     const { data: footerData } = useQuery(GET_FOOTER);
+    const { data: footerDataEng } = useQuery(GET_FOOTER_ENG);
     const [chosenTariff, setChosenTariff] = useState(0);
     const [discountCode, setDiscountCode] = useState('');
     const [initialPrice, setInitialPrice] = useState<number | null>(null);
     const [finalPrice, setFinalPrice] = useState<number | null>(null);
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
@@ -128,54 +146,56 @@ export default function Payment() {
             className={`flex min-h-screen flex-col justify-between ${myFontIran.className}`}
         >
             <PrimeReactProvider>
-                <Header active={''} />
+                <Header active={''} isLocationInIran={isLocationInIran} />
 
                 <Toast ref={toastBottomRight} position="bottom-right" />
 
                 <div className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
 
-                    <h2 className='text-white rtl'>
-                        اطلاعات اولیه:
+                    <h2 className={`text-white ${isLocationInIran && 'rtl'}`}>
+                        {isLocationInIran ? 'اطلاعات اولیه:' : 'Initial Information:'}
                     </h2>
 
                     <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                        <PaymentComponent placeholder='نام خانوادگی' selectInput={false} />
-                        <PaymentComponent placeholder='نام کوچک' selectInput={false} />
-                        <PaymentComponent placeholder='ایمیل' selectInput={false} />
-                        <PaymentComponent placeholder='تلفن' selectInput={false} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+
                     </div>
 
 
-                    <h2 className='text-white rtl mt-6 mb-4'>
-                        اطلاعات نشانی:
+                    <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
+                        {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
                     </h2>
 
-                    <PaymentComponent placeholder='آدرس خیابان' selectInput={false} />
+                    <PaymentComponent placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
                     <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                        <PaymentComponent placeholder='استان' selectInput={false} />
-                        <PaymentComponent placeholder='نام خانوادگی' selectInput selectOptions={nationality} />
-                        <PaymentComponent placeholder='کد پستی' selectInput={false} />
-                        <PaymentComponent placeholder='شهر' selectInput={false} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={nationality} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                     </div>
 
-                    <h2 className='text-white rtl mt-6 mb-4'>
-                        از کجا درباره ما شنیدی؟
+                    <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
+                        {isLocationInIran ? 'از کجا درباره ما شنیدی؟' : 'Where did you hear about us?'}
                     </h2>
 
-                    <div className='text-end'>
-                        <PaymentComponent placeholder='نام خانوادگی' selectInput selectOptions={socialMedia} halfWidth />
+                    <div className={`${isLocationInIran && 'text-end'}`}>
+                        <PaymentComponent isLocationIran={isLocationInIran} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={socialMedia} halfWidth />
                     </div>
 
-                    <h2 className='text-white rtl mt-6 mb-4'>
-                        محصولات
+                    <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
+                        {isLocationInIran ? 'محصولات' : 'Products'}
                     </h2>
 
-                    <h2 className='rtl mt-6 mb-4 text-sm'
-                        style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                    <h2 className={`${isLocationInIran && 'rtl'} mt-6 mb-4 text-sm ${isLocationInIran ? '' : 'text-white'}`}
+                        style={{ color: isLocationInIran ? 'rgba(255, 255, 255, 0.6)' : '' }}
                     >
-                        انتخاب نوع طرح:
+                        {isLocationInIran ? 'انتخاب نوع طرح:' : 'Select Plan Type:'}
                     </h2>
+
 
                     <div className={`${inter.className} flex flex-col sm:flex-row gap-12`}>
                         {tariff.map((item, index) => {
@@ -192,15 +212,14 @@ export default function Payment() {
                             )
                         })}
                     </div>
-
-                    <h2 className='rtl mt-16 mb-4 text-sm'
+                    <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
                         style={{ color: 'rgba(255, 255, 255, 0.6)' }}
                     >
-                        نوع حساب را انتخاب کنید:
+                        {isLocationInIran ? 'نوع حساب را انتخاب کنید:' : 'Select Account Type:'}
                     </h2>
 
-                    <div className='flex flex-row-reverse text-white gap-6 mt-8'>
-                        <div className='flex flex-row-reverse gap-3'>
+                    <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
+                        <div className={'flex flex-row-reverse gap-3'}>
                             <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
                             <label className='text-xl'> Swap Free </label>
                         </div>
@@ -211,70 +230,83 @@ export default function Payment() {
                     </div>
 
 
-                    <h2 className='rtl mt-16 mb-4 text-sm'
+                    <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
                         style={{ color: 'rgba(255, 255, 255, 0.6)' }}
                     >
-                        انتخاب یک کارگزار:
+                        {isLocationInIran ? 'انتخاب یک کارگزار:' : 'Select a Broker:'}
                     </h2>
 
-                    <div className='flex flex-row-reverse text-white gap-6 mt-8'>
+                    <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
                         <div className='flex flex-row-reverse gap-3'>
                             <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
                             <label className='text-xl'> ThinkMarkets </label>
                         </div>
                     </div>
 
-                    <h2 className='rtl mt-16 mb-4 text-sm'
+                    <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
                         style={{ color: 'rgba(255, 255, 255, 0.6)' }}
                     >
-                        یک پلت فرم را انتخاب کنید:
+                        {isLocationInIran ? 'یک پلت فرم را انتخاب کنید:' : 'Select a Platform:'}
                     </h2>
 
-                    <div className='flex flex-row-reverse text-white gap-6 mt-8'>
-                        <div className='flex flex-row-reverse gap-3'>
+
+                    <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
+                        <div className={'flex flex-row-reverse gap-3'}>
                             <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
                             <label className='text-xl'> MT4 </label>
                         </div>
 
-                        <div className='flex flex-row-reverse gap-3'>
+                        <div className={'flex flex-row-reverse gap-3'}>
                             <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
                             <label className='text-xl'> MT5 </label>
                         </div>
                     </div>
 
 
-                    <div className='flex flex-row-reverse text-white gap-2 mt-12 text-sm'>
+                    <div className={`flex ${isLocationInIran && 'flex-row-reverse'} items-baseline text-white gap-2 mt-12 text-sm`}>
                         <input type='checkbox' />
-                        <p className='text-[#9CA3AF] text-right'> من اعلام می کنم که شرایط و ضوابط را مطالعه کرده و با آن موافقم <span className='text-white'>
-                            (برای مشاهده اینجا را کلیک کنید)</span> </p>
+                        <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
+                            {isLocationInIran
+                                ? 'من اعلام می کنم که شرایط و ضوابط را مطالعه کرده و با آن موافقم'
+                                : 'I declare that I have read and agree to the terms and conditions'}
+                            <span className='text-white'>
+                                {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
+                            </span>
+                        </p>
                     </div>
 
-                    <div className='flex flex-row-reverse text-white gap-2 mt-4 text-sm'>
+                    <div className={`${isLocationInIran && 'flex-row-reverse'} flex text-white gap-2 mt-4 text-sm`}>
                         <input type='checkbox' />
-                        <p className='text-[#9CA3AF] text-right'> من اعلام می کنم که سیاست حفظ حریم خصوصی را مطالعه کرده و با آن موافقم                             <span className='text-white'>
-                            (برای مشاهده اینجا را کلیک کنید)
-                        </span>
+                        <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
+                            {isLocationInIran
+                                ? 'من اعلام می کنم که سیاست حفظ حریم خصوصی را مطالعه کرده و با آن موافقم'
+                                : 'I declare that I have read and agree to the privacy policy'}
+                            <span className='text-white'>
+                                {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
+                            </span>
                         </p>
                     </div>
 
 
-                    <h2 className='text-[#EF4444] text-xl text-right my-16'>
-                        لطفا یک کارگزار انتخاب کنید...
+                    <h2 className={`text-[#EF4444] text-xl text-${isLocationInIran ? 'right' : 'left'} my-16`}>
+                        {isLocationInIran ? 'لطفاً یک کارگزار انتخاب کنید...' : 'Please select a broker...'}
                     </h2>
 
-
                     <div className='w-full relative'>
-                        <input placeholder='کد تخفیف' className='placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent rtl'
+                        <input
+                            placeholder={isLocationInIran ? 'کد تخفیف' : 'Discount Code'}
+                            className={` placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent ${isLocationInIran && 'rtl'}`}
                             value={discountCode}
                             onChange={handleInputChange}
                             style={{ border: '1px solid #6B7280' }}
                         />
                         <button
                             onClick={() => {
-                                discountValidation()
+                                discountValidation();
                             }}
-                            className='text-white absolute left-2 text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange'>
-                            تایید اعتبار
+                            className={`text-white absolute ${isLocationInIran ? 'left-2' : 'right-2'} text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange`}
+                        >
+                            {isLocationInIran ? 'تایید اعتبار' : 'Validate Discount'}
                         </button>
                     </div>
 
@@ -290,14 +322,17 @@ export default function Payment() {
                         }
                     </div>
 
-                    <div className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-start'>
-                        <p> خرید </p>
+                    <div className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
+                        <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
+                            {isLocationInIran ? 'خرید' : 'buy'}
+                        </p>
                         <Image src={buy} alt='buy' />
                     </div>
 
                 </div>
 
-                <Footer data={footerData?.pages?.nodes[2].footer} />
+                <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
+
 
 
                 <style>

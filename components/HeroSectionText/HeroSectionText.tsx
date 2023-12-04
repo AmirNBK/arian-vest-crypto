@@ -11,7 +11,7 @@ const HeroSectionText = () => {
     return (
         <div
             className={`HeroSectionText left-1/2 top-1/2 translate-x-150 translate-y-150 
-            lg:translate-x-180 lg:translate-y-180 -translate-x-[50%] -translate-y-[125%] lg:-translate-y-[135%]
+            lg:translate-x-180 lg:translate-y-180 -translate-x-[50%] -translate-y-[125%] lg:-translate-y-[115%]
             3xl:-translate-y-[145%]
             items-center w-fit gap-3 sm:gap-6 whitespace-nowrap text-white absolute hidden sm:flex flex-col ${myFont.className}`}
             style={{ top: '50%', left: '50%' }}
