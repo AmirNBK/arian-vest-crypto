@@ -21,9 +21,6 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
-    console.log(questions);
-
-
     return (
         <main
             className={`flex min-h-screen flex-col justify-between ${inter.className}`}

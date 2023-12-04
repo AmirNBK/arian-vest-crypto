@@ -11,9 +11,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 const TradeChallengesSection = (props: {
     data: any
 }) => {
-    
-    console.log(props.data);
-    
+
 
     useEffect(() => {
         AOS.init();

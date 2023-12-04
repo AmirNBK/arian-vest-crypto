@@ -13,8 +13,6 @@ const HomepageAboutUs = (props: {
     data: any
 }) => {
 
-    console.log(props.data);
-
     return (
         <>
             <div className='HomepageAboutUs sm:block hidden'>

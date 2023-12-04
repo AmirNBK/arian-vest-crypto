@@ -14,6 +14,13 @@ export async function getQueryTariffSection() {
                 coloredTitle
               }
             }
+            engTariffSection {
+              description
+              title {
+                normalTitle
+                coloredTitle
+              }
+            }
           }
         }
       }
@@ -21,7 +28,7 @@ export async function getQueryTariffSection() {
       `,
   );
 
-  return data?.pages?.nodes[2].homepage?.tariffSection[0];
+  return data?.pages?.nodes[2].homepage;
 }
 
 export async function getQueryTariffTitles() {

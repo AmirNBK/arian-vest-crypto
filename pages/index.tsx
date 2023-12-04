@@ -43,14 +43,17 @@ import line from '../assets/icons/line.svg'
 import StepsComponent from '@/components/StepsComponent/StepsComponent';
 import Link from 'next/link';
 import TradeChallengesSection from '@/components/TradeChallengesSection/TradeChallengesSection';
-import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryCollabrationSuccessSectionTitle, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
+import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrationSuccessSection, getQueryCollabrationSuccessSectionTitle, getQueryEngFooter, getQueryFaqHomeSection, getQueryFooter, getQuerySuccessSection, getQuerySuccessSteps, getQueryTariffSection, getQueryTariffs } from '@/lib/service';
 import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
 import { GetStaticProps } from 'next';
+import useLocationData from '@/Hooks/location';
 
-export default function Home({ tariffSectionData, tariffs, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
+export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, footerEng: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [ref, inView] = useInView()
   const [selectedTab, setSelectedTab] = useState<number>(0)
+  const { locationData, error, loading } = useLocationData();
+  const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
   const cumulativeOffset = (element: any) => {
     let top = 0;
@@ -67,14 +70,10 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
   const moveFunc = (event: any) => {
     const e = event || window.event;
 
-    // Check if imageRef is defined and current is not undefined
     if (imageRef && imageRef.current) {
       const x = (e.pageX - cumulativeOffset(imageRef).left - (300 / 2)) * -1 / (size.width && size.width > 2000 ? 200 : 100);
       const y = (e.pageY - cumulativeOffset(imageRef).top - (300 / 2)) * -1 / (size.width && size.width > 2000 ? 200 : 100);
-
-      // Check if scrollY is greater than 400
       if (scrollY > 400) {
-        // Reset x and y values to 0
         const matrix = [
           [1, 0, 0, 0],
           [0, 1, 0, 0],
@@ -82,10 +81,9 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
           [0, 0, 0, 1]
         ];
 
-        imageRef.current.style.transition = 'all 0.35s'; // Add the transition inline
+        imageRef.current.style.transition = 'all 0.35s';
         imageRef.current.style.transform = `matrix3d(${matrix.toString()})`;
       } else {
-        // Apply the regular transformation
         const matrix = [
           [1, 0, 0, -x * 0.00005],
           [0, 1, 0, -y * 0.00005],
@@ -99,13 +97,16 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
     }
   };
 
+  console.log(tariffSectionData);
+  
+
   return (
     <main
       className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
       onMouseMoveCapture={moveFunc}
     >
       <PrimeReactProvider>
-        <Header active={0} />
+        <Header active={0} isLocationInIran={isLocationInIran} />
         <div className='relative h-screen'>
           <div className='relative sm:mt-20 block
                       absolute left-1/2 top-1/3 
@@ -122,18 +123,26 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
           </div>
           <ArrowComponent />
 
-          <div className={` w-full justify-center flex flex-row-reverse gap-4  lg:items-end items-center pb-20 pt-0 sm:py-20 lg:mr-12 mt-20 sm:mt-32 flex flex-col lg:w-6/12 ml-auto`}
+          <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-32' : 'lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-16 3xl:mt-56'} items-center pb-20 pt-0 sm:py-20 mt-20 flex flex-col lg:w-6/12`}
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
-              <span className='text-3xl text-main-orange'> </span>               {tariffSectionData.title[0].normalTitle}
-              <span style={{ color: '#F68D2E' }}>               {tariffSectionData.title[0].coloredTitle} </span>
+              <span className='text-3xl text-main-orange'> </span> 
+              {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].normalTitle : tariffSectionData.engTariffSection[0].title[0].normalTitle}
+              <span style={{ color: '#F68D2E' }}>
+                {isLocationInIran ?  tariffSectionData.tariffSection[0].title[0].coloredTitle : tariffSectionData.engTariffSection[0].title[0].coloredTitle} </span>
             </p>
-            <p className={`${myFontIran.className} rtl text-white lg:text-start text-center lg:px-0 px-8`}>
-              {tariffSectionData.description}
+            <p className={`${myFontIran.className} ${isLocationInIran && 'rtl'} text-white lg:text-start text-center lg:px-0 px-8`}>
+              {
+              isLocationInIran ?
+              tariffSectionData.tariffSection[0].description
+            :
+            tariffSectionData.engTariffSection[0].description
+            }
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
-              بررسی تعرفه ها
+              {isLocationInIran ? ' بررسی تعرفه ها' : 'Check tariffs'}
+             
             </Link>
           </div>
 
@@ -282,7 +291,8 @@ export default function Home({ tariffSectionData, tariffs, faqHomeSection, succe
             </div>
           </div>
 
-          <Footer data={footer?.footer} />
+          <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
         </div >
 
         <style>
@@ -392,6 +402,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const collabrationSuccessSection = await getQueryCollabrationSuccessSection();
   const collabrationSuccessSectionTitle = await getQueryCollabrationSuccessSectionTitle();
   const successSteps = await getQuerySuccessSteps();
+  const footerEng = await getQueryEngFooter();
   const footer = await getQueryFooter();
 
   return {
@@ -405,7 +416,8 @@ export const getStaticProps: GetStaticProps = async () => {
       collabrationSuccessSection,
       collabrationSuccessSectionTitle,
       successSteps,
-      footer
+      footer,
+      footerEng
     },
     revalidate: 3600,
   };
