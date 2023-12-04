@@ -207,6 +207,11 @@ export async function getQueryAboutUsSection() {
               coloredtitle
               description
             }
+            engAboutUs {
+              normaltitle
+              coloredtitle
+              description
+            }
           }
         }
       }

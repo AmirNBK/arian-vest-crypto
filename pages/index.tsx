@@ -95,6 +95,8 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
     }
   };
 
+  console.log(aboutUsSection);
+
 
   return (
     <main
@@ -250,7 +252,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             </div>
           </div>
 
-          <HomepageAboutUs data={aboutUsSection?.homepage.aboutUs[0]} />
+          <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
 
           <div className='my-20 sm:my-56'>
             <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />

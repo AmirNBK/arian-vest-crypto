@@ -11,6 +11,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 
 const HomepageAboutUs = (props: {
     data: any
+    isLocationIran: boolean
 }) => {
 
     return (
@@ -28,8 +29,8 @@ const HomepageAboutUs = (props: {
               sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
               sm:absolute top-1/2 left-1/2`}
                         >
-                            <span className='text-3xl text-main-orange'> </span> {props.data?.normaltitle}
-                            <span style={{ color: '#F68D2E' }}>  {props.data?.coloredtitle} </span>
+                            <span className='text-3xl text-main-orange'> </span> {props.isLocationIran ? props.data?.aboutUs[0].normaltitle : props.data?.engAboutUs[0].normaltitle}
+                            <span style={{ color: '#F68D2E' }}>  {props.isLocationIran ? props.data?.aboutUs[0].coloredtitle : props.data?.engAboutUs[0].coloredtitle} </span>
                         </p>
                     </div>
                     <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
@@ -37,16 +38,18 @@ const HomepageAboutUs = (props: {
                         data-aos-delay="500"
                     >
                         <Image src={container2} alt='container' className='sm:block hidden' />
-                        <p className={`${myFontIran.className} leading-[2.8rem] sm:my-3 my-12 text-white text-lg
-              sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
+                        <p className={`${myFontIran.className} leading-[2.8rem] my-12 text-white text-lg
+              ${props.isLocationIran ? 'sm:text-right sm:my-3' : 'sm:text-left sm:my-7'} text-center ${props.isLocationIran && 'rtl'} sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
                         >
-                            {props.data?.description}
+                            {props.isLocationIran ? props.data?.aboutUs[0].description : props.data?.engAboutUs[0].description}
                         </p>
                         <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
                             style={{ textDecoration: 'underline' }}>
-                            بیشتر بخوانید
+                            {props.isLocationIran ?
+                                'بیشتر بخوانید' : 'Read more'
+                            }
                         </Link>
-                        <Image src={goldBUll} unoptimized alt='bull' className='sm:block hidden absolute -left-36 -bottom-16 w-96' />
+                        <Image src={goldBUll} unoptimized alt='bull' className={`sm:block hidden absolute ${props.isLocationIran ? '-left-36' : '-left-64'}  -bottom-16 w-96`} />
                     </div>
                 </div>
             </div>
@@ -62,21 +65,24 @@ const HomepageAboutUs = (props: {
               sm:-translate-x-1/2 sm:-translate-y-1/2 leading-tight
               sm:absolute top-1/2 left-1/2`}
                         >
-                            <span className='text-3xl text-main-orange'> </span>  {props.data?.normaltitle}
-                            <span style={{ color: '#F68D2E' }}>  {props.data?.coloredtitle} </span>
+                            <span className='text-3xl text-main-orange'> </span>  {props.isLocationIran ? props.data?.aboutUs[0].normaltitle : props.data?.engAboutUs[0].normaltitle}
+                            <span style={{ color: '#F68D2E' }}>  {props.isLocationIran ? props.data?.aboutUs[0].coloredtitle : props.data?.engAboutUs[0].coloredtitle} </span>
                         </p>
                     </div>
                     <div className='sm:absolute right-0 top-64 3xl:w-[45%]'
                     >
                         <Image src={container2} alt='container' className='sm:block hidden' />
                         <p className={`${myFontIran.className} leading-[2.8rem] sm:my-0 my-12	text-white text-lg
-              sm:text-right text-center rtl sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
+              ${props.isLocationIran ? 'sm:text-right' : 'sm:text-left'} text-center ${props.isLocationIran && 'rtl'} sm:w-[34.5rem] sm:absolute top-1/2 left-1/2 sm:-translate-x-1/2 sm:-translate-y-[65%]`}
                         >
-                            {props.data?.description}
+                            {props.isLocationIran ? props.data?.aboutUs[0].description : props.data?.engAboutUs[0].description}
                         </p>
                         <Link href={'/about-us'} className={`${myFontIran.className} block text-main-orange sm:-translate-x-1/2 text-center sm:absolute bottom-16 right-10 3xl:right-[20%]`}
                             style={{ textDecoration: 'underline' }}>
-                            بیشتر بخوانید
+                            {props.isLocationIran ?
+                                'بیشتر بخوانید' : 'Read more'
+                            }
+
                         </Link>
                         <Image src={goldBUll} unoptimized alt='bull' className='sm:block hidden absolute -left-36 -bottom-16 w-96' />
                     </div>
