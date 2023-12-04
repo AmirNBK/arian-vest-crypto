@@ -177,6 +177,13 @@ export async function getQuerySuccessSection() {
                 coloredtitle
               }
             }
+            engSuccessSection {
+              description
+              title {
+                normaltitle
+                coloredtitle
+              }
+            }
           }
         }
       }

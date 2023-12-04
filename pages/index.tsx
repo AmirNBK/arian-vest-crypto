@@ -24,15 +24,12 @@ import 'animate.css';
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
 });
-import pic1 from '../assets/images/pic1.png'
 import bull from '../assets/images/bull.svg'
 import redBull from '../assets/images/redBull.svg'
 import greenBull from '../assets/images/greenBull.svg'
 import button from '../assets/icons/register.svg'
+import buttonEng from '../assets/icons/register-eng.svg'
 import Footer from '@/components/Footer/Footer';
-import container from '../assets/images/container.png'
-import container2 from '../assets/images/container2.png'
-import goldBUll from '../assets/images/goldBull.png'
 import customer from '../assets/images/customer.png'
 import customers from '../assets/images/customers.png'
 import BenefitsComponent from '@/components/BenefitsComponent/BenefitsComponent';
@@ -98,8 +95,6 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
     }
   };
 
-  console.log(faqHomeSection);
-  
 
   return (
     <main
@@ -143,7 +138,6 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               {isLocationInIran ? ' بررسی تعرفه ها' : 'Check tariffs'}
-
             </Link>
           </div>
 
@@ -220,8 +214,16 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
               data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
             >
-              <span className='text-3xl text-main-orange'> </span> {successSection?.homepage.successSection[0].title[0].normaltitle}
-              <span style={{ color: '#F68D2E' }}> {successSection?.homepage.successSection[0].title[0].coloredtitle}</span>
+              <span className='text-3xl text-main-orange'> </span>
+              {isLocationInIran ? successSection?.homepage.successSection[0].title[0].normaltitle :
+                successSection?.homepage.engSuccessSection[0].title[0].normaltitle
+              }
+              <span style={{ color: '#F68D2E' }}> {
+                isLocationInIran ?
+                  successSection?.homepage.successSection[0].title[0].coloredtitle
+                  :
+                  successSection?.homepage.engSuccessSection[0].title[0].coloredtitle
+              }</span>
             </p>
             <div className='flex flex-col items-center sm:flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
               <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
@@ -229,11 +231,17 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                 data-aos-delay="800"
               >
-                <p className={`${myFontIran.className} text-white text-xl text-center rtl sm:px-0 px-6 leading-relaxed`}>
-                  {successSection?.homepage.successSection[0].description}
+                <p className={`${myFontIran.className} text-white text-xl text-center ${isLocationInIran && 'rtl'}
+                sm:px-0 px-6 leading-relaxed`}>
+                  {
+                    isLocationInIran ?
+                      successSection?.homepage.successSection[0].description
+                      :
+                      successSection?.homepage.engSuccessSection[0].description
+                  }
                 </p>
                 <Link href={'/register'}>
-                  <Image src={button} alt='register' className='cursor-pointer' />
+                  <Image src={isLocationInIran ? button : buttonEng} alt='register' className='cursor-pointer' />
                 </Link>
               </div>
               <Image src={greenBull} alt='greenBull' className='lg:w-fit w-36'
