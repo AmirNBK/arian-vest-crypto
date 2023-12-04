@@ -19,6 +19,7 @@ import dynamic from 'next/dynamic';
 const myFont = localFont({ src: '../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../assets/fonts/iranyekanwebregular_0.ttf' })
 import rulesPic from '../assets/images/rules.png'
+import rulesPicEng from '../assets/images/rules-eng.png'
 import 'animate.css';
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
@@ -97,7 +98,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
     }
   };
 
-  console.log(tariffSectionData);
+  console.log(faqHomeSection);
   
 
   return (
@@ -127,22 +128,22 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
           >
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
-              <span className='text-3xl text-main-orange'> </span> 
+              <span className='text-3xl text-main-orange'> </span>
               {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].normalTitle : tariffSectionData.engTariffSection[0].title[0].normalTitle}
               <span style={{ color: '#F68D2E' }}>
-                {isLocationInIran ?  tariffSectionData.tariffSection[0].title[0].coloredTitle : tariffSectionData.engTariffSection[0].title[0].coloredTitle} </span>
+                {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].coloredTitle : tariffSectionData.engTariffSection[0].title[0].coloredTitle} </span>
             </p>
             <p className={`${myFontIran.className} ${isLocationInIran && 'rtl'} text-white lg:text-start text-center lg:px-0 px-8`}>
               {
-              isLocationInIran ?
-              tariffSectionData.tariffSection[0].description
-            :
-            tariffSectionData.engTariffSection[0].description
-            }
+                isLocationInIran ?
+                  tariffSectionData.tariffSection[0].description
+                  :
+                  tariffSectionData.engTariffSection[0].description
+              }
             </p>
             <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
               {isLocationInIran ? ' بررسی تعرفه ها' : 'Check tariffs'}
-             
+
             </Link>
           </div>
 
@@ -176,26 +177,44 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
             >
-              <span className='text-3xl text-main-orange'> </span> نحوه دریافت سرمایه از <span style={{ color: '#F68D2E' }}>
-                ویرا فاندینگ
-              </span>
+              <span className='text-3xl text-main-orange'> </span>
+              {isLocationInIran ? (
+                <>
+                  نحوه دریافت سرمایه از{' '}
+                  <span style={{ color: '#F68D2E' }}>
+                    ویرا فاندینگ
+                  </span>
+                </>
+              ) : (
+                <>
+                  How to receive capital from{' '}
+                  <span style={{ color: '#F68D2E' }}>
+                    Vira Funding
+                  </span>
+                </>
+              )}
+
             </p>
 
             <div className='relative'>
-              <Image src={rulesPic} alt='rulesPic' unoptimized className='mx-auto mt-6'
+              <Image src={isLocationInIran ? rulesPic : rulesPicEng} alt='rulesPic' unoptimized className='mx-auto mt-6'
                 data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
               />
               <Image src={faqBull} alt='rulesPic' unoptimized
                 className='mx-auto w-56 md:w-fit absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
               />
             </div>
-            <Link href={'/rules'} className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
-              style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}>
-              مشاهده تمام قوانین
+            <Link
+              href={'/rules'}
+              className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
+              style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}
+            >
+              {isLocationInIran ? 'مشاهده تمام قوانین' : 'View All Rules'}
             </Link>
+
           </div>
 
-          <TradeChallengesSection data={faqHomeSection.homepage.faqSection[0]} />
+          <TradeChallengesSection data={faqHomeSection.homepage} isLocationIran={isLocationInIran} />
 
           <div className='lg:py-32'>
             <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}

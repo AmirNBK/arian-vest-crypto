@@ -142,6 +142,17 @@ export async function getQueryFaqHomeSection() {
                 normalTitle
               }
             }
+            engFaqSection {
+              question {
+                description
+                title
+              }
+              miniTitle
+              title {
+                coloredTitle
+                normalTitle
+              }
+            }
           }
         }
       }
