@@ -63,17 +63,19 @@ const Header = (props: {
 
     return (
         <div className={`Header flex flex-wrap
-        flex-row-reverse ${props.active === 'panel' ? 'justify-center' : 'justify-start'} lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft animate__slow xl:gap-0 gap-8`}>
+        flex-row-reverse ${props.active === 'panel' ? 'justify-center' : `${props.isLocationInIran ? 'justify-start' : 'justify-end'}`}
+        lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft
+        animate__slow xl:gap-0 gap-8`}>
 
             <Image src={menu} alt='menu' width={50} className='mt-10 lg:hidden block mr-6' onClick={() => {
                 setVisible(true)
             }} />
-            <Sidebar visible={visible} position="right" onHide={() => setVisible(false)}
+            <Sidebar visible={visible} position={isLocationInIran ? "right" : 'left'} onHide={() => setVisible(false)}
                 style={{ backgroundColor: 'black' }}
             >
                 <Image src={logo} alt='logo' className='mx-auto w-7/12' />
 
-                <div className={`${myFont.className} flex flex-col gap-8`}>
+                <div className={`${myFont.className} flex flex-col gap-8 ${props.isLocationInIran && 'text-end'} text-white`}>
                     {
                         isLocationInIran ?
                             header.map((item, index) => (

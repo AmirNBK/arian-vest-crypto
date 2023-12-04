@@ -138,6 +138,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
       }
 
       .p-accordion-tab {
+        width : 100%;
         @media (min-width: 640px) { 
             width: 681px;
            }
