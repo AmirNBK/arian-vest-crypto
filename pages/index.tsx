@@ -13,7 +13,6 @@ import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
 import useWindowSize from '@/Hooks/innerSize';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import pic95 from '../assets/images/95.png'
 import faqBull from '../assets/images/faqBull.png'
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
 import dynamic from 'next/dynamic';
@@ -112,9 +111,9 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                       -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                       '
           >
-            <Image src={pic95} alt='pic' unoptimized
+            <Image src={pic} alt='pic' unoptimized
               ref={imageRef}
-              className='mx-auto dynamic-pic  w-full lg:w-5/12 lg:h-500 3xl:w-4/12 h-full animate__animated  animate__zoomIn animate__slower' />
+              className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 3xl:w-5/12 h-full animate__animated  animate__zoomIn animate__slower' />
             <div className='animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow'
             >
               <HeroSectionText />
@@ -390,16 +389,16 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
             >
               <span className='text-3xl text-main-orange text-center'>
               </span> {
-                isLocationInIran ?
-                  successSteps.homepage.successSteps[0].title[0].normalTitle :
-                  successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
+              isLocationInIran ? 
+              successSteps.homepage.successSteps[0].title[0].normalTitle : 
+              successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
               } <span style={{ color: '#F68D2E' }}>
                 {
-                  isLocationInIran ?
-                    successSteps.homepage.successSteps[0].title[0].coloredTitle
-                    :
-                    successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
-                } </span>
+                isLocationInIran ? 
+                successSteps.homepage.successSteps[0].title[0].coloredTitle
+              :
+              successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
+              } </span>
             </p>
             <div className='pt-12'>
               <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
