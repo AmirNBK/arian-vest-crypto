@@ -49,7 +49,7 @@ import useLocationData from '@/Hooks/location';
 
 export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, footerEng: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const [ref, inView] = useInView()
+
   const [selectedTab, setSelectedTab] = useState<number>(0)
   const { locationData, error, loading } = useLocationData();
   const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
@@ -104,7 +104,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
       {loading ? '' :
         <PrimeReactProvider>
           <Header active={0} isLocationInIran={isLocationInIran} />
-          <div className='relative h-screen'>
+          <div className='h-screen'>
             <div className='relative sm:mt-20 block
                     absolute left-1/2 top-1/3 
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
@@ -406,6 +406,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
             <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
+
           </div >
         </PrimeReactProvider >
       }
@@ -414,6 +415,9 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
       <style>
         {
           `
+          .p-toast-bottom-right {
+            bottom : auto;
+          }
           .p-component {
             display: flex;
   flex-direction: column-reverse;

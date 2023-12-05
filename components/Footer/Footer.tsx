@@ -53,7 +53,7 @@ const Footer = (props: {
                 severity: 'error',
                 summary: 'Error',
                 detail: `${isLocationInIran ? 'لطفا یک ایمیل معتبر وارد کنید.' : 'Please enter a valid email address.'}`,
-                life: 3000,
+                life: 300000,
             });
             return;
         }
