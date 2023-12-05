@@ -88,11 +88,11 @@ const StepsComponent = (props: {
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
                         <p className='absolute font-light top-[-30px] sm:-translate-x-[40px] -translate-x-[30px] text-base text-white'> {
-                        props.isLocationIran ? 
-                        props.data.successSteps[0].item[1].title
-                    :
-                    props.data.engSuccessSteps[0].item[1].title
-                    }</p>
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[1].title
+                                :
+                                props.data.engSuccessSteps[0].item[1].title
+                        }</p>
                     </span>
                 </button>
                 <div></div>
@@ -105,8 +105,8 @@ const StepsComponent = (props: {
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
                     <p className='absolute sm:-translate-x-[0px] translate-x-[10px]
                     font-light top-[-30px] w-max text-base text-white'> {
-                    props.isLocationIran ? 
-                    props.data.successSteps[0].item[2].title : props.data.engSuccessSteps[0].item[2].title} </p>
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[2].title : props.data.engSuccessSteps[0].item[2].title} </p>
                 </button>
             </div>
             <div id="contents" className={`${myFontIran.className}`} >
@@ -115,11 +115,11 @@ const StepsComponent = (props: {
                 >
                     <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
                         {
-                        props.isLocationIran ? 
-                        props.data.successSteps[0].item[0].description
-                    :
-                    props.data.engSuccessSteps[0].item[0].description
-                    }
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[0].description
+                                :
+                                props.data.engSuccessSteps[0].item[0].description
+                        }
                     </div>
                 </div>
                 <div className="content" data-step="2"
@@ -127,11 +127,11 @@ const StepsComponent = (props: {
                 >
                     <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
                         {
-                        props.isLocationIran ?
-                        props.data.successSteps[0].item[1].description
-                    :
-                    props.data.engSuccessSteps[0].item[1].description
-                    }
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[1].description
+                                :
+                                props.data.engSuccessSteps[0].item[1].description
+                        }
                     </div>
                 </div>
                 <div className="content" data-step="3"
@@ -139,11 +139,11 @@ const StepsComponent = (props: {
                 >
                     <div className={`content__box ${props.isLocationIran && 'rtl'}`}>
                         {
-                        props.isLocationIran ? 
-                        props.data.successSteps[0].item[2].description
-                    :
-                    props.data.engSuccessSteps[0].item[2].description
-                    }
+                            props.isLocationIran ?
+                                props.data.successSteps[0].item[2].description
+                                :
+                                props.data.engSuccessSteps[0].item[2].description
+                        }
                     </div>
                 </div>
                 <div className='flex flex-row w-full justify-between'>
@@ -163,7 +163,7 @@ const StepsComponent = (props: {
                     }
                       .steps {
                         display: flex;
-                        flex-direction: row-reverse;
+                        flex-direction:  ${props.isLocationIran && 'row-reverse'};
                         width: 90%;
                         justify-content: space-around;
                         align-items: center;
@@ -188,7 +188,7 @@ const StepsComponent = (props: {
                         width: 100%;
                         height: 100%;
                         background: #F68D2E;
-                        transform-origin: right;
+                        transform-origin: ${props.isLocationIran ? 'right' : 'left'};
                         transform: scaleX(0);
                         transition: transform 0.5s ease-in-out;
                       }

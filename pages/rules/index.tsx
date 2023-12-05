@@ -57,241 +57,244 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
-            <PrimeReactProvider>
-                <Dialog
-                    header="SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.
-                    " visible={visibleDialog} style={{
-                        width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
-                        backgroundColor: '#252525'
-                    }}
-                    className={`${myFont.className} font-normal`}
-                    onHide={() => setVisibleDialog(false)}
-                >
-                    <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-
-                    <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                        {data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
-                            <AccordionTab
-                                key={index}
-                                style={{ width: '100%' }}
-                                className='text-white text-right w-full'
-                                header={item.title}
-                            >
-                                <p
-                                    className={`m-0 ${myFontIran.className} text-right`}
-                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
-                                />
-                            </AccordionTab>
-                        ))}
-                    </Accordion>
-                </Dialog>
-                <Header active={3} isLocationInIran={isLocationInIran} />
-                <div className='text-white w-10/12 mx-auto mt-10'>
-                    <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
+            {loading ? ''
+                :
+                <PrimeReactProvider>
+                    <Dialog
+                        header="SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.
+            " visible={visibleDialog} style={{
+                            width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
+                            backgroundColor: '#252525'
+                        }}
+                        className={`${myFont.className} font-normal`}
+                        onHide={() => setVisibleDialog(false)}
                     >
-                        {isLocationInIran ? titles.mainTitles[0].title : titles.engMainTitles[0].title}
-                        <span style={{ color: '#F68D2E' }}>
-                            {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
-                        </span>
-                    </h2>
-                    <p className={`${myFontIran.className} text-center 3xl:text-xl rtl`} style={{ lineHeight: '2' }}>
-                        {isLocationInIran ? data.description : data.engDescription}
-                    </p>
-                </div>
+                        <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                <div className={`flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
-                sm:gap-0 gap-4 justify-center items-center mt-24`}
-                    data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
-                >
-                    <Image src={rules} alt='rules' unoptimized />
-                    <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
-                        {isLocationInIran ? data.title[0].normalTitle : data.engTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {isLocationInIran ? data.title[0].coloredTitle : data.engTitle[0].coloredTitle} </span>
-                    </p>
-                </div>
+                        <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
+                            {data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
+                                <AccordionTab
+                                    key={index}
+                                    style={{ width: '100%' }}
+                                    className='text-white text-right w-full'
+                                    header={item.title}
+                                >
+                                    <p
+                                        className={`m-0 ${myFontIran.className} text-right`}
+                                        dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                    />
+                                </AccordionTab>
+                            ))}
+                        </Accordion>
+                    </Dialog>
+                    <Header active={3} isLocationInIran={isLocationInIran} />
+                    <div className='text-white w-10/12 mx-auto mt-10'>
+                        <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
+                        >
+                            {isLocationInIran ? titles.mainTitles[0].title : titles.engMainTitles[0].title}
+                            <span style={{ color: '#F68D2E' }}>
+                                {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
+                            </span>
+                        </h2>
+                        <p className={`${myFontIran.className} text-center 3xl:text-xl rtl`} style={{ lineHeight: '2' }}>
+                            {isLocationInIran ? data.description : data.engDescription}
+                        </p>
+                    </div>
 
-                <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
-                    data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
-                >
-                    {
-                        isLocationInIran ?
-                            data.classRules.map((item: rulesType, index: number) => {
-                                return (
-                                    <RulesComponent isLocationIran onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+                    <div className={`flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+        sm:gap-0 gap-4 justify-center items-center mt-24`}
+                        data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
+                    >
+                        <Image src={rules} alt='rules' unoptimized />
+                        <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
+                            {isLocationInIran ? data.title[0].normalTitle : data.engTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {isLocationInIran ? data.title[0].coloredTitle : data.engTitle[0].coloredTitle} </span>
+                        </p>
+                    </div>
 
-                                )
-                            })
-                            :
-                            data.engClassRules.map((item: rulesType, index: number) => {
-                                return (
-                                    <RulesComponent isLocationIran={false} onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
-
-                                )
-                            })
-                    }
-                </div>
-
-                <div className='relative'>
-                    <Image src={trading} alt='trading' unoptimized className='w-full' />
-                    <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
-                        style={{ transform: 'translate(-50%,-50%)' }}
-                    />
-                </div>
-
-                <div className={`flex flex-col
-                ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
-                sm:gap-0 gap-4 justify-center items-center mt-24`}>
-                    <Image src={book} alt='rules' unoptimized />
-                    <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
-                    text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
-                        {isLocationInIran ? 'قوانین کلی' : 'General rules'} <span style={{ color: '#F68D2E' }}>
-                            {isLocationInIran ? 'مربوط به سایت' : 'related to the site'} </span>
-                    </p>
-                </div>
-
-                <div>
-                    <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
+                    <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
+                        data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
+                    >
                         {
                             isLocationInIran ?
-                                data.allRules.map((item: any, index: number) => {
+                                data.classRules.map((item: rulesType, index: number) => {
                                     return (
-                                        <AccordionTab
-                                            key={index}
-                                            className='text-white text-right'
-                                            header={item.title}
-                                        >
-                                            <p
-                                                className={`m-0 ${myFontIran.className} text-right`}
-                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
-                                            />
-                                        </AccordionTab>
-                                    );
+                                        <RulesComponent isLocationIran onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+
+                                    )
                                 })
                                 :
-                                data.engAllRules.map((item: any, index: number) => {
+                                data.engClassRules.map((item: rulesType, index: number) => {
                                     return (
-                                        <AccordionTab
-                                            key={index}
-                                            className='text-white text-left'
-                                            header={item.title}
-                                        >
-                                            <p
-                                                className={`m-0 ${myFontIran.className} text-left`}
-                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
-                                            />
-                                        </AccordionTab>
-                                    );
+                                        <RulesComponent isLocationIran={false} onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+
+                                    )
                                 })
                         }
-                    </Accordion>
+                    </div>
 
-                </div>
+                    <div className='relative'>
+                        <Image src={trading} alt='trading' unoptimized className='w-full' />
+                        <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
+                            style={{ transform: 'translate(-50%,-50%)' }}
+                        />
+                    </div>
 
-                <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+                    <div className={`flex flex-col
+        ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+        sm:gap-0 gap-4 justify-center items-center mt-24`}>
+                        <Image src={book} alt='rules' unoptimized />
+                        <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
+            text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
+                            {isLocationInIran ? 'قوانین کلی' : 'General rules'} <span style={{ color: '#F68D2E' }}>
+                                {isLocationInIran ? 'مربوط به سایت' : 'related to the site'} </span>
+                        </p>
+                    </div>
 
-                <style>
-                    {
-                        `
+                    <div>
+                        <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
+                            {
+                                isLocationInIran ?
+                                    data.allRules.map((item: any, index: number) => {
+                                        return (
+                                            <AccordionTab
+                                                key={index}
+                                                className='text-white text-right'
+                                                header={item.title}
+                                            >
+                                                <p
+                                                    className={`m-0 ${myFontIran.className} text-right`}
+                                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                />
+                                            </AccordionTab>
+                                        );
+                                    })
+                                    :
+                                    data.engAllRules.map((item: any, index: number) => {
+                                        return (
+                                            <AccordionTab
+                                                key={index}
+                                                className='text-white text-left'
+                                                header={item.title}
+                                            >
+                                                <p
+                                                    className={`m-0 ${myFontIran.className} text-left`}
+                                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                />
+                                            </AccordionTab>
+                                        );
+                                    })
+                            }
+                        </Accordion>
 
-                        .p-accordion .p-accordion-header .p-accordion-header-link {
-                            @media (min-width: 2000px) { 
-                                font-size : 23px;
-                               }
-                               @media (max-width: 640px) { 
-                                font-size : 13px;
-                               }
+                    </div>
+
+                    <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
+                    <style>
+                        {
+                            `
+
+                .p-accordion .p-accordion-header .p-accordion-header-link {
+                    @media (min-width: 2000px) { 
+                        font-size : 23px;
+                       }
+                       @media (max-width: 640px) { 
+                        font-size : 13px;
+                       }
+                }
+            .p-dialog-draggable .p-dialog-header {
+                background: #252525;
+            }
+
+            .p-dialog .p-dialog-content:last-of-type {
+                background: #252525;
+            }
+
+            .p-dialog .p-dialog-header .p-dialog-title {
+                text-align: right;
+                transform: translateY(40px);
+                color : white;
+                z-index : 20;
+
+                @media (max-width: 640px) { 
+                    font-size : 1rem;
+                   }
+            }
+
+            .p-dialog-draggable .p-dialog-header {
+                flex-direction: row-reverse;
+            }
+            .p-accordion .p-accordion-header .p-accordion-header-link {
+                border: none;
+                background: #1D1D1D;
+                color: #fff;
+                padding: 30px 20px;
+                font-family: '__myFont_0ebf61';
+                font-weight:400;
+            }
+
+            .p-accordion-header-text {
+                text-align: ${isLocationInIran && 'text-right'};
+                line-height:1.8;
+                direction : ${isLocationInIran && 'rtl'};
+            }
+
+            .p-accordion-header {
+                color : white;
+            }
+
+            .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+                background: #1D1D1D;
+                color : white
+            }
+
+            .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+                border:none;
+                background : #1D1D1D;
+                color : white;
+            }
+
+            .p-accordion .p-accordion-content {
+                background : #1D1D1D;
+                color : white;
+                border:none;
+                direction : ${isLocationInIran && 'rtl'};
+            }
+
+            
+.p-checkbox .p-checkbox-box {
+background-color: transparent;
+}
+
+.p-accordion-header-link {
+
+justify-content: space-between;
+}
+
+.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+background-color: #1D1D1D;
+border: none;
+color : white;
+}
+
+.p-accordion-tab {
+width: 100%;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link {
+height : 90px;
+justify-content : ${!isLocationInIran && 'flex-start'};
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+color : #F68D2E;
+}
+            
+            `
                         }
-                    .p-dialog-draggable .p-dialog-header {
-                        background: #252525;
-                    }
-
-                    .p-dialog .p-dialog-content:last-of-type {
-                        background: #252525;
-                    }
-
-                    .p-dialog .p-dialog-header .p-dialog-title {
-                        text-align: right;
-                        transform: translateY(40px);
-                        color : white;
-                        z-index : 20;
-
-                        @media (max-width: 640px) { 
-                            font-size : 1rem;
-                           }
-                    }
-
-                    .p-dialog-draggable .p-dialog-header {
-                        flex-direction: row-reverse;
-                    }
-                    .p-accordion .p-accordion-header .p-accordion-header-link {
-                        border: none;
-                        background: #1D1D1D;
-                        color: #fff;
-                        padding: 30px 20px;
-                        font-family: '__myFont_0ebf61';
-                        font-weight:400;
-                    }
-
-                    .p-accordion-header-text {
-                        text-align: ${isLocationInIran && 'text-right'};
-                        line-height:1.8;
-                        direction : ${isLocationInIran && 'rtl'};
-                    }
-
-                    .p-accordion-header {
-                        color : white;
-                    }
-
-                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
-                        background: #1D1D1D;
-                        color : white
-                    }
-
-                    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-                        border:none;
-                        background : #1D1D1D;
-                        color : white;
-                    }
-
-                    .p-accordion .p-accordion-content {
-                        background : #1D1D1D;
-                        color : white;
-                        border:none;
-                        direction : ${isLocationInIran && 'rtl'};
-                    }
-
-                    
-    .p-checkbox .p-checkbox-box {
-        background-color: transparent;
-      }
-  
-      .p-accordion-header-link {
-
-        justify-content: space-between;
-      }
-
-      .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
-        background-color: #1D1D1D;
-        border: none;
-        color : white;
-      }
-
-      .p-accordion-tab {
-        width: 100%;
-      }
-
-      .p-accordion .p-accordion-header .p-accordion-header-link {
-        height : 90px;
-        justify-content : ${!isLocationInIran && 'flex-start'};
-      }
-
-      .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-        color : #F68D2E;
-      }
-                    
-                    `
-                    }
-                </style>
-            </PrimeReactProvider>
+                    </style>
+                </PrimeReactProvider>
+            }
         </main>
     )
 }

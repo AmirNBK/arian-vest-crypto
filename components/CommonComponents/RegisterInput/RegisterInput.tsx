@@ -30,7 +30,7 @@ const RegisterInput = (props: {
                 {
                     `
                         .RegisterInput::placeholder {
-                            color : #E6E6E6;
+                            color : #EEEEE;
                         }
                         `
                 }

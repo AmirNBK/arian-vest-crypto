@@ -38,154 +38,158 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
-            <PrimeReactProvider>
-                <Header active={2} isLocationInIran={isLocationInIran} />
-                <div className={`${isLocationInIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex flex-col items-center`}>
-                    <div className='flex flex-col flex-1 lg:my-0 my-16'>
-                        <div className={`${myFont.className} justify-right flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse lg:mr-12' : 'sm:flex-row lg:ml-12'} gap-4 items-center  mt-8`}>
-                            <Image src={tariff} alt='faq' />
-                            {isLocationInIran ?
-                                <p className='text-white text-5xl sm:text-end text-center'>
-                                    <span className='text-3xl text-main-orange'>
-                                        ({data.tariffs[selectedTab].type})
-                                    </span> {titles.allTitles[0].normalTitle}
-                                    <span style={{ color: '#F68D2E' }}>
-                                        {titles.allTitles[0].coloredTitle}
-                                    </span>
+            {loading ?
+                ''
+                :
+                <PrimeReactProvider>
+                    <Header active={2} isLocationInIran={isLocationInIran} />
+                    <div className={`${isLocationInIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex flex-col items-center`}>
+                        <div className='flex flex-col flex-1 lg:my-0 my-16'>
+                            <div className={`${myFont.className} justify-right flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse lg:mr-12' : 'sm:flex-row lg:ml-12'} gap-4 items-center  mt-8`}>
+                                <Image src={tariff} alt='faq' />
+                                {isLocationInIran ?
+                                    <p className='text-white text-5xl sm:text-end text-center'>
+                                        <span className='text-3xl text-main-orange'>
+                                            ({data.tariffs[selectedTab].type})
+                                        </span> {titles.allTitles[0].normalTitle}
+                                        <span style={{ color: '#F68D2E' }}>
+                                            {titles.allTitles[0].coloredTitle}
+                                        </span>
+                                    </p>
+                                    :
+                                    <p className='text-white text-5xl sm:text-start text-center'>
+                                        {titles.engAllTitles[0].normalTitle}
+                                        <span style={{ color: '#F68D2E' }}>
+                                            {titles.engAllTitles[0].coloredTitle}
+                                        </span>
+                                        <span className='text-3xl text-main-orange'>
+                                            ({data.engTariffs[selectedTab].type})
+                                        </span>
+                                    </p>
+                                }
+                            </div>
+                            <div>
+                                <p className={`${myFontIran.className} ${isLocationInIran ? 'rtl sm:text-right' : 'ltr sm:text-left'} text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
+                                    {isLocationInIran ? data.tariffs[selectedTab].title : data.engTariffs[selectedTab].title}
                                 </p>
-                                :
-                                <p className='text-white text-5xl sm:text-start text-center'>
-                                    {titles.engAllTitles[0].normalTitle}
-                                    <span style={{ color: '#F68D2E' }}>
-                                        {titles.engAllTitles[0].coloredTitle}
-                                    </span>
-                                    <span className='text-3xl text-main-orange'>
-                                        ({data.engTariffs[selectedTab].type})
-                                    </span>
-                                </p>
-                            }
+                            </div>
                         </div>
-                        <div>
-                            <p className={`${myFontIran.className} ${isLocationInIran ? 'rtl sm:text-right' : 'ltr sm:text-left'} text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
-                                {isLocationInIran ? data.tariffs[selectedTab].title : data.engTariffs[selectedTab].title}
-                            </p>
+                        <div className='w-full flex-1'>
+                            <TabView
+                                style={{ width: `${size.width && size.width < 1024 ? '100%' : '80%'}`, padding: '0px 10px' }}
+                                activeIndex={selectedTab}
+                                onTabChange={(e) => {
+                                    setSelectedTab(e.index)
+                                }}
+                            >
+                                {
+                                    isLocationInIran ?
+                                        data.tariffs.map((item: tariffType, index: number) => {
+                                            return (
+                                                <TabPanel header={item.type}>
+                                                </TabPanel>
+                                            )
+                                        })
+                                        :
+                                        data.engTariffs.map((item: tariffType, index: number) => {
+                                            return (
+                                                <TabPanel header={item.type}>
+                                                </TabPanel>
+                                            )
+                                        })
+                                }
+                            </TabView>
                         </div>
+
                     </div>
-                    <div className='w-full flex-1'>
-                        <TabView
-                            style={{ width: `${size.width && size.width < 1024 ? '100%' : '80%'}`, padding: '0px 10px' }}
-                            activeIndex={selectedTab}
-                            onTabChange={(e) => {
-                                setSelectedTab(e.index)
-                            }}
-                        >
+                    <div className="card w-full"
+                        style={{ margin: '0 auto', marginTop: '50px' }}
+                    >
+                        <TabView>
                             {
                                 isLocationInIran ?
-                                    data.tariffs.map((item: tariffType, index: number) => {
+                                    data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
                                         return (
-                                            <TabPanel header={item.type}>
+                                            <TabPanel header={item.price + 'k'}>
+                                                <div className='mt-12'>
+                                                    <TariffComponent
+                                                        isLocationIran
+                                                        title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
+                                                        description={data.tariffs[selectedTab].desccription} />
+                                                </div>
+                                                <TariffTable
+                                                    isLocationIran
+                                                    title={titles.tableTitle} data={[
+                                                        { title: 'مقدار سرمایه:', info: item.price + 'k' },
+                                                        { title: 'leverage حساب :', info: item.leverage },
+                                                        { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                        { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
+                                                        { title: 'target فاز 1:', info: item.target1 },
+                                                        { title: 'target فاز 2:', info: item.target2 },
+                                                        { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
+                                                        { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
+                                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
+                                                        { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
+                                                        { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                    ]}
+                                                    price={item.dollarPrice}
+                                                />
                                             </TabPanel>
                                         )
                                     })
                                     :
-                                    data.engTariffs.map((item: tariffType, index: number) => {
+                                    data.engTariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
                                         return (
-                                            <TabPanel header={item.type}>
+                                            <TabPanel header={item.price + 'k'}>
+                                                <div className='mt-12'>
+                                                    <TariffComponent
+                                                        isLocationIran={false}
+                                                        title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
+                                                        description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
+                                                </div>
+                                                <TariffTable
+                                                    isLocationIran={false}
+                                                    title={titles.tableTitle}
+                                                    data={[
+                                                        { title: 'Capital amount:', info: item.price + 'k' },
+                                                        { title: 'Leverage account:', info: item.leverage },
+                                                        { title: 'Minimum trading days:', info: item.minDays },
+                                                        { title: 'Maximum trading days:', info: item.maxDays },
+                                                        { title: 'Target Phase 1:', info: item.target1 },
+                                                        { title: 'Target Phase 2:', info: item.target2 },
+                                                        { title: 'Maximum daily loss:', info: item.dailyLoss },
+                                                        { title: 'Total maximum loss:', info: item.totalLoss },
+                                                        { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
+                                                        { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
+                                                        { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
+                                                    ]}
+                                                    price={item.dollarPrice}
+                                                />
+
                                             </TabPanel>
                                         )
                                     })
                             }
                         </TabView>
                     </div>
+                    <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
 
-                </div>
-                <div className="card w-full"
-                    style={{ margin: '0 auto', marginTop: '50px' }}
-                >
-                    <TabView>
+                    <style>
                         {
-                            isLocationInIran ?
-                                data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
-                                    return (
-                                        <TabPanel header={item.price + 'k'}>
-                                            <div className='mt-12'>
-                                                <TariffComponent
-                                                isLocationIran
-                                                title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
-                                                    description={data.tariffs[selectedTab].desccription} />
-                                            </div>
-                                            <TariffTable
-                                                isLocationIran
-                                                title={titles.tableTitle} data={[
-                                                    { title: 'مقدار سرمایه:', info: item.price + 'k' },
-                                                    { title: 'leverage حساب :', info: item.leverage },
-                                                    { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
-                                                    { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
-                                                    { title: 'target فاز 1:', info: item.target1 },
-                                                    { title: 'target فاز 2:', info: item.target2 },
-                                                    { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
-                                                    { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
-                                                    { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
-                                                    { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
-                                                    { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
-                                                ]}
-                                                price={item.dollarPrice}
-                                            />
-                                        </TabPanel>
-                                    )
-                                })
-                                :
-                                data.engTariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
-                                    return (
-                                        <TabPanel header={item.price + 'k'}>
-                                            <div className='mt-12'>
-                                                <TariffComponent
-                                                    isLocationIran={false}
-                                                    title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
-                                                    description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
-                                            </div>
-                                            <TariffTable
-                                                isLocationIran={false}
-                                                title={titles.tableTitle}
-                                                data={[
-                                                    { title: 'Capital amount:', info: item.price + 'k' },
-                                                    { title: 'Leverage account:', info: item.leverage },
-                                                    { title: 'Minimum trading days:', info: item.minDays },
-                                                    { title: 'Maximum trading days:', info: item.maxDays },
-                                                    { title: 'Target Phase 1:', info: item.target1 },
-                                                    { title: 'Target Phase 2:', info: item.target2 },
-                                                    { title: 'Maximum daily loss:', info: item.dailyLoss },
-                                                    { title: 'Total maximum loss:', info: item.totalLoss },
-                                                    { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
-                                                    { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
-                                                    { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
-                                                ]}
-                                                price={item.dollarPrice}
-                                            />
+                            `
+                .p-tabview-nav-content {
+                    margin: 0 auto;
+                    width : 90%;
 
-                                        </TabPanel>
-                                    )
-                                })
+                    @media (min-width: 1024px) { 
+                        width: 50%;
+                       }
+                  }
+                `
                         }
-                    </TabView>
-                </div>
-                <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
-
-                <style>
-                    {
-                        `
-                        .p-tabview-nav-content {
-                            margin: 0 auto;
-                            width : 90%;
-
-                            @media (min-width: 1024px) { 
-                                width: 50%;
-                               }
-                          }
-                        `
-                    }
-                </style>
-            </PrimeReactProvider>
+                    </style>
+                </PrimeReactProvider>
+            }
         </main>
     )
 }

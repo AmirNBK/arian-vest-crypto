@@ -250,7 +250,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                         >
                             <div className="carouselItemInner trans3d"
                                 style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled.jpg")',
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled-fotor-20231205201240-e1701794985905.jpg")',
                                     backgroundSize: 'cover'
                                 }}
                             ></div>
@@ -284,7 +284,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                         >
                             <div className="carouselItemInner trans3d"
                                 style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100.png")',
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
                                     backgroundSize: 'cover'
                                 }}
                             ></div>
@@ -419,7 +419,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                         >
                             <div className="carouselItemInner trans3d"
                                 style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100.png")',
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
                                     backgroundSize: 'cover'
                                 }}
                             ></div>
@@ -455,7 +455,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                         >
                             <div className="carouselItemInner trans3d"
                                 style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled.jpg")',
+                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled-fotor-20231205201240-e1701794985905.jpg")',
                                     backgroundSize: 'cover'
                                 }}
                             ></div>
@@ -605,7 +605,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 }
 
 .carouselItemInner {
-    opacity : 0.5 !important;
+    opacity : 1 !important;
   width: 280px;
   height: 250px;
   position: absolute;

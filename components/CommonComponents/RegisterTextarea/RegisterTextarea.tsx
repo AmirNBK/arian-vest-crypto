@@ -14,7 +14,7 @@ const RegisterTextarea = (props: {
     };
 
     return (
-        <textarea rows={7} className={`${myFont.className} RegisterTextArea text-white bg-transparent placeholder:text-white w-full sm:w-8/12
+        <textarea rows={7} className={`${myFont.className} RegisterTextArea text-white bg-transparent placeholder:text-[#EEEEE] w-full sm:w-8/12
         border border-solid border-white mx-auto ${props.isLocationIran ? 'text-right' : 'text-left'} rounded-2xl px-6 py-7 placeholder:text-base`}
             value={props.value}
             onChange={handleInputChange}

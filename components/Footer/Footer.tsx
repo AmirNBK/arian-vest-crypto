@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import footerBg from '../../assets/images/footerBg.png'
 import Image from 'next/image';
 import localFont from 'next/font/local'
@@ -7,14 +7,14 @@ const myFontLight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf
 const myFont2 = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import arrow from '../../assets/icons/arrowWithCircle.svg'
 import bull from '../../assets/icons/bull.svg'
+import bullRed from '../../assets/icons/bull-red-eye.svg'
 import FooterInfo from '../CommonComponents/FooterInfo/FooterInfo';
 import facebook from '../../assets/icons/facebook.svg'
 import twitter from '../../assets/icons/twitter.svg'
+import { Toast, ToastMessage } from 'primereact/toast';
 import dribble from '../../assets/icons/dribble.svg'
 import pinterest from '../../assets/icons/pinterest.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
-import useLocationData from '@/Hooks/location';
-
 
 const Footer = (props: {
     data: any
@@ -22,16 +22,57 @@ const Footer = (props: {
     isLocationInIran?: boolean
 }) => {
     const isLocationInIran = props.isLocationInIran;
+    const toastBottomRight = useRef<Toast>(null);
+    const [email, setEmail] = useState('');
     const englishPolicies = ['Rules', 'Terms and Conditions', 'Suggestions'];
     const policies = ['قوانین و مقررات', 'شرایط و ضوابط', 'انتقادات و پیشنهادات']
     const socialMedia = [facebook, twitter, dribble, pinterest, linkedin]
+    const [isHovered, setIsHovered] = useState(false);
 
+
+    const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+        setEmail(e.target.value);
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    const isValidEmail = (value: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value);
+    };
+
+    const handleFormSubmit = () => {
+        if (!email.trim() || !isValidEmail(email)) {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: `${isLocationInIran ? 'لطفا یک ایمیل معتبر وارد کنید.' : 'Please enter a valid email address.'}`,
+                life: 3000,
+            });
+            return;
+        }
+
+        toastBottomRight.current?.show({
+            severity: 'success',
+            summary: 'Success',
+            detail: `${isLocationInIran ? 'ایمیل شما ثبت گردید' : 'Email submitted'}`,
+            life: 3000,
+        });
+    };
+    
+    
     const policiesToRender = isLocationInIran ? policies : englishPolicies;
 
     return (
         <div className='Footer relative'
         >
-
+            <Toast ref={toastBottomRight} position="bottom-right" />
             <div className='Footer__mobile sm:hidden block bg-[#F68D2F] w-[110%] translate-x-[-22px]'>
                 <div className={`${myFont.className} Footer__rightside px-12 pt-12`}>
                     <p className={`text-white ${isLocationInIran ? 'text-right' : 'text-left'} mb-3 lg:text-base text-sm`}>
@@ -43,10 +84,15 @@ const Footer = (props: {
                         {isLocationInIran ? 'اخبار را از ما دریافت کنید' : ' Receive news from us'}
                     </p>
                     <div className={`${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} Footer_rightSide__email flex items-center justify-between w-full gap-6`}>
-                        <input placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
+                        <input
+                            value={email}
+                            onChange={handleInputChange}
+                            placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
                             style={{ borderBottom: '3px solid #101010', direction: 'ltr' }}
                         />
-                        <Image src={arrow} alt='arrow' className={`cursor-pointer lg:w-fit w-12`} />
+                        <Image src={arrow} alt='arrow' className={`cursor-pointer lg:w-fit w-12`}
+                            onClick={handleFormSubmit}
+                        />
                     </div>
                 </div>
 
@@ -90,6 +136,8 @@ const Footer = (props: {
             </div>
 
             <div className='Footer__default sm:block hidden'>
+                <Toast ref={toastBottomRight} position="bottom-right" />
+
                 <Image src={footerBg} alt='footerBg' className='w-full lg:h-[420px]' />
 
                 <div className='Footer__content'>
@@ -102,17 +150,27 @@ const Footer = (props: {
                             {isLocationInIran ? 'اخبار را از ما دریافت کنید' : ' Receive news from us'}
                         </p>
                         <div className={`${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} Footer_rightSide__email flex items-center justify-between w-full gap-6`}>
-                            <input placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
+                            <input
+                                value={email}
+                                onChange={handleInputChange}
+                                placeholder={`${isLocationInIran ? 'ایمیل خود را وارد کنید' : 'Enter your email address'} `} className={` outline-none bg-transparent text-black placeholder:text-black pb-1 placeholder:${isLocationInIran ? 'text-right' : 'text-left'} w-full`}
                                 style={{ borderBottom: '3px solid #101010', direction: 'ltr' }}
                             />
-                            <Image src={arrow} alt='arrow' className={`${!isLocationInIran && 'rotate-180'} cursor-pointer lg:w-fit w-12`} />
+                            <Image src={arrow} alt='arrow'
+                                onClick={handleFormSubmit}
+                                className={`${!isLocationInIran && 'rotate-180'} cursor-pointer lg:w-fit w-12`} />
                         </div>
                     </div>
 
 
                     <div className='Footer__center absolute translate-y-2/4 translate-x-2/4 right-[47%] lg:right-1/2 bottom-[52%]'
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        style={{
+                            transition: 'all 0.3s ease-in-out',
+                        }}
                     >
-                        <Image src={bull} alt='bull' className='w-72' />
+                        <Image src={isHovered ? bullRed : bull} alt='bull' className='w-72' />
                     </div>
 
                     <div className={`${myFont.className} Footer__leftside absolute flex flex-col items-end w-4/12 gap-6 translate-y-2/4`}
@@ -160,6 +218,17 @@ const Footer = (props: {
 
                 </div>
             </div>
+
+
+            <style>
+                {
+                    `
+                    .p-toast-detail {
+                        text-align :                     ${isLocationInIran ? 'right' : 'left'};
+                    }
+                    `
+                }
+            </style>
         </div>
     );
 };

@@ -53,7 +53,7 @@ const Header = (props: {
                     : ''
                 }`,
         },
-        { label: 'Tariffs', url: '/tariff' },
+        { label: 'Challenges', url: '/tariff' },
         { label: 'Rules', url: '/rules' },
         { label: 'FAQs', url: '/faq' },
         { label: 'About Us', url: '/about-us' },

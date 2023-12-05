@@ -102,98 +102,102 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
-            <PrimeReactProvider>
-                <Header active={6} isLocationInIran={isLocationInIran} />
+            {loading ? ''
+                :
+                <PrimeReactProvider>
+                    <Header active={6} isLocationInIran={isLocationInIran} />
 
-                <div className={`${myFont.className} justify-center flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center text-center sm:mr-12 mt-8`}>
-                    <Image src={newspaper} alt='faq' />
-                    <p className='text-white text-4xl'>
-                        {isLocationInIran ? data.blogTitle[0].normalTitle : data.engBlogTitle[0].normalTitle}
-                        <span style={{ color: '#F68D2E' }}>
-                            {isLocationInIran ? data.blogTitle[0].coloredTitle : data.engBlogTitle[0].coloredTitle}
-                        </span>
-                    </p>
-                </div>
+                    <div className={`${myFont.className} justify-center flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center text-center sm:mr-12 mt-8`}>
+                        <Image src={newspaper} alt='faq' />
+                        <p className='text-white text-4xl'>
+                            {isLocationInIran ? data.blogTitle[0].normalTitle : data.engBlogTitle[0].normalTitle}
+                            <span style={{ color: '#F68D2E' }}>
+                                {isLocationInIran ? data.blogTitle[0].coloredTitle : data.engBlogTitle[0].coloredTitle}
+                            </span>
+                        </p>
+                    </div>
 
 
-                <div className='px-12 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
-                    {
-                        isLocationInIran ?
-                            data.blogs.map((item: blogItem, index: number) => {
-                                return (
-                                    <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
-                                        key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran />
-                                )
-                            })
-                            :
-                            data.engBlogs.map((item: blogItem, index: number) => {
-                                return (
-                                    <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
-                                        key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran={false} />
-                                )
-                            })
-                    }
-                </div>
-
-                <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={data.length} className='mb-16'
-                    style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
-
-                <Footer data={isLocationInIran ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
-
-                <style>
-
-                    {
-                        `
-                        .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-                            color: #F68D2E;
-                            border-bottom: 1px solid #F68D2E;
-                            border-radius: 0px;
-                            background : transparent;
-                            border-color : none;
+                    <div className='px-12 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-24 mb-32 mx-auto'>
+                        {
+                            isLocationInIran ?
+                                data.blogs.map((item: blogItem, index: number) => {
+                                    return (
+                                        <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
+                                            key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran />
+                                    )
+                                })
+                                :
+                                data.engBlogs.map((item: blogItem, index: number) => {
+                                    return (
+                                        <NewsComponent text={item.title} translate={getTranslationValue(index, size)}
+                                            key={index} image={item.image?.mediaItemUrl} id={index} isLocationIran={false} />
+                                    )
+                                })
                         }
+                    </div>
 
-                        .p-link:focus {
-                            box-shadow:none;
+                    <Paginator template={template1} first={first[0]} rows={rows[0]} totalRecords={data.length} className='mb-16'
+                        style={{ background: 'transparent' }} onPageChange={(e) => onPageChange(e, 0)} />
+
+                    <Footer data={isLocationInIran ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
+
+                    <style>
+
+                        {
+                            `
+                .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+                    color: #F68D2E;
+                    border-bottom: 1px solid #F68D2E;
+                    border-radius: 0px;
+                    background : transparent;
+                    border-color : none;
+                }
+
+                .p-link:focus {
+                    box-shadow:none;
+                }
+
+                .p-paginator .p-paginator-pages .p-paginator-page {
+                    color : white;
+                }
+
+                .p-paginator-pages {
+                    display: flex;
+                    flex-direction : row-reverse;
+                }
+
+                .p-paginator {
+                    flex-direction: row-reverse;
+                }
+
+                .p-paginator .p-paginator-pages .p-paginator-page {
+                    border: 0 none;
+                    min-width: 0.7rem;
+                    height: 1.5rem;
+                    margin: 0.5rem;
+                    transition: box-shadow 0.2s;
+                }
+
+                .p-paginator .p-paginator-current {
+                    display:none;
+                }
+
+                .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+                    background : transparent;
+                    color : white;
+                }
+
+                .p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+                    background : transparent;
+                }
+                `
                         }
+                    </style>
 
-                        .p-paginator .p-paginator-pages .p-paginator-page {
-                            color : white;
-                        }
+                </PrimeReactProvider>
+            }
 
-                        .p-paginator-pages {
-                            display: flex;
-                            flex-direction : row-reverse;
-                        }
-
-                        .p-paginator {
-                            flex-direction: row-reverse;
-                        }
-
-                        .p-paginator .p-paginator-pages .p-paginator-page {
-                            border: 0 none;
-                            min-width: 0.7rem;
-                            height: 1.5rem;
-                            margin: 0.5rem;
-                            transition: box-shadow 0.2s;
-                        }
-
-                        .p-paginator .p-paginator-current {
-                            display:none;
-                        }
-
-                        .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
-                            background : transparent;
-                            color : white;
-                        }
-
-                        .p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
-                            background : transparent;
-                        }
-                        `
-                    }
-                </style>
-
-            </PrimeReactProvider>
         </main>
     )
 }
