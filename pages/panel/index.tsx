@@ -39,6 +39,7 @@ import Authentication from '@/components/Authentication/Authentication';
 import Ticket from '@/components/Ticket/Ticket';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -65,6 +66,9 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         <main
             className={`flex min-h-screen w-full flex-col justify-between`}
         >
+            <Head>
+                <title>Panel</title>
+            </Head>
             <PrimeReactProvider>
                 <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
                     className={`${myFontIran.className} rtl`} onHide={() => setVisible(false)}>

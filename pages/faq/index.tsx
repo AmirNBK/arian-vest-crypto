@@ -16,6 +16,7 @@ import Footer from '@/components/Footer/Footer';
 import { getQueryEngFooter, getQueryFaq, getQueryFooter } from '@/lib/service';
 import { GetStaticProps } from 'next';
 import useLocationData from '@/Hooks/location';
+import Head from 'next/head';
 
 export default function SingleBlog({ footer, questions, footerEng }: { footer: any, questions: any, footerEng: any }) {
     const { locationData, error, loading } = useLocationData();
@@ -25,6 +26,9 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
         <main
             className={`flex min-h-screen flex-col justify-between ${inter.className}`}
         >
+            <Head>
+                <title>Faq</title>
+            </Head>
             {loading
                 ? ''
                 :

@@ -15,6 +15,7 @@ import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../assets/images/succesfull-payment.png'
 import unsuccessful from '../../assets/images/unsuccesful-payment.png'
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 
 export default function SingleBlog({ footer, questions }: { footer: any, questions: any }) {
@@ -23,6 +24,9 @@ export default function SingleBlog({ footer, questions }: { footer: any, questio
         <main
             className={`flex min-h-screen flex-col justify-between ${inter.className}`}
         >
+            <Head>
+                <title>Result</title>
+            </Head>
             <PrimeReactProvider>
                 <Header active={''} />
                 <PaymentResult title='پرداخت موفقیت آمیز بود' image={successful} />

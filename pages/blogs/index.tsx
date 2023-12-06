@@ -26,6 +26,7 @@ import useWindowSize from '@/Hooks/innerSize';
 import { getQueryBlogs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
 import useLocationData from '@/Hooks/location';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 export default function SingleBlog({ footer, data, footerEng }: { footer: any, data: any, footerEng: any }) {
 
@@ -102,6 +103,9 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
+            <Head>
+                <title>Blogs</title>
+            </Head>
             {loading ? ''
                 :
                 <PrimeReactProvider>

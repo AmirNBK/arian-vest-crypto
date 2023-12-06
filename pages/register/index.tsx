@@ -24,6 +24,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
 import { GetStaticProps } from 'next'
 import useLocationData from '@/Hooks/location'
+import Head from 'next/head'
 
 export default function Register({ footer, footerEng }: { footer: any, footerEng: any }) {
 
@@ -200,6 +201,9 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
+            <Head>
+                <title>Register</title>
+            </Head>
             <Toast ref={toastBottomRight} position="bottom-right" />
             {loading ? ''
                 :

@@ -46,6 +46,7 @@ import { getQueryAboutUsSection, getQueryAccountGrowthSection, getQueryCollabrat
 import HomepageAboutUs from '@/components/HomepageAboutUs/HomepageAboutUs';
 import { GetStaticProps } from 'next';
 import useLocationData from '@/Hooks/location';
+import Head from 'next/head';
 
 export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, footerEng: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -101,6 +102,9 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
       className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
       onMouseMoveCapture={moveFunc}
     >
+      <Head>
+        <title>Vira Funding</title>
+      </Head>
       {loading ? '' :
         <PrimeReactProvider>
           <Header active={0} isLocationInIran={isLocationInIran} />

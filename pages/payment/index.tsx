@@ -16,6 +16,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
 import Footer from '@/components/Footer/Footer';
 import useLocationData from '@/Hooks/location';
+import Head from 'next/head';
 
 const GET_DISCOUNT_CODES = gql`
 query discount {
@@ -145,6 +146,9 @@ export default function Payment() {
         <main
             className={`flex min-h-screen flex-col justify-between ${myFontIran.className}`}
         >
+            <Head>
+                <title>Payment</title>
+            </Head>
             {loading ? ''
                 :
                 <PrimeReactProvider>

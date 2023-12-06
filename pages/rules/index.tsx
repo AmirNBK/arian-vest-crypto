@@ -24,6 +24,7 @@ import useWindowSize from '@/Hooks/innerSize';
 import { getQueryEngFooter, getQueryFooter, getQueryRules, getQueryRulesTitles } from '@/lib/service';
 import { GetStaticProps } from 'next';
 import useLocationData from '@/Hooks/location';
+import Head from 'next/head';
 
 export default function Rules({ footer, data, titles, footerEng }: { footer: any, data: any, titles: any, footerEng: any }) {
 
@@ -57,6 +58,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
+            <Head>
+                <title>Rules</title>
+            </Head>
             {loading ? ''
                 :
                 <PrimeReactProvider>

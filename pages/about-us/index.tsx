@@ -22,6 +22,7 @@ import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQu
 import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 
 export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, footerEng }: { footer: any, data: any, titles: any, titlesEng: any, dataEng: any, footerEng: any }) {
@@ -45,6 +46,9 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
         >
+            <Head>
+                <title>About us</title>
+            </Head>
             {loading ? ''
                 :
                 <PrimeReactProvider>
