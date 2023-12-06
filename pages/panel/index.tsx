@@ -48,7 +48,6 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const router = useRouter();
     const size = useWindowSize();
     const [visible, setVisible] = useState<boolean>(false);
-    const [fullSidebar, setFullSidebar] = useState(true)
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
         { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
@@ -172,12 +171,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 </div>
                 <div className={`${myFontIran.className} footer__panel text-main-orange flex flex-row-reverse gap-6 mx-auto mb-4 lg:mb-6`}>
                     <div className='flex flex-col text-center items-center '>
-                        <p className=''> آرین وست </p>
-                        <hr className='w-[70px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
+                        <p className=''>  ويرا فاندينگ </p>
+                        <hr className='w-[82px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
                     </div>
                     <div className='flex flex-col text-center items-center '>
                         <p className=''> قوانین انتشار  </p>
-                        <hr className='w-[80px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
+                        <hr className='w-[88px] h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
                     </div>
                     <div className='flex flex-col text-center items-center '>
                         <p className=''> بلاگ  </p>

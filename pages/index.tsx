@@ -7,12 +7,18 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import Header from '@/components/Header/Header';
 import pic from '../assets/images/HeroSectionPic.png'
+import charts from '../assets/images/charts.png'
 import localFont from 'next/font/local'
+import HeroText from '../assets/images/HeroText.png'
+import HeroTextEn from '../assets/images/HeroTextEn.png'
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Toast, ToastMessage } from 'primereact/toast';
+import tariffButton from '../assets/images/tariffButton.svg'
+import seeChallenges from '../assets/images/seeChallenges.png'
 import ArrowComponent from '@/components/ArrowComponent/ArrowComponent';
 import useWindowSize from '@/Hooks/innerSize';
 import AOS from 'aos';
+import HeroImage from '../assets/images/95.png'
 import 'aos/dist/aos.css';
 import faqBull from '../assets/images/faqBull.png'
 import HeroSectionText from '@/components/HeroSectionText/HeroSectionText';
@@ -81,8 +87,8 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
           [0, 0, 0, 1]
         ];
 
-        imageRef.current.style.transition = 'all 0.35s';
-        imageRef.current.style.transform = `matrix3d(${matrix.toString()})`;
+        imageRef.current.style.transition = 'all 0.15s';
+        imageRef.current.style.transform = `translate(-50%,-50%) matrix3d(${matrix.toString()})`;
       } else {
         const matrix = [
           [1, 0, 0, -x * 0.00005],
@@ -91,8 +97,8 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
           [0, 0, 0, 1]
         ];
 
-        imageRef.current.style.transition = 'all 0.35s';
-        imageRef.current.style.transform = `matrix3d(${matrix.toString()})`;
+        imageRef.current.style.transition = 'all 0.15s';
+        imageRef.current.style.transform = `translate(-50%,-50%) matrix3d(${matrix.toString()})`;
       }
     }
   };
@@ -114,17 +120,48 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
             >
-              <Image src={pic} alt='pic' unoptimized
+              <Image src={charts} alt='charts' className='md:block hidden w-screen animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow' unoptimized />
+
+
+              <Image src={HeroImage} alt='heroImage'
+                unoptimized
                 ref={imageRef}
-                className='mx-auto dynamic-pic  w-full lg:w-7/12 lg:h-500 3xl:w-5/12 h-full animate__animated  animate__zoomIn animate__slower' />
-              <div className='animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow'
-              >
-                <HeroSectionText />
+                className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
+
+              <div className={`${myFont.className} md:hidden block mt-96`}>
+                <h2 className='text-white text-7xl text-center'>
+                  {isLocationInIran ? 'تا' : 'Up to'}
+                  
+                </h2>
+                <Image src={HeroImage} alt='heroImage'
+                  unoptimized
+                  className='w-10/12 my-10 mx-auto' />
+
+                <p className='text-white text-7xl text-center'>
+                  {isLocationInIran ? 'درصد' : 'percent'}
+                </p>
+                <p className='text-white text-7xl text-center mt-10'>
+                  {isLocationInIran ? 'پرداخت سود' : 'payment'}
+                  
+                </p>
+
+                <p className={`${myFontIran.className} text-main-orange text-center text-xl mt-10`}>
+                  {isLocationInIran ? 'بدون محدودیت زمانی' : 'No time limit'}
+                  
+                </p>
+
+                <Image src={isLocationInIran ? tariffButton : seeChallenges} alt='button' className='mx-auto mt-6'/>
               </div>
+
+
+              <Link href={'/tariff'}>
+                <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
+                  className='absolute left-[54%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer' />
+              </Link>
             </div>
             <ArrowComponent />
 
-            <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-32' : 'lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-16 3xl:mt-56'} items-center pb-20 pt-0 sm:py-20 mt-20 flex flex-col lg:w-6/12`}
+            <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-96 ' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-96 3xl:mt-[480px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
             >
               <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
