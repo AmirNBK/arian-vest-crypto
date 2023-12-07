@@ -87,7 +87,8 @@ const StepsComponent = (props: {
                     }}
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
-                        <p className='absolute font-light top-[-30px] sm:-translate-x-[40px] -translate-x-[30px] text-base text-white'> {
+                        <p className={`absolute font-light top-[-30px] ${props.isLocationIran ? 'sm:-translate-x-[40px]' : 'sm:-translate-x-[65px]'}
+                        -translate-x-[30px] text-base text-white`}> {
                             props.isLocationIran ?
                                 props.data.successSteps[0].item[1].title
                                 :

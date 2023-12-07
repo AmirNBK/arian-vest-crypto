@@ -163,6 +163,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
             <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-96 ' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-96 3xl:mt-[480px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
+              style={{position : 'relative' , zIndex : '5'}}
             >
               <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
                 <span className='text-3xl text-main-orange'> </span>
