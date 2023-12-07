@@ -65,8 +65,13 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                 :
                 <PrimeReactProvider>
                     <Dialog
-                        header="SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.
-            " visible={visibleDialog} style={{
+                        header={
+                            isLocationInIran ? 
+                            'SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.'
+                            :
+                            'SGB ​​has found a new solution for a group of power users. This plan is a safe margin that makes you continue your expertise more consistently than before.'
+                        }
+                        visible={visibleDialog} style={{
                             width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
                             backgroundColor: '#252525'
                         }}
@@ -76,19 +81,36 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                         <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
                         <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                            {data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
-                                <AccordionTab
-                                    key={index}
-                                    style={{ width: '100%' }}
-                                    className='text-white text-right w-full'
-                                    header={item.title}
-                                >
-                                    <p
-                                        className={`m-0 ${myFontIran.className} text-right`}
-                                        dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
-                                    />
-                                </AccordionTab>
-                            ))}
+                            {
+                                isLocationInIran ?
+                                    data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
+                                        <AccordionTab
+                                            key={index}
+                                            style={{ width: '100%' }}
+                                            className='text-white text-right w-full'
+                                            header={item.title}
+                                        >
+                                            <p
+                                                className={`m-0 ${myFontIran.className} text-right`}
+                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                            />
+                                        </AccordionTab>
+                                    ))
+                                    :
+                                    data.engClassRules[clickedRule]?.items?.map((item: any, index: number) => (
+                                        <AccordionTab
+                                            key={index}
+                                            style={{ width: '100%' }}
+                                            className='text-white text-right w-full'
+                                            header={item.title}
+                                        >
+                                            <p
+                                                className={`m-0 ${myFontIran.className} text-left`}
+                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                            />
+                                        </AccordionTab>
+                                    ))
+                            }
                         </Accordion>
                     </Dialog>
                     <Header active={3} isLocationInIran={isLocationInIran} />
@@ -100,7 +122,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                 {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
                             </span>
                         </h2>
-                        <p className={`${myFontIran.className} text-center 3xl:text-xl rtl`} style={{ lineHeight: '2' }}>
+                        <p className={`${myFontIran.className} text-center 3xl:text-xl ${isLocationInIran && 'rtl'}`} style={{ lineHeight: '2' }}>
                             {isLocationInIran ? data.description : data.engDescription}
                         </p>
                     </div>
@@ -215,7 +237,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
             }
 
             .p-dialog .p-dialog-header .p-dialog-title {
-                text-align: right;
+                text-align: ${isLocationInIran ? 'right' : 'left'};
                 transform: translateY(40px);
                 color : white;
                 z-index : 20;
