@@ -84,6 +84,7 @@ export default function Payment() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState('');
+    const [selectedPlatform, setSelectedPlatform] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [province, setProvince] = useState('');
     const [postalCode, setPostalCode] = useState('');
@@ -91,6 +92,14 @@ export default function Payment() {
 
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
+    };
+
+    const handleRadioChange = (value: any) => {
+        setSelectedTradingPlatform(value);
+    };
+
+    const handleRadioPlatformChange = (value: any) => {
+        setSelectedPlatform(value);
     };
 
 
@@ -108,7 +117,7 @@ export default function Payment() {
     const handleBuyClick = () => {
         console.log(formState);
 
-        if (formState && formState.Email && formState['First Name'] && formState['Last Name'] && formState.Phone && formState['Street Address'] && formState.Province && formState.City && formState['Postal Code']) {
+        if (formState && selectedTradingPlatform && selectedPlatform && formState.Email && formState['First Name'] && formState['Last Name'] && formState.Phone && formState['Street Address'] && formState.Province && formState.City && formState['Postal Code']) {
             alert('right')
         }
         else alert('wrong')
@@ -260,15 +269,21 @@ export default function Payment() {
 
                         <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
                             <div className='flex flex-row-reverse gap-3'>
-                                <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets" />
+                                <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets"
+                                    onChange={() => handleRadioChange('Think Markets')}
+                                />
                                 <label className='text-xl'> ThinkMarkets </label>
                             </div>
                             <div className='flex flex-row-reverse gap-3'>
-                                <input type="radio" name="tradingPlatform" id="Eight Cap" value="Eight Cap" />
+                                <input type="radio" name="tradingPlatform" id="Eight Cap" value="Eight Cap"
+                                    onChange={() => handleRadioChange('Eight Cap')}
+                                />
                                 <label className='text-xl'> Eightcap </label>
                             </div>
                             <div className='flex flex-row-reverse gap-3'>
-                                <input type="radio" name="tradingPlatform" id="Ic Markets" value="Ic Markets" />
+                                <input type="radio" name="tradingPlatform" id="Ic Markets" value="Ic Markets"
+                                    onChange={() => handleRadioChange('Ic Markets')}
+                                />
                                 <label className='text-xl'> Icmarkets </label>
                             </div>
                         </div>
@@ -282,12 +297,17 @@ export default function Payment() {
 
                         <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
                             <div className={'flex flex-row-reverse gap-3'}>
-                                <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
+                                <input type="radio" id="MT4" name="MT4" value="MT4"
+                                    onChange={() => handleRadioPlatformChange('MT4')}
+
+                                />
                                 <label className='text-xl'> MT4 </label>
                             </div>
 
                             <div className={'flex flex-row-reverse gap-3'}>
-                                <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
+                                <input type="radio" id="MT5" name="MT5" value="MT5"
+                                    onChange={() => handleRadioPlatformChange('MT5')}
+                                />
                                 <label className='text-xl'> MT5 </label>
                             </div>
                         </div>
