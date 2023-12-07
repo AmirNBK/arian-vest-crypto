@@ -79,9 +79,41 @@ export default function Payment() {
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [selectedTradingPlatform, setSelectedTradingPlatform] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [province, setProvince] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [city, setCity] = useState('');
+
+    const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
     };
+
+
+    const [formState, setFormState] = useState<any>({
+
+    });
+
+    const handleInputChange = (fieldName: string, value: string) => {
+        setFormState((prevState: any) => ({
+            ...prevState,
+            [fieldName]: value,
+        }));
+    };
+
+    const handleBuyClick = () => {
+        console.log(formState);
+
+        if (formState && formState.Email && formState['First Name'] && formState['Last Name'] && formState.Phone && formState['Street Address'] && formState.Province && formState.City && formState['Postal Code']) {
+            alert('right')
+        }
+        else alert('wrong')
+    };
+
 
     const currencyConverter = () => {
         var formdata = new FormData();
@@ -119,7 +151,7 @@ export default function Payment() {
             toastBottomRight.current?.show({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'کد تخفیف معتبر نمیباشد',
+                detail: `${isLocationInIran ? 'کد تخفیف معتبر نمیباشد' : 'The discount code is not valid'}`,
                 life: 3000,
             });
             setDiscountAmount(0);
@@ -140,6 +172,7 @@ export default function Payment() {
             setFinalPrice(discountedPrice);
         }
     }, [discountAmount])
+
 
 
     return (
@@ -163,10 +196,10 @@ export default function Payment() {
                         </h2>
 
                         <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                            <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
 
                         </div>
 
@@ -175,22 +208,22 @@ export default function Payment() {
                             {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
                         </h2>
 
-                        <PaymentComponent placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
                         <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                            <PaymentComponent placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                         </div>
 
-                        <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
+                        {/* <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
                             {isLocationInIran ? 'از کجا درباره ما شنیدی؟' : 'Where did you hear about us?'}
                         </h2>
 
                         <div className={`${isLocationInIran && 'text-end'}`}>
-                            <PaymentComponent isLocationIran={isLocationInIran} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={socialMedia} halfWidth />
-                        </div>
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} isLocationIran={isLocationInIran} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={socialMedia} halfWidth />
+                        </div> */}
 
                         <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
                             {isLocationInIran ? 'محصولات' : 'Products'}
@@ -227,8 +260,16 @@ export default function Payment() {
 
                         <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
                             <div className='flex flex-row-reverse gap-3'>
-                                <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
+                                <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets" />
                                 <label className='text-xl'> ThinkMarkets </label>
+                            </div>
+                            <div className='flex flex-row-reverse gap-3'>
+                                <input type="radio" name="tradingPlatform" id="Eight Cap" value="Eight Cap" />
+                                <label className='text-xl'> Eightcap </label>
+                            </div>
+                            <div className='flex flex-row-reverse gap-3'>
+                                <input type="radio" name="tradingPlatform" id="Ic Markets" value="Ic Markets" />
+                                <label className='text-xl'> Icmarkets </label>
                             </div>
                         </div>
 
@@ -277,16 +318,12 @@ export default function Payment() {
                         </div>
 
 
-                        <h2 className={`text-[#EF4444] text-xl text-${isLocationInIran ? 'right' : 'left'} my-16`}>
-                            {isLocationInIran ? 'لطفاً یک کارگزار انتخاب کنید...' : 'Please select a broker...'}
-                        </h2>
-
-                        <div className='w-full relative'>
+                        <div className='w-full relative mt-16'>
                             <input
                                 placeholder={isLocationInIran ? 'کد تخفیف' : 'Discount Code'}
                                 className={` placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent ${isLocationInIran && 'rtl'}`}
                                 value={discountCode}
-                                onChange={handleInputChange}
+                                onChange={handleDiscountInputChange}
                                 style={{ border: '1px solid #6B7280' }}
                             />
                             <button
@@ -311,7 +348,9 @@ export default function Payment() {
                             }
                         </div>
 
-                        <div className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
+                        <div
+                            onClick={handleBuyClick}
+                            className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
                             <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
                                 {isLocationInIran ? 'خرید' : 'buy'}
                             </p>
@@ -326,7 +365,7 @@ export default function Payment() {
                         {
                             `
             .p-toast-detail {
-                text-align : right;
+                text-align : ${isLocationInIran ? 'right' : 'left'};
             }
             `
                         }

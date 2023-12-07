@@ -1,34 +1,49 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
-const PaymentComponent = (props: {
-    placeholder: string
-    selectInput: boolean
-    selectOptions?: any[]
-    halfWidth?: boolean
-    isLocationIran: boolean
+interface PaymentComponentProps {
+    placeholder: string;
+    selectInput: boolean;
+    selectOptions?: { name: string; code: string }[];
+    halfWidth?: boolean;
+    isLocationIran: boolean;
+    onChange: (fieldName: string, value: string) => void;
+}
+
+const PaymentComponent: React.FC<PaymentComponentProps> = ({
+    placeholder,
+    selectInput,
+    selectOptions,
+    halfWidth,
+    isLocationIran,
+    onChange,
 }) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        onChange(placeholder, event.target.value);
+    };
+
     return (
         <div>
-            {
-                !props.selectInput ?
-                    <input placeholder={props.placeholder} className={`${props.isLocationIran && 'rtl'} p-3 w-full text-white bg-transparent rounded-md`}
-                        style={{ border: '1px solid #6B7280' }}
-                    />
-                    :
-                    <select placeholder={props.placeholder} className={`${props.halfWidth ? 'w-1/2' : 'w-full'} text-white ${props.isLocationIran && 'rtl'} p-3 bg-transparent
-                    rounded-md`}
-                        style={{ border: '1px solid #6B7280' }}
-                    >
-                        {props.selectOptions?.map((item, index) => {
-                            return (
-                                <option key={index} value={item} className='text-black'>
-                                    {item.name}
-                                </option>
-                            )
-                        })}
-                    </select>
-            }
-
+            {!selectInput ? (
+                <input
+                    placeholder={placeholder}
+                    className={`${isLocationIran && 'rtl'} p-3 w-full text-white bg-transparent rounded-md`}
+                    style={{ border: '1px solid #6B7280' }}
+                    onChange={handleChange}
+                />
+            ) : (
+                <select
+                    placeholder={placeholder}
+                    className={`${halfWidth ? 'w-1/2' : 'w-full'} text-white ${isLocationIran && 'rtl'} p-3 bg-transparent rounded-md`}
+                    style={{ border: '1px solid #6B7280' }}
+                    onChange={handleChange}
+                >
+                    {selectOptions?.map((item, index) => (
+                        <option key={index} value={item.code}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+            )}
         </div>
     );
 };
