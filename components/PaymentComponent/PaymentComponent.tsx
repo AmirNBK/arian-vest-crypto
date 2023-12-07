@@ -3,7 +3,7 @@ import React from 'react';
 const PaymentComponent = (props: {
     placeholder: string
     selectInput: boolean
-    selectOptions?: string[]
+    selectOptions?: any[]
     halfWidth?: boolean
     isLocationIran: boolean
 }) => {
@@ -22,7 +22,7 @@ const PaymentComponent = (props: {
                         {props.selectOptions?.map((item, index) => {
                             return (
                                 <option key={index} value={item} className='text-black'>
-                                    {item}
+                                    {item.name}
                                 </option>
                             )
                         })}

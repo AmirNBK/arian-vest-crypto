@@ -115,7 +115,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
         <PrimeReactProvider>
           <Header active={0} isLocationInIran={isLocationInIran} />
           <div className='h-screen'>
-            <div className='relative sm:mt-20 block
+            <div className='relative sm:mt-0 block
                     absolute left-1/2 top-1/3 
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
@@ -156,12 +156,12 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
               <Link href={'/tariff'}>
                 <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
-                  className='absolute left-[54%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer' />
+                  className='absolute left-[54%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
               </Link>
             </div>
             <ArrowComponent />
 
-            <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-96 ' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-96 3xl:mt-[480px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
+            <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
               style={{position : 'relative' , zIndex : '5'}}
             >
@@ -180,7 +180,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 }
               </p>
               <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
-                {isLocationInIran ? ' بررسی تعرفه ها' : 'Check tariffs'}
+                {isLocationInIran ? ' بررسی تعرفه ها' : 'Check challenges'}
               </Link>
             </div>
 

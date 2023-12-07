@@ -16,6 +16,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
 import Footer from '@/components/Footer/Footer';
 import useLocationData from '@/Hooks/location';
+import countries from '../../assets/countries.json'
 import Head from 'next/head';
 
 const GET_DISCOUNT_CODES = gql`
@@ -65,7 +66,7 @@ query engFooter {
 export default function Payment() {
     const nationality = ['ایران', 'آمریکا', 'عربستان']
     const socialMedia = ['instagram', 'whatsapp', 'telegram']
-    const tariff = ['Traders Choice', 'Classic Challenge']
+    const tariff = ['Classic', 'One-step', 'Rapid']
     const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
     const { data: footerData } = useQuery(GET_FOOTER);
     const { data: footerDataEng } = useQuery(GET_FOOTER_ENG);
@@ -81,7 +82,6 @@ export default function Payment() {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
     };
-
 
     const currencyConverter = () => {
         var formdata = new FormData();
@@ -179,7 +179,7 @@ export default function Payment() {
 
                         <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
                             <PaymentComponent placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={nationality} isLocationIran={isLocationInIran} />
+                            <PaymentComponent placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
                             <PaymentComponent placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
                             <PaymentComponent placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                         </div>
@@ -218,23 +218,6 @@ export default function Payment() {
                                 )
                             })}
                         </div>
-                        <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
-                            style={{ color: 'rgba(255, 255, 255, 0.6)' }}
-                        >
-                            {isLocationInIran ? 'نوع حساب را انتخاب کنید:' : 'Select Account Type:'}
-                        </h2>
-
-                        <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
-                            <div className={'flex flex-row-reverse gap-3'}>
-                                <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
-                                <label className='text-xl'> Swap Free </label>
-                            </div>
-                            <div className='flex flex-row-reverse gap-3'>
-                                <input type="radio" id="Swap Free" name="Swap Free" value="Swap Free" />
-                                <label className='text-xl'> Regular </label>
-                            </div>
-                        </div>
-
 
                         <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
                             style={{ color: 'rgba(255, 255, 255, 0.6)' }}
