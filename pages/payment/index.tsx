@@ -118,9 +118,16 @@ export default function Payment() {
         console.log(formState);
 
         if (formState && selectedTradingPlatform && selectedPlatform && formState.Email && formState['First Name'] && formState['Last Name'] && formState.Phone && formState['Street Address'] && formState.Province && formState.City && formState['Postal Code']) {
-            alert('right')
+           
         }
-        else alert('wrong')
+        else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: `${isLocationInIran ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد' : 'Please fill all the inputs correctly'}`,
+                life: 3000,
+            });
+        }
     };
 
 
@@ -317,9 +324,9 @@ export default function Payment() {
                             <input type='checkbox' />
                             <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
                                 {isLocationInIran
-                                    ? 'من اعلام می کنم که شرایط و ضوابط را مطالعه کرده و با آن موافقم'
-                                    : 'I declare that I have read and agree to the terms and conditions'}
-                                <span className='text-white'>
+                                    ? 'بروکر موردنظر توسط تریدر تست شده و سرمایه گذار برتر هیچ مسئولیتی در قبال آن ندارد.'
+                                    : 'The chosen broker has been tested by the trader, and the superior investor assumes no responsibility for it.'}
+                                <span className='text-white ml-1'>
                                     {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
                                 </span>
                             </p>
@@ -329,9 +336,9 @@ export default function Payment() {
                             <input type='checkbox' />
                             <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
                                 {isLocationInIran
-                                    ? 'من اعلام می کنم که سیاست حفظ حریم خصوصی را مطالعه کرده و با آن موافقم'
-                                    : 'I declare that I have read and agree to the privacy policy'}
-                                <span className='text-white'>
+                                    ? ' قوانین و terms & conditions را مطالعه کرده و شرایط پلن ها را میپذیرم.'
+                                    : 'I have read the rules and terms & conditions and accept the terms of the plans.'}
+                                <span className='text-white ml-1'>
                                     {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
                                 </span>
                             </p>
@@ -370,7 +377,7 @@ export default function Payment() {
 
                         <div
                             onClick={handleBuyClick}
-                            className='bg-[#0A8100] rounded-md w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
+                            className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
                             <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
                                 {isLocationInIran ? 'خرید' : 'buy'}
                             </p>
