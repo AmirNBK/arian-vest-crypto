@@ -109,18 +109,45 @@ export default function Payment() {
     };
 
     const handleBuyClick = () => {
-        if (formState && selectedTradingPlatform && selectedPlatform && formState.email && formState.firstName && formState.lastName && formState.phone && formState.streetAddress && formState.province && formState.city && formState.postalCode && rules1 && rules2) {
-            
-        }
-        else {
+        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
+
+        if (
+            formState &&
+            selectedTradingPlatform &&
+            selectedPlatform &&
+            formState.email &&
+            isValidEmail &&
+            formState.firstName &&
+            formState.lastName &&
+            formState.phone &&
+            formState.streetAddress &&
+            formState.province &&
+            formState.city &&
+            formState.postalCode &&
+            rules1 &&
+            rules2
+        ) {
+        } else {
+            let errorMessage = isLocationInIran
+                ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد'
+                : 'Please fill all the inputs correctly';
+
+            if (!isValidEmail) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا آدرس ايميل معتبر وارد نماييد'
+                    : 'Please enter a valid email address';
+            }
+
+
             toastBottomRight.current?.show({
                 severity: 'error',
                 summary: 'Error',
-                detail: `${isLocationInIran ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد' : 'Please fill all the inputs correctly'}`,
+                detail: errorMessage,
                 life: 3000,
             });
         }
     };
+
 
     const currencyConverter = () => {
         var formdata = new FormData();
