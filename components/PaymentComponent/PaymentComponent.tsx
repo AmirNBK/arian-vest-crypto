@@ -33,7 +33,7 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
             ) : (
                 <select
                     placeholder={placeholder}
-                    className={`${halfWidth ? 'w-1/2' : 'w-full'} text-white ${isLocationIran && 'rtl'} p-3 bg-transparent rounded-md`}
+                    className={`${halfWidth ? 'w-1/2' : 'w-full'} text-[#EEEE] ${isLocationIran && 'rtl'} p-3 bg-transparent rounded-md`}
                     style={{ border: '1px solid #6B7280' }}
                     onChange={handleChange}
                 >
@@ -44,6 +44,17 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
                     ))}
                 </select>
             )}
+
+            <style>
+                {`
+                select {
+                    color: #9e9e9e;
+                  }
+                  option:not(:first-of-type) {
+                    color: black;
+                  }
+                `}
+            </style>
         </div>
     );
 };

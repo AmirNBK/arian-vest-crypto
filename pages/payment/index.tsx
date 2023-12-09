@@ -226,9 +226,9 @@ export default function Payment() {
 
                         <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
-                        <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
+                       <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
                             <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
                             <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
                             <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                         </div>
