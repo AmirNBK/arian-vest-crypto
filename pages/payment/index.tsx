@@ -79,16 +79,10 @@ export default function Payment() {
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
-    const [lastName, setLastName] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
-    const [province, setProvince] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-    const [city, setCity] = useState('');
+    const [rules1, setRules1] = useState<boolean>(false);
+    const [rules2, setRules2] = useState<boolean>(false);
 
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
@@ -115,10 +109,8 @@ export default function Payment() {
     };
 
     const handleBuyClick = () => {
-        console.log(formState);
-
-        if (formState && selectedTradingPlatform && selectedPlatform && formState.Email && formState['First Name'] && formState['Last Name'] && formState.Phone && formState['Street Address'] && formState.Province && formState.City && formState['Postal Code']) {
-           
+        if (formState && selectedTradingPlatform && selectedPlatform && formState.email && formState.firstName && formState.lastName && formState.phone && formState.streetAddress && formState.province && formState.city && formState.postalCode && rules1 && rules2) {
+            
         }
         else {
             toastBottomRight.current?.show({
@@ -129,7 +121,6 @@ export default function Payment() {
             });
         }
     };
-
 
     const currencyConverter = () => {
         var formdata = new FormData();
@@ -212,10 +203,10 @@ export default function Payment() {
                         </h2>
 
                         <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
 
                         </div>
 
@@ -224,13 +215,13 @@ export default function Payment() {
                             {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
                         </h2>
 
-                        <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <PaymentComponent name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
-                       <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
+                        <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
+                            <PaymentComponent name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                         </div>
 
                         {/* <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
@@ -321,7 +312,7 @@ export default function Payment() {
 
 
                         <div className={`flex ${isLocationInIran && 'flex-row-reverse'} items-baseline text-white gap-2 mt-12 text-sm`}>
-                            <input type='checkbox' />
+                            <input type='checkbox' onChange={() => setRules1(!rules1)} />
                             <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
                                 {isLocationInIran
                                     ? 'بروکر موردنظر توسط تریدر تست شده و سرمایه گذار برتر هیچ مسئولیتی در قبال آن ندارد.'
@@ -333,8 +324,8 @@ export default function Payment() {
                         </div>
 
                         <div className={`${isLocationInIran && 'flex-row-reverse'} flex text-white gap-2 mt-4 text-sm`}>
-                            <input type='checkbox' />
-                            <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
+                            <input type='checkbox' onChange={() => setRules2(!rules2)} />
+                            <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right rtl'}`}>
                                 {isLocationInIran
                                     ? ' قوانین و terms & conditions را مطالعه کرده و شرایط پلن ها را میپذیرم.'
                                     : 'I have read the rules and terms & conditions and accept the terms of the plans.'}

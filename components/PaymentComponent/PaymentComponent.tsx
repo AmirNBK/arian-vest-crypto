@@ -7,6 +7,7 @@ interface PaymentComponentProps {
     halfWidth?: boolean;
     isLocationIran: boolean;
     onChange: (fieldName: string, value: string) => void;
+    name: string
 }
 
 const PaymentComponent: React.FC<PaymentComponentProps> = ({
@@ -16,9 +17,10 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
     halfWidth,
     isLocationIran,
     onChange,
+    name
 }) => {
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        onChange(placeholder, event.target.value);
+        onChange(name, event.target.value);
     };
 
     return (
