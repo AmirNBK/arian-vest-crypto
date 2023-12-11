@@ -35,6 +35,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         title: string
     }
 
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -125,16 +126,17 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                     isLocationIran
                                                     title={titles.tableTitle} data={[
                                                         { title: 'مقدار سرمایه:', info: item.price + 'k' },
-                                                        { title: 'leverage حساب :', info: item.leverage },
+                                                        { title: 'حساب بازرگانی:', info: item.leverage },
                                                         { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
                                                         { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
-                                                        { title: 'target فاز 1:', info: item.target1 },
-                                                        { title: 'target فاز 2:', info: item.target2 },
+                                                        { title: 'هدف فاز 1:', info: item.target1 },
+                                                        { title: 'هدف فاز 2:', info: item.target2 },
                                                         { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
                                                         { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
-                                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'مجاز نیست' },
-                                                        { title: 'refund:', info: item.refund ? 'دارد' : 'ندارد' },
-                                                        { title: 'news trading:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'غیرمجاز' },
+                                                        { title: 'بازپرداخت:', info: item.refund ? 'دارد' : 'ندارد' },
+                                                        { title: 'معاملات اخباری:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                        { title: 'تقسیم سود:', info: item.profitShare },
                                                     ]}
                                                     price={item.dollarPrice}
                                                 />
@@ -166,6 +168,8 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                         { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
                                                         { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
                                                         { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
+                                                        { title: 'Profit share::', info: item.profitShare },
+
                                                     ]}
                                                     price={item.dollarPrice}
                                                 />

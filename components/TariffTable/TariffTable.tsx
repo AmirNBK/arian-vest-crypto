@@ -70,9 +70,10 @@ const TariffTable = (props: {
                                 style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
                             >
                                 <div>
-                                    <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap 3xl:mr-28`}
+                                    <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap 3xl:mr-28`}>
+                                        {item.info !== undefined && item.info !== null ? item.info : '0'}
+                                    </p>
 
-                                    >{item.info}</p>
                                 </div>
                             </div>
                         )

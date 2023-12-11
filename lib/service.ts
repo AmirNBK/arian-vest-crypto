@@ -85,6 +85,7 @@ export async function getQueryTariffs() {
                         target1
                         target2
                         totalLoss
+                        profitShare
                       }
                     }
                   }
@@ -108,6 +109,7 @@ export async function getQueryTariffs() {
                         target1
                         target2
                         totalLoss
+                        profitShare
                       }
                     }
                   }
