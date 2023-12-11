@@ -131,7 +131,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               <div className={`${myFont.className} md:hidden block mt-96`}>
                 <h2 className='text-white text-7xl text-center'>
                   {isLocationInIran ? 'تا' : 'Up to'}
-                  
+
                 </h2>
                 <Image src={HeroImage} alt='heroImage'
                   unoptimized
@@ -142,28 +142,30 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </p>
                 <p className='text-white text-7xl text-center mt-10'>
                   {isLocationInIran ? 'پرداخت سود' : 'payment'}
-                  
+
                 </p>
 
                 <p className={`${myFontIran.className} text-main-orange text-center text-xl mt-10`}>
                   {isLocationInIran ? 'بدون محدودیت زمانی' : 'No time limit'}
-                  
+
                 </p>
 
-                <Image src={isLocationInIran ? tariffButton : seeChallenges} alt='button' className='mx-auto mt-6'/>
+                <Link href={'/tariff'}>
+                  <Image src={isLocationInIran ? tariffButton : seeChallenges} alt='button' className='mx-auto mt-6' />
+                </Link>
               </div>
 
 
               <Link href={'/tariff'}>
                 <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
-                  className='absolute left-[54%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
+                  className='absolute left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
               </Link>
             </div>
             <ArrowComponent />
 
             <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
               data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
-              style={{position : 'relative' , zIndex : '5'}}
+              style={{ position: 'relative', zIndex: '5' }}
             >
               <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
                 <span className='text-3xl text-main-orange'> </span>
@@ -457,98 +459,109 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
       <style>
         {
           `
-          .p-toast-bottom-right {
-            bottom : auto;
-          }
-          .p-component {
-            display: flex;
-  flex-direction: column-reverse;
-          }
-          .p-tabview .p-tabview-panels {
-            max-height: 850px;
+    .p-toast-bottom-right {
+      bottom: auto;
+    }
 
-            @media (min-width: 1024px) { 
-              max-height: 900px;
-             }
+    .p-component {
+      display: flex;
+      flex-direction: column-reverse;
+    }
 
-             @media (max-width: 640px) { 
-              max-height: 700px;
-             }
-             
-          }
-          .p-tabview-nav-content {
-            @media (min-width: 1024px) { 
-              width: 35%;
-             }
-             @media (max-width: 640px) { 
-              width: 90%;
-             }
-             width: 50%;
-            margin: 0 auto;
-            z-index : 1;
-          }
-                  .p-accordion .p-accordion-header .p-accordion-header-link {
-                      border: none;
-                      background: #1D1D1D;
-                      color: #fff;
-                      padding: 30px 20px;
-                      font-family: '__myFont_0ebf61';
-                      font-weight:400;
-                  }
+    .p-tabview .p-tabview-panels {
+      max-height: 850px;
+    }
 
-                  .p-accordion-header-text {
-                      text-align:right;
-                      line-height:1.8
-                  }
+    @media (min-width: 1024px) {
+      .p-tabview .p-tabview-panels {
+        max-height: 900px;
+      }
+    }
 
-                  .p-accordion-header {
-                      color : white;
-                  }
+    @media (max-width: 640px) {
+      .p-tabview .p-tabview-panels {
+        max-height: 700px;
+      }
+    }
 
-                  .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
-                      background: #1D1D1D;
-                      color : white
-                  }
+    .p-tabview-nav-content {
+      width: 50%;
+      margin: 0 auto;
+      z-index: 1;
+    }
 
-                  .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-                      border:none;
-                      background : #1D1D1D;
-                      color : white;
-                  }
+    @media (min-width: 1024px) {
+      .p-tabview-nav-content {
+        width: 35%;
+      }
+    }
 
-                  .p-accordion .p-accordion-content {
-                      background : #1D1D1D;
-                      color : white;
-                      border:none
-                  }
+    @media (max-width: 640px) {
+      .p-tabview-nav-content {
+        width: 90%;
+      }
+    }
 
-                  
-  .p-checkbox .p-checkbox-box {
+    .p-accordion .p-accordion-header .p-accordion-header-link {
+      border: none;
+      background: #1D1D1D;
+      color: #fff;
+      padding: 30px 20px;
+      font-family: '__myFont_0ebf61';
+      font-weight: 400;
+    }
+
+    .p-accordion-header-text {
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .p-accordion-header {
+      color: white;
+    }
+
+    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+      background: #1D1D1D;
+      color: white;
+    }
+
+    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+      border: none;
+      background: #1D1D1D;
+      color: white;
+    }
+
+    .p-accordion .p-accordion-content {
+      background: #1D1D1D;
+      color: white;
+      border: none;
+    }
+
+    .p-checkbox .p-checkbox-box {
       background-color: transparent;
     }
 
     .p-accordion-header-link {
-
       justify-content: space-between;
     }
 
     .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
       background-color: #1D1D1D;
       border: none;
-      color : white;
+      color: white;
     }
 
     .p-accordion .p-accordion-header .p-accordion-header-link {
-      height : 70px;
+      height: 70px;
     }
 
     .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-      color : #F68D2E;
+      color: #F68D2E;
     }
-                  
-                  `
+    `
         }
       </style>
+
     </main >
   )
 }

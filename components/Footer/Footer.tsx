@@ -15,6 +15,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import dribble from '../../assets/icons/dribble.svg'
 import pinterest from '../../assets/icons/pinterest.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
+import Link from 'next/link';
 
 const Footer = (props: {
     data: any
@@ -24,8 +25,17 @@ const Footer = (props: {
     const isLocationInIran = props.isLocationInIran;
     const toastBottomRight = useRef<Toast>(null);
     const [email, setEmail] = useState('');
-    const englishPolicies = ['Rules', 'Terms and Conditions', 'Suggestions'];
-    const policies = ['قوانین و مقررات', 'شرایط و ضوابط', 'انتقادات و پیشنهادات']
+    const englishPolicies = [
+        { title: 'Rules', link: '/rules' },
+        { title: 'Terms and Conditions', link: '/rules' },
+        { title: 'Suggestions', link: '/' }
+    ];
+    const policies = [
+        { title: 'قوانین و مقررات', link: '/rules' },
+        { title: 'شرایط و ضوابط', link: '/rules' },
+        { title: 'انتقادات و پیشنهادات', link: '/' }
+    ];
+
     const socialMedia = [facebook, twitter, dribble, pinterest, linkedin]
     const [isHovered, setIsHovered] = useState(false);
 
@@ -65,8 +75,8 @@ const Footer = (props: {
             life: 3000,
         });
     };
-    
-    
+
+
     const policiesToRender = isLocationInIran ? policies : englishPolicies;
 
     return (
@@ -195,9 +205,9 @@ const Footer = (props: {
                         <div className='flex flex-row-reverse justify-between items-center lg:items-baseline'>
                             <div className='policies flex flex-row gap-6 items-center'>
                                 {policiesToRender.map((item, index) => (
-                                    <p key={index} className={`${myFontLight.className} text-white font-light`}>
-                                        {item}
-                                    </p>
+                                    <Link href={`${item.link}`} key={index} className={`${myFontLight.className} text-white font-light`}>
+                                        {item?.title}
+                                    </Link>
                                 ))}
                             </div>
                             <p className={`text-white text-center mt-6 text-xl lg:block hidden ${myFont2.className}`}

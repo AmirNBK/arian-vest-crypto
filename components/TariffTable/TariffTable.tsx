@@ -43,7 +43,8 @@ const TariffTable = (props: {
                 <div className='flex-1 sm:block flex flex-col justify-between'>
                     {props.data.map((item, index) => {
                         return (
-                            <div key={index} className={`${index % 2 === 0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse
+                            <div key={index} className={`${index % 2 === 0 ? 'bg-gradient-2' : 'bg-gradient'} flex flex-row-reverse sm:h-fit
+                            h-[55px] -translate-y-[1px] sm:translate-y-0
                         px-6 py-4
                          ${props.isLocationIran ? 'justify-between' : 'justify-end'}`}
                                 style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
