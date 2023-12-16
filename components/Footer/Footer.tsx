@@ -139,7 +139,7 @@ const Footer = (props: {
                         <p className={`text-white text-center my-2 text-base ${myFont2.className}`}
                             style={{ color: '#000' }}
                         >
-                            {isLocationInIran ? 'طراحی شده توسط زفره مدیا' : 'Designed by Zafre Media'}
+                            {/* {isLocationInIran ? 'طراحی شده توسط زفره مدیا' : 'Designed by Zafre Media'} */}
                         </p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@ const Footer = (props: {
                     >
                         <hr className='mb-6 lg:mb-0' />
                         <div className='flex flex-row-reverse justify-between items-center lg:items-baseline'>
-                            <div className='policies flex flex-row gap-6 items-center'>
+                            <div className='policies flex flex-row gap-6 items-center pt-8'>
                                 {policiesToRender.map((item, index) => (
                                     <Link href={`${item.link}`} key={index} className={`${myFontLight.className} text-white font-light`}>
                                         {item?.title}
@@ -213,7 +213,7 @@ const Footer = (props: {
                             <p className={`text-white text-center mt-6 text-xl lg:block hidden ${myFont2.className}`}
                                 style={{ color: '#000' }}
                             >
-                                {isLocationInIran ? 'طراحی شده توسط زفره مدیا' : 'Designed by Zafre Media'}
+                                {/* {isLocationInIran ? 'طراحی شده توسط زفره مدیا' : 'Designed by Zafre Media'} */}
                             </p>
 
                             <div className='flex flex-row gap-6 lg:gap-16'>
