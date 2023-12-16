@@ -270,6 +270,6 @@ export const getStaticProps: GetStaticProps = async () => {
             footer,
             data
         },
-        revalidate: 3600,
+        revalidate: 10,
     };
 };

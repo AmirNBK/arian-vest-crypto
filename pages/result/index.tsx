@@ -49,6 +49,6 @@ export const getStaticProps: GetStaticProps = async () => {
             footer,
             questions
         },
-        revalidate: 3600,
+        revalidate: 10,
     };
 };
