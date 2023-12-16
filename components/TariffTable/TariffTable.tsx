@@ -50,7 +50,7 @@ const TariffTable = (props: {
                                 style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
                             >
                                 <div>
-                                    <h2 className={`text-sm whitespace-nowrap 3xl:ml-28 sm:text-base sm:text-${props.minimal ? 'xs' : 'base'}
+                                    <h2 className={`text-sm whitespace-nowrap 3xl:ml-16 sm:text-base sm:text-${props.minimal ? 'xs' : 'base'}
                             text-main-orange
                             ${props.isLocationIran ? 'rtl' : 'ltr'}`}>{item.title}</h2>
                                 </div>
@@ -70,7 +70,7 @@ const TariffTable = (props: {
                                 style={{ borderTop: '1px solid rgba(246, 141, 46, 0.40)' }}
                             >
                                 <div>
-                                    <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap 3xl:mr-28`}>
+                                    <p className={`text-${props.minimal ? 'sm' : 'sm:lg sm'} text-white whitespace-nowrap 3xl:mr-16`}>
                                         {item.info !== undefined && item.info !== null ? item.info : '0'}
                                     </p>
 
