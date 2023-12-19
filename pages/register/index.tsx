@@ -151,6 +151,12 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
                             life: 3000,
                         });
+                        if (checked) {
+                            localStorage.setItem('authToken', res.data.access)
+                        }
+                        else {
+                            sessionStorage.setItem('authToken', res.data.access)
+                        }
                         setTimeout(() => {
                             router.push('/panel');
                         }, 1000);

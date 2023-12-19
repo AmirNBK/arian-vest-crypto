@@ -40,6 +40,7 @@ import Ticket from '@/components/Ticket/Ticket';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import useLocationData from '@/Hooks/location';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -47,6 +48,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
     const size = useWindowSize();
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [visible, setVisible] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
@@ -164,7 +167,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                     activePanel === 'referral' ?
                                         <Referral />
                                         : activePanel === 'authentication' ?
-                                            <Authentication /> : activePanel === 'ticket' ? <Ticket /> : ''
+                                            <Authentication /> : activePanel === 'ticket' ? <Ticket isLocationIran={isLocationInIran} /> : ''
                         }
 
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import localFont from 'next/font/local';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -7,12 +7,88 @@ import Image from 'next/image';
 import NewInput from '../NewInput/NewInput';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 import plus from '../../assets/icons/download2.svg'
+import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
+import { SendTicket, getTicketTypes } from '@/lib/apiConfig';
 
-const Ticket = () => {
+const Ticket = (props: {
+    isLocationIran: boolean
+}) => {
+    const [supportTypes, setSupportTypes] = useState<[]>()
+
+    interface FormData {
+        subject: string;
+        supportType: string;
+        priority: string;
+        orderNumber: string;
+        metatraderAccount: string;
+        platform: string;
+        description: string;
+        file: any;
+    }
+
+    type FormField = keyof FormData;
+    const toastBottomRight = useRef<Toast>(null);
+    useEffect(() => {
+        getTicketTypes().then((res) => {
+            setSupportTypes(res.data)
+        })
+    }, [])
+
+    const [formData, setFormData] = useState<FormData>({
+        subject: '',
+        supportType: '',
+        priority: '',
+        orderNumber: '',
+        metatraderAccount: '',
+        platform: '',
+        description: '',
+        file: ''
+    });
+
+    const handleSendButtonClick = () => {
+
+        if (formData.subject, formData.supportType, formData.priority, formData.orderNumber, formData.metatraderAccount, formData.platform, formData.description) {
+            SendTicket(
+                1,
+                formData.supportType,
+                formData.priority,
+                formData.subject,
+                formData.platform,
+                formData.metatraderAccount,
+                formData.orderNumber,
+                formData.description,
+                formData.file
+            )
+                .then((res) => {
+                    // Handle successful response
+                    console.log('Ticket sent successfully:', res);
+                })
+                .catch((err) => {
+                    // Handle error
+                    console.error('Error sending ticket:', err);
+                });
+        } else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: `${props.isLocationIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
+                life: 3000,
+            });
+        }
+    };
+
+    const handleInputChange = (fieldName: FormField, value: string) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [fieldName]: value,
+        }));
+    };
+
     return (
         <div>
+            <Toast ref={toastBottomRight} position="bottom-right" />
             <div className='Ticket bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
                 <div className='flex flex-col lg:flex-row-reverse gap-2'>
                     <div className='flex flex-row items-center gap-4'>
@@ -36,22 +112,52 @@ const Ticket = () => {
 
                     <div className='flex flex-col flex-[1.5]'>
                         <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1'>
-                            <NewInput placeholder='موضوع' isTextArea={false} />
-                            <NewInput placeholder='نوع پشتیبانی' isTextArea={false} selectable />
-                            <NewInput placeholder='فوریت' isTextArea={false} />
-                            <NewInput placeholder='شماره سفارش' isTextArea={false} />
-                            <NewInput placeholder='اکانت متاتریدر' isTextArea={false} />
-                            <NewInput placeholder='پلتفرم' isTextArea={false} />
+                            <NewInput
+                                placeholder='موضوع'
+                                isTextArea={false}
+                                onChange={(value) => handleInputChange('subject', value)}
+                            />
+                            <NewInput
+                                placeholder='نوع پشتیبانی'
+                                isTextArea={false}
+                                selectable
+                                supportTypes={supportTypes}
+                                onChange={(value) => handleInputChange('supportType', value)}
+                            />
+                            <NewInput
+                                placeholder='فوریت'
+                                isTextArea={false}
+                                onChange={(value) => handleInputChange('priority', value)}
+                            />
+                            <NewInput
+                                placeholder='شماره سفارش'
+                                isTextArea={false}
+                                onChange={(value) => handleInputChange('orderNumber', value)}
+                            />
+                            <NewInput
+                                placeholder='اکانت متاتریدر'
+                                isTextArea={false}
+                                onChange={(value) => handleInputChange('metatraderAccount', value)}
+                            />
+                            <NewInput
+                                placeholder='پلتفرم'
+                                isTextArea={false}
+                                onChange={(value) => handleInputChange('platform', value)}
+                            />
                         </div>
                         <div>
-                            <NewInput placeholder='توضیحات مربوطه خود را بنویسید' isTextArea />
+                            <NewInput
+                                placeholder='توضیحات مربوطه خود را بنویسید'
+                                isTextArea
+                                onChange={(value) => handleInputChange('description', value)}
+                            />
                         </div>
                     </div>
 
                 </div>
             </div>
             <div className='flex justify-center cursor-pointer'>
-                <Image src={SendButton} alt='button' unoptimized />
+                <Image src={SendButton} alt='button' unoptimized onClick={handleSendButtonClick} />
             </div>
             <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
                 <div className='flex flex-row items-center gap-4'>
@@ -356,7 +462,7 @@ const Ticket = () => {
                             </td>
 
                         </tr>
-                        
+
                     </table>
 
                 </div>
@@ -366,6 +472,9 @@ const Ticket = () => {
             <style>
                 {
                     `
+                    .p-toast-detail {
+                        text-align : ${props.isLocationIran ? 'right' : 'left'} ;
+                    }
                     .wrap {
                         text-wrap: nowrap;
                     }

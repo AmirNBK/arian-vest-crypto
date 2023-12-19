@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' });
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' });
@@ -7,7 +7,15 @@ const NewInput = (props: {
   placeholder: string
   isTextArea?: boolean
   selectable?: boolean
+  onChange?: (value: string) => void;
+  supportTypes?: []
 }) => {
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    if (props.onChange) {
+      props.onChange(event.target.value);
+    }
+  };
 
   return (
     <div className={`${myFont.className} NewInput`}>
@@ -15,10 +23,18 @@ const NewInput = (props: {
         <label className={`${myFont.className} input-label`}>
           {props.placeholder}
         </label>
-        <input style={{ direction: 'rtl' }} type="text" className={`input-1 ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`} />
-        {props.selectable && <select className='absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent'
-          style={{ color: 'rgba(255, 255, 255, 0.27)', direction: 'rtl' }}>
-          <option> انتخاب کنید </option>
+        <input style={{ direction: 'rtl' }} type="text" className={`input-1 ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`}
+          onChange={handleChange}
+        />
+        {props.selectable && <select
+          onChange={handleChange}
+          className='absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent'
+          style={{ color: 'grey', direction: 'rtl' }}>
+          {props.supportTypes?.map((item, index) => {
+            return (
+              <option> {item} </option>
+            )
+          })}
         </select>}
       </div>
 
