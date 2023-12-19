@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import icon from '../../assets/icons/registerIcon.svg'
-import signUp from '../../assets/icons/signuUp.svg'
-import login from '../../assets/icons/login.svg'
+import signUpIcon from '../../assets/icons/signuUp.svg'
+import loginIcon from '../../assets/icons/login.svg'
 import RegisterInput from '@/components/CommonComponents/RegisterInput/RegisterInput'
 import RegisterButton from '@/components/CommonComponents/RegisterButton/RegisterButton'
 import RegisterTextarea from '@/components/CommonComponents/RegisterTextarea/RegisterTextarea'
@@ -25,6 +25,7 @@ import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthChe
 import { GetStaticProps } from 'next'
 import useLocationData from '@/Hooks/location'
 import Head from 'next/head'
+import { login, signUp } from '@/lib/apiConfig'
 
 export default function Register({ footer, footerEng }: { footer: any, footerEng: any }) {
 
@@ -86,42 +87,38 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             const passwordStrength = checkPasswordStrength(registrationData.password);
 
             if (passwordStrength === 'Strong') {
-                try {
-                    const result = await registerUserMutation(registrationData);
-
-                    if (result.errors) {
-                        toastBottomRight.current?.show({
-                            severity: 'error',
-                            summary: 'Error',
-                            detail: result.errors[0].message,
-                            life: 3000,
-                        });
-                    }
-                    else {
+                signUp(registrationData.email, registrationData.firstname, registrationData.lastname, registrationData.username, registrationData.password, registrationData.password, registrationData.locale, registrationData.description).then((res) => {
+                    if (res.status === 201) {
                         toastBottomRight.current?.show({
                             severity: 'success',
                             summary: 'Success',
-                            detail: 'ثبت نام با موفقیت انجام شد',
+                            detail: `${isLocationInIran ? 'ثبت نام با موفقیت انجام شد' : 'The registration was successful.'}`,
                             life: 3000,
                         });
                         if (checked) {
-                            localStorage.setItem('authToken', result.login.authToken)
+                            localStorage.setItem('authToken', res.data.access)
                         }
                         else {
-                            sessionStorage.setItem('authToken', result.login.authToken)
+                            sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
                             router.push('/panel');
-                        }, 2000);
+                        }, 1000);
                     }
-                } catch (error) {
-
-                }
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: `${res.response.data.error}`,
+                            life: 3000,
+                        });
+                    }
+                });
             } else {
                 toastBottomRight.current?.show({
                     severity: 'error',
                     summary: 'Error',
-                    detail: 'لطفا رمز عبور قوی‌تری انتخاب کنید.',
+                    detail: `${isLocationInIran ? 'لطفا رمز عبور قوی‌تری انتخاب کنید.' : 'Please choose a stronger password'}`,
                     life: 3000,
                 });
 
@@ -130,7 +127,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             toastBottomRight.current?.show({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'لطفا تمامی فیلد ها را تکمیل نمایید',
+                detail: `${isLocationInIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
                 life: 3000,
             });
         }
@@ -146,42 +143,34 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             const passwordStrength = checkPasswordStrength(loginData.password);
 
             if (passwordStrength === 'Strong') {
-                try {
-                    const result = await loginMutation(loginData);
-
-                    if (result.errors) {
-                        toastBottomRight.current?.show({
-                            severity: 'error',
-                            summary: 'Error',
-                            detail: result.errors[0].message,
-                            life: 3000,
-                        });
-                    }
-                    else {
+                login(loginData.username, loginData.password).then((res) => {
+                    if (res.status === 200) {
                         toastBottomRight.current?.show({
                             severity: 'success',
                             summary: 'Success',
-                            detail: 'ورود با موفقیت انجام شد',
+                            detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
                             life: 3000,
                         });
-                        if (checked) {
-                            localStorage.setItem('authToken', result.login.authToken)
-                        }
-                        else {
-                            sessionStorage.setItem('authToken', result.login.authToken)
-                        }
                         setTimeout(() => {
                             router.push('/panel');
-                        }, 2000);
+                        }, 1000);
                     }
-                } catch (error) {
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: `${res.response.data.error}`,
+                            life: 3000,
+                        });
+                    }
 
-                }
+                });
+
             } else {
                 toastBottomRight.current?.show({
                     severity: 'error',
                     summary: 'Error',
-                    detail: 'لطفا رمز عبور قوی‌تری انتخاب کنید.',
+                    detail: `${isLocationInIran ? 'لطفا رمز عبور قوی‌تری انتخاب کنید.' : 'Please choose a stronger password'}`,
                     life: 3000,
                 });
 
@@ -190,7 +179,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             toastBottomRight.current?.show({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'لطفا تمامی فیلد ها را تکمیل نمایید',
+                detail: `${isLocationInIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
                 life: 3000,
             });
         }
@@ -244,7 +233,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                         <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}>
                                             {isLocationInIran ? 'عضویت' : 'Register'}
                                         </p>
-                                        <Image src={signUp} alt='signup' />
+                                        <Image src={signUpIcon} alt='signup' />
                                     </div>
                                     <form onSubmit={handleRegistration} className='mt-16 flex flex-col gap-10'>
                                         <RegisterInput
@@ -322,7 +311,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                         <p style={{ color: '#F68D2E' }} className={`${myFont.className} text-4xl mr-2`}>
                                             {isLocationInIran ? 'ورود' : 'Login'}
                                         </p>
-                                        <Image src={login} alt='login' />
+                                        <Image src={loginIcon} alt='login' />
                                     </div>
                                     <form onSubmit={handleLogin} className='mt-12 flex flex-col gap-10'>
                                         <RegisterInput
@@ -339,9 +328,9 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             onChange={(value) => handleInputChangeLogin("password", value)}
                                             type='password'
                                         />
-                                        <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base ${isLocationInIran && 'text-right'}`}>
+                                        {/* <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base ${isLocationInIran && 'text-right'}`}>
                                             {isLocationInIran ? 'رمز عبور خود را فراموش کرده اید؟' : 'Forgot your password?'}
-                                        </p>
+                                        </p> */}
                                         <div className={`flex flex-row items-center gap-2 ${isLocationInIran && 'text-right justify-end'}`}>
                                             <p className={`${myFontIran.className} text-white text-base`}>
                                                 {isLocationInIran ? 'مرا به خاطر بسپار' : 'Remember me'}
@@ -350,7 +339,6 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                         </div>
                                         <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
                                     </form>
-
                                 </div>
 
                                 <Image src={chart} alt='chart' className='lg:block hidden' style={{ opacity: '0.3' }} />
