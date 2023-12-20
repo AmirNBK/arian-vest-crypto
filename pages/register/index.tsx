@@ -35,13 +35,6 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const checkPasswordStrength = usePasswordStrengthCheck();
     const toastBottomRight = useRef<Toast>(null);
-    const showMessage = (event: React.MouseEvent<HTMLButtonElement>, ref: React.RefObject<Toast>, severity: ToastMessage['severity']) => {
-        const target = event.target as HTMLButtonElement;
-
-        const label = target.innerText;
-
-        ref.current?.show({ severity: severity, summary: label, detail: label, life: 3000 });
-    };
 
     const [registrationData, setRegistrationData] = useState({
         firstname: "",

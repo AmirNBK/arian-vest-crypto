@@ -19,6 +19,12 @@ const Ticket = (props: {
     const [supportTypes, setSupportTypes] = useState<[]>()
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [userId, setUserId] = useState<number>()
+    const [tickets, setTickets] = useState<{
+        subject: string
+        ticket_status: string
+        created_at: string
+    }[]>()
+
 
     interface FormData {
         subject: string;
@@ -40,8 +46,7 @@ const Ticket = (props: {
             setUserId(res.data.pk)
         })
         getTickets().then((res) => {
-            console.log(res);
-
+            setTickets(res.data)
         })
     }, [])
 
@@ -60,6 +65,19 @@ const Ticket = (props: {
         description: ''
     });
 
+    console.log(formData);
+
+
+    const formatCreatedAtDate = (createdAt: string): string => {
+        const dateObject = new Date(createdAt);
+        const formattedDate = `${(dateObject.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}/${dateObject
+                .getDate()
+                .toString()
+                .padStart(2, '0')}/${dateObject.getFullYear()}`;
+        return formattedDate;
+    };
 
     const handleSendButtonClick = () => {
 
@@ -76,13 +94,23 @@ const Ticket = (props: {
                 selectedFile
             )
                 .then((res) => {
-                    console.log('Ticket sent successfully:', res);
-                    toastBottomRight.current?.show({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
-                        life: 3000,
-                    });
+                    if (res.status === 201) {
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
+                            life: 3000,
+                        });
+                    }
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد' : 'Error sending ticket'}`,
+                            life: 3000,
+                        });
+                    }
+
 
                 })
                 .catch((err) => {
@@ -110,7 +138,6 @@ const Ticket = (props: {
         }));
     };
 
-
     return (
         <div>
             <Toast ref={toastBottomRight} position="bottom-right" />
@@ -128,7 +155,7 @@ const Ticket = (props: {
                     <div className='flex flex-col items-center gap-5 flex-1'>
                         <div className={`${myFont.className}`}>
                             <h2 className={`Ticket__title text-main-orange text-base w-fit ml-auto text-center`}>
-                                اگر احتیاج به آپلود فایل هستش در این بخش وارد کنید
+                                اگر احتیاج به آپلود فایل هست در این بخش وارد کنید
                             </h2>
                             {selectedFile &&
                                 <div className='flex flex-row-reverse items-end gap-2 mt-3 justify-center'>
@@ -143,7 +170,7 @@ const Ticket = (props: {
                         <StatisticsComponents width={36} paddingY={8} dollar={false} value={
                             <div>
                                 <label htmlFor="fileInput">
-                                    <Image src={plus} alt="plus" />
+                                    <Image src={plus} alt="plus" className='cursor-pointer' />
                                 </label>
                                 <input
                                     id="fileInput"
@@ -222,293 +249,40 @@ const Ticket = (props: {
                             <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
                             <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
                         </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 01 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    ایراد در روند معامله
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
-                                >
-                                    پاسخ داده شد
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 02 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    برداشت سود
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'
-                            >
-                                <button
-                                    className={`${myFontIran.className}
-                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
-                                bg-[#740000]`}
-                                >
-                                    منقضی شده
-                                </button>
-                            </td>
 
-                        </tr>
-
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 03 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    ایراد در روند معامله
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
-                                >
-                                    پاسخ داده شد
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 04 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    برداشت سود
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'
-                            >
-                                <button
-                                    className={`${myFontIran.className}
-                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
-                                bg-[#740000]`}
-                                >
-                                    منقضی شده
-                                </button>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 05 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    ایراد در روند معامله
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
-                                >
-                                    پاسخ داده شد
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 06 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    برداشت سود
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'
-                            >
-                                <button
-                                    className={`${myFontIran.className}
-                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
-                                bg-[#740000]`}
-                                >
-                                    منقضی شده
-                                </button>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 07 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    ایراد در روند معامله
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
-                                >
-                                    پاسخ داده شد
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 08 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    برداشت سود
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'
-                            >
-                                <button
-                                    className={`${myFontIran.className}
-                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
-                                bg-[#740000]`}
-                                >
-                                    منقضی شده
-                                </button>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 09 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    ایراد در روند معامله
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'>
-                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm bg-[#159400]`}
-                                >
-                                    پاسخ داده شد
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className='text-center'>
-                                <h2 className='text-main-orange text-4xl sm:text-2xl font-bold'> 10 </h2>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    برداشت سود
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    مالی
-                                </p>
-                            </td>
-                            <td className='text-center'>
-                                <p className='text-white'>
-                                    02/09/2023
-                                </p>
-                            </td>
-                            <td className='text-center wrap'
-                            >
-                                <button
-                                    className={`${myFontIran.className}
-                                px-5 sm:px-5 py-3 sm:py-2 text-white rounded-lg text-xs sm:text-sm
-                                bg-[#740000]`}
-                                >
-                                    منقضی شده
-                                </button>
-                            </td>
-
-                        </tr>
-
+                        {tickets?.map((item, index) => {
+                            return (
+                                <tr>
+                                    <td className='text-center'>
+                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {item.subject}
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            مالی
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {formatCreatedAtDate(item.created_at)}
+                                        </p>
+                                    </td>
+                                    <td className='text-center wrap'>
+                                        <button className={`${myFontIran.className}
+                                        px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                        
+                                        sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده"} ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''`}
+                                        >
+                                            {item.ticket_status}
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </table>
 
                 </div>

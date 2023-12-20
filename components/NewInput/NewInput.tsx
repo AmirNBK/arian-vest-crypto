@@ -29,13 +29,15 @@ const NewInput = (props: {
         {props.selectable && <select
           onChange={handleChange}
           className='absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent'
-          style={{ color: 'grey', direction: 'rtl' }}>
-          {props.supportTypes?.map((item, index) => {
-            return (
-              <option> {item} </option>
-            )
-          })}
-        </select>}
+          style={{ color: 'grey', direction: 'rtl' }}
+          placeholder='انتخاب كنيد'
+        >
+          <option value="" disabled selected> انتخاب كنيد </option>
+          {props.supportTypes?.map((item, index) => (
+            <option key={index}>{item}</option>
+          ))}
+        </select>
+        }
       </div>
 
 
