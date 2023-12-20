@@ -65,9 +65,6 @@ const Ticket = (props: {
         description: ''
     });
 
-    console.log(formData);
-
-
     const formatCreatedAtDate = (createdAt: string): string => {
         const dateObject = new Date(createdAt);
         const formattedDate = `${(dateObject.getMonth() + 1)
@@ -275,7 +272,7 @@ const Ticket = (props: {
                                         <button className={`${myFontIran.className}
                                         px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
                                         
-                                        sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده"} ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''`}
+                                        sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده" ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''}`}
                                         >
                                             {item.ticket_status}
                                         </button>
