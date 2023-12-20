@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -17,7 +17,9 @@ const StatisticsComponents = (props: {
     fontSize?: string
     width?: number
     removeBg?: boolean
+    onClick?: () => void;
 }) => {
+
     return (
         <div
             style={{

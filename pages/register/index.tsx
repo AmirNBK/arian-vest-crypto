@@ -359,7 +359,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                 {
                     `
                     .p-toast-detail {
-                        text-align : right;
+                        text-align : ${isLocationInIran ? 'right' : 'left'} ;
                     }
                     `
                 }

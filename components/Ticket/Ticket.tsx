@@ -10,12 +10,15 @@ import plus from '../../assets/icons/download2.svg'
 import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
-import { SendTicket, getTicketTypes } from '@/lib/apiConfig';
+import { SendTicket, getProfileInfo, getTicketTypes, getTickets } from '@/lib/apiConfig';
+import tick from '../../assets/icons/tick.svg'
 
 const Ticket = (props: {
     isLocationIran: boolean
 }) => {
     const [supportTypes, setSupportTypes] = useState<[]>()
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [userId, setUserId] = useState<number>()
 
     interface FormData {
         subject: string;
@@ -25,7 +28,6 @@ const Ticket = (props: {
         metatraderAccount: string;
         platform: string;
         description: string;
-        file: any;
     }
 
     type FormField = keyof FormData;
@@ -34,7 +36,19 @@ const Ticket = (props: {
         getTicketTypes().then((res) => {
             setSupportTypes(res.data)
         })
+        getProfileInfo().then((res) => {
+            setUserId(res.data.pk)
+        })
+        getTickets().then((res) => {
+            console.log(res);
+
+        })
     }, [])
+
+
+    const handleFileChange = (event: any) => {
+        setSelectedFile(event.target.files[0]);
+    };
 
     const [formData, setFormData] = useState<FormData>({
         subject: '',
@@ -43,15 +57,15 @@ const Ticket = (props: {
         orderNumber: '',
         metatraderAccount: '',
         platform: '',
-        description: '',
-        file: ''
+        description: ''
     });
+
 
     const handleSendButtonClick = () => {
 
         if (formData.subject, formData.supportType, formData.priority, formData.orderNumber, formData.metatraderAccount, formData.platform, formData.description) {
             SendTicket(
-                1,
+                userId,
                 formData.supportType,
                 formData.priority,
                 formData.subject,
@@ -59,15 +73,25 @@ const Ticket = (props: {
                 formData.metatraderAccount,
                 formData.orderNumber,
                 formData.description,
-                formData.file
+                selectedFile
             )
                 .then((res) => {
-                    // Handle successful response
                     console.log('Ticket sent successfully:', res);
+                    toastBottomRight.current?.show({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
+                        life: 3000,
+                    });
+
                 })
                 .catch((err) => {
-                    // Handle error
-                    console.error('Error sending ticket:', err);
+                    toastBottomRight.current?.show({
+                        severity: 'error',
+                        summary: 'Error',
+                        detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد' : 'Error sending ticket'}`,
+                        life: 3000,
+                    });
                 });
         } else {
             toastBottomRight.current?.show({
@@ -86,6 +110,7 @@ const Ticket = (props: {
         }));
     };
 
+
     return (
         <div>
             <Toast ref={toastBottomRight} position="bottom-right" />
@@ -101,12 +126,33 @@ const Ticket = (props: {
 
                 <div className='flex flex-col lg:flex-row'>
                     <div className='flex flex-col items-center gap-5 flex-1'>
-                        <div>
-                            <h2 className={`${myFont.className} Ticket__title text-main-orange text-base w-fit ml-auto text-center`}>
+                        <div className={`${myFont.className}`}>
+                            <h2 className={`Ticket__title text-main-orange text-base w-fit ml-auto text-center`}>
                                 اگر احتیاج به آپلود فایل هستش در این بخش وارد کنید
                             </h2>
+                            {selectedFile &&
+                                <div className='flex flex-row-reverse items-end gap-2 mt-3 justify-center'>
+                                    <p className={`${props.isLocationIran ? 'rtl' : 'ltr'}
+                              text-white text-base w-fit text-[#699F4C] translate-y-1 m-0`}>
+                                        فايل شما آپلود شده و آماده گرديده است
+                                    </p>
+                                    <Image src={tick} alt='tick' className='w-4 ' />
+                                </div>
+                            }
                         </div>
-                        <StatisticsComponents width={36} paddingY={8} dollar={false} value={<Image src={plus} alt='plus' />} />
+                        <StatisticsComponents width={36} paddingY={8} dollar={false} value={
+                            <div>
+                                <label htmlFor="fileInput">
+                                    <Image src={plus} alt="plus" />
+                                </label>
+                                <input
+                                    id="fileInput"
+                                    className="hidden"
+                                    type="file"
+                                    onChange={handleFileChange}
+                                />
+                            </div>
+                        } />
                         <Image src={ticketPic} alt='ticketPic' unoptimized />
                     </div>
 
