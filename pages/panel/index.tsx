@@ -167,7 +167,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                                     activePanel === 'referral' ?
                                         <Referral />
                                         : activePanel === 'authentication' ?
-                                            <Authentication /> : activePanel === 'ticket' ? <Ticket isLocationIran={isLocationInIran} /> : ''
+                                            <Authentication isLocationIran={isLocationInIran} /> : activePanel === 'ticket' ? <Ticket isLocationIran={isLocationInIran} /> : ''
                         }
 
                     </div>
