@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import localFont from 'next/font/local'
 import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
@@ -7,10 +7,29 @@ import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import buttonImage from '../../assets/images/profitButton.png'
+import { Wallet } from '@/lib/apiConfig';
 
-const ProfitWithdrawal = () => {
+const ProfitWithdrawal = (props: {
+    isLocationIran: boolean
+}) => {
 
-    const size = useWindowSize();
+    interface dataType {
+        Pending_withdrawals: number
+        amount_withdrawn: number
+        number_of_withdrawals: number
+        total_profit: number
+    }
+
+    const [data, setData] = useState<dataType>()
+
+    useEffect(() => {
+        Wallet().then((res) => {
+            setData(res.data[0])
+        })
+    }, [])
+
+    console.log(data);
+
 
     return (
         <div className='ProfitWithdrawal'>
@@ -29,25 +48,25 @@ const ProfitWithdrawal = () => {
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             مبلغ برداشت شده
                         </h3>
-                        <StatisticsComponents dollar={true} value={350} isReferral />
+                        <StatisticsComponents dollar={true} value={data?.amount_withdrawn} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             برداشت های در انتظار
                         </h3>
-                        <StatisticsComponents dollar={false} value={'05'} isReferral />
+                        <StatisticsComponents dollar={false} value={data?.Pending_withdrawals} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             تعداد برداشت ها
                         </h3>
-                        <StatisticsComponents dollar={false} value={'09'} isReferral />
+                        <StatisticsComponents dollar={false} value={data?.number_of_withdrawals} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             کل سود
                         </h3>
-                        <StatisticsComponents dollar={true} value={950} isReferral />
+                        <StatisticsComponents dollar={true} value={data?.total_profit} isReferral />
                     </div>
                 </div>
             </div>

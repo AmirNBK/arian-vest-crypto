@@ -7,7 +7,7 @@ import plus from '../../assets/icons/download2.svg'
 
 const StatisticsComponents = (props: {
     title?: string
-    value: number | string | ReactElement
+    value: number | string | ReactElement | undefined
     icon?: any
     dollar: boolean
     isActive?: boolean
