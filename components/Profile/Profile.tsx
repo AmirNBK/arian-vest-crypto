@@ -7,6 +7,7 @@ import { Column } from 'primereact/column';
 import tick from '../../assets/icons/tick.svg'
 import profile from '../../assets/images/profilePic.png'
 import range from '../../assets/images/whiteRange.svg'
+import empty from '../../assets/icons/empty.png'
 import Image from 'next/image';
 import edit from '../../assets/icons/edit.svg'
 import icon from '../../assets/icons/certificateMini.svg'
@@ -14,7 +15,11 @@ import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 import { UpdateProfileInfo, getProfileInfo } from '@/lib/apiConfig';
 
 
-const Profile = () => {
+const Profile = (
+    props: {
+        isLocationIran: boolean
+    }
+) => {
 
     interface profileType {
         address: string
@@ -119,52 +124,61 @@ const Profile = () => {
                 </div>
 
                 <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto`}>
-                    <table className='w-full'>
-                        <tr>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>قیمت</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>حساب خریداری شده</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
-                        </tr>
+                    {profileInfo?.purchased_accounts.length ?
+                        <table className='w-full'>
+                            <tr>
+                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت</th>
+                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>قیمت</th>
+                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>حساب خریداری شده</th>
+                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
+                                <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
+                            </tr>
 
-                        {profileInfo?.purchased_accounts.map((item, index) => {
-                            return (
+                            {profileInfo?.purchased_accounts.map((item, index) => {
+                                return (
 
-                                <tr>
-                                    <td className='text-center'>
+                                    <tr>
+                                        <td className='text-center'>
 
-                                        <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
-                                        ${item.status === "در انتظار" ? 'bg-main-orange' : item.status === "منقضی شده" ? 'bg-[#740000]' : item.status === "پرداخت شده" ? 'bg-[#159400]' : ''}
-                                        `}
-                                        >
-                                            {item.status}
-                                        </button>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {item.price}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {item.name}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {formatCreatedAtDate(item.created_at)}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <h2 className='text-main-orange text-2xl font-bold'> {index + 1} </h2>
-                                    </td>
-                                </tr>
-                            )
-                        })}
+                                            <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
+                                  ${item.status === "در انتظار" ? 'bg-main-orange' : item.status === "منقضی شده" ? 'bg-[#740000]' : item.status === "پرداخت شده" ? 'bg-[#159400]' : ''}
+                                  `}
+                                            >
+                                                {item.status}
+                                            </button>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {item.price}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {item.name}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {formatCreatedAtDate(item.created_at)}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <h2 className='text-main-orange text-2xl font-bold'> {index + 1} </h2>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
 
 
-                    </table>
+                        </table>
+                        :
+                        <div className='flex flex-col justify-center gap-4 items-center'>
+                            <Image src={empty} alt='empty' />
+                            <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                در حال حاظر هيچ حساب خريداري شده اي نداريد.
+                            </p>
+                        </div>
+                    }
 
                 </div>
             </div>
