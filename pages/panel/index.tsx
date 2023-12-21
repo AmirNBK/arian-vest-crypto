@@ -6,15 +6,15 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local';
-import { Dialog } from 'primereact/dialog';
 import team from '../../assets/icons/team.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+import { Dialog } from 'primereact/dialog';
 import { Sidebar } from 'primereact/sidebar';
 import support from '../../assets/icons/support.svg'
 import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import menu from '../../assets/icons/menu.svg'
 import dashboard from '../../assets/icons/dashboard.svg'
 import profit from '../../assets/icons/money.svg'
@@ -45,6 +45,7 @@ import useLocationData from '@/Hooks/location';
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
+    const [isLogin, setIsLogin] = useState<boolean>(true);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
     const size = useWindowSize();
@@ -64,6 +65,13 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'خروج از حساب کاربری', icon: logout, link: 'logout' },
     ]
 
+    useEffect(() => {
+        if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
+            setIsLogin(true)
+        }
+        else setIsLogin(false)
+    }, [])
+
     return (
         <main
             className={`flex min-h-screen w-full flex-col justify-between`}
@@ -72,6 +80,25 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                 <title>Panel</title>
             </Head>
             <PrimeReactProvider>
+                <Dialog
+                    className={`${myFontIran.className} rtl`}
+                    header="ورود به حساب کاربری" visible={!isLogin} modal closable={false} style={{ width: `${size.width && size.width < 640 ? '90vw' : '35vw'}` }} onHide={() => setVisible(false)}>
+                    <div>
+                        <p className="mt-6 text-center">
+                            برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید
+                        </p>
+                        
+                        <div className='flex flex-row justify-center mt-6 gap-6'>
+                            <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
+                                onClick={() => {
+                                    router.push('/register')
+                                }}
+                            >
+                                ثبت نام / عضویت
+                            </button>
+                        </div>
+                    </div>
+                </Dialog>
                 <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
                     className={`${myFontIran.className} rtl`} onHide={() => setVisible(false)}>
                     <div>
