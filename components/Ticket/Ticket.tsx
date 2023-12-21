@@ -23,6 +23,7 @@ const Ticket = (props: {
         subject: string
         ticket_status: string
         created_at: string
+        support_type: string
     }[]>()
 
 
@@ -260,7 +261,7 @@ const Ticket = (props: {
                                     </td>
                                     <td className='text-center'>
                                         <p className='text-white'>
-                                            مالی
+                                            {item.support_type}
                                         </p>
                                     </td>
                                     <td className='text-center'>

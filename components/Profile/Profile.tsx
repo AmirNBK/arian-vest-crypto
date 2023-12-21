@@ -4,6 +4,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import tick from '../../assets/icons/tick.svg'
 import profile from '../../assets/images/profilePic.png'
 import range from '../../assets/images/whiteRange.svg'
 import Image from 'next/image';
@@ -19,7 +20,9 @@ const Profile = () => {
         address: string
         created_at: string
         fullname: string
+        status_verify: string
         image: any
+        email: string
         purchased_accounts: {
             name: string
             price: string
@@ -95,11 +98,12 @@ const Profile = () => {
                         </div>
                     }
                     <div className='flex flex-col items-center sm:items-end gap-2'>
-                        <div className='flex flex-row gap-3'>
+                        <div className='flex flex-row gap-3 items-center'>
                             <Image src={edit} alt='edit' />
+                            {profileInfo?.status_verify === "تایید شده" && <Image src={tick} alt='tick' className='w-6 h-6' />}
                             <p className={`${myFont.className} text-white text-3xl`}> {profileInfo?.fullname} </p>
                         </div>
-                        <p className='text-base text-white opacity-[0.7] text-sm'> test@gmail.com </p>
+                        <p className='text-base text-white opacity-[0.7] text-sm'> {profileInfo?.email} </p>
                         <p className='text-white text-sm opacity-[0.7] sm:text-right text-center'>
                             {profileInfo?.address}
                         </p>
@@ -158,7 +162,7 @@ const Profile = () => {
                                 </tr>
                             )
                         })}
-          
+
 
                     </table>
 

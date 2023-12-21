@@ -12,6 +12,7 @@ import SendButton from '../../assets/images/sendButton.png'
 import idCardFront from '../../assets/icons/idCard.png'
 import idCardBack from '../../assets/icons/idCard2.png'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import pending from '../../assets/icons/pending.png'
 import { AuthenticationApi, getProfileInfo } from '@/lib/apiConfig';
 
 const Authentication = (
@@ -34,6 +35,7 @@ const Authentication = (
     const [backCardStatic, setBackCardStatic] = useState<string | StaticImport>();
     const toastBottomRight = useRef<Toast>(null);
     const [userId, setUserId] = useState<number>()
+    const [isVerifiedPending, setIsVerifiedPending] = useState<boolean>()
 
 
     interface FormData {
@@ -59,7 +61,9 @@ const Authentication = (
     useEffect(() => {
         getProfileInfo().then((res) => {
             setUserId(res.data.pk)
+            setIsVerifiedPending(res.data.status_verify === "در حال بررسی")
         })
+
     }, [])
 
     const handleUserFrontCard = (event: any) => {
@@ -99,7 +103,6 @@ const Authentication = (
     const handleSendButtonClick = () => {
         if (formData.name && formData.lastName && formData.nationalCode && formData.phone && frontCard && userPhoto && backCard) {
             AuthenticationApi(userPhoto, frontCard, backCard, userId, formData.name, formData.lastName, formData.nationalCode, formData.phone).then((res) => {
-                // console.log(res);
                 if (res.status === 201) {
                     toastBottomRight.current?.show({
                         severity: 'success',
@@ -151,97 +154,107 @@ const Authentication = (
                     </p>
                 </div>
 
-                <div className='flex flex-col lg:flex-row-reverse items-center lg:items-end gap-6 mt-10'>
-                    <div className='flex flex-col items-center gap-2'>
-                        <div>
-                            <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                تصویر کاربر با مدارک
-                            </h2>
-                        </div>
-                        <div className=''>
-                            <StatisticsComponents havePlusButton paddingY={0.5} value={
-                                <div>
-                                    <label htmlFor="userPhoto">
-                                        <Image src={userPhotoStatic || person} alt='image' className='cursor-pointer w-full h-full ' width={20} height={20} />
-                                    </label>
-                                    <input
-                                        id="userPhoto"
-                                        className="hidden"
-                                        type="file"
-                                        onChange={handleUserPhotoFile}
-                                    />
-                                </div>
-                            } dollar={false} />
-                        </div>
+                {isVerifiedPending ?
+                    <div className='flex flex-col items-center mt-16 gap-4 justify-center'>
+                        <Image src={pending} alt='pending' />
+                        <p className={`${myFontIran.className} text-white rtl`}>
+                            درخواست احراز هويت شما در حال بررسي است و به محض تعيين شدن نتيجه به شما اطلاع خواهد داده شد.
+                        </p>
                     </div>
+                    :
 
-                    <div className='flex flex-col items-center gap-2'>
-                        <div>
-                            <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                روی کارت‌ ملی
-                            </h2>
+                    <div className='flex flex-col lg:flex-row-reverse items-center lg:items-end gap-6 mt-10'>
+                        <div className='flex flex-col items-center gap-2'>
+                            <div>
+                                <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
+                                    تصویر کاربر با مدارک
+                                </h2>
+                            </div>
+                            <div className=''>
+                                <StatisticsComponents havePlusButton paddingY={0.5} value={
+                                    <div>
+                                        <label htmlFor="userPhoto">
+                                            <Image src={userPhotoStatic || person} alt='image' className='cursor-pointer w-full h-full ' width={20} height={20} />
+                                        </label>
+                                        <input
+                                            id="userPhoto"
+                                            className="hidden"
+                                            type="file"
+                                            onChange={handleUserPhotoFile}
+                                        />
+                                    </div>
+                                } dollar={false} />
+                            </div>
                         </div>
-                        <div className=''>
-                            <StatisticsComponents havePlusButton paddingY={3} value={
-                                <div>
-                                    <label htmlFor="idCardFront">
-                                        <Image src={frontCardStatic || idCardFront} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
-                                    </label>
-                                    <input
-                                        id="idCardFront"
-                                        className="hidden"
-                                        type="file"
-                                        onChange={handleUserFrontCard}
-                                    />
-                                </div>
-                            } dollar={false} />
+
+                        <div className='flex flex-col items-center gap-2'>
+                            <div>
+                                <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
+                                    روی کارت‌ ملی
+                                </h2>
+                            </div>
+                            <div className=''>
+                                <StatisticsComponents havePlusButton paddingY={3} value={
+                                    <div>
+                                        <label htmlFor="idCardFront">
+                                            <Image src={frontCardStatic || idCardFront} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
+                                        </label>
+                                        <input
+                                            id="idCardFront"
+                                            className="hidden"
+                                            type="file"
+                                            onChange={handleUserFrontCard}
+                                        />
+                                    </div>
+                                } dollar={false} />
+                            </div>
                         </div>
+
+                        <div className='flex flex-col items-center gap-2'>
+                            <div>
+                                <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
+                                    پشت کارت‌ ملی
+                                </h2>
+                            </div>
+                            <div className=''>
+                                <StatisticsComponents havePlusButton paddingY={3} value={
+                                    <div>
+                                        <label htmlFor="idCardBack">
+                                            <Image src={backCardStatic || idCardBack} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
+                                        </label>
+                                        <input
+                                            id="idCardBack"
+                                            className="hidden"
+                                            type="file"
+                                            onChange={handleUserBackCard}
+                                        />
+                                    </div>
+                                } dollar={false} />
+                            </div>
+                        </div>
+
+                        <div className='grid grid-cols-2 gap-4 mt-8'>
+                            <NewInput placeholder='نام‌ خانوادگی'
+                                onChange={(value) => handleInputChange('lastName', value)}
+
+                            />
+                            <NewInput placeholder='نام'
+                                onChange={(value) => handleInputChange('name', value)}
+
+                            />
+                            <NewInput placeholder='شماره تماس'
+                                onChange={(value) => handleInputChange('phone', value)}
+                            />
+                            <NewInput placeholder='کد ملی'
+                                onChange={(value) => handleInputChange('nationalCode', value)}
+                            />
+                        </div>
+
                     </div>
-
-                    <div className='flex flex-col items-center gap-2'>
-                        <div>
-                            <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                پشت کارت‌ ملی
-                            </h2>
-                        </div>
-                        <div className=''>
-                            <StatisticsComponents havePlusButton paddingY={3} value={
-                                <div>
-                                    <label htmlFor="idCardBack">
-                                        <Image src={backCardStatic || idCardBack} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
-                                    </label>
-                                    <input
-                                        id="idCardBack"
-                                        className="hidden"
-                                        type="file"
-                                        onChange={handleUserBackCard}
-                                    />
-                                </div>
-                            } dollar={false} />
-                        </div>
-                    </div>
-
-                    <div className='grid grid-cols-2 gap-4 mt-8'>
-                        <NewInput placeholder='نام‌ خانوادگی'
-                            onChange={(value) => handleInputChange('lastName', value)}
-
-                        />
-                        <NewInput placeholder='نام'
-                            onChange={(value) => handleInputChange('name', value)}
-
-                        />
-                        <NewInput placeholder='شماره تماس'
-                            onChange={(value) => handleInputChange('phone', value)}
-                        />
-                        <NewInput placeholder='کد ملی'
-                            onChange={(value) => handleInputChange('nationalCode', value)}
-                        />
-                    </div>
-
-                </div>
+                }
             </div>
 
-            <div className='flex justify-center cursor-pointer'>
+            <div className={`${isVerifiedPending ? 'hidden' : ''} flex justify-center cursor-pointer`}>
                 <Image src={SendButton} alt='button' unoptimized onClick={handleSendButtonClick} />
             </div>
 
