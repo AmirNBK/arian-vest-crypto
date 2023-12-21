@@ -12,7 +12,7 @@ import SendButton from '../../assets/images/sendButton.png'
 import idCardFront from '../../assets/icons/idCard.png'
 import idCardBack from '../../assets/icons/idCard2.png'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import { AuthenticationApi } from '@/lib/apiConfig';
+import { AuthenticationApi, getProfileInfo } from '@/lib/apiConfig';
 
 const Authentication = (
     props: {
@@ -27,12 +27,13 @@ const Authentication = (
     }
 
     const [userPhoto, setUserPhoto] = useState<string | StaticImport>();
+    const [userPhotoStatic, setUserPhotoStatic] = useState<string | StaticImport>();
     const [frontCard, setFrontCard] = useState<string | StaticImport>();
+    const [frontCardStatic, setFrontCardStatic] = useState<string | StaticImport>();
     const [backCard, setBackCard] = useState<string | StaticImport>();
+    const [backCardStatic, setBackCardStatic] = useState<string | StaticImport>();
     const toastBottomRight = useRef<Toast>(null);
-
-    console.log(frontCard);
-
+    const [userId, setUserId] = useState<number>()
 
 
     interface FormData {
@@ -51,9 +52,15 @@ const Authentication = (
 
         if (file) {
             const imageUrlUserPhoto = URL.createObjectURL(file);
-            setUserPhoto(imageUrlUserPhoto);
+            setUserPhotoStatic(imageUrlUserPhoto)
         }
     };
+
+    useEffect(() => {
+        getProfileInfo().then((res) => {
+            setUserId(res.data.pk)
+        })
+    }, [])
 
     const handleUserFrontCard = (event: any) => {
         const file = event.target.files[0];
@@ -61,7 +68,7 @@ const Authentication = (
 
         if (file) {
             const imageUrlFront = URL.createObjectURL(file);
-            setFrontCard(imageUrlFront);
+            setFrontCardStatic(imageUrlFront)
         }
     };
 
@@ -71,7 +78,7 @@ const Authentication = (
 
         if (file) {
             const imageUrlBack = URL.createObjectURL(file);
-            setBackCard(imageUrlBack);
+            setBackCardStatic(imageUrlBack)
         }
     };
 
@@ -90,9 +97,25 @@ const Authentication = (
     });
 
     const handleSendButtonClick = () => {
-        if (formData.name, formData.lastName, formData.nationalCode, formData.phone, frontCard, userPhoto, backCard) {
-            AuthenticationApi().then((res) => {
-
+        if (formData.name && formData.lastName && formData.nationalCode && formData.phone && frontCard && userPhoto && backCard) {
+            AuthenticationApi(userPhoto, frontCard, backCard, userId, formData.name, formData.lastName, formData.nationalCode, formData.phone).then((res) => {
+                // console.log(res);
+                if (res.status === 201) {
+                    toastBottomRight.current?.show({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `${props.isLocationIran ? 'اطلاعات شما براي احراز هويت ثبت گرديد و به زودي نتيجه به شما اطلاع اعلام خواهد شد.' : 'Your information has been registered for identity verification and the result will be announced to you soon.'}`,
+                        life: 3000,
+                    });
+                }
+                else {
+                    toastBottomRight.current?.show({
+                        severity: 'error',
+                        summary: 'Error',
+                        detail: `${res.response.data.non_field_errors[0]}`,
+                        life: 3000,
+                    });
+                }
             })
         }
         else {
@@ -139,7 +162,7 @@ const Authentication = (
                             <StatisticsComponents havePlusButton paddingY={0.5} value={
                                 <div>
                                     <label htmlFor="userPhoto">
-                                        <Image src={userPhoto || person} alt='image' className='cursor-pointer w-full h-full ' width={20} height={20} />
+                                        <Image src={userPhotoStatic || person} alt='image' className='cursor-pointer w-full h-full ' width={20} height={20} />
                                     </label>
                                     <input
                                         id="userPhoto"
@@ -162,7 +185,7 @@ const Authentication = (
                             <StatisticsComponents havePlusButton paddingY={3} value={
                                 <div>
                                     <label htmlFor="idCardFront">
-                                        <Image src={frontCard || idCardFront} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
+                                        <Image src={frontCardStatic || idCardFront} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
                                     </label>
                                     <input
                                         id="idCardFront"
@@ -185,7 +208,7 @@ const Authentication = (
                             <StatisticsComponents havePlusButton paddingY={3} value={
                                 <div>
                                     <label htmlFor="idCardBack">
-                                        <Image src={backCard || idCardBack} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
+                                        <Image src={backCardStatic || idCardBack} alt='image' className='cursor-pointer w-full h-full ' width={120} height={120} />
                                     </label>
                                     <input
                                         id="idCardBack"
@@ -221,6 +244,15 @@ const Authentication = (
             <div className='flex justify-center cursor-pointer'>
                 <Image src={SendButton} alt='button' unoptimized onClick={handleSendButtonClick} />
             </div>
+
+
+            <style>
+                {`
+                                    .p-toast-detail {
+                                        text-align : ${props.isLocationIran ? 'right' : 'left'} ;
+                                    }
+                `}
+            </style>
         </div>
     );
 };
