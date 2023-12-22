@@ -95,7 +95,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
-                            router.push('/panel');
+                            window.location.href = '/panel';
                         }, 1000);
                     }
                     else {
@@ -151,7 +151,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
-                            router.push('/panel');
+                            window.location.href = '/panel';
                         }, 1000);
                     }
                     else {
