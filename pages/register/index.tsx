@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import icon from '../../assets/icons/registerIcon.svg'
+import ReactLoading from 'react-loading';
 import signUpIcon from '../../assets/icons/signuUp.svg'
 import loginIcon from '../../assets/icons/login.svg'
 import RegisterInput from '@/components/CommonComponents/RegisterInput/RegisterInput'
@@ -30,6 +31,8 @@ import { login, signUp } from '@/lib/apiConfig'
 export default function Register({ footer, footerEng }: { footer: any, footerEng: any }) {
 
     const [checked, setChecked] = useState<any>(false);
+    const [registerLoading, setRegisterLoading] = useState<boolean>(false);
+    const [loginLoading, setLoginLoading] = useState<boolean>(false);
     const router = useRouter();
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
@@ -81,6 +84,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
             if (passwordStrength === 'Strong') {
                 signUp(registrationData.email, registrationData.firstname, registrationData.lastname, registrationData.username, registrationData.password, registrationData.password, registrationData.locale, registrationData.description).then((res) => {
+                    setRegisterLoading(true)
                     if (res.status === 201) {
                         toastBottomRight.current?.show({
                             severity: 'success',
@@ -99,6 +103,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                         }, 1000);
                     }
                     else {
+                        setRegisterLoading(false)
                         toastBottomRight.current?.show({
                             severity: 'error',
                             summary: 'Error',
@@ -137,6 +142,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
             if (passwordStrength === 'Strong') {
                 login(loginData.username, loginData.password).then((res) => {
+                    setLoginLoading(true);
                     if (res.status === 200) {
                         toastBottomRight.current?.show({
                             severity: 'success',
@@ -155,6 +161,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                         }, 1000);
                     }
                     else {
+                        setLoginLoading(false)
                         toastBottomRight.current?.show({
                             severity: 'error',
                             summary: 'Error',
@@ -283,7 +290,11 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             value={registrationData.description}
                                             onChange={(value) => handleInputChange("description", value)}
                                         />
-                                        <RegisterButton text={isLocationInIran ? 'عضویت' : 'Register'} />
+                                        {registerLoading ?
+                                            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={100} width={60} />
+                                            :
+                                            <RegisterButton text={isLocationInIran ? 'عضویت' : 'Register'} />
+                                        }
                                     </form>
 
                                 </div>
@@ -336,7 +347,12 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             </p>
                                             <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
                                         </div>
-                                        <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
+                                        {loginLoading ?
+                                            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={100} width={60} />
+                                            :
+                                            <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
+
+                                        }
                                     </form>
                                 </div>
 
