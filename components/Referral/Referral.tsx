@@ -12,93 +12,95 @@ import Image from 'next/image';
 
 
 
-const Referral = () => {
+const Referral = (
+    props: {
+        isLocationIran: boolean
+    }
+) => {
+
+    const isLocationIran = props.isLocationIran
+
     return (
         <div>
             <div className='Referral bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-10'>
-                <div className='flex flex-col lg:flex-row-reverse gap-2'>
-                    <div className='flex flex-row items-center gap-4'>
-                        <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
-                            معرفی به دوستان
+                <div className={`flex flex-col  ${isLocationIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-2`}>
+                    <div className={`flex ${isLocationIran ? 'flex-row' : 'flex-row-reverse'} items-center gap-2`}>
+                        <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+                            {isLocationIran ? 'معرفی به دوستان' : 'Refer to Friends'}
                         </h2>
                         <Image src={certificateMini} alt='icon' unoptimized />
                     </div>
                     <div>
                         <h2 className={`${myFontIran.className} Profile__title text-gray-500 mt-6 w-fit ml-auto text-center`}>
-                            با رفر کردن ما به دوستان خود درصدی از خرید اشتراک آن ها به حساب شما افزوده خواهد شد </h2>
+                            {isLocationIran
+                                ? 'با رفر کردن ما به دوستان خود درصدی از خرید اشتراک آن‌ها به حساب شما افزوده خواهد شد'
+                                : 'By referring us to your friends, a percentage of their subscription purchase will be added to your account'}
+                        </h2>
                     </div>
                 </div>
 
                 <div className='mt-8 flex flex-row-reverse justify-center lg:justify-between flex-wrap gap-12'>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            کد رفرال
+                            {isLocationIran ? 'کد رفرال' : 'Referral Code'}
                         </h3>
-                        <StatisticsComponents dollar={false} title='کد رفرال ' value={'sfs143123'} icon={share} isReferral />
+                        <StatisticsComponents dollar={false} title={isLocationIran ? 'کد رفرال' : 'Referral Code'} value={'sfs143123'} icon={share} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            برداشت های در انتظار
+                            {isLocationIran ? 'برداشت های در انتظار' : 'Pending Withdrawals'}
                         </h3>
-
-                        <StatisticsComponents dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral />
+                        <StatisticsComponents dollar={false} title={isLocationIran ? 'تعداد رفرها' : 'Number of Referrals'} value={12} icon={profile} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            تعداد برداشت ها
+                            {isLocationIran ? 'تعداد برداشت ها' : 'Number of Withdrawals'}
                         </h3>
-                        <StatisticsComponents dollar={false} title='درصد اضافه شده ' value={32} icon={percent} isReferral />
+                        <StatisticsComponents dollar={false} title={isLocationIran ? 'درصد اضافه شده' : 'Percentage Added'} value={32} icon={percent} isReferral />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            کل سود
+                            {isLocationIran ? 'کل سود' : 'Total Profit'}
                         </h3>
-                        <StatisticsComponents dollar={true} title='تعداد جوایز' value={950} icon={gift} isReferral />
+                        <StatisticsComponents dollar={true} title={isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'} value={950} icon={gift} isReferral />
                     </div>
                 </div>
-
             </div>
 
-            <div className=' bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
-                <div className='flex flex-col md:flex-row-reverse gap-2'>
-                    <div className='flex flex-row items-center gap-4'>
-                        <h2 className={`${myFont.className} Profile__title text-white text-xl sm:text-2xl w-fit ml-auto`}>
-                            ورودی های کد رفرال شما
-                        </h2>
-                        <Image src={certificateMini} alt='icon' unoptimized />
-                    </div>
+
+            <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
+                <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4`}>
+                    <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                        {isLocationIran ? 'ورودی های کد رفرال شما' : 'Your Referral Codes Entries'}
+
+                    </h2>
+                    <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
 
-                <div className='flex flex-row-reverse w-full justify-between mt-8 pb-0 overflow-auto gap-0'
-                style={{borderBottom : '1px solid rgba(255, 255, 255, 0.10)'}}
-                >
+                <div className='flex flex-row-reverse w-full justify-between mt-8 pb-0 overflow-auto gap-0' style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            نام کاربر
+                            {isLocationIran ? 'نام کاربر' : 'Username'}
                         </h3>
-
-                        <StatisticsComponents removeBg={true} dollar={false} title=' ' fontSize='base'
-                        value={'Hutan0021'} icon={profile} isReferral paddingY={4} />
+                        <StatisticsComponents removeBg={true} dollar={false} title=' ' fontSize='base' value={'Hutan0021'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            درصده افزوده
+                            {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
                         </h3>
-
                         <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={0.1} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            تاریخ
+                            {isLocationIran ? 'تاریخ' : 'Date'}
                         </h3>
-
                         <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
                     </div>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            تعداد جوایز
+                            {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
                         </h3>
-
                         <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral paddingY={4} />
                     </div>
                 </div>
@@ -118,6 +120,7 @@ const Referral = () => {
                     </div>
                 </div>
             </div>
+
 
         </div>
     );

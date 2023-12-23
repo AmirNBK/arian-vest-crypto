@@ -232,7 +232,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
                                 activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download /> :
                                     activePanel === 'referral' ?
-                                        <Referral />
+                                        <Referral isLocationIran={isLocationInIran} />
                                         : activePanel === 'authentication' ?
                                             <Authentication isLocationIran={isLocationInIran} /> : activePanel === 'ticket' ? <Ticket isLocationIran={isLocationInIran} /> : ''
                         }
