@@ -12,7 +12,6 @@ import Image from 'next/image';
 import ReactLoading from 'react-loading';
 import edit from '../../assets/icons/edit.svg'
 import icon from '../../assets/icons/certificateMini.svg'
-import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 import { UpdateProfileInfo, getProfileInfo } from '@/lib/apiConfig';
 
 
@@ -145,7 +144,7 @@ const Profile = (
                                                 <td className='text-center'>
 
                                                     <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
-                               ${item.status === "در انتظار" ? 'bg-main-orange' : item.status === "منقضی شده" ? 'bg-[#740000]' : item.status === "پرداخت شده" ? 'bg-[#159400]' : ''}
+                               ${item.status === "waiting" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "paid" ? 'bg-[#159400]' : ''}
                                `}
                                                     >
                                                         {item.status}

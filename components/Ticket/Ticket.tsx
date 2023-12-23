@@ -7,6 +7,7 @@ import Image from 'next/image';
 import NewInput from '../NewInput/NewInput';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 import plus from '../../assets/icons/download2.svg'
+import empty from '../../assets/icons/empty.png'
 import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
@@ -242,49 +243,58 @@ const Ticket = (props: {
                         </div>
 
                         <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto rtl`}>
-                            <table className={`${myFontIran.className} w-full`}>
-                                <tr>
-                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
-                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
-                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
-                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
-                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
-                                </tr>
+                            {tickets.length ?
+                                <table className={`${myFontIran.className} w-full`}>
+                                    <tr>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
+                                    </tr>
 
-                                {tickets?.map((item, index) => {
-                                    return (
-                                        <tr>
-                                            <td className='text-center'>
-                                                <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
-                                            </td>
-                                            <td className='text-center'>
-                                                <p className='text-white'>
-                                                    {item.subject}
-                                                </p>
-                                            </td>
-                                            <td className='text-center'>
-                                                <p className='text-white'>
-                                                    {item.support_type}
-                                                </p>
-                                            </td>
-                                            <td className='text-center'>
-                                                <p className='text-white'>
-                                                    {formatCreatedAtDate(item.created_at)}
-                                                </p>
-                                            </td>
-                                            <td className='text-center wrap'>
-                                                <button className={`${myFontIran.className}
-                                     px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                     
-                                     sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده" ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''}`}
-                                                >
-                                                    {item.ticket_status}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </table>
+                                    {tickets?.map((item, index) => {
+                                        return (
+                                            <tr>
+                                                <td className='text-center'>
+                                                    <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                                </td>
+                                                <td className='text-center'>
+                                                    <p className='text-white'>
+                                                        {item.subject}
+                                                    </p>
+                                                </td>
+                                                <td className='text-center'>
+                                                    <p className='text-white'>
+                                                        {item.support_type}
+                                                    </p>
+                                                </td>
+                                                <td className='text-center'>
+                                                    <p className='text-white'>
+                                                        {formatCreatedAtDate(item.created_at)}
+                                                    </p>
+                                                </td>
+                                                <td className='text-center wrap'>
+                                                    <button className={`${myFontIran.className}
+                           px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                           
+                           sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده" ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''}`}
+                                                    >
+                                                        {item.ticket_status}
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </table>
+                                :
+                                <div className='flex flex-col justify-center gap-4 items-center'>
+                                    <Image src={empty} alt='empty' />
+                                    <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                        در حال حاظر هيچ تيكت ثبت شده اي نداريد.
+                                    </p>
+                                </div>
+                            }
 
                         </div>
                     </div>
