@@ -204,12 +204,14 @@ const Ticket = (props: {
                             <div className='flex flex-col flex-[1.5]'>
                                 <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1'>
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='موضوع'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('subject', value)}
                                         value={formData.subject}
                                     />
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='نوع پشتیبانی'
                                         isTextArea={false}
                                         selectable
@@ -218,24 +220,28 @@ const Ticket = (props: {
                                         value={formData.supportType}
                                     />
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='فوریت'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
                                         value={formData.priority}
                                     />
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='شماره سفارش'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('orderNumber', value)}
                                         value={formData.orderNumber}
                                     />
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='اکانت متاتریدر'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('metatraderAccount', value)}
                                         value={formData.metatraderAccount}
                                     />
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='پلتفرم'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('platform', value)}
@@ -244,6 +250,7 @@ const Ticket = (props: {
                                 </div>
                                 <div>
                                     <NewInput
+                                        isLocationIran={props.isLocationIran}
                                         placeholder='توضیحات مربوطه خود را بنویسید'
                                         isTextArea
                                         onChange={(value) => handleInputChange('description', value)}

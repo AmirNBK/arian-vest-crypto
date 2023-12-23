@@ -9,6 +9,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import person from '../../assets/icons/person.svg'
 import SendButton from '../../assets/images/sendButton.png'
+import sendInfoButton from '../../assets/images/sendInfo.png'
 import tick from '../../assets/icons/tick.svg'
 import idCardFront from '../../assets/icons/idCard.png'
 import idCardBack from '../../assets/icons/idCard2.png'
@@ -286,7 +287,7 @@ const Authentication = (
                     </div>
 
                     <div className={`${isVerifiedPending ? 'hidden' : ''} flex justify-center cursor-pointer`}>
-                        <Image src={SendButton} alt='button' unoptimized onClick={handleSendButtonClick} />
+                        <Image src={isLocationInIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
                     </div>
                 </>
 
