@@ -4,6 +4,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import certificateMini from '../../assets/icons/certificateMini.svg';
 import Image from 'next/image';
+import sendInfoButton from '../../assets/images/sendInfo.png'
 import NewInput from '../NewInput/NewInput';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 import plus from '../../assets/icons/download2.svg'
@@ -28,6 +29,8 @@ const Ticket = (props: {
         created_at: string
         support_type: string
     }[]>()
+    const isLocationIran = props.isLocationIran
+
 
 
     interface FormData {
@@ -160,28 +163,26 @@ const Ticket = (props: {
                 <>
                     <Toast ref={toastBottomRight} position="bottom-right" />
                     <div className='Ticket bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
-                        <div className='flex flex-col lg:flex-row-reverse gap-2'>
-                            <div className='flex flex-row items-center gap-4'>
-                                <h2 className={`${myFont.className} Ticket__title text-white text-2xl w-fit ml-auto`}>
-                                    ارسال تیکت
-                                </h2>
-                                <Image src={certificateMini} alt='icon' unoptimized />
-                            </div>
+                        <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
+                            <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                                {isLocationIran ? '  ارسال تیکت' : 'Send ticket'}
+                            </h2>
+                            <Image src={certificateMini} alt='icon' unoptimized />
                         </div>
 
-                        <div className='flex flex-col lg:flex-row'>
+                        <div className={`flex flex-col  ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
                             <div className='flex flex-col items-center gap-5 flex-1'>
                                 <div className={`${myFont.className}`}>
                                     <h2 className={`Ticket__title text-main-orange text-base w-fit ml-auto text-center`}>
-                                        اگر احتیاج به آپلود فایل هست در این بخش وارد کنید
+                                        {isLocationIran ? 'اگر احتیاج به آپلود فایل هست در این بخش وارد کنید' : 'If you need to upload a file, enter it in this section'}
                                     </h2>
                                     {selectedFile &&
                                         <div className='flex flex-row-reverse items-end gap-2 mt-3 justify-center'>
-                                            <p className={`${props.isLocationIran ? 'rtl' : 'ltr'}
-                           text-white text-base w-fit text-[#699F4C] translate-y-1 m-0`}>
-                                                فايل شما آپلود شده و آماده گرديده است
+                                            <p className={`${isLocationIran ? 'rtl' : 'ltr'} text-white text-base w-fit text-[#699F4C] translate-y-1 m-0`}>
+                                                {isLocationIran ? 'فايل شما آپلود شده و آماده گرديده است' : 'Your file has been uploaded and is ready'}
                                             </p>
-                                            <Image src={tick} alt='tick' className='w-4 ' />
+                                            <Image src={tick} alt='tick' className='w-4' />
                                         </div>
                                     }
                                 </div>
@@ -205,44 +206,43 @@ const Ticket = (props: {
                                 <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 flex-1'>
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='موضوع'
+                                        placeholder={isLocationIran ? 'موضوع' : 'Subject'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('subject', value)}
                                         value={formData.subject}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='نوع پشتیبانی'
+                                        placeholder={isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
                                         isTextArea={false}
                                         selectable
                                         supportTypes={supportTypes}
                                         onChange={(value) => handleInputChange('supportType', value)}
-                                        value={formData.supportType}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='فوریت'
+                                        placeholder={isLocationIran ? 'فوریت' : 'Priority'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
                                         value={formData.priority}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='شماره سفارش'
+                                        placeholder={isLocationIran ? 'شماره سفارش' : 'Order Number'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('orderNumber', value)}
                                         value={formData.orderNumber}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='اکانت متاتریدر'
+                                        placeholder={isLocationIran ? 'اکانت متاتریدر' : 'Metatrader Account'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('metatraderAccount', value)}
                                         value={formData.metatraderAccount}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='پلتفرم'
+                                        placeholder={isLocationIran ? 'پلتفرم' : 'Platform'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('platform', value)}
                                         value={formData.platform}
@@ -251,36 +251,46 @@ const Ticket = (props: {
                                 <div>
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder='توضیحات مربوطه خود را بنویسید'
+                                        placeholder={isLocationIran ? 'توضیحات مربوطه خود را بنویسید' : 'Write your relevant description here'}
                                         isTextArea
                                         onChange={(value) => handleInputChange('description', value)}
                                         value={formData.description}
                                     />
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                     <div className='flex justify-center cursor-pointer'>
-                        <Image src={SendButton} alt='button' unoptimized onClick={handleSendButtonClick} />
+                        <Image src={isLocationIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
                     </div>
                     <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
-                        <div className='flex flex-row items-center gap-4'>
-                            <h2 className={`${myFont.className} Profile__title text-white text-2xl w-fit ml-auto`}>
-                                آمار تیکتینگ
+                        <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
+                            <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                                {isLocationIran ? 'آمار تیکتینگ' : 'Ticketing statistics'}
                             </h2>
                             <Image src={certificateMini} alt='icon' unoptimized />
                         </div>
-
-                        <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto rtl`}>
+                        <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
                             {tickets.length ?
                                 <table className={`${myFontIran.className} w-full`}>
                                     <tr>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>موضوع تیکت</th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>نوع پشتیبانی</th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>تاریخ</th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>وضعیت تیکت</th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationIran ? '' : 'Ticket ID'}
+                                        </th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
+                                        </th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
+                                        </th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationIran ? 'تاریخ' : 'Date'}
+                                        </th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationIran ? 'وضعیت تیکت' : 'Ticket Status'}
+                                        </th>
                                     </tr>
 
                                     {tickets?.map((item, index) => {
@@ -306,27 +316,27 @@ const Ticket = (props: {
                                                 </td>
                                                 <td className='text-center wrap'>
                                                     <button className={`${myFontIran.className}
-                           px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                           
-                           sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
+                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
                                                     >
                                                         {item.ticket_status}
                                                     </button>
                                                 </td>
                                             </tr>
-                                        )
+                                        );
                                     })}
                                 </table>
                                 :
                                 <div className='flex flex-col justify-center gap-4 items-center'>
                                     <Image src={empty} alt='empty' />
                                     <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
-                                        در حال حاظر هيچ تيكت ثبت شده اي نداريد.
+                                        {isLocationIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
+
                                     </p>
                                 </div>
                             }
-
                         </div>
+
                     </div>
                 </>
 

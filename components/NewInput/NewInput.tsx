@@ -32,11 +32,10 @@ const NewInput = (props: {
         />
         {props.selectable && <select
           onChange={handleChange}
-          className={`${isLocationInIran && 'rtl'} absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent`}
+          className={`${isLocationInIran ? 'rtl left-[55%]' : 'left-[45%]'} absolute top-1/2 px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent`}
           style={{ color: 'grey' }}
-          placeholder='انتخاب كنيد'
         >
-          <option value="" disabled selected> انتخاب كنيد </option>
+          <option disabled selected> {isLocationInIran ? 'انتخاب كنيد' : 'Choose type'} </option>
           {props.supportTypes?.map((item, index) => (
             <option key={index}>{item}</option>
           ))}
@@ -91,7 +90,7 @@ input {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  right: 8px;
+  ${isLocationInIran ? 'right: 8px;' : 'left: 8px;'}
   top: 13px;
   padding: 0 8px;
   transition: 250ms;

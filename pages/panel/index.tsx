@@ -113,32 +113,33 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                         </div>
                     </div>
                 </Dialog>
-                <Dialog header="خروج از حساب کاربری" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
-                    className={`${myFontIran.className} rtl`} onHide={() => setVisible(false)}>
+                <Dialog header={isLocationInIran ? "خروج از حساب کاربری" : 'Log out of your account'} visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
+                    className={`${myFontIran.className} ${isLocationInIran ? 'rtl' : 'ltr'}`} onHide={() => setVisible(false)}>
                     <div>
                         <p className="m-0">
-                            آیا از خروج از حساب کاربری خود اطمینان دارید؟
+                            {isLocationInIran ? "آیا از خروج از حساب کاربری خود اطمینان دارید؟" : "Are you sure you want to log out of your account?"}
                         </p>
-                        <div className='flex flex-row justify-center mt-6 gap-6'>
-                            <button className='btn-grad-red  text-white rounded-lg text-center text-lg'
+                        <div className={`flex ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} justify-center mt-6 gap-6`}>
+                            <button className='btn-grad-red text-white rounded-lg text-center text-lg'
                                 onClick={() => {
                                     sessionStorage.removeItem("authToken")
                                     localStorage.removeItem("authToken")
                                     router.push('/')
                                 }}
                             >
-                                بله
+                                {isLocationInIran ? "بله" : "Yes"}
                             </button>
                             <button className='btn-grad-black text-white rounded-lg text-center text-lg'
                                 onClick={() => {
                                     setVisible(false)
                                 }}
                             >
-                                خیر
+                                {isLocationInIran ? "خیر" : "No"}
                             </button>
                         </div>
                     </div>
                 </Dialog>
+
 
                 <Sidebar visible={visibleRight} position={isLocationInIran ? 'right' : 'left'} onHide={() => setVisibleRight(false)}
                     style={{ backgroundColor: 'black' }}
@@ -228,7 +229,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     </div>
 
                     <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
-                        {activePanel === 'leaderboards' ? <Leaderboards isLocationIran={isLocationInIran} /> : activePanel === 'certificates' ? <Certificate /> :
+                        {activePanel === 'leaderboards' ? <Leaderboards isLocationIran={isLocationInIran} /> : activePanel === 'certificates' ? <Certificate isLocationIran={isLocationInIran} /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
                                 activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download isLocationIran={isLocationInIran} /> :
                                     activePanel === 'referral' ?
