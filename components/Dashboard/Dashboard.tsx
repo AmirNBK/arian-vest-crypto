@@ -101,11 +101,11 @@ const Dashboard = (props: {
 
     return (
         <div className='Dashboard'>
-            <div className='text-white text-center flex flex-col gap-3'>
-                <p className=''>
+            <div className={`${myFontIran.className} text-white text-center flex flex-col gap-3`}>
+                <p className={`${isLocationInIran && 'rtl'}`}>
                     {isLocationInIran ? 'اگر اطلاعات حساب كاربري خود را مشاهده نكرديد برروي لينك زير كليك كنيد.' : 'If you do not see your user account information, click on the link below.'}
                 </p>
-                <a href='' className='text-[blue] underline' >
+                <a href='' className='text-blue-500 underline' >
                 www.bespokefundingprogram.com
                 </a>
             </div>
