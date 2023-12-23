@@ -13,11 +13,12 @@ const AccountInfoComponent = (props: {
     icon: StaticImport
     dollar: boolean
     total: number | string
+    isLocationIran: boolean
 }) => {
     return (
         <div className={`${myFontIran.className} AccountInfoComponent relative bg-[#202020] w-fit rounded-md px-8 py-4 mt-6`}>
             <div>
-                <h3 className='text-main-orange text-right text-2xl mb-4'> {props.title} </h3>
+                <h3 className={`text-main-orange ${props.isLocationIran ? 'text-right' : 'text-left'} text-2xl mb-4`}> {props.title} </h3>
             </div>
             <div className='flex flex-row-reverse items-center gap-5'>
                 <div className='text-3xl'>
