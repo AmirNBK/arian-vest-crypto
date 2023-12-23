@@ -7,6 +7,7 @@ const NewInput = (props: {
   placeholder: string
   isTextArea?: boolean
   selectable?: boolean
+  value?: any
   onChange?: (value: string) => void;
   supportTypes?: []
 }) => {
@@ -25,6 +26,7 @@ const NewInput = (props: {
         </label>
         <input style={{ direction: 'rtl' }} type="text" className={`input-1 ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`}
           onChange={handleChange}
+          value={props.value}
         />
         {props.selectable && <select
           onChange={handleChange}

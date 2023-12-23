@@ -13,6 +13,7 @@ import ReactLoading from 'react-loading';
 import edit from '../../assets/icons/edit.svg'
 import icon from '../../assets/icons/certificateMini.svg'
 import { UpdateProfileInfo, getProfileInfo } from '@/lib/apiConfig';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 
 
 const Profile = (
@@ -40,6 +41,8 @@ const Profile = (
     const [profileInfo, setProfileInfo] = useState<profileType>()
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [profilePic, setProfilePic] = useState<File | null | string>(null);
+    const [userPhotoStatic, setUserPhotoStatic] = useState<string | StaticImport>();
+
 
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
@@ -47,9 +50,14 @@ const Profile = (
         })
     }, [selectedImage])
 
-
     const handleFileChange = (event: any) => {
         setSelectedImage(event.target.files[0]);
+        const file = event.target.files[0];
+
+        if (file) {
+            const imageUrlUserPhoto = URL.createObjectURL(file);
+            setUserPhotoStatic(imageUrlUserPhoto)
+        }
     };
 
     const formatCreatedAtDate = (createdAt: string): string => {
@@ -95,7 +103,7 @@ const Profile = (
                                 :
                                 <div>
                                     <label htmlFor="fileInput">
-                                        <Image src={profile} alt='profile' unoptimized className='cursor-pointer relative' style={{ zIndex: '20' }} />
+                                        <Image src={userPhotoStatic || profile} alt='profile' unoptimized className='cursor-pointer relative' style={{ zIndex: '20' }} />
                                     </label>
                                     <input
                                         id="fileInput"
@@ -108,7 +116,7 @@ const Profile = (
                             <div className='flex flex-col items-center sm:items-end gap-2'>
                                 <div className='flex flex-row gap-3 items-center'>
                                     <Image src={edit} alt='edit' />
-                                    {profileInfo?.status_verify === "تایید شده" && <Image src={tick} alt='tick' className='w-6 h-6' />}
+                                    {profileInfo?.status_verify === "Accepted" && <Image src={tick} alt='tick' className='w-6 h-6' />}
                                     <p className={`${myFont.className} text-white text-3xl`}> {profileInfo?.fullname} </p>
                                 </div>
                                 <p className='text-base text-white opacity-[0.7] text-sm'> {profileInfo?.email} </p>
@@ -187,8 +195,8 @@ const Profile = (
                     </div>
                 </>
                 :
-                 <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-                
+                <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+
             }
 
             <style>

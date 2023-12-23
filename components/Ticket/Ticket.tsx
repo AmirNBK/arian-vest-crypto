@@ -21,6 +21,7 @@ const Ticket = (props: {
     const [supportTypes, setSupportTypes] = useState<[]>()
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [userId, setUserId] = useState<number>()
+    const [refreshTickets, setRefreshTickets] = useState<boolean>()
     const [tickets, setTickets] = useState<{
         subject: string
         ticket_status: string
@@ -48,10 +49,13 @@ const Ticket = (props: {
         getProfileInfo().then((res) => {
             setUserId(res.data.pk)
         })
+    }, [])
+
+    useEffect(() => {
         getTickets().then((res) => {
             setTickets(res.data)
         })
-    }, [])
+    }, [refreshTickets])
 
 
     const handleFileChange = (event: any) => {
@@ -101,6 +105,18 @@ const Ticket = (props: {
                             detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
                             life: 3000,
                         });
+                        setRefreshTickets(!refreshTickets)
+                        setTimeout(() => {
+                            setFormData({
+                                subject: '',
+                                supportType: '',
+                                priority: '',
+                                orderNumber: '',
+                                metatraderAccount: '',
+                                platform: '',
+                                description: '',
+                            });
+                        }, 0);
                     }
                     else {
                         toastBottomRight.current?.show({
@@ -191,6 +207,7 @@ const Ticket = (props: {
                                         placeholder='موضوع'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('subject', value)}
+                                        value={formData.subject}
                                     />
                                     <NewInput
                                         placeholder='نوع پشتیبانی'
@@ -198,26 +215,31 @@ const Ticket = (props: {
                                         selectable
                                         supportTypes={supportTypes}
                                         onChange={(value) => handleInputChange('supportType', value)}
+                                        value={formData.supportType}
                                     />
                                     <NewInput
                                         placeholder='فوریت'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
+                                        value={formData.priority}
                                     />
                                     <NewInput
                                         placeholder='شماره سفارش'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('orderNumber', value)}
+                                        value={formData.orderNumber}
                                     />
                                     <NewInput
                                         placeholder='اکانت متاتریدر'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('metatraderAccount', value)}
+                                        value={formData.metatraderAccount}
                                     />
                                     <NewInput
                                         placeholder='پلتفرم'
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('platform', value)}
+                                        value={formData.platform}
                                     />
                                 </div>
                                 <div>
@@ -225,6 +247,7 @@ const Ticket = (props: {
                                         placeholder='توضیحات مربوطه خود را بنویسید'
                                         isTextArea
                                         onChange={(value) => handleInputChange('description', value)}
+                                        value={formData.description}
                                     />
                                 </div>
                             </div>
@@ -278,7 +301,7 @@ const Ticket = (props: {
                                                     <button className={`${myFontIran.className}
                            px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
                            
-                           sm:text-sm ${item.ticket_status === "در انتظار" ? 'bg-main-orange' : item.ticket_status === "منقضی شده" ? 'bg-[#740000]' : item.ticket_status === "پاسخ داده شد" ? 'bg-[#159400]' : ''}`}
+                           sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
                                                     >
                                                         {item.ticket_status}
                                                     </button>
