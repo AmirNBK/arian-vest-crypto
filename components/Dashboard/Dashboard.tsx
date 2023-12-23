@@ -24,6 +24,7 @@ import useWindowSize from '@/Hooks/innerSize';
 import Image from 'next/image';
 import AccountInfoComponent from '../AccountInfoComponent/AccountInfoComponent';
 import DashboardPaginationComponent from '../DashboardPaginationComponent/DashboardPaginationComponent';
+import { Link } from 'react-router-dom';
 
 const Dashboard = (props: {
     isLocationIran: boolean
@@ -100,6 +101,14 @@ const Dashboard = (props: {
 
     return (
         <div className='Dashboard'>
+            <div className='text-white text-center flex flex-col gap-3'>
+                <p className=''>
+                    {isLocationInIran ? 'اگر اطلاعات حساب كاربري خود را مشاهده نكرديد برروي لينك زير كليك كنيد.' : 'If you do not see your user account information, click on the link below.'}
+                </p>
+                <a href='' className='text-[blue] underline' >
+                www.bespokefundingprogram.com
+                </a>
+            </div>
             <div className={`flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} w-full justify-between items-baseline`}>
                 <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit m${isLocationInIran ? 'l' : 'r'}-auto mb-6`}>
                     {isLocationInIran ? 'داشبورد' : 'Dashboard'}

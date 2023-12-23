@@ -228,7 +228,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     </div>
 
                     <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
-                        {activePanel === 'leaderboards' ? <Leaderboards /> : activePanel === 'certificates' ? <Certificate /> :
+                        {activePanel === 'leaderboards' ? <Leaderboards isLocationIran={isLocationInIran} /> : activePanel === 'certificates' ? <Certificate /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
                                 activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download /> :
                                     activePanel === 'referral' ?
@@ -246,7 +246,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     </div>
                     <div className='flex flex-col text-center items-center '>
                         <p className=''>{isLocationInIran ? 'قوانین انتشار' : 'Publication Rules'}</p>
-                        <hr className={`${isLocationInIran ? 'w-[88px]' : 'w-[125px]'} h-[0.5px]`}style={{ background: '#F68D2E', border: 'none' }} />
+                        <hr className={`${isLocationInIran ? 'w-[88px]' : 'w-[125px]'} h-[0.5px]`} style={{ background: '#F68D2E', border: 'none' }} />
                     </div>
                     <div className='flex flex-col text-center items-center '>
                         <p className=''>{isLocationInIran ? 'بلاگ' : 'Blog'}</p>
