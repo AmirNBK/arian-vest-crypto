@@ -230,7 +230,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                     <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
                         {activePanel === 'leaderboards' ? <Leaderboards isLocationIran={isLocationInIran} /> : activePanel === 'certificates' ? <Certificate /> :
                             activePanel === 'profitWithdrawal' ? <ProfitWithdrawal isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
-                                activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download /> :
+                                activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download isLocationIran={isLocationInIran} /> :
                                     activePanel === 'referral' ?
                                         <Referral isLocationIran={isLocationInIran} />
                                         : activePanel === 'authentication' ?
