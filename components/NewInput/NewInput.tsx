@@ -10,7 +10,9 @@ const NewInput = (props: {
   value?: any
   onChange?: (value: string) => void;
   supportTypes?: []
+  isLocationIran: boolean
 }) => {
+  const isLocationInIran = props.isLocationIran
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (props.onChange) {
@@ -24,14 +26,14 @@ const NewInput = (props: {
         <label className={`${myFont.className} input-label`}>
           {props.placeholder}
         </label>
-        <input style={{ direction: 'rtl' }} type="text" className={`input-1 ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`}
+        <input type="text" className={`input-1 ${isLocationInIran && 'rtl'} ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`}
           onChange={handleChange}
           value={props.value}
         />
         {props.selectable && <select
           onChange={handleChange}
-          className='absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent'
-          style={{ color: 'grey', direction: 'rtl' }}
+          className={`${isLocationInIran && 'rtl'} absolute top-1/2 left-[55%] px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent`}
+          style={{ color: 'grey' }}
           placeholder='انتخاب كنيد'
         >
           <option value="" disabled selected> انتخاب كنيد </option>

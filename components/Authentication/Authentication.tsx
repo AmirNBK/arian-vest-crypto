@@ -22,6 +22,7 @@ const Authentication = (
         isLocationIran: boolean
     }
 ) => {
+    const isLocationInIran = props.isLocationIran
     interface FormData {
         name: string;
         lastName: string;
@@ -141,22 +142,26 @@ const Authentication = (
                 <>
                     <Toast ref={toastBottomRight} position="bottom-right" />
                     <div className='Authentication bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
-                        <div className='flex flex-col lg:flex-row-reverse gap-2'>
-                            <div className='flex flex-row items-center gap-4'>
-                                <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
-                                    احراز هویت
-                                </h2>
-                                <Image src={certificateMini} alt='icon' unoptimized />
-                            </div>
+                        <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4`}>
+                            <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                                {isLocationInIran ? 'احراز هویت' : 'Authentication'}
+                            </h2>
+                            <Image src={certificateMini} alt='icon' unoptimized />
                         </div>
 
                         <div>
                             <p
-                                className={`${myFontIran.className} rtl text-sm mt-2`}
+                                className={`${myFontIran.className} ${isLocationInIran && 'rtl'} text-sm mt-2`}
                                 style={{
                                     color: 'rgba(255, 255, 255, 0.40)'
                                 }}>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتر.
+                                {isLocationInIran ?
+                                    '                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتر.'
+                                    :
+                                    'Lorem Epsom is a fake text with the production of incomprehensible simplicity from the printing industry, and using graphic designers, printers and texts, but also newspapers and magazines in columns and rows as necessary, and for the current conditions of the technology required, and diverse applications with the aim of improving the tools It is practical, many books in sixty-three percent of the past, present and future require a lot of knowledge of society and experts, rather than more knowledge with software.'
+                                }
+
                             </p>
                         </div>
 
@@ -177,11 +182,11 @@ const Authentication = (
                                     </p>
                                 </div>
                                 :
-                                <div className='flex flex-col lg:flex-row-reverse items-center lg:items-end gap-6 mt-10'>
+                                <div className={`flex flex-col ${isLocationInIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center lg:items-end gap-6 mt-10`}>
                                     <div className='flex flex-col items-center gap-2'>
                                         <div>
                                             <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                                تصویر کاربر با مدارک
+                                                {isLocationInIran ? 'تصویر کاربر با مدارک' : 'User Photo with Documents'}
                                             </h2>
                                         </div>
                                         <div className=''>
@@ -204,8 +209,9 @@ const Authentication = (
                                     <div className='flex flex-col items-center gap-2'>
                                         <div>
                                             <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                                روی کارت‌ ملی
+                                                {isLocationInIran ? 'روی کارت‌ ملی' : 'On National ID Card'}
                                             </h2>
+
                                         </div>
                                         <div className=''>
                                             <StatisticsComponents havePlusButton paddingY={3} value={
@@ -227,8 +233,9 @@ const Authentication = (
                                     <div className='flex flex-col items-center gap-2'>
                                         <div>
                                             <h2 className={`${myFont.className} Leaderboards__title text-main-orange text-2xl w-fit ml-auto`}>
-                                                پشت کارت‌ ملی
+                                                {isLocationInIran ? 'پشت کارت‌ ملی' : 'Back of the National ID Card'}
                                             </h2>
+
                                         </div>
                                         <div className=''>
                                             <StatisticsComponents havePlusButton paddingY={3} value={
@@ -248,20 +255,30 @@ const Authentication = (
                                     </div>
 
                                     <div className='grid grid-cols-2 gap-4 mt-8'>
-                                        <NewInput placeholder='نام‌ خانوادگی'
+                                        <NewInput
+                                            isLocationIran={isLocationInIran}
+                                            placeholder={isLocationInIran ? 'نام‌ خانوادگی' : 'Last Name'}
                                             onChange={(value) => handleInputChange('lastName', value)}
-
                                         />
-                                        <NewInput placeholder='نام'
+
+                                        <NewInput
+                                            isLocationIran={isLocationInIran}
+                                            placeholder={isLocationInIran ? 'نام' : 'First Name'}
                                             onChange={(value) => handleInputChange('name', value)}
-
                                         />
-                                        <NewInput placeholder='شماره تماس'
+
+                                        <NewInput
+                                            isLocationIran={isLocationInIran}
+                                            placeholder={isLocationInIran ? 'شماره تماس' : 'Phone Number'}
                                             onChange={(value) => handleInputChange('phone', value)}
                                         />
-                                        <NewInput placeholder='کد ملی'
+
+                                        <NewInput
+                                            isLocationIran={isLocationInIran}
+                                            placeholder={isLocationInIran ? 'کد ملی' : 'National Code'}
                                             onChange={(value) => handleInputChange('nationalCode', value)}
                                         />
+
                                     </div>
 
                                 </div>
