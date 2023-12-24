@@ -54,8 +54,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
     const [visible, setVisible] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
-        { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'پروفایل', icon: profile, link: 'profile' },
+        { title: 'برداشت سود', icon: profit, link: 'profitWithdrawal' },
         { title: 'تابلو امتیازات', icon: leaderboards, link: 'leaderboards' },
         { title: 'احراز هویت', icon: authentication, link: 'authentication' },
         { title: 'معرفی به دوستان', icon: refer, link: 'referral' },
@@ -67,8 +67,8 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
     const panelItemsEng = [
         { title: 'Dashboard', icon: dashboard, link: 'dashboard' },
-        { title: 'Profit Withdrawal', icon: profit, link: 'profitWithdrawal' },
         { title: 'Profile', icon: profile, link: 'profile' },
+        { title: 'Profit Withdrawal', icon: profit, link: 'profitWithdrawal' },
         { title: 'Leaderboards', icon: leaderboards, link: 'leaderboards' },
         { title: 'Identity Verification', icon: authentication, link: 'authentication' },
         { title: 'Refer a Friend', icon: refer, link: 'referral' },
