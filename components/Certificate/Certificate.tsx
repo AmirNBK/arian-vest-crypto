@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import certificate from '../../assets/icons/certificate2.svg'
 import certificateMini from '../../assets/icons/certificateMini.svg'
 import Image from 'next/image';
+import { getProfileInfo } from '@/lib/apiConfig';
 
 const Certificate = (
     props: {
         isLocationIran: boolean
     }
 ) => {
+    useEffect(() => {
+        getProfileInfo().then((res) => {
+            console.log(res);
+            
+        })
+
+    }, [])
     const isLocationIran = props.isLocationIran
 
     return (

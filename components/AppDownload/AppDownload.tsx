@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import apple from '../../assets/icons/apple.svg'
-import android from '../../assets/icons/android.svg'
+import windows from '../../assets/icons/windows.svg'
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -24,8 +24,8 @@ const AppDownload = (props: {
 
             <div className='flex flex-col items-center gap-3 px-2'
             >
-                <Image src={android} alt='apple' />
-                <p className='text-white'> APK </p>
+                <Image src={windows} alt='apple' className='w-14' />
+                <p className='text-white'> Windows </p>
             </div>
 
             <style>

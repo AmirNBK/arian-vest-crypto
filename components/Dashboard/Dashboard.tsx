@@ -106,7 +106,7 @@ const Dashboard = (props: {
                     {isLocationInIran ? 'اگر اطلاعات حساب كاربري خود را مشاهده نكرديد برروي لينك زير كليك كنيد.' : 'If you do not see your user account information, click on the link below.'}
                 </p>
                 <a href='' className='text-blue-500 underline' >
-                www.bespokefundingprogram.com
+                    www.bespokefundingprogram.com
                 </a>
             </div>
             <div className={`flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} w-full justify-between items-baseline`}>
@@ -138,33 +138,33 @@ const Dashboard = (props: {
             <div className='bg-[#1D1D1D] rounded-md px-8 py-4 w-full relative'>
                 <Image src={range} alt='range' className='sm:block hidden  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '0' }} />
 
-                <div className='flex flex-row-reverse justify-center lg:justify-center mt-8 flex-wrap gap-16' style={{ zIndex: '20' }}>
+                <div className={`flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} justify-center lg:justify-center mt-8 flex-wrap gap-16`} style={{ zIndex: '20' }}>
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             {isLocationInIran ? 'شروع' : 'Start'}
                         </h3>
-                        <StatisticsComponents dollar={false} value={'09/11/2023'} isReferral />
+                        <StatisticsComponents dollar={false} value={'0'} isReferral />
                     </div>
 
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             {isLocationInIran ? 'پایان' : 'End'}
                         </h3>
-                        <StatisticsComponents dollar={false} value={'25/11/2025'} isReferral />
+                        <StatisticsComponents dollar={false} value={'0'} isReferral />
                     </div>
 
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             {isLocationInIran ? 'سایز حساب' : 'Account Size'}
                         </h3>
-                        <StatisticsComponents dollar={false} value={'300K'} isReferral />
+                        <StatisticsComponents dollar={false} value={'0'} isReferral />
                     </div>
 
                     <div>
                         <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                             {isLocationInIran ? 'مبلغ حساب' : 'Account Amount'}
                         </h3>
-                        <StatisticsComponents dollar={false} value={'150k'} isReferral />
+                        <StatisticsComponents dollar={false} value={'0'} isReferral />
                     </div>
 
                     <div style={{ zIndex: '25' }}>
@@ -189,20 +189,20 @@ const Dashboard = (props: {
                     </div>
                 </div>
 
-                <div className='flex flex-row-reverse justify-center sm:justify-between flex-wrap'>
+                <div className={`flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} justify-center sm:justify-between flex-wrap`}>
                     <AccountInfoComponent
                         isLocationIran={isLocationInIran}
-                        total={'$8000'}
+                        total={'0'}
                         title={isLocationInIran ? 'سود حساب' : 'Account Profit'}
-                        value={1.650}
-                        percentage={20}
+                        value={0}
+                        percentage={0}
                         icon={profit3}
                         dollar
                     />
 
                     <AccountInfoComponent
                         isLocationIran={isLocationInIran}
-                        total={'$5000'}
+                        total={'0'}
                         title={isLocationInIran ? 'ضرر روزانه' : 'Daily Loss'}
                         value={0}
                         percentage={0}
@@ -211,7 +211,7 @@ const Dashboard = (props: {
                     />
 
                     <AccountInfoComponent
-                        total={'$10000'}
+                        total={'0'}
                         title={isLocationInIran ? 'ضرر کلی' : 'Total Loss'}
                         value={0}
                         percentage={0}
@@ -221,10 +221,10 @@ const Dashboard = (props: {
                     />
 
                     <AccountInfoComponent
-                        total={'D100'}
+                        total={'0'}
                         title={isLocationInIran ? 'روزهای ترید' : 'Trading Days'}
-                        value={'20D'}
-                        percentage={20}
+                        value={'0'}
+                        percentage={0}
                         icon={tradeDays}
                         dollar={false}
                         isLocationIran={isLocationInIran}
@@ -246,7 +246,7 @@ const Dashboard = (props: {
                     </div>
                 </div>
 
-                <div className='mt-8 flex flex-row-reverse justify-center gap-8 sm:justify-between flex-wrap'>
+                <div className={`mt-8 flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} justify-center gap-8 sm:justify-between flex-wrap`}>
                     <StatisticsComponents
                         dollar={false}
                         icon={trade}
@@ -261,7 +261,7 @@ const Dashboard = (props: {
                                 </div>
                                 <div>
                                     <p className={`${myFontIran.className} text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto'}`}>
-                                        65
+                                        0
                                     </p>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@ const Dashboard = (props: {
                                 </div>
                                 <div>
                                     <p className={`${myFontIran.className} text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto'}`}>
-                                        $150
+                                        0
                                     </p>
                                 </div>
                             </div>
@@ -302,7 +302,7 @@ const Dashboard = (props: {
                                 </div>
                                 <div>
                                     <p className={`${myFontIran.className} text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto'}`}>
-                                        $50.24
+                                        0
                                     </p>
                                 </div>
                             </div>
@@ -322,7 +322,7 @@ const Dashboard = (props: {
                                 </div>
                                 <div>
                                     <p className={`${myFontIran.className} text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto'}`}>
-                                        $1650
+                                        0
                                     </p>
                                 </div>
                             </div>
@@ -364,7 +364,7 @@ const Dashboard = (props: {
                             </div>
                             <div>
                                 <p className='text-main-orange font-normal text-base'>
-                                    09/11/2023
+                                    0
                                 </p>
                             </div>
                         </div>
@@ -376,7 +376,7 @@ const Dashboard = (props: {
                             </div>
                             <div>
                                 <p className='text-main-orange font-normal text-base'>
-                                    09/11/2023
+                                    0
                                 </p>
                             </div>
                         </div>
@@ -400,22 +400,22 @@ const Dashboard = (props: {
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
                 <div className='overflow-auto'>
-                    <table className={`w-full mt-10 overflow-auto`}>
-                        <tr>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'مدت‌زمان' : 'Duration'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'سود' : 'Profit'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'حد زیاد' : 'Stop Limit'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'قیمت بست' : 'Close Price'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'تاریخ بست' : 'Close Date'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'قیمت باز' : 'Open Price'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'تاریخ باز' : 'Open Date'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>{isLocationInIran ? 'نوع' : 'Type'}</th>
-                            <th className={`${myFont.className} text-base text-right text-main-orange`}>
+                    <table className={`w-full mt-10 overflow-auto ${isLocationInIran ? '' : 'rtl'}`}>
+                        <tr className=''>
+                            <th className={`${myFont.className} text-base text-center text-main-orange `}>{isLocationInIran ? 'مدت‌زمان' : 'Duration'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'سود' : 'Profit'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'حد زیاد' : 'Stop Limit'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'قیمت بست' : 'Close Price'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'تاریخ بست' : 'Close Date'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'قیمت باز' : 'Open Price'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'تاریخ باز' : 'Open Date'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>{isLocationInIran ? 'نوع' : 'Type'}</th>
+                            <th className={`${myFont.className} text-base text-center text-main-orange`}>
                                 {isLocationInIran ? 'نماد' : 'Symbol'}
                             </th>
                         </tr>
 
-                        <tr className={`text-white text-right`}>
+                        <tr className={`text-white text-center `}>
                             <td>
                                 24m 13s
                             </td>
@@ -447,7 +447,7 @@ const Dashboard = (props: {
                             </td>
                         </tr>
 
-                        <tr className={`text-white text-right`}>
+                        <tr className={`text-white text-center`}>
                             <td>
                                 24m 13s
                             </td>
@@ -478,7 +478,7 @@ const Dashboard = (props: {
                                 us30
                             </td>
                         </tr>
-                        <tr className={`text-white text-right`}>
+                        <tr className={`text-white text-center`}>
                             <td>
                                 24m 13s
                             </td>
@@ -509,74 +509,12 @@ const Dashboard = (props: {
                                 us30
                             </td>
                         </tr>
-                        <tr className={`text-white text-right`}>
+                        <tr className={`text-white text-center`}>
                             <td>
                                 24m 13s
                             </td>
                             <td className='text-[#159400]'>
                                 +$256.12
-                            </td>
-                            <td>
-                                8
-                            </td>
-                            <td>
-                                35674.56
-                            </td>
-                            <td>
-                                09/11/2023
-                            </td>
-                            <td>
-                                35674.56
-                            </td>
-                            <td>
-                                09/11/2023
-                            </td>
-                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
-                            >
-                                buy
-                            </td>
-                            <td>
-                                us30
-                            </td>
-                        </tr>
-                        <tr className={`text-white text-right`}>
-                            <td>
-                                24m 13s
-                            </td>
-                            <td className='text-[#BF0000]'>
-                                -$415.28
-                            </td>
-                            <td>
-                                8
-                            </td>
-                            <td>
-                                35674.56
-                            </td>
-                            <td>
-                                09/11/2023
-                            </td>
-                            <td>
-                                35674.56
-                            </td>
-                            <td>
-                                09/11/2023
-                            </td>
-                            <td className='text-[#159400] inline-block w-fit p-1 px-6 rounded-lg mt-4'
-                                style={{ background: 'rgba(21, 148, 0, 0.25)' }}
-                            >
-                                buy
-                            </td>
-                            <td>
-                                us30
-                            </td>
-                        </tr>
-                        <tr className={`text-white text-right`}>
-                            <td>
-                                24m 13s
-                            </td>
-                            <td className='text-[#159400]'>
-                                +$415.28
                             </td>
                             <td>
                                 8
