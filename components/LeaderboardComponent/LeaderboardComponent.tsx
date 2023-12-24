@@ -8,17 +8,35 @@ import Image from 'next/image';
 import firstPlace from '../../assets/icons/first-place.png'
 import secondPlace from '../../assets/icons/second-place.png'
 import thirdPlace from '../../assets/icons/third-place.png'
+import pic from '../../assets/images/leaderboard1.png'
+import pic2 from '../../assets/images/leaderboard2.png'
+import pic3 from '../../assets/images/leaderboard3.png'
 
+
+interface MonthItem {
+    map(arg0: (item: any) => any): unknown;
+    __typename: string;
+    month: string;
+}
+interface amountType {
+    map(arg0: (item: any) => any): unknown;
+    __typename: string;
+    amount: string;
+}
 const LeaderboardComponent = (props: {
-    rank: number | string
+    rank: number
     name: string
     profit: number
     accountSize: number
     return: number
     back: number
-    bgImage: any
     isLocationIran: boolean
+    months: MonthItem
+    amounts: amountType
 }) => {
+    const monthsArray = props.months.map(item => item.month);
+    const amountsArray = props.amounts.map(item => item.amount);
+
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
 
@@ -28,11 +46,11 @@ const LeaderboardComponent = (props: {
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: monthsArray,
             datasets: [
                 {
                     label: `${props.isLocationIran ? 'موجودی' : 'inventory'}`,
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: amountsArray,
                     fill: true,
                     borderColor: documentStyle.getPropertyValue('--orange-500'),
                     tension: 0.4,
@@ -75,14 +93,15 @@ const LeaderboardComponent = (props: {
     }, []);
 
     return (
-        <div className={`LeaderboardComponent rounded-md pb-3 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 ${props.isLocationIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} justify-between items-center`}
+        <div className={`LeaderboardComponent rounded-md pb-3 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 ${props.rank > 3 && '-translate-x-[17px]'}
+        ${props.isLocationIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} justify-between items-center`}
             style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}
         >
-            <h2 className='text-main-orange text-3xl font-bold'> {props.rank === '01' ? <Image src={firstPlace} alt='firstPlace' width={55} /> :
-                props.rank === '02' ? <Image src={secondPlace} alt='secondPlace' width={55} /> : props.rank === '03' ? <Image src={thirdPlace} alt='thirdPlace' width={55} /> : props.rank
+            <h2 className='text-main-orange text-3xl font-bold'> {props.rank === 1 ? <Image src={firstPlace} alt='firstPlace' width={55} /> :
+                props.rank === 2 ? <Image src={secondPlace} alt='secondPlace' width={55} /> : props.rank === 3 ? <Image src={thirdPlace} alt='thirdPlace' width={55} /> : props.rank
             } </h2>
             <div className='flex flex-col items-center gap-2'>
-                {props.rank === '01' &&
+                {props.rank === 1 &&
                     <h2 className={`${myFont.className} text-main-orange text-lg`}>
 
                         {props.isLocationIran ? 'سود و نام' : 'Profit and Name'}
@@ -91,7 +110,7 @@ const LeaderboardComponent = (props: {
 
 
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
+                    <Image src={props.rank === 1 ? pic : props.rank === 2 ? pic2 : pic3} alt='image' unoptimized className='rounded-md' width={150} />
                     <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <h3 className='text-main-orange font-bold text-lg'>  {props.name} </h3>
                         <p className='text-white text-lg font-bold'>
@@ -104,7 +123,7 @@ const LeaderboardComponent = (props: {
             </div>
             <div className='flex flex-col items-center gap-2'>
                 {
-                    props.rank === '01' &&
+                    props.rank === 1 &&
                     <h2 className={`${myFont.className} text-main-orange text-lg`}>
 
                         {props.isLocationIran ? 'سایز حساب' : 'Account size'}
@@ -114,7 +133,7 @@ const LeaderboardComponent = (props: {
                 }
 
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
+                    <Image src={props.rank === 1 ? pic : props.rank === 2 ? pic2 : pic3} alt='image' unoptimized className='rounded-md' width={150} />
                     <div className='flex flex-col items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>
@@ -127,13 +146,13 @@ const LeaderboardComponent = (props: {
 
             <div className='flex flex-col items-center gap-2'>
                 {
-                    props.rank === '01' &&
+                    props.rank === 1 &&
                     <h2 className={`${myFont.className} text-main-orange text-lg`}>
                         {props.isLocationIran ? 'برگشتی و بازگشتی' : 'Return and return'}
                     </h2>
                 }
                 <div className='relative'>
-                    <Image src={props.bgImage} alt='image' unoptimized className='rounded-md' width={150} />
+                    <Image src={props.rank === 1 ? pic : props.rank === 2 ? pic2 : pic3} alt='image' unoptimized className='rounded-md' width={150} />
                     <div className='flex flex-row gap-2 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                         <p className='text-white text-lg font-bold'>
                             <span className='text-main-orange'>

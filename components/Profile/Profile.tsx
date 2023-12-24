@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import tick from '../../assets/icons/tick.svg'
 import profile from '../../assets/images/profilePic.png'
 import { Toast, ToastMessage } from 'primereact/toast';

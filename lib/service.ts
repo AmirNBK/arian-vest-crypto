@@ -657,34 +657,37 @@ export async function getQueryAboutUsTitlesEng() {
   return data?.pages?.nodes[2].englishAboutUsTitles.engTitles[0];
 }
 
-export async function registerUserMutation(input: any) {
-  const mutation = `
-    mutation RegisterUser($input: RegisterUserInput!) {
-      registerUser(input: $input) {
-        user {
-          jwtAuthToken
-          jwtRefreshToken
+
+export async function getQueryLeaderboards() {
+  const data = await fetchAPI(
+    `
+    query MyQuery2 {
+      pages {
+        nodes {
+          homepage {
+            fieldGroupName
+          }
+          leaderboards {
+            leaderboards {
+              accountSize
+              maxReturn
+              minReturn
+              name
+              profit
+              months {
+                month
+              }
+              amounts {
+                amount
+              }
+            }
+          }
         }
       }
     }
-  `;
+    `,
+  );
 
-  return await fetchAPI(mutation, { variables: { input } });
+  return data?.pages?.nodes[2].leaderboards;
 }
 
-export async function loginMutation(input: any) {
-  const mutation = `
-  mutation LoginMutation {
-    login(input: {password: "tripleH1321@", username: "AmirNbk7"}) {
-      refreshToken
-      user {
-        username
-        userId
-      }
-      authToken
-    }
-  }
-  `;
-
-  return await fetchAPI(mutation, { variables: { input } });
-}
