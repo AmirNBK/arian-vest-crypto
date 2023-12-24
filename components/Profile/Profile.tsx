@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -6,6 +6,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import tick from '../../assets/icons/tick.svg'
 import profile from '../../assets/images/profilePic.png'
+import { Toast, ToastMessage } from 'primereact/toast';
 import range from '../../assets/images/whiteRange.svg'
 import empty from '../../assets/icons/empty.png'
 import Image from 'next/image';
@@ -22,6 +23,7 @@ const Profile = (
     }
 ) => {
     const isLocationInIran = props.isLocationIran
+    const toastBottomRight = useRef<Toast>(null);
 
     interface profileType {
         address: string
@@ -29,6 +31,7 @@ const Profile = (
         fullname: string
         status_verify: string
         image: any
+        phone: string
         email: string
         purchased_accounts: {
             name: string
@@ -43,7 +46,11 @@ const Profile = (
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [profilePic, setProfilePic] = useState<File | null | string>(null);
     const [userPhotoStatic, setUserPhotoStatic] = useState<string | StaticImport>();
-
+    const [editable, setEditable] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>()
+    const [address, setAddress] = useState<string>()
+    const [phone, setPhone] = useState<string>()
+    const [fullName, setFullName] = useState<string>()
 
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
@@ -78,17 +85,74 @@ const Profile = (
         })
     }, [])
 
+    const submitEdit = () => {
+        if (email || address || phone || fullName) {
+            UpdateProfileInfo('', email, address).then((res) => {
+                if (res.status === 200) {
+                    toastBottomRight.current?.show({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `${isLocationInIran ? 'اطلاعات شما با موفقیت ثبت و ویرایش گردید' : 'Your information has been successfully registered and edited'}`,
+                        life: 3000,
+                    });
+                    setEditable(false)
+                }
+                else {
+                    toastBottomRight.current?.show({
+                        severity: 'error',
+                        summary: 'Error',
+                        detail: `${isLocationInIran ? 'مشکلی در ویرایش اطلاعات رخ داد لطفا دوباره امتحان کنید' : 'There was a problem editing information. Please try again'}`,
+                        life: 3000,
+                    });
+                }
+            })
+        }
+        else {
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: `${isLocationInIran ? 'لطفا حداقل یکی از فیلد ها را پر نمایید' : 'Please fill out at least one of the fields'}`,
+                life: 3000,
+            });
+        }
+    }
+
     return (
         <div className='Profile' style={{ zIndex: '-50' }}>
-
+            <Toast ref={toastBottomRight} position="bottom-right" />
             {profileInfo ?
                 <>
                     <div className={`Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col
                     ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 justify-between items-center sm:items-end relative`}
                         style={{ zIndex: '20' }}
                     >
+                        {editable &&
+                            <div className={`absolute ${isLocationInIran ? 'left-8 bottom-4' : 'right-8 bottom-4'} z-10 flex flex-row-reverse gap-4`}>
+                                <button
+                                    onClick={submitEdit}
+                                    className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
+                           bg-main-orange 
+                            `}
+                                >
+                                    {isLocationInIran ? 'ثبت اطلاعات' : 'Submit'}
+
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setEditable(false)
+                                    }}
+                                    className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
+                          bg-[#740000]
+                            `}
+                                >
+                                    {isLocationInIran ? 'لغو' : 'Cancel'}
+
+
+                                </button>
+                            </div>
+                        }
                         <Image src={range} alt='range' className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2' style={{ zIndex: '1' }} />
-                        <div className={`flex flex-col  ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center`}>
+                        <div className={`flex flex-col relative  ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center`}>
                             {profileInfo?.image ?
                                 <div>
                                     <label htmlFor="fileInput">
@@ -114,15 +178,71 @@ const Profile = (
                                     />
                                 </div>
                             }
-                            <div className={`flex flex-col items-center ${isLocationInIran ? 'sm:items-end' : 'sm:items-start'} gap-2`}>
-                                <div className={`flex  ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} gap-3 items-center`}>
-                                    <Image src={edit} alt='edit' />
+                            <div className={`flex flex-col items-center relative z-10 ${isLocationInIran ? 'sm:items-end' : 'sm:items-start'} gap-2`}>
+                                <div className={`flex  ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'}  gap-3 items-center`}>
+                                    {!editable && <Image src={edit} alt='edit' className='cursor-pointer' onClick={() => {
+                                        setEditable(true)
+                                    }} />}
+
                                     {profileInfo?.status_verify === "Accepted" && <Image src={tick} alt='tick' className='w-6 h-6' />}
-                                    <p className={`${myFont.className} text-white text-3xl`}> {profileInfo?.fullname} </p>
+                                    {editable ?
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                            <input placeholder='' className='rounded-sm p-0.5'
+                                                value={fullName}
+                                                onChange={(e) => {
+                                                    setFullName(e.target.value)
+                                                }}
+                                            />
+                                            <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ' : نام و نام خانوادگی ' : 'Full name : '} </p>
+                                        </div>
+                                        :
+                                        <p className={`${myFont.className} text-white text-3xl`}> {profileInfo?.fullname} </p>
+                                    }
                                 </div>
-                                <p className='text-base text-white opacity-[0.7] text-sm'> {profileInfo?.email} </p>
-                                <p className={`text-white text-sm opacity-[0.7] text-center`}>
-                                    {profileInfo?.address}
+                                <p className={`text-base text-white ${!editable && 'opacity-[0.7]'}  text-sm`}>
+                                    {editable ?
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                            <input placeholder='' className='rounded-sm p-0.5 text-black'
+                                                value={email}
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                }}
+                                            />
+                                            <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ': ایمیل' : 'Email : '} </p>
+                                        </div>
+                                        :
+                                        <p> {profileInfo?.email} </p>
+                                    }
+                                </p>
+                                <p className={`text-base text-white ${!editable && 'opacity-[0.7]'}  text-sm`}>
+                                    {editable ?
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                            <input placeholder='' className='rounded-sm p-0.5 text-black'
+                                                value={phone}
+                                                onChange={(e) => {
+                                                    setPhone(e.target.value)
+                                                }}
+                                            />
+                                            <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ': تلفن' : 'Phone : '} </p>
+                                        </div>
+                                        :
+                                        <p >  {profileInfo?.phone || '09834528109'} </p>
+                                    }
+                                </p>
+                                <p className={`text-white text-sm ${!editable && 'opacity-[0.7]'} text-center`}>
+                                    {editable ?
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                            <input placeholder='' className='rounded-sm p-0.5 text-black'
+                                                value={address}
+                                                onChange={(e) => {
+                                                    setAddress(e.target.value)
+                                                }}
+                                            />
+                                            <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ': آدرس' : 'Address : '} </p>
+                                        </div>
+                                        :
+                                        <p>  {profileInfo?.address} </p>
+                                    }
                                 </p>
                             </div>
                         </div>
