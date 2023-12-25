@@ -244,7 +244,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                     {type !== 'one-step' ?
                         <figure id="item1" className="carouselItem trans3d"
                             onClick={() => tariffClickHandler(7)}
-
                         >
                             <div className="carouselItemInner trans3d"
                                 style={{
@@ -568,8 +567,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
 }
 
-
-/* hardware accelatator className */
 .trans3d {
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0, 0, 0);

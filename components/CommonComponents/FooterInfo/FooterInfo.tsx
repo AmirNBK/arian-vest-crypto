@@ -1,6 +1,9 @@
 import React from 'react';
 import localFont from 'next/font/local'
 const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
+const myFont = localFont({ src: '../../../assets/fonts/SquadaOne Regular.ttf' })
+
+
 
 const FooterInfo = (props: {
     title: string;
@@ -8,8 +11,8 @@ const FooterInfo = (props: {
     isLocationIran: boolean | undefined
 }) => {
     return (
-        <div className={`${myFontIran.className} FooterInfo flex ${props.isLocationIran ? 'flex-row' : 'flex-row-reverse'} items-baseline text-right`}>
-            <span className='text-base sm:text-xl lg:text-2xl mr-2'>
+        <div className={`FooterInfo flex ${props.isLocationIran ? 'flex-row' : 'flex-row-reverse'} items-baseline text-right`}>
+            <span className={` ${(props.title === 'ایمیل' || props.title === 'email') && `${myFont.className}`} text-base sm:text-xl lg:text-2xl mr-2`}>
                 {props.info}
             </span>
             :

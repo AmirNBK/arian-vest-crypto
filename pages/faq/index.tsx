@@ -53,7 +53,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                                                 pt={{
                                                     headerIcon: <Image src={arrow} alt='arrow' />
                                                 }}
-                                                className='text-white text-right'
+                                                className={`${myFontIran.className} text-white text-right`}
                                                 style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
                                                 header={item.title}>
                                                 {item.description}

@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 const myFontLight = localFont({ src: '../../assets/fonts/iranyekanweblight_0.ttf' })
 const myFont2 = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+const myFont3 = localFont({ src: '../../assets/fonts/SquadaOne Regular.ttf' })
 import arrow from '../../assets/icons/arrowWithCircle.svg'
 import bull from '../../assets/icons/bull.svg'
 import bullRed from '../../assets/icons/bull-red-eye.svg'
@@ -118,8 +119,8 @@ const Footer = (props: {
                     </p>
                     <FooterInfo title={`${isLocationInIran ? 'شماره تماس' : 'phone number'}`} isLocationIran={isLocationInIran} info={isLocationInIran ? props.data?.phone : props.data?.engPhone} />
                     <FooterInfo title={`${isLocationInIran ? 'ایمیل' : 'email'}`} info={isLocationInIran ? props.data?.email : props.data?.engEmail} isLocationIran={isLocationInIran} />
-                    <p className={`${isLocationInIran ? 'text-right' : 'text-left'} text-xl lg:text-xl rtl`}>
-                        <span className='font-semibold'> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className='text-white'>  </span>
+                    <p className={`${isLocationInIran ? 'text-right' : 'text-left'} ${myFont3.className} text-xl lg:text-xl rtl`}>
+                        <span className={`${myFont3.className} font-semibold`}> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className='text-white'>  </span>
                     </p>
                 </div>
 
@@ -192,8 +193,8 @@ const Footer = (props: {
                         </p>
                         <FooterInfo title={`${isLocationInIran ? 'شماره تماس' : 'phone number'}`} isLocationIran={isLocationInIran} info={isLocationInIran ? props.data?.phone : props.data?.engPhone} />
                         <FooterInfo title={`${isLocationInIran ? 'ایمیل' : 'email'}`} info={isLocationInIran ? props.data?.email : props.data?.engEmail} isLocationIran={isLocationInIran} />
-                        <p className='text-xl lg:text-xl text-right rtl'>
-                            <span className='font-semibold'> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className='text-white'>  </span>
+                        <p className={`${myFont3.className} text-xl lg:text-xl text-right rtl`}>
+                            <span className={`${myFont.className} font-semibold`}> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className={`${myFont3.className} text-white`}>  </span>
                         </p>
                     </div>
 
