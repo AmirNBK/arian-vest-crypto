@@ -302,7 +302,7 @@ const Profile = (
                                 <div className='flex flex-col justify-center gap-4 items-center'>
                                     <Image src={empty} alt='empty' />
                                     <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
-                                        در حال حاظر هيچ حساب خريداري شده اي نداريد.
+                                        {isLocationInIran ? 'در حال حاظر هيچ حساب خريداري شده اي نداريد.' : 'You do not currently have any purchased accounts.'}
                                     </p>
                                 </div>
                             )}

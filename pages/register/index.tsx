@@ -19,7 +19,7 @@ const inter = Inter({ subsets: ['latin'] })
 import { Toast, ToastMessage } from 'primereact/toast';
 import localFont from 'next/font/local'
 import Footer from '@/components/Footer/Footer'
-import { getQueryEngFooter, getQueryFooter, loginMutation, registerUserMutation } from '@/lib/service'
+import { getQueryEngFooter, getQueryFooter } from '@/lib/service'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthCheck'
@@ -45,6 +45,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
         username: "",
         password: "",
         email: "",
+        phone: "",
         displayName: "",
         locale: "",
         description: "",
@@ -119,7 +120,6 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                     detail: `${isLocationInIran ? 'لطفا رمز عبور قوی‌تری انتخاب کنید.' : 'Please choose a stronger password'}`,
                     life: 3000,
                 });
-
             }
         } else {
             toastBottomRight.current?.show({
@@ -276,6 +276,13 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             value={registrationData.email}
                                             onChange={(value) => handleInputChange("email", value)}
                                             type='email'
+                                        />
+                                        <RegisterInput
+                                            isLocationIran={isLocationInIran}
+                                            placeholder={isLocationInIran ? 'تلفن' : 'Phone'}
+                                            value={registrationData.phone}
+                                            onChange={(value) => handleInputChange("phone", value)}
+                                            type='phone'
                                         />
                                         <RegisterInput
                                             isLocationIran={isLocationInIran}

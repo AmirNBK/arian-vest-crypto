@@ -159,27 +159,220 @@ const ProfitWithdrawal = (props: {
                         </>
                         :
                         <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
-                            <div className='flex flex-col lg:flex-row-reverse gap-2'>
-                                <div className='flex flex-row items-center gap-4'>
-                                    <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ml-auto`}>
-                                        برداشت سود
-                                    </h2>
-                                    <Image src={certificateMini} alt='icon' unoptimized />
-                                </div>
+                            <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4`}>
+                                <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                                    {isLocationInIran ? 'برداشت سود' : 'Profit Withdrawal'}
+                                </h2>
+                                <Image src={certificateMini} alt='icon' unoptimized />
                             </div>
 
                             <div className='flex flex-col justify-center gap-4 items-center'>
                                 <Image src={empty} alt='empty' />
                                 <p className={`${myFontIran.className} text-white ${props.isLocationIran ? 'rtl' : ''}`}>
-                                    در حال حاظر اطلاعات برداشت سود شما موجود نمي باشد. لطفا بعدا امتحان كنيد.
+                                    {isLocationInIran ? ' در حال حاظر اطلاعات برداشت سود شما موجود نمي باشد. لطفا بعدا امتحان كنيد.' : 'Currently, your profit withdrawal information is not available. Please try again later.'}
+
                                 </p>
                             </div>
                         </div>
                     }
 
+                    <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
+                        <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
+                            <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+
+                                {isLocationInIran ? 'آمار برداشت سود' : 'Withdrawl statistics'}
+                            </h2>
+                            <Image src={certificateMini} alt='icon' unoptimized />
+                        </div>
+                        <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
+                            <table className={`${myFontIran.className} w-full`}>
+                                <tr>
+                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                        {isLocationInIran ? '' : 'Ticket ID'}
+                                    </th>
+                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                        {isLocationInIran ? 'مبلغ برداشت' : 'Withdrawal amount'}
+                                    </th>
+                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                        {isLocationInIran ? 'شماره پيگيري' : 'Tracking Number'}
+                                    </th>
+                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+
+                                        {isLocationInIran ? 'تاريخ' : 'Date'}
+                                    </th>
+                                    <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                        {isLocationInIran ? 'وضعیت برداشت' : 'Ticket Status'}
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td className='text-center'>
+                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 1 </h2>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            550000
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            32412412
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            12/23/2023
+                                        </p>
+                                    </td>
+                                    <td className='text-center wrap'>
+                                        <button className={`${myFontIran.className}
+                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                sm:text-sm bg-main-orange`}
+                                        >
+                                            pending
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td className='text-center'>
+                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 2 </h2>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            550000
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            32412412
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            12/23/2023
+                                        </p>
+                                    </td>
+                                    <td className='text-center wrap'>
+                                        <button className={`${myFontIran.className}
+                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                sm:text-sm bg-main-orange`}
+                                        >
+                                            pending
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='text-center'>
+                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 3 </h2>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            550000
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            32412412
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            12/23/2023
+                                        </p>
+                                    </td>
+                                    <td className='text-center wrap'>
+                                        <button className={`${myFontIran.className}
+                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                sm:text-sm bg-main-orange`}
+                                        >
+                                            pending
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='text-center'>
+                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 4 </h2>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            550000
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            32412412
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            12/23/2023
+                                        </p>
+                                    </td>
+                                    <td className='text-center wrap'>
+                                        <button className={`${myFontIran.className}
+                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                                sm:text-sm bg-main-orange`}
+                                        >
+                                            pending
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            {/* <div className='flex flex-col justify-center gap-4 items-center'>
+                                    <Image src={empty} alt='empty' />
+                                    <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                        {isLocationInIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
+
+                                    </p>
+                                </div> */}
+                        </div>
+
+                    </div>
+
                 </>
                 : <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
             }
+
+            <style>
+                {
+                    `
+                    .p-toast-detail {
+                        text-align : ${props.isLocationIran ? 'right' : 'left'} ;
+                    }
+                    .wrap {
+                        text-wrap: nowrap;
+                    }
+
+
+                    table {
+                        border - collapse: separate;
+                    border-spacing: 0 10px;
+      }
+
+      th {
+        padding-left: 5px;
+        padding-right: 5px; 
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+    
+                     td {
+                        padding-left: 5px;
+                        padding-right: 5px; 
+                        padding-bottom: 14px;
+                        padding-top: 14px;
+      }   
+      tr:not(:last-child,:first-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+      
+                    `
+                }
+            </style>
         </div>
     );
 };
