@@ -25,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     });
                 `}
       </Script>
+      <Script src="//code.tidio.co/1kt3bvtouqse2gmjqneaa646azdyozca.js" async></Script>
       <Component {...pageProps} />
     </ApolloProvider>
   )

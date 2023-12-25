@@ -37,16 +37,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
         let prevMouseX = 0;
         let dragged = false;
 
-        function debounce(func, timeout = 300) {
-            let timer;
-            return (...args) => {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    func.apply(this, args);
-                }, timeout);
-            };
-        }
-
         $(document).ready(init);
 
         function init() {
@@ -59,7 +49,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
             rY = 360 / itemLength;
             radius = Math.round(250 / Math.tan(Math.PI / itemLength)) * 0.6;
 
-            // set container 3d props
             TweenMax.set(container, { perspective: 600 });
             TweenMax.set(carousel, { z: -radius });
 
