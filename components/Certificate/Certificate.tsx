@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
-import certificate from '../../assets/icons/certificate2.svg'
+import certificateIcon from '../../assets/icons/certificate2.svg'
 import certificateMini from '../../assets/icons/certificateMini.svg'
 import Image from 'next/image';
 import { getProfileInfo } from '@/lib/apiConfig';
@@ -12,10 +12,10 @@ const Certificate = (
         isLocationIran: boolean
     }
 ) => {
+    const [certificate, setCertificate] = useState<File | null | string>(null)
     useEffect(() => {
         getProfileInfo().then((res) => {
-            console.log(res);
-            
+            setCertificate(res.data.documents)
         })
 
     }, [])
@@ -29,12 +29,21 @@ const Certificate = (
                 </h2>
                 <Image src={certificateMini} alt='icon' unoptimized />
             </div>
-            <div className='flex flex-col items-center my-20'>
-                <Image src={certificate} alt='certificate' unoptimized width={200} height={200} />
-                <p className={`${myFontIran.className} text-white text-2xl text-center`}>
-                    {isLocationIran ? 'در حال حاظر هیچ مدرک و گواهی ندارید' : 'Currently, you do not have any documents or certificates.'}
-                </p>
-            </div>
+
+            {certificate ?
+                <div className='flex flex-col items-center my-12'>
+                    <Image src={'https://virafundingbackend.darkube.app' + certificate} alt='certificate' 
+                    unoptimized
+                    className='w-[470px] h-96 rounded-xl object-cover' width={120} height={120} />
+                </div>
+                :
+                <div className='flex flex-col items-center my-20'>
+                    <Image src={certificateIcon} alt='certificate' unoptimized width={200} height={200} />
+                    <p className={`${myFontIran.className} text-white text-2xl text-center`}>
+                        {isLocationIran ? 'در حال حاظر هیچ مدرک و گواهی ندارید' : 'Currently, you do not have any documents or certificates.'}
+                    </p>
+                </div>
+            }
         </div>
     );
 };
