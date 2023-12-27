@@ -149,7 +149,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
         }
 
         function onMouseMove(event) {
-            //   mouseY = -(-(window.innerHeight * 0.5) + event.pageY) * 0.01;
             if (dragged) {
                 currentMouseX = event.clientX;
                 if (currentMouseX - prevMouseX < 50 && currentMouseX - prevMouseX > -50) {
@@ -171,7 +170,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 rotationX: mouseY,
                 ease: Quint.easeOut,
             });
-            TweenMax.set(carousel, { z: mouseZ + 1500 });
+            TweenMax.set(carousel, { z: type !== 'one-step' ? 450 : 600 });
         }
 
         function getRandomInt($n) {
@@ -230,293 +229,289 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
             </Dialog>
             <div id="contentContainer" className="trans3d">
                 <section id="carouselContainer" className="trans3d">
-                    {type !== 'one-step' ?
-                        <figure id="item1" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
+                    {
+                        type !== 'one-step' ?
+                            <>
+                                <figure id="item1" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(6)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
 
-                            </div>
-                        </figure>
-                        :
-                        <figure id="item1" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(5)}
+                                    </div>
+                                </figure>
+                                <figure id="item2" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(5)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
 
-                            </div>
-                        </figure>
+                                    </div>
+                                </figure>
+                                <figure id="item3" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(4)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </figure>
+                                <figure id="item4" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(3)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </figure>
+                                <div id="item5" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(2)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </div>
+                                <figure id="item6" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(1)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
+                                            backgroundSize: 'cover',
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item7" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled-fotor-20231205201240-e1701794985905.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                            </>
+
+                            :
+                            <>
+                                <figure id="item1" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(6)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item2" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(5)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </figure>
+                                <figure id="item3" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(4)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item4" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(3)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </figure>
+                                <div id="item5" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(2)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+
+                                    </div>
+                                </div>
+                                <figure id="item6" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(1)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
+                                            backgroundSize: 'cover',
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item7" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item8" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item9" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                                <figure id="item10" className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                    >
+
+                                    </div>
+                                </figure>
+                            </>
                     }
-                    {type !== 'one-step' ?
-                        <figure id="item2" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(6)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
 
-
-                            </div>
-                        </figure>
-                        :
-                        <figure id="item2" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(4)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
-
-
-                            </div>
-                        </figure>
-                    }
-                    <figure id="item3" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(5)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-
-                        </div>
-                    </figure>
-                    <figure id="item4" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(3)}
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-
-                        </div>
-                    </figure>
-                    <div id="item5" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(2)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-
-                        </div>
-                    </div>
-                    <figure id="item6" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(1)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
-                                backgroundSize: 'cover',
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-                        </div>
-                    </figure>
-                    <figure id="item7" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(4)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-                        </div>
-                    </figure>
-                    <figure id="item7" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(4)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-                        </div>
-                    </figure>
-
-                    <figure id="item8" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(5)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-
-                        </div>
-                    </figure>
-                    {type !== 'one-step' ?
-                        <figure id="item2" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(6)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
-
-
-                            </div>
-                        </figure>
-                        :
-                        <figure id="item2" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(4)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
-
-
-                            </div>
-                        </figure>
-                    }
-                    {type !== 'one-step' ?
-                        <figure id="item1" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
-
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
-
-                            </div>
-                        </figure>
-                        :
-                        <figure id="item1" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(5)}
-
-                        >
-                            <div className="carouselItemInner trans3d"
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                            >
-
-                            </div>
-                        </figure>
-                    }
-                    <figure id="item11" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(1)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-                        </div>
-                    </figure>
-                    <figure id="item12" className="carouselItem trans3d"
-                        onClick={() => tariffClickHandler(2)}
-
-                    >
-                        <div className="carouselItemInner trans3d"
-                            style={{
-                                backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
-                                backgroundSize: 'cover'
-                            }}
-                        ></div>
-                        <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                            style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                        >
-
-                        </div>
-                    </figure>
                 </section>
             </div>
             <style>
