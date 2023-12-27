@@ -26,7 +26,7 @@ const Ticket = (props: {
         message_id: number;
         author: number;
         content: string;
-        date: string;
+        created_at: string;
     }
 
     const [supportTypes, setSupportTypes] = useState<[]>()
@@ -367,7 +367,9 @@ const Ticket = (props: {
                             </div>
                             :
                             <div className=' bg-slate-200 rounded-md w-full h-full p-8'>
-                                <ChatScreen messages={messages} isLocationIran={isLocationIran} />
+                                <ChatScreen messages={messages} isLocationIran={isLocationIran} onClick={() => {
+                                    setChatId(undefined)
+                                }} />
                             </div>
                         }
 
