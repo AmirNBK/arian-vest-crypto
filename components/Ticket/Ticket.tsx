@@ -13,21 +13,34 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
 import ReactLoading from 'react-loading';
-import { SendTicket, getProfileInfo, getTicketTypes, getTickets } from '@/lib/apiConfig';
+import { SendTicket, getProfileInfo, getTicketMessage, getTicketTypes, getTickets } from '@/lib/apiConfig';
 import tick from '../../assets/icons/tick.svg'
+import MessageComponent from '../MessageComponent/MessageComponent';
+import ChatScreen from '../ChatScreen/ChatScreen';
 
 const Ticket = (props: {
     isLocationIran: boolean
 }) => {
+    interface Message {
+        file: string;
+        message_id: number;
+        author: number;
+        content: string;
+        date: string;
+    }
+
     const [supportTypes, setSupportTypes] = useState<[]>()
+    const [messages, setMessages] = useState<Message[]>()
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [userId, setUserId] = useState<number>()
     const [refreshTickets, setRefreshTickets] = useState<boolean>()
+    const [chatId, setChatId] = useState<number>()
     const [tickets, setTickets] = useState<{
         subject: string
         ticket_status: string
         created_at: string
         support_type: string
+        pk: number
     }[]>()
     const isLocationIran = props.isLocationIran
 
@@ -59,6 +72,15 @@ const Ticket = (props: {
             setTickets(res.data)
         })
     }, [refreshTickets])
+
+    useEffect(() => {
+        if (chatId) {
+            getTicketMessage(chatId).then((res) => {
+                console.log(res);
+                setMessages(res.data.messages)
+            })
+        }
+    }, [chatId])
 
 
     const handleFileChange = (event: any) => {
@@ -165,7 +187,6 @@ const Ticket = (props: {
                     <div className='Ticket bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
                         <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
                             <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
-
                                 {isLocationIran ? '  ارسال تیکت' : 'Send ticket'}
                             </h2>
                             <Image src={certificateMini} alt='icon' unoptimized />
@@ -272,70 +293,84 @@ const Ticket = (props: {
                             </h2>
                             <Image src={certificateMini} alt='icon' unoptimized />
                         </div>
-                        <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
-                            {tickets.length ?
-                                <table className={`${myFontIran.className} w-full`}>
-                                    <tr>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationIran ? '' : 'Ticket ID'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationIran ? 'تاریخ' : 'Date'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationIran ? 'وضعیت تیکت' : 'Ticket Status'}
-                                        </th>
-                                    </tr>
+                        {!chatId ?
+                            <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
+                                {tickets.length ?
+                                    <table className={`${myFontIran.className} w-full`}>
+                                        <tr>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationIran ? '' : 'Ticket ID'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationIran ? 'تاریخ' : 'Date'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationIran ? 'وضعیت تیکت' : 'Ticket Status'}
+                                            </th>
+                                        </tr>
 
-                                    {tickets?.map((item, index) => {
-                                        return (
-                                            <tr>
-                                                <td className='text-center'>
-                                                    <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        {item.subject}
-                                                    </p>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        {item.support_type}
-                                                    </p>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        {formatCreatedAtDate(item.created_at)}
-                                                    </p>
-                                                </td>
-                                                <td className='text-center wrap'>
-                                                    <button className={`${myFontIran.className}
-                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
-                                                    >
-                                                        {item.ticket_status}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </table>
-                                :
-                                <div className='flex flex-col justify-center gap-4 items-center'>
-                                    <Image src={empty} alt='empty' />
-                                    <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
-                                        {isLocationIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
+                                        {tickets?.map((item, index) => {
+                                            return (
+                                                <tr >
+                                                    <td className='text-center'>
+                                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            {item.subject}
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            {item.support_type}
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            {formatCreatedAtDate(item.created_at)}
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center wrap'>
+                                                        <button className={`${myFontIran.className}
+                            px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
+                            sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
+                                                        >
+                                                            {item.ticket_status}
+                                                        </button>
+                                                    </td>
+                                                    <td className=' cursor-pointer' onClick={() => {
+                                                        setChatId(item.pk)
+                                                    }}>
+                                                        <p className='underline text-blue-500 '>
+                                                            {isLocationIran ? 'مشاهده' : 'View ticket'}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </table>
+                                    :
+                                    <div className='flex flex-col justify-center gap-4 items-center'>
+                                        <Image src={empty} alt='empty' />
+                                        <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                            {isLocationIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
 
-                                    </p>
-                                </div>
-                            }
-                        </div>
+                                        </p>
+                                    </div>
+                                }
+                            </div>
+                            :
+                            <div className=' bg-white rounded-md w-full h-full'>
+                                <ChatScreen messages={messages} isLocationIran={isLocationIran} />
+                            </div>
+                        }
+
 
                     </div>
                 </>

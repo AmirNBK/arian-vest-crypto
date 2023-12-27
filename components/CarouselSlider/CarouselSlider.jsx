@@ -376,8 +376,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                     >
-
-
                                     </div>
                                 </figure>
                                 <figure id="item3" className="carouselItem trans3d"
@@ -408,8 +406,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                     >
-
-
                                     </div>
                                 </figure>
                                 <div id="item5" className="carouselItem trans3d"
