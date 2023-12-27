@@ -366,7 +366,7 @@ const Ticket = (props: {
                                 }
                             </div>
                             :
-                            <div className=' bg-white rounded-md w-full h-full'>
+                            <div className=' bg-slate-200 rounded-md w-full h-full p-8'>
                                 <ChatScreen messages={messages} isLocationIran={isLocationIran} />
                             </div>
                         }

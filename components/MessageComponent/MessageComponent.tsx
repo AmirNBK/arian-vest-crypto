@@ -33,8 +33,7 @@ const MessageComponent = (props: {
     return (
         <div className={`MessageComponent w-1/2 mt-2 mb-5 ${type === 'user' ? 'ml-auto mr-2' : 'ml-2'}`}>
             <div
-                className='MessageComponent__message rounded-md text-left text-lg flex justify-content-end borderRadius-default p-2 line-height-4'
-                style={{ backgroundColor: '#E5E5E5' }}
+                className='MessageComponent__message rounded-md text-left text-base flex justify-content-end borderRadius-default p-2 line-height-4 bg-gray-400 text-white'
             >
                 {textContent}
             </div>

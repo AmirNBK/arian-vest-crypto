@@ -32,7 +32,6 @@ const SendMessageComponent = (props: {
 
     return (
         <div className='SendMessageComponent w-full my-auto mx-auto'>
-            <div className='text-right text-xs mb-1'> پاسخ درخواست شما </div>
             {/* {repliedMessage &&
                 <div className='text-right text-xs mb-1 py-2 px-2 borderRadius-default flex justify-content-between'
                     style={{ direction: 'rtl', backgroundColor: '#F6F1F1', }}>
@@ -42,15 +41,17 @@ const SendMessageComponent = (props: {
                     />
                 </div>
             } */}
-            <textarea rows={5} cols={50} className='w-full p-text-sm rtl' dir='auto' value={message}
+            <textarea rows={5} cols={50} className=' w-full border border-solid border-slate-300 rounded-md p-text-sm rtl p-4 placeholder:text-sm text-sm bg-slate-100' dir='auto' value={message}
                 placeholder={`${props.isLocationIran ? 'پاسخ خود را وارد كنيد' : 'Enter your answer'}`}
                 onChange={(e) => { setMessage(e.target.value) }}>
 
             </textarea>
             <div>
-                <div>
-                    <button className='text-white text-xs borderRadius-default' onClick={() => { send() }}
-                        style={{ border: 'none', backgroundColor: '#222222', padding: '8px 25px' }}> ارسال </button>
+                <div className=' text-right'>
+                    <button className='text-white text-xs borderRadius-default bg-main-orange rounded-sm' onClick={() => { send() }}
+                        style={{ border: 'none', padding: '8px 35px' }}>
+                        {props.isLocationIran ? 'ارسال' : 'Send'}
+                    </button>
                 </div>
                 {/* {!messageBox &&
                     <button className='text-white text-xs borderRadius-default ml-2'
