@@ -23,7 +23,7 @@ const ChatScreen = (props: {
     return (
         <div className='ChatScreen' style={{ fontFamily: 'IranSans' }}>
             <div className='overflow-auto max-h-30rem relative'>
-                <Image src={cancel} alt='cancel' className='w-6 absolute right-0 top-0 cursor-pointer z-50'
+                <Image src={cancel} alt='cancel' className='w-6 absolute left-0 top-0 cursor-pointer z-50'
                     onClick={props.onClick}
                 />
                 {

@@ -13,7 +13,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
 import ReactLoading from 'react-loading';
-import { SendTicket, getProfileInfo, getTicketMessage, getTicketTypes, getTickets } from '@/lib/apiConfig';
+import { SendTicket, getProfileInfo, getTicketMessage, getTicketTypes, getTickets, postTicketMessage } from '@/lib/apiConfig';
 import tick from '../../assets/icons/tick.svg'
 import MessageComponent from '../MessageComponent/MessageComponent';
 import ChatScreen from '../ChatScreen/ChatScreen';
@@ -78,7 +78,7 @@ const Ticket = (props: {
                 setMessages(res.data.messages)
             })
         }
-    }, [chatId , refreshMessages])
+    }, [chatId, refreshMessages])
 
 
     const handleFileChange = (event: any) => {
@@ -128,6 +128,9 @@ const Ticket = (props: {
                             detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
                             life: 3000,
                         });
+                        postTicketMessage(userId, res.data.pk, formData.description, '').then((res) => {
+                            
+                        })
                         setRefreshTickets(!refreshTickets)
                         setTimeout(() => {
                             setFormData({
