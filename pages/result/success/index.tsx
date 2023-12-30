@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
@@ -16,9 +16,25 @@ import successful from '../../../assets/images/succesfull-payment.png'
 import unsuccessful from '../../../assets/images/unsuccesful-payment.png'
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { getPaymentInfo } from '@/lib/apiConfig';
 
 
 export default function SuccessResult({ footer, questions }: { footer: any, questions: any }) {
+
+    useEffect(() => {
+        handleGetPaymentInfo()
+    }, [])
+
+    const handleGetPaymentInfo = async () => {
+        try {
+            const response = await getPaymentInfo('5601928741');
+            console.log(response);
+
+
+        } catch (error) {
+            console.error('Error creating invoice:', error);
+        }
+    };
 
     return (
         <main

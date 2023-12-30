@@ -40,7 +40,7 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
                     onChange={handleChange}
                 >
                     {selectOptions?.map((item, index) => (
-                        <option key={index} value={item.code}>
+                        <option key={index} value={item.name}>
                             {item.name}
                         </option>
                     ))}

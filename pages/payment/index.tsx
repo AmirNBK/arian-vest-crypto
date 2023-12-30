@@ -102,6 +102,9 @@ export default function Payment() {
 
     });
 
+    console.log(formState);
+
+
     const handleInputChange = (fieldName: string, value: string) => {
         setFormState((prevState: any) => ({
             ...prevState,
@@ -152,10 +155,10 @@ export default function Payment() {
 
     const handleCreateInvoice = async () => {
         try {
-            const response = await createInvoice(1, 'RGDBP-21314');
+            const response = await createInvoice(finalPrice || initialPrice, '', 'This is a test');
             const invoiceUrl = response.invoice_url;
 
-            // window.location.href = invoiceUrl;
+            window.location.href = invoiceUrl;
 
         } catch (error) {
             console.error('Error creating invoice:', error);
@@ -238,14 +241,6 @@ export default function Payment() {
                             <PaymentComponent name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
                             <PaymentComponent name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                         </div>
-
-                        {/* <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
-                            {isLocationInIran ? 'از کجا درباره ما شنیدی؟' : 'Where did you hear about us?'}
-                        </h2>
-
-                        <div className={`${isLocationInIran && 'text-end'}`}>
-                            <PaymentComponent onChange={(fieldName, value) => handleInputChange(fieldName, value)} isLocationIran={isLocationInIran} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput selectOptions={socialMedia} halfWidth />
-                        </div> */}
 
                         <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
                             {isLocationInIran ? 'محصولات' : 'Products'}
