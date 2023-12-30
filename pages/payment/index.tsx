@@ -71,7 +71,8 @@ export default function Payment() {
     const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
     const { data: footerData } = useQuery(GET_FOOTER);
     const { data: footerDataEng } = useQuery(GET_FOOTER_ENG);
-    const [chosenTariff, setChosenTariff] = useState(0);
+    const [chosenTariffIndex, setChosenTariffIndex] = useState(0);
+    const [chosenTariff, setChosenTariff] = useState<string>('');
     const [discountCode, setDiscountCode] = useState('');
     const [initialPrice, setInitialPrice] = useState<number | null>(null);
     const [finalPrice, setFinalPrice] = useState<number | null>(null);
@@ -80,7 +81,7 @@ export default function Payment() {
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
-    const [selectedTradingPlatform, setSelectedTradingPlatform] = useState('');
+    const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
     const [rules1, setRules1] = useState<boolean>(false);
     const [rules2, setRules2] = useState<boolean>(false);
@@ -97,13 +98,9 @@ export default function Payment() {
         setSelectedPlatform(value);
     };
 
-
     const [formState, setFormState] = useState<any>({
 
     });
-
-    console.log(formState);
-
 
     const handleInputChange = (fieldName: string, value: string) => {
         setFormState((prevState: any) => ({
@@ -158,7 +155,14 @@ export default function Payment() {
             const response = await createInvoice(finalPrice || initialPrice, '', 'This is a test');
             const invoiceUrl = response.invoice_url;
 
-            window.location.href = invoiceUrl;
+            const formDataString = JSON.stringify(formState);
+
+            localStorage.setItem('formData', formDataString);
+            localStorage.setItem('tradingPlatform', selectedTradingPlatform);
+            localStorage.setItem('platform', selectedPlatform);
+            localStorage.setItem('chosenTariff', chosenTariff);
+
+            // window.location.href = invoiceUrl;
 
         } catch (error) {
             console.error('Error creating invoice:', error);
@@ -257,10 +261,11 @@ export default function Payment() {
                             {tariff.map((item, index) => {
                                 return (
                                     <div
-                                        className={`${index === chosenTariff ? 'bg-[#F68D2E] text-white' : 'bg-[#272727] text-gray-400'}
+                                        className={`${index === chosenTariffIndex ? 'bg-[#F68D2E] text-white' : 'bg-[#272727] text-gray-400'}
                         text-center rounded-md py-6 text-lg flex-1 cursor-pointer`}
                                         onClick={() => {
-                                            setChosenTariff(index)
+                                            setChosenTariffIndex(index);
+                                            setChosenTariff(item);
                                         }}
                                     >
                                         {item}
