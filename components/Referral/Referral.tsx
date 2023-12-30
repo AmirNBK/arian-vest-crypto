@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import localFont from 'next/font/local'
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
@@ -9,6 +9,7 @@ import profile from '../../assets/icons/profile2.svg'
 import percent from '../../assets/icons/percent.svg'
 import certificateMini from '../../assets/icons/certificateMini.svg'
 import Image from 'next/image';
+import { getReferal } from '@/lib/apiConfig';
 
 
 
@@ -17,6 +18,13 @@ const Referral = (
         isLocationIran: boolean
     }
 ) => {
+    const [data, setData] = useState<any>()
+
+    useEffect(() => {
+        getReferal().then((res) => {
+            setData(res.data)
+        })
+    }, [])
 
     const isLocationIran = props.isLocationIran
 
@@ -39,32 +47,35 @@ const Referral = (
                     </div>
                 </div>
 
-                <div className='mt-8 flex flex-row-reverse justify-center lg:justify-between flex-wrap gap-12'>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'کد رفرال' : 'Referral Code'}
-                        </h3>
-                        <StatisticsComponents dollar={false} title={isLocationIran ? 'کد رفرال' : 'Referral Code'} value={'sfs143123'} icon={share} isReferral />
+                {data ?
+                    <div className='mt-8 flex flex-row-reverse justify-center lg:justify-between flex-wrap gap-12'>
+                        <div>
+                            <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                                {isLocationIran ? 'کد رفرال' : 'Referral Code'}
+                            </h3>
+                            <StatisticsComponents dollar={false} title={isLocationIran ? 'کد رفرال' : 'Referral Code'} value={data[0].referral_code} icon={share} isReferral />
+                        </div>
+                        <div>
+                            <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                                {isLocationIran ? 'برداشت های در انتظار' : 'Pending Withdrawals'}
+                            </h3>
+                            <StatisticsComponents dollar={false} title={isLocationIran ? 'تعداد رفرها' : 'Number of Referrals'} value={data[0].Pending_withdrawals} icon={profile} isReferral />
+                        </div>
+                        <div>
+                            <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                                {isLocationIran ? 'تعداد برداشت ها' : 'Number of Withdrawals'}
+                            </h3>
+                            <StatisticsComponents dollar={false} title={isLocationIran ? 'درصد اضافه شده' : 'Percentage Added'} value={data[0].number_of_withdrawals} icon={percent} isReferral />
+                        </div>
+                        <div>
+                            <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
+                                {isLocationIran ? 'کل سود' : 'Total Profit'}
+                            </h3>
+                            <StatisticsComponents dollar={true} title={isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'} value={data[0].total_profit} icon={gift} isReferral />
+                        </div>
                     </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'برداشت های در انتظار' : 'Pending Withdrawals'}
-                        </h3>
-                        <StatisticsComponents dollar={false} title={isLocationIran ? 'تعداد رفرها' : 'Number of Referrals'} value={12} icon={profile} isReferral />
-                    </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'تعداد برداشت ها' : 'Number of Withdrawals'}
-                        </h3>
-                        <StatisticsComponents dollar={false} title={isLocationIran ? 'درصد اضافه شده' : 'Percentage Added'} value={32} icon={percent} isReferral />
-                    </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'کل سود' : 'Total Profit'}
-                        </h3>
-                        <StatisticsComponents dollar={true} title={isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'} value={950} icon={gift} isReferral />
-                    </div>
-                </div>
+                    : ''
+                }
             </div>
 
 
