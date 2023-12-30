@@ -1,31 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react';
 // import { sendMessage } from '../../../../Utills/Api';
 import close from '../../../../Assets/img/close.svg'
+import { postTicketMessage } from '@/lib/apiConfig';
 // import FileUploadPage from '../../../CommonComponents/fileUpload/FileUploadPage';
 
 const SendMessageComponent = (props: {
     icon?: any
     messageBox: boolean
     isLocationIran: boolean
+    userId: number | undefined
+    ticketId: number
+    onClick: () => void
 }) => {
     const messageBox = props.messageBox
     const icon = props.icon
     // const { messageBoxCurrentContact, setIsMessageSent, isMessageSent, myTicketCurrentContact,
     //     userId, messageId, repliedMessage, setRepliedMessage } = useContext<mainContextType>(MainContext);
     const [selectedFile, setSelectedFile] = useState(null);
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
     const handleFileUpload = (file: any) => {
         setSelectedFile(file);
     };
 
-
-
     const send = () => {
-        // sendMessage(userId, messageBox ? messageBoxCurrentContact : myTicketCurrentContact, myTicketCurrentContact, message, messageId, selectedFile).then((res) => {
-        //     setRepliedMessage('')
-        //     setIsMessageSent(!isMessageSent)
-        // })
-        // setMessage('')
+        postTicketMessage(props.userId, props.ticketId, message, '').then((res) => {
+            // setRepliedMessage('')
+            // setIsMessageSent(!isMessageSent)
+            props.onClick()
+        })
+        setMessage('')
     }
 
 

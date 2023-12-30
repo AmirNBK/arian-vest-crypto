@@ -79,12 +79,13 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             registrationData.password &&
             registrationData.locale &&
             registrationData.email &&
-            registrationData.description
+            registrationData.description &&
+            registrationData.phone
         ) {
             const passwordStrength = checkPasswordStrength(registrationData.password);
 
             if (passwordStrength === 'Strong') {
-                signUp(registrationData.email, registrationData.firstname, registrationData.lastname, registrationData.username, registrationData.password, registrationData.password, registrationData.locale, registrationData.description).then((res) => {
+                signUp(registrationData.email, registrationData.phone, registrationData.firstname, registrationData.lastname, registrationData.username, registrationData.password, registrationData.password, registrationData.locale, registrationData.description).then((res) => {
                     setRegisterLoading(true)
                     if (res.status === 201) {
                         toastBottomRight.current?.show({

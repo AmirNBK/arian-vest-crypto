@@ -29,7 +29,7 @@ const Profile = (
         fullname: string
         status_verify: string
         image: any
-        phone: string
+        phone_number: string
         email: string
         purchased_accounts: {
             name: string
@@ -48,7 +48,9 @@ const Profile = (
     const [email, setEmail] = useState<string>()
     const [address, setAddress] = useState<string>()
     const [phone, setPhone] = useState<string>()
-    const [fullName, setFullName] = useState<string>()
+    const [firstName, setFirstName] = useState<string>()
+    const [lastName, setLastName] = useState<string>()
+    const [refreshProfileInfo, setRefreshProfileInfo] = useState<boolean>(false)
 
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
@@ -81,11 +83,11 @@ const Profile = (
         getProfileInfo().then((res) => {
             setProfileInfo(res.data)
         })
-    }, [])
+    }, [refreshProfileInfo])
 
     const submitEdit = () => {
-        if (email || address || phone || fullName) {
-            UpdateProfileInfo('', email, address).then((res) => {
+        if (email || address || phone || firstName || lastName) {
+            UpdateProfileInfo('', email, address, firstName, lastName, phone).then((res) => {
                 if (res.status === 200) {
                     toastBottomRight.current?.show({
                         severity: 'success',
@@ -94,12 +96,18 @@ const Profile = (
                         life: 3000,
                     });
                     setEditable(false)
+                    setRefreshProfileInfo(!refreshProfileInfo)
+                    setEmail('')
+                    setPhone('')
+                    setFirstName('')
+                    setLastName('')
+                    setAddress('')
                 }
                 else {
                     toastBottomRight.current?.show({
                         severity: 'error',
                         summary: 'Error',
-                        detail: `${isLocationInIran ? 'مشکلی در ویرایش اطلاعات رخ داد لطفا دوباره امتحان کنید' : 'There was a problem editing information. Please try again'}`,
+                        detail: `${(res.response.data.error) || (isLocationInIran ? 'مشکلی در ویرایش اطلاعات رخ داد لطفا دوباره امتحان کنید' : 'There was a problem editing information. Please try again')}`,
                         life: 3000,
                     });
                 }
@@ -166,7 +174,7 @@ const Profile = (
                                 :
                                 <div>
                                     <label htmlFor="fileInput">
-                                        <Image src={userPhotoStatic || profile} alt='profile' unoptimized className='cursor-pointer relative' style={{ zIndex: '20' }} />
+                                        <Image src={userPhotoStatic || profile} width={170} height={170} alt='profile' unoptimized className='rounded-full cursor-pointer relative w-36 h-36 object-cover' style={{ zIndex: '20' }} />
                                     </label>
                                     <input
                                         id="fileInput"
@@ -184,14 +192,27 @@ const Profile = (
 
                                     {profileInfo?.status_verify === "Accepted" && <Image src={tick} alt='tick' className='w-6 h-6' />}
                                     {editable ?
-                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
-                                            <input placeholder='' className='rounded-sm p-0.5'
-                                                value={fullName}
-                                                onChange={(e) => {
-                                                    setFullName(e.target.value)
-                                                }}
-                                            />
-                                            <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ' : نام و نام خانوادگی ' : 'Full name : '} </p>
+                                        <div className='flex flex-col gap-2'>
+                                            <div
+                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                                <input placeholder='' className='rounded-sm p-0.5'
+                                                    value={firstName}
+                                                    onChange={(e) => {
+                                                        setFirstName(e.target.value)
+                                                    }}
+                                                />
+                                                <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ' : نام كوچك ' : 'First name : '} </p>
+                                            </div>
+                                            <div
+                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                                <input placeholder='' className='rounded-sm p-0.5'
+                                                    value={lastName}
+                                                    onChange={(e) => {
+                                                        setLastName(e.target.value)
+                                                    }}
+                                                />
+                                                <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ' : نام خانوادگی ' : 'Last name : '} </p>
+                                            </div>
                                         </div>
                                         :
                                         <p className={`${myFont.className} text-white text-3xl`}> {profileInfo?.fullname} </p>
@@ -224,7 +245,7 @@ const Profile = (
                                             <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ': تلفن' : 'Phone : '} </p>
                                         </div>
                                         :
-                                        <p >  {profileInfo?.phone || '09834528109'} </p>
+                                        <p >  {profileInfo?.phone_number || '09834528109'} </p>
                                     }
                                 </p>
                                 <p className={`text-white text-sm ${!editable && 'opacity-[0.7]'} text-center`}>

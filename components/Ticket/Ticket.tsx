@@ -34,6 +34,7 @@ const Ticket = (props: {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [userId, setUserId] = useState<number>()
     const [refreshTickets, setRefreshTickets] = useState<boolean>()
+    const [refreshMessages, setRefreshMessages] = useState<boolean>()
     const [chatId, setChatId] = useState<number>()
     const [tickets, setTickets] = useState<{
         subject: string
@@ -43,8 +44,6 @@ const Ticket = (props: {
         pk: number
     }[]>()
     const isLocationIran = props.isLocationIran
-
-
 
     interface FormData {
         subject: string;
@@ -76,11 +75,10 @@ const Ticket = (props: {
     useEffect(() => {
         if (chatId) {
             getTicketMessage(chatId).then((res) => {
-                console.log(res);
                 setMessages(res.data.messages)
             })
         }
-    }, [chatId])
+    }, [chatId , refreshMessages])
 
 
     const handleFileChange = (event: any) => {
@@ -369,6 +367,8 @@ const Ticket = (props: {
                             <div className=' bg-slate-200 rounded-md w-full h-full p-8'>
                                 <ChatScreen messages={messages} isLocationIran={isLocationIran} onClick={() => {
                                     setChatId(undefined)
+                                }} userId={userId} ticketId={chatId} refershMessages={() => {
+                                    setRefreshMessages(!refreshMessages)
                                 }} />
                             </div>
                         }

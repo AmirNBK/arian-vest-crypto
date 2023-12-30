@@ -58,6 +58,9 @@ body {
       direction: rtl;
     } */
 
+    .p-toast-bottom-right {
+      z-index: 120000000000000000000 !important;
+    }
   .p-tabview .p-tabview-nav {
     background: transparent;
   }
