@@ -18,6 +18,7 @@ import Footer from '@/components/Footer/Footer';
 import useLocationData from '@/Hooks/location';
 import countries from '../../assets/countries.json'
 import Head from 'next/head';
+import { createInvoice } from '@/lib/apiConfig';
 
 const GET_DISCOUNT_CODES = gql`
 query discount {
@@ -127,6 +128,7 @@ export default function Payment() {
             rules1 &&
             rules2
         ) {
+            handleCreateInvoice()
         } else {
             let errorMessage = isLocationInIran
                 ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد'
@@ -148,31 +150,17 @@ export default function Payment() {
         }
     };
 
+    const handleCreateInvoice = async () => {
+        try {
+            const response = await createInvoice(1, 'RGDBP-21314');
+            const invoiceUrl = response.invoice_url;
 
-    const currencyConverter = () => {
-        var formdata = new FormData();
-        formdata.append("srcCurrency", "btc");
-        formdata.append("dstCurrency", "rls");
+            // window.location.href = invoiceUrl;
 
-        var requestOptions = {
-            method: 'POST',
-            body: formdata,
-            withCredentials: true,
-            crossorigin: true,
-            mode: 'no-cors',
-            redirect: 'follow'
-        };
-
-        fetch("https://api.nobitex.ir/market/stats")
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+        } catch (error) {
+            console.error('Error creating invoice:', error);
+        }
     };
-
-
-    useEffect(() => {
-        currencyConverter()
-    }, [])
 
     const discountValidation = () => {
         const enteredCode = discountCode.trim();
