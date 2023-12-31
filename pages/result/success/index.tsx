@@ -18,10 +18,13 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { getPaymentInfo, getProfileInfo } from '@/lib/apiConfig';
 import Receipt from '@/components/Receipt/Receipt';
+import useLocationData from '@/Hooks/location';
 
 
 export default function SuccessResult({ footer, questions }: { footer: any, questions: any }) {
 
+    const { locationData, error, loading } = useLocationData();
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     interface TransactionType {
         actually_paid: number;
         burning_percent: null | string; // Replace 'string' with the actual type if 'burning_percent' has a specific type
@@ -113,13 +116,20 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             </Head>
             <PrimeReactProvider>
                 <Header active={''} />
-                <PaymentResult title='پرداخت موفقیت آمیز بود' image={successful} />
-                {paymentInfo &&
-                    <Receipt user={profileInfo?.fullname} price={paymentInfo?.price_amount} address={profileInfo?.address}
-                        date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
-                        confirmationNum={paymentInfo?.purchase_id} email={profileInfo?.email} />
-                }
-                <Footer data={footer?.footer} />
+                <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
+                    <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
+                    {paymentInfo &&
+                        <Receipt user={profileInfo?.fullname} price={paymentInfo?.price_amount} address={profileInfo?.address}
+                            date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
+                            confirmationNum={paymentInfo?.purchase_id} email={profileInfo?.email} />
+                    }
+                    <div className='cursor-pointer w-fit mx-auto'>
+                        <p className={`${myFontIran.className} text-main-orange text-xl`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
+                        <hr style={{ borderColor: '#F68D2E' }} />
+                    </div>
+                </div>
+
+                {/* <Footer data={footer?.footer} /> */}
             </PrimeReactProvider>
         </main>
     )

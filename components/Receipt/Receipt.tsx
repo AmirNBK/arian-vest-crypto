@@ -219,7 +219,7 @@ const Receipt = (props: {
                   display: flex;
                   flex-wrap: wrap;
                   margin: 60px auto;
-                  width:830px;
+                  justify-content : center;
                   box-shadow: 0px 0px 50px 10px rgba(0,0,0,.1);
                   vertical-align:top;
                 }

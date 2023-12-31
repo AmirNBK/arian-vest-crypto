@@ -9,13 +9,9 @@ const PaymentResult = (props: {
     image: StaticImageData
 }) => {
     return (
-        <div className='flex flex-col bg-[#1D1D1D] w-10/12 lg:w-7/12 mx-auto gap-12 py-6 my-12 items-center rounded-md'>
+        <div className='flex flex-col mx-auto gap-12 my-12 items-center'>
             <h1 className={`${myFont.className} text-3xl sm:text-5xl text-white text-center`}> {props.title} </h1>
-            <Image src={props.image} alt='image' className='w-[250px] sm:w-[450px]' unoptimized />
-            <div className='cursor-pointer'>
-                <p className={`${myFontIran.className} text-main-orange text-xl`}> بازگشت </p>
-                <hr style={{ borderColor: '#F68D2E' }} />
-            </div>
+            <Image src={props.image} alt='image' className='w-[250px] sm:w-[320px]' unoptimized />
         </div>
     );
 };
