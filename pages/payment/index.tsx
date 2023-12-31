@@ -162,7 +162,7 @@ export default function Payment() {
             localStorage.setItem('platform', selectedPlatform);
             localStorage.setItem('chosenTariff', chosenTariff);
 
-            // window.location.href = invoiceUrl;
+            window.location.href = invoiceUrl;
 
         } catch (error) {
             console.error('Error creating invoice:', error);

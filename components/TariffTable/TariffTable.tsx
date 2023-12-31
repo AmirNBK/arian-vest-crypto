@@ -18,10 +18,12 @@ const TariffTable = (props: {
     minimal?: boolean
     hasRadius?: boolean
     isLocationIran?: boolean
+    challenge: string
 }) => {
     useEffect(() => {
         AOS.init();
     }, [])
+
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-4'}
         ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}
@@ -92,6 +94,7 @@ const TariffTable = (props: {
             <div className='w-6/12 mx-auto pb-10'
                 onClick={() => {
                     sessionStorage.setItem('buying price', props.price.toLocaleString())
+                    sessionStorage.setItem('challenge', props.challenge.toLocaleString())
                 }}
             >
                 <Link href={'/payment'}>

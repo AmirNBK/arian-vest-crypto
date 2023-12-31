@@ -1,0 +1,406 @@
+import React, { useState, useEffect } from 'react';
+import logo from '../../assets/icons/baseLogo.png'
+import Image, { StaticImageData } from 'next/image';
+
+const Receipt = (props: {
+    user: string | undefined
+    price: number
+    address: string | undefined
+    confirmationNum: string | undefined
+    date: string
+    currency: string | undefined
+    email: string | undefined
+}) => {
+    interface BreakDownEntry {
+        text: string;
+        main: string;
+        icon: string;
+    }
+
+    interface BreakDownEntryProps {
+        details: {
+            text: string;
+            main: string;
+            icon: string;
+        };
+    }
+
+    interface OverviewHeaderProps {
+        logo: string | undefined | StaticImageData | any;
+    }
+
+    interface PurchaseOverviewProps {
+        product: string;
+    }
+
+    interface OverviewBodyProps {
+        name: string;
+        value: string;
+        merchant: string;
+        merchantEmail: string;
+    }
+
+
+    const BreakDownContent = [
+        {
+            text: 'Amount:',
+            main: `$${props.price}`,
+            icon: 'fa fa-money',
+        },
+        {
+            text: 'Address:',
+            main: `${props.address}`,
+            icon: 'fa fa-map-marker',
+        },
+        {
+            text: 'Issuer:',
+            main: 'Vira Funding',
+            icon: 'fa fa-star-o',
+        },
+        {
+            text: 'Purchase id:',
+            main: `${props.confirmationNum}`,
+            icon: 'fa fa-list-alt',
+        },
+    ];
+
+    const challengeType = sessionStorage.getItem('challenge')
+
+    const BreakDownEntry: React.FC<BreakDownEntryProps> = ({ details }) => (
+        <li>
+            <span className={details.icon}></span>
+            <div className="list-content">
+                <p>
+                    {details.text}
+                    <span className="list-bold">{details.main}</span>
+                </p>
+            </div>
+        </li>
+    );
+
+    const OverviewHeader: React.FC<OverviewHeaderProps> = ({ logo }) => (
+        <div className="overview-header flex flex-col items-center">
+            <Image className="logo" src={logo} unoptimized alt="Logo" />
+            <div className="timestamp">
+                <div> {props.date} </div>
+            </div>
+
+            <hr />
+        </div>
+    );
+
+    const PurchaseOverview: React.FC<PurchaseOverviewProps> = ({ product }) => (
+        <div className="purchase-overview text-center">
+            <h3>{product}</h3>
+        </div>
+    );
+
+    const OverviewBody: React.FC<OverviewBodyProps> = ({ name, value, merchant, merchantEmail }) => (
+        <div className="overview-body">
+            <PurchaseOverview product="Receipt for your purchase payment at Vira Funding" />
+            <p className="user-info-name my-4">Hello {props.user}</p>
+            <span>
+                You sent a payment of <span>${props.price}</span> to Vira Funding.
+            </span>
+            <hr />
+            <div className='my-4'>
+                a confirmation email will be sent to your email for this purchase
+            </div>
+            <hr />
+            <p className='mt-4 text-base'>
+                You have bought our {challengeType} challenge with {props.currency} currency
+            </p>
+            <p className='text-center font-bold text-xl mt-20'>Thank you for choosing Vira Funding.</p>
+        </div>
+    );
+
+    const OverviewFooter = () => (
+        <footer className="overview-footer">
+            <span className="site">
+                <a href="https://virafunding.com/" target="_blank" rel="noopener noreferrer">
+                    https://virafunding.com/
+                </a>
+            </span>
+            <span className="invoice-id"> {props.email} </span>
+        </footer>
+    );
+
+    const Overview = () => (
+        <div className="receipt-overview">
+            <OverviewHeader logo={logo} />
+            <OverviewBody
+                merchant={'Allied Steel Buildings'}
+                merchantEmail={'info@alliedbuildings.com'}
+                name={'John'}
+                value={'$20,000.00 USD'}
+            />
+            <OverviewFooter />
+        </div>
+    );
+
+    const [breakdown, setBreakdown] = useState<BreakDownEntry[]>([]);
+
+    useEffect(() => {
+        setBreakdown(BreakDownContent);
+    }, []);
+
+    return (
+        <div className='Receipt'>
+            <div className="receipt">
+                <div className="receipt-breakdown">
+                    <div className="receipt-breakdown--header">
+                        <p>Receipt for</p>
+                        <h2>
+                            {props.user}
+                        </h2>
+                    </div>
+                    <ul className="receipt-breakdown--list">
+                        {breakdown.map((entry, index) => (
+                            <BreakDownEntry key={index} details={entry} />
+                        ))}
+                    </ul>
+                </div>
+                <Overview />
+            </div>
+
+
+
+            <style>
+                {`
+                $blue : #3ba4ff;
+                $altblue: #66a5ff;
+                $grey : #6e7882;
+                
+                @mixin reset-list() {
+                  text-indent: 0;
+                  list-style: none;
+                  padding: 0;
+                  margin: 0;
+                  &:before {
+                    display: none;
+                    content: "";
+                  }
+                }
+                
+                a {
+                  color: $blue;
+                  text-decoration: none;
+                }
+                
+                .view-design {
+                  position:absolute;
+                  top:30px;
+                  left: 30px;
+                }
+                
+                .container {
+                   height: 1060px;
+                   overflow: hidden;
+                   position:relative;
+                }
+                
+                .circle {
+                  display: none;
+                  
+                  @media(min-width:768px){
+                    height: 1600px;
+                    width: 1100px;
+                    background: linear-gradient(180deg,#3ba4ff,#66a5ff);
+                    position: absolute;
+                    top: -400px;
+                    right: -300px;
+                    z-index: -1;
+                    border-radius: 50%;
+                    display:block;
+                  }
+                }
+                
+                .receipt {
+                  display: flex;
+                  flex-wrap: wrap;
+                  margin: 60px auto;
+                  width:830px;
+                  box-shadow: 0px 0px 50px 10px rgba(0,0,0,.1);
+                  vertical-align:top;
+                }
+                
+                .receipt-breakdown {
+                  background: #F68D2E;
+                  color:#fff;
+                  width: 220px;
+                  display:inline-block;
+                  position:relative;
+                  float:left;
+                  padding: 40px 30px;
+                  border-radius: 5px 0 0 5px;
+                  
+                  .receipt-breakdown--list {
+                    @include reset-list;
+                    
+                    li {
+                      padding: 25px 0;
+                      border-bottom:1px solid rgba(255,255,255,.4);
+                      
+                      &:last-of-type {
+                        border-bottom: none;
+                      }
+                    }
+                    
+                    .fa {
+                      display: inline-block;
+                      width:15%;
+                      float:left;
+                    }
+                    
+                    .list-content {
+                      width: 75%;
+                      display:inline-block;
+                    }
+                    
+                    p {
+                      font-weight:300;
+                      font-size: 13px;
+                      margin: 0;
+                      .list-bold {
+                        font-weight:600;
+                        display:block;
+                        font-size: 15px;
+                        padding-top:5px;
+                      }
+                    }
+                  }
+                }
+                
+                .receipt-breakdown--header {
+                  border-bottom:1px solid rgba(255,255,255,.4);  
+                  padding: 10px 0;
+                  
+                  h2 {
+                    margin: 0;
+                    font-size: 22px;
+                    padding-bottom: 15px;
+                  }
+                  
+                  p {
+                    padding: 0 0 7px 0;
+                    margin: 0;
+                  }
+                }
+                
+                .receipt-overview {
+                  width: 490px;
+                  display: inline-block;
+                  border-radius: 0 5px 5px 0;
+                  padding: 0 30px;
+                  background-color: #fff;
+                    
+                  hr {
+                    margin-top: 15px;
+                    border-top: 1px solid lighten($grey, 30%) !important;
+                    box-shadow: none;
+                  }
+                  
+                  .user-info {
+                    padding-top: 15px;
+                  }
+                }
+                
+                .overview-header {
+                  padding: 38px 0 20px 0;
+                }
+                
+                .logo {
+                  display: inline-block;
+                  width:70px;
+                  float: right;
+                }
+                
+                .timestamp {
+                  display: inline-block;
+                  float:left;
+                  padding-top:15px;
+                
+                  span {
+                    color: lighten($grey, 25%);
+                    font-size: 15px;
+                    font-family:inherit;
+                    font-weight: 600;
+                    
+                    &:first-of-type {
+                      padding: 15px;
+                    }
+                  }
+                }
+                
+                .descriptor {
+                  width: 60%;
+                  padding-top:8px;
+                  
+                  p {
+                    font-size: 13px;
+                    color: $grey;
+                    line-height: 1.5;
+                  }
+                }
+                
+                .overview-body {
+                    color: $grey;
+                    
+                    span {
+                      color: #000;
+                    }
+                }
+                
+                .salutation {
+                  text-align: center;
+                  font-style: italic;
+                  font-size: 130%;
+                }
+                .salutation img {
+                  height:55px;
+                  padding-top: 8px;
+                }
+                .user-info-name {
+                  font-weight:600;
+                  font-size: 18px;
+                }
+                
+                .user-info-text {
+                  line-height:1.5;
+                  font-weight: 500;
+                  
+                  a {
+                    color: $blue;
+                    text-decoration: none;
+                  }
+                }
+                
+                
+                .purchase-overview {
+                  color: darken($grey, 12%);
+                }
+                
+                .overview-footer {
+                  padding: 20px 0 15px;
+                  margin-top: 30px;
+                  border-top: 1px solid lighten($grey, 30%) !important;
+                  
+                  a {
+                    font-size: 13px;
+                    font-weight: 600;
+                  }
+                  
+                  .invoice-id {
+                    float:right;
+                    font-size: 13px;
+                    color: $grey;
+                    font-weight: 600;
+                  }
+                }
+                `}
+            </style>
+        </div>
+    );
+};
+
+export default Receipt;

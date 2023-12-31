@@ -124,6 +124,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                 </div>
                                                 <TariffTable
                                                     isLocationIran
+                                                    challenge={data.tariffs[selectedTab].type}
                                                     title={titles.tableTitle} data={[
                                                         { title: 'مقدار سرمایه:', info: item.price + 'k' },
                                                         { title: 'حساب بازرگانی:', info: item.leverage },
@@ -156,6 +157,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                 <TariffTable
                                                     isLocationIran={false}
                                                     title={titles.tableTitle}
+                                                    challenge={data.tariffs[selectedTab].type}
                                                     data={[
                                                         { title: 'Capital amount:', info: item.price + 'k' },
                                                         { title: 'Leverage account:', info: item.leverage },
