@@ -27,27 +27,39 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     interface TransactionType {
         actually_paid: number;
-        burning_percent: null | string; // Replace 'string' with the actual type if 'burning_percent' has a specific type
+        burning_percent: null | string;
         created_at: string;
         invoice_id: number;
-        order_description: null | any; // Replace 'any' with the actual type of 'order_description' if known
+        order_description: null | any;
         order_id: string;
         outcome_amount: number;
         outcome_currency: string;
         pay_address: string;
         pay_amount: number;
         pay_currency: string;
-        payin_extra_id: null | any; // Replace 'any' with the actual type of 'payin_extra_id' if known
-        payin_hash: null | any; // Replace 'any' with the actual type of 'payin_hash' if known
+        payin_extra_id: null | any;
+        payin_hash: null | any;
         payment_id: number;
         payment_status: string;
-        payout_hash: null | any; // Replace 'any' with the actual type of 'payout_hash' if known
+        payout_hash: null | any;
         price_amount: number;
         price_currency: string;
         purchase_id: number;
         type: string;
         updated_at: string;
     }
+
+    type formDataType = {
+        city: string;
+        country: string;
+        email: string;
+        firstName: string;
+        lastName: string;
+        phone: string;
+        postalCode: string;
+        province: string;
+        streetAddress: string;
+    };
 
     interface ProfileType {
         address: string;
@@ -64,6 +76,29 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
 
     const [profileInfo, setProfileInfo] = useState<ProfileType>()
     const [paymentInfo, setPaymentInfo] = useState<any>()
+    const [broker, setBroker] = useState<string | null>()
+    const [platform, setPlatform] = useState<string | null>()
+    const [formData, setFormData] = useState<formDataType>()
+    useEffect(() => {
+        const platformLocal = localStorage.getItem('platform');
+        const brokerLocal = localStorage.getItem('tradingPlatform');
+        setPlatform(platformLocal)
+        setBroker(brokerLocal)
+
+        const formDataString = localStorage.getItem('formData');
+
+        if (formDataString !== null) {
+            const formDataLocal = JSON.parse(formDataString);
+            setFormData(formDataLocal)
+        } else {
+            console.error('formData is not present in localStorage');
+        }
+
+        console.log(formData);
+
+    }, []);
+
+
 
 
     const router = useRouter();
@@ -119,9 +154,17 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                 <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
                     <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
                     {paymentInfo &&
-                        <Receipt user={profileInfo?.fullname} price={paymentInfo?.price_amount} address={profileInfo?.address}
+                        <Receipt broker={broker}
+                            city={formData?.city}
+                            country={formData?.country}
+                            firstName={formData?.firstName}
+                            lastName={formData?.lastName}
+                            platform={platform}
+                            user={profileInfo?.fullname} price={paymentInfo?.price_amount}
+                            phone={formData?.phone}
+                            address={formData?.streetAddress}
                             date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
-                            confirmationNum={paymentInfo?.purchase_id} email={profileInfo?.email} />
+                            confirmationNum={paymentInfo?.purchase_id} email={formData?.email} />
                     }
                     <div className='cursor-pointer w-fit mx-auto'>
                         <p className={`${myFontIran.className} text-main-orange text-xl`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>

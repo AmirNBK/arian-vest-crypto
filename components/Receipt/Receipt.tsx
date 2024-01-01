@@ -3,170 +3,202 @@ import logo from '../../assets/icons/baseLogo.png'
 import Image, { StaticImageData } from 'next/image';
 
 const Receipt = (props: {
-    user: string | undefined
-    price: number
-    address: string | undefined
-    confirmationNum: string | undefined
-    date: string
-    currency: string | undefined
-    email: string | undefined
+  firstName: string | undefined
+  lastName: string | undefined
+  user: string | undefined
+  price: number
+  address: string | undefined
+  confirmationNum: string | undefined
+  date: string
+  currency: string | undefined
+  email: string | undefined
+  platform: string | null | undefined
+  broker: string | null | undefined
+  country: string | undefined
+  city: string | undefined
+  phone: string | undefined
 }) => {
-    interface BreakDownEntry {
-        text: string;
-        main: string;
-        icon: string;
-    }
+  interface BreakDownEntry {
+    text: string;
+    main: string;
+    icon: string;
+  }
 
-    interface BreakDownEntryProps {
-        details: {
-            text: string;
-            main: string;
-            icon: string;
-        };
-    }
+  interface BreakDownEntryProps {
+    details: {
+      text: string;
+      main: string;
+      icon: string;
+    };
+  }
 
-    interface OverviewHeaderProps {
-        logo: string | undefined | StaticImageData | any;
-    }
+  interface OverviewHeaderProps {
+    logo: string | undefined | StaticImageData | any;
+  }
 
-    interface PurchaseOverviewProps {
-        product: string;
-    }
+  interface PurchaseOverviewProps {
+    product: string;
+  }
 
-    interface OverviewBodyProps {
-        name: string;
-        value: string;
-        merchant: string;
-        merchantEmail: string;
-    }
+  interface OverviewBodyProps {
+    name: string;
+    value: string;
+    merchant: string;
+    merchantEmail: string;
+  }
+
+  const challengeType = sessionStorage.getItem('challenge')
+
+  const BreakDownContent = [
+    {
+      text: 'Plan type:',
+      main: `${challengeType}`,
+      icon: 'fa fa-money',
+    },
+    {
+      text: 'Amount:',
+      main: `$${props.price}`,
+      icon: 'fa fa-money',
+    },
+    {
+      text: 'Country:',
+      main: `${props.country}`,
+      icon: 'fa fa-list-alt',
+    },
+    {
+      text: 'City:',
+      main: `${props.city}`,
+      icon: 'fa fa-map-marker',
+    },
+    {
+      text: 'Issuer:',
+      main: 'Vira Funding',
+      icon: 'fa fa-star-o',
+    },
+    {
+      text: 'Purchase id:',
+      main: `${props.confirmationNum}`,
+      icon: 'fa fa-list-alt',
+    },
+  ];
 
 
-    const BreakDownContent = [
-        {
-            text: 'Amount:',
-            main: `$${props.price}`,
-            icon: 'fa fa-money',
-        },
-        {
-            text: 'Address:',
-            main: `${props.address}`,
-            icon: 'fa fa-map-marker',
-        },
-        {
-            text: 'Issuer:',
-            main: 'Vira Funding',
-            icon: 'fa fa-star-o',
-        },
-        {
-            text: 'Purchase id:',
-            main: `${props.confirmationNum}`,
-            icon: 'fa fa-list-alt',
-        },
-    ];
+  const BreakDownEntry: React.FC<BreakDownEntryProps> = ({ details }) => (
+    <li>
+      <span className={details.icon}></span>
+      <div className="list-content">
+        <p>
+          {details.text}
+          <span className="list-bold">{details.main}</span>
+        </p>
+      </div>
+    </li>
+  );
 
-    const challengeType = sessionStorage.getItem('challenge')
+  const OverviewHeader: React.FC<OverviewHeaderProps> = ({ logo }) => (
+    <div className="overview-header flex flex-col items-center">
+      <Image className="logo" src={logo} unoptimized alt="Logo" />
+      <div className="timestamp">
+        <div> {props.date} </div>
+      </div>
 
-    const BreakDownEntry: React.FC<BreakDownEntryProps> = ({ details }) => (
-        <li>
-            <span className={details.icon}></span>
-            <div className="list-content">
-                <p>
-                    {details.text}
-                    <span className="list-bold">{details.main}</span>
-                </p>
-            </div>
-        </li>
-    );
+      <hr />
+    </div>
+  );
 
-    const OverviewHeader: React.FC<OverviewHeaderProps> = ({ logo }) => (
-        <div className="overview-header flex flex-col items-center">
-            <Image className="logo" src={logo} unoptimized alt="Logo" />
-            <div className="timestamp">
-                <div> {props.date} </div>
-            </div>
+  const PurchaseOverview: React.FC<PurchaseOverviewProps> = ({ product }) => (
+    <div className="purchase-overview text-center">
+      <h3>{product}</h3>
+    </div>
+  );
 
-            <hr />
+  const OverviewBody: React.FC<OverviewBodyProps> = ({ name, value, merchant, merchantEmail }) => (
+    <div className="overview-body">
+      <PurchaseOverview product="Receipt for your purchase payment at Vira Funding" />
+      <p className="user-info-name my-4">Hello {props.firstName} {props.lastName} </p>
+      <span>
+        You sent a payment of <span>${props.price}</span> to Vira Funding.
+      </span>
+      <hr />
+      <div className='my-4'>
+        a confirmation email will be sent to your email for this purchase
+      </div>
+      <hr />
+      <p className='mt-4 text-base'>
+        You have bought our <span className=' font-bold'>{challengeType} </span> challenge with {props.currency} currency
+      </p>
+      <hr />
+      <div className='mt-4 flex flex-row justify-between'>
+        <p>
+          Platform : {props.platform}
+        </p>
+        <p>
+          Broker : {props.broker}
+        </p>
+      </div>
+      <div className='mt-4'>
+        <p> Address : {props.address} </p>
+      </div>
+      <div className='mt-4'>
+        <p> Phone : {props.phone} </p>
+      </div>
+      <p className='text-center font-bold text-xl mt-20'>Thank you for choosing Vira Funding.</p>
+    </div>
+  );
+
+  const OverviewFooter = () => (
+    <footer className="overview-footer">
+      <span className="site">
+        <a href="https://virafunding.com/" target="_blank" rel="noopener noreferrer">
+          https://virafunding.com/
+        </a>
+      </span>
+      <span className="invoice-id"> {props.email} </span>
+    </footer>
+  );
+
+  const Overview = () => (
+    <div className="receipt-overview">
+      <OverviewHeader logo={logo} />
+      <OverviewBody
+        merchant={'Allied Steel Buildings'}
+        merchantEmail={'info@alliedbuildings.com'}
+        name={'John'}
+        value={'$20,000.00 USD'}
+      />
+      <OverviewFooter />
+    </div>
+  );
+
+  const [breakdown, setBreakdown] = useState<BreakDownEntry[]>([]);
+
+  useEffect(() => {
+    setBreakdown(BreakDownContent);
+  }, []);
+
+  return (
+    <div className='Receipt'>
+      <div className="receipt">
+        <div className="receipt-breakdown">
+          <div className="receipt-breakdown--header">
+            <p>Receipt for</p>
+            <h2>
+              {props.user}
+            </h2>
+          </div>
+          <ul className="receipt-breakdown--list">
+            {breakdown.map((entry, index) => (
+              <BreakDownEntry key={index} details={entry} />
+            ))}
+          </ul>
         </div>
-    );
-
-    const PurchaseOverview: React.FC<PurchaseOverviewProps> = ({ product }) => (
-        <div className="purchase-overview text-center">
-            <h3>{product}</h3>
-        </div>
-    );
-
-    const OverviewBody: React.FC<OverviewBodyProps> = ({ name, value, merchant, merchantEmail }) => (
-        <div className="overview-body">
-            <PurchaseOverview product="Receipt for your purchase payment at Vira Funding" />
-            <p className="user-info-name my-4">Hello {props.user}</p>
-            <span>
-                You sent a payment of <span>${props.price}</span> to Vira Funding.
-            </span>
-            <hr />
-            <div className='my-4'>
-                a confirmation email will be sent to your email for this purchase
-            </div>
-            <hr />
-            <p className='mt-4 text-base'>
-                You have bought our {challengeType} challenge with {props.currency} currency
-            </p>
-            <p className='text-center font-bold text-xl mt-20'>Thank you for choosing Vira Funding.</p>
-        </div>
-    );
-
-    const OverviewFooter = () => (
-        <footer className="overview-footer">
-            <span className="site">
-                <a href="https://virafunding.com/" target="_blank" rel="noopener noreferrer">
-                    https://virafunding.com/
-                </a>
-            </span>
-            <span className="invoice-id"> {props.email} </span>
-        </footer>
-    );
-
-    const Overview = () => (
-        <div className="receipt-overview">
-            <OverviewHeader logo={logo} />
-            <OverviewBody
-                merchant={'Allied Steel Buildings'}
-                merchantEmail={'info@alliedbuildings.com'}
-                name={'John'}
-                value={'$20,000.00 USD'}
-            />
-            <OverviewFooter />
-        </div>
-    );
-
-    const [breakdown, setBreakdown] = useState<BreakDownEntry[]>([]);
-
-    useEffect(() => {
-        setBreakdown(BreakDownContent);
-    }, []);
-
-    return (
-        <div className='Receipt'>
-            <div className="receipt">
-                <div className="receipt-breakdown">
-                    <div className="receipt-breakdown--header">
-                        <p>Receipt for</p>
-                        <h2>
-                            {props.user}
-                        </h2>
-                    </div>
-                    <ul className="receipt-breakdown--list">
-                        {breakdown.map((entry, index) => (
-                            <BreakDownEntry key={index} details={entry} />
-                        ))}
-                    </ul>
-                </div>
-                <Overview />
-            </div>
+        <Overview />
+      </div>
 
 
 
-            <style>
-                {`
+      <style>
+        {`
                 $blue : #3ba4ff;
                 $altblue: #66a5ff;
                 $grey : #6e7882;
@@ -398,9 +430,9 @@ const Receipt = (props: {
                   }
                 }
                 `}
-            </style>
-        </div>
-    );
+      </style>
+    </div>
+  );
 };
 
 export default Receipt;
