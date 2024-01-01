@@ -229,7 +229,6 @@ export default function Payment() {
                             <PaymentComponent name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
                             <PaymentComponent name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
                             <PaymentComponent name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
-
                         </div>
 
 

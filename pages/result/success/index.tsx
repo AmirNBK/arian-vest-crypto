@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
@@ -6,6 +6,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { useRouter } from 'next/router';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../../assets/fonts/Mj Dinar Two Medium.ttf' })
@@ -16,7 +18,7 @@ import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../../assets/images/succesfull-payment.png'
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { getPaymentInfo, getProfileInfo } from '@/lib/apiConfig';
+import { getPaymentInfo, getProfileInfo, paymentInvoice } from '@/lib/apiConfig';
 import Receipt from '@/components/Receipt/Receipt';
 import useLocationData from '@/Hooks/location';
 
@@ -74,8 +76,9 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
         pk: number;
     }
 
+    const receiptRef = useRef(null);
     const [profileInfo, setProfileInfo] = useState<ProfileType>()
-    const [paymentInfo, setPaymentInfo] = useState<any>()
+    const [paymentInfo, setPaymentInfo] = useState<TransactionType>()
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
     const [formData, setFormData] = useState<formDataType>()
@@ -93,12 +96,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
         } else {
             console.error('formData is not present in localStorage');
         }
-
-        console.log(formData);
-
     }, []);
-
-
 
 
     const router = useRouter();
@@ -141,7 +139,6 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
         return formattedDate;
     };
 
-
     return (
         <main
             className={`flex min-h-screen flex-col justify-between ${inter.className}`}
@@ -155,6 +152,9 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                     <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
                     {paymentInfo &&
                         <Receipt broker={broker}
+                            profileInfo={profileInfo}
+                            paymentInfo={paymentInfo}
+                            ref={receiptRef}
                             city={formData?.city}
                             country={formData?.country}
                             firstName={formData?.firstName}
@@ -164,7 +164,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                             phone={formData?.phone}
                             address={formData?.streetAddress}
                             date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
-                            confirmationNum={paymentInfo?.purchase_id} email={formData?.email} />
+                            confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
                     }
                     <div className='cursor-pointer w-fit mx-auto'>
                         <p className={`${myFontIran.className} text-main-orange text-xl`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>

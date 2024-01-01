@@ -55,8 +55,12 @@ const Profile = (
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
             setProfilePic(res.data.image)
+            console.log(res);
+            
         })
     }, [selectedImage])
+
+    console.log(selectedImage);
 
     const handleFileChange = (event: any) => {
         setSelectedImage(event.target.files[0]);

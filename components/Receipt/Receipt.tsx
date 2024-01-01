@@ -1,14 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/icons/baseLogo.png'
+import JsPDF from 'jspdf';
 import Image, { StaticImageData } from 'next/image';
+import { paymentInvoice } from '@/lib/apiConfig';
+import exportIcon from '../../assets/icons/export.svg'
+
+interface TransactionType {
+  actually_paid: number;
+  burning_percent: null | string;
+  created_at: string;
+  invoice_id: number;
+  order_description: null | any;
+  order_id: string;
+  outcome_amount: number;
+  outcome_currency: string;
+  pay_address: string;
+  pay_amount: number;
+  pay_currency: string;
+  payin_extra_id: null | any;
+  payin_hash: null | any;
+  payment_id: number;
+  payment_status: string;
+  payout_hash: null | any;
+  price_amount: number;
+  price_currency: string;
+  purchase_id: number;
+  type: string;
+  updated_at: string;
+}
+
+interface ProfileType {
+  address: string;
+  created_at: string;
+  documents: null | any;
+  email: string;
+  first_name: string;
+  fullname: string;
+  image: null | any;
+  last_name: string;
+  phone_number: string;
+  pk: number;
+}
 
 const Receipt = (props: {
   firstName: string | undefined
   lastName: string | undefined
   user: string | undefined
   price: number
+  ref: React.Ref<HTMLDivElement>
   address: string | undefined
-  confirmationNum: string | undefined
+  confirmationNum: string | undefined | number
   date: string
   currency: string | undefined
   email: string | undefined
@@ -17,7 +58,11 @@ const Receipt = (props: {
   country: string | undefined
   city: string | undefined
   phone: string | undefined
+  paymentInfo: TransactionType
+  profileInfo: ProfileType | undefined
 }) => {
+  const paymentInfo = props.paymentInfo
+  const profileInfo = props.profileInfo
   interface BreakDownEntry {
     text: string;
     main: string;
@@ -47,7 +92,64 @@ const Receipt = (props: {
     merchantEmail: string;
   }
 
-  const challengeType = sessionStorage.getItem('challenge')
+  const [receipt, setReceipt] = useState<File | undefined>()
+  const [pdfGenerated, setPdfGenerated] = useState(false);
+
+  const challengeType = sessionStorage.getItem('challenge');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await generatePDF();
+      setPdfGenerated(true);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (paymentInfo && profileInfo && receipt && pdfGenerated) {
+      paymentInvoice(profileInfo.pk, profileInfo.fullname, paymentInfo.invoice_id, '$' + paymentInfo.price_amount, receipt).then((res) => {
+        console.log(res);
+      });
+    }
+  }, [paymentInfo, profileInfo, receipt, pdfGenerated]);
+
+
+
+  const generatePDF = async () => {
+    const report = new JsPDF('portrait', 'pt', 'a3');
+    const element = document.querySelector('#overview');
+
+    if (element) {
+      try {
+        await report.html(element as HTMLElement);
+        const pdfBlob = report.output('blob');
+        const pdfFile = new File([pdfBlob], 'report.pdf', { type: 'application/pdf' });
+
+        setReceipt(pdfFile);
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+      }
+    }
+  };
+
+  const PdfExport = async () => {
+    const report = new JsPDF('portrait', 'pt', 'a3');
+    const element = document.querySelector('#overview');
+
+    if (element) {
+      try {
+        await report.html(element as HTMLElement);
+        const pdfBlob = report.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, '_blank');
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+      }
+    }
+  };
+
+
 
   const BreakDownContent = [
     {
@@ -177,8 +279,11 @@ const Receipt = (props: {
   }, []);
 
   return (
-    <div className='Receipt'>
-      <div className="receipt">
+    <div className='Receipt'
+    >
+      <div className="receipt"
+        id='overview'
+      >
         <div className="receipt-breakdown">
           <div className="receipt-breakdown--header">
             <p>Receipt for</p>
@@ -195,6 +300,9 @@ const Receipt = (props: {
         <Overview />
       </div>
 
+      <div className=' bg-main-orange w-fit p-2 rounded-md cursor-pointer mx-auto mb-6'>
+        <Image src={exportIcon} alt='export' className='w-8' onClick={PdfExport} />
+      </div>
 
 
       <style>
@@ -251,9 +359,13 @@ const Receipt = (props: {
                   display: flex;
                   flex-wrap: wrap;
                   margin: 60px auto;
+                  margin-bottom : 30px;
                   justify-content : center;
                   box-shadow: 0px 0px 50px 10px rgba(0,0,0,.1);
                   vertical-align:top;
+                  border-radius : 6px;
+                  border : 1px solid grey;
+                  width : fit-content;
                 }
                 
                 .receipt-breakdown {
