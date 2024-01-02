@@ -179,7 +179,9 @@ const Authentication = (
                                 <div className='flex flex-col items-center mt-16 gap-4 justify-center'>
                                     <Image src={tick} alt='pending' />
                                     <p className={`${myFontIran.className} text-white ${props.isLocationIran && 'rtl'}`}>
-                                        شما با موفقيت احراز هويت و موردتاييد ما قرار گرفته ايد.
+                                        {isLocationInIran ? 'شما با موفقيت احراز هويت و موردتاييد ما قرار گرفته ايد.'
+                                            : 'You have been successfully authenticated and approved by us.'
+                                        }
                                     </p>
                                 </div>
                                 :
@@ -286,7 +288,7 @@ const Authentication = (
                         }
                     </div>
 
-                    <div className={`${isVerifiedPending ? 'hidden' : ''} flex justify-center cursor-pointer`}>
+                    <div className={`${(isVerifiedPending || isVerified) ? 'hidden' : ''} flex justify-center cursor-pointer`}>
                         <Image src={isLocationInIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
                     </div>
                 </>

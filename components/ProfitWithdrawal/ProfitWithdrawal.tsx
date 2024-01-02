@@ -15,6 +15,7 @@ import { Wallet, getProfileInfo, withdrawlRequest } from '@/lib/apiConfig';
 
 const ProfitWithdrawal = (props: {
     isLocationIran: boolean
+    selectedAccount: string | undefined
 }) => {
     const isLocationInIran = props.isLocationIran
     const [userId, setUserId] = useState<number>()
@@ -25,8 +26,6 @@ const ProfitWithdrawal = (props: {
         setDescription(event.target.value);
     };
     const toastBottomRight = useRef<Toast>(null);
-
-
     interface dataType {
         Pending_withdrawals: number
         amount_withdrawn: number
@@ -41,11 +40,11 @@ const ProfitWithdrawal = (props: {
         getProfileInfo().then((res) => {
             setUserId(res.data.pk)
         })
-        Wallet().then((res) => {
-            setData(res.data[0])
+        Wallet(props.selectedAccount).then((res) => {
+            setData(res.data)
             setLoading(false)
         })
-    }, [])
+    }, [props.selectedAccount])
 
     const handleSendButtonClick = () => {
         withdrawlRequest(userId, data?.withdrawable_amount, description).then((res) => {

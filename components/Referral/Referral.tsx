@@ -18,6 +18,18 @@ const Referral = (
         isLocationIran: boolean
     }
 ) => {
+
+
+    const formatCreatedAtDate = (createdAt: string): string => {
+        const dateObject = new Date(createdAt);
+        const formattedDate = `${(dateObject.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}/${dateObject
+                .getDate()
+                .toString()
+                .padStart(2, '0')}/${dateObject.getFullYear()}`;
+        return formattedDate;
+    };
     const [data, setData] = useState<any>()
 
     useEffect(() => {
@@ -53,7 +65,7 @@ const Referral = (
                             <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
                                 {isLocationIran ? 'کد رفرال' : 'Referral Code'}
                             </h3>
-                            <StatisticsComponents dollar={false} title={isLocationIran ? 'کد رفرال' : 'Referral Code'} value={data[0].referral_code} icon={share} isReferral />
+                            <StatisticsComponents dollar={false} isCenter title={isLocationIran ? 'کد رفرال' : 'Referral Code'} value={data[0].referral_code} icon={share} isReferral />
                         </div>
                         <div>
                             <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
@@ -89,47 +101,89 @@ const Referral = (
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
 
-                <div className='flex flex-row-reverse w-full justify-between mt-8 pb-0 overflow-auto gap-0' style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'نام کاربر' : 'Username'}
-                        </h3>
-                        <StatisticsComponents removeBg={true} dollar={false} title=' ' fontSize='base' value={'Hutan0021'} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
-                        </h3>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={0.1} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'تاریخ' : 'Date'}
-                        </h3>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <h3 className={`${myFont.className} text-center mb-2 text-lg text-main-orange`}>
-                            {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
-                        </h3>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={12} icon={profile} isReferral paddingY={4} />
-                    </div>
-                </div>
+                <table className={`${myFontIran.className} w-full`}>
+                    <tr>
 
-                <div className='flex flex-row-reverse justify-between mt-0 overflow-auto gap-6'>
-                    <div>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'Mahi6583'} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={0.7} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={'02/09/2023'} icon={profile} isReferral paddingY={4} />
-                    </div>
-                    <div>
-                        <StatisticsComponents removeBg={true} fontSize='base' dollar={false} title='تعداد رفرها' value={3} icon={profile} isReferral paddingY={4} />
-                    </div>
-                </div>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
+                        </th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
+                        </th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            {isLocationIran ? 'تاریخ' : 'Date'}
+                        </th>
+                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            {isLocationIran ? 'نام کاربر' : 'Username'}
+                        </th>
+                    </tr>
+
+                    {
+                        data &&
+                        data[0]?.your_referral_code_entries.map((item: any, index: number) => {
+                            return (
+                                <tr >
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {item.added_percentage}
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {item.added_percentage}
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {formatCreatedAtDate(item.created_at)}
+                                        </p>
+                                    </td>
+                                    <td className='text-center'>
+                                        <p className='text-white'>
+                                            {item.username}
+                                        </p>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                </table>
+
+                <style>
+                    {
+                        `
+                    .p-toast-detail {
+                        text-align : ${props.isLocationIran ? 'right' : 'left'} ;
+                    }
+                    .wrap {
+                        text-wrap: nowrap;
+                    }
+
+
+                    table {
+                        border - collapse: separate;
+                    border-spacing: 0 10px;
+      }
+
+      th {
+        padding-left: 5px;
+        padding-right: 5px; 
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+    
+                     td {
+                        padding-left: 5px;
+                        padding-right: 5px; 
+                        padding-bottom: 14px;
+                        padding-top: 14px;
+      }   
+      tr:not(:last-child,:first-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+      
+                    `
+                    }
+                </style>
             </div>
 
 

@@ -302,7 +302,7 @@ const Profile = (
                                         <tr key={index}>
                                             <td className='text-center'>
                                                 <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
-                               ${item.status === "waiting" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "paid" ? 'bg-[#159400]' : ''}
+                               ${item.status === "pending" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "Paid" ? 'bg-[#159400]' : ''}
                                `}
                                                 >
                                                     {item.status}

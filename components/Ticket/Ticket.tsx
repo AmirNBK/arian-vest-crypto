@@ -20,6 +20,7 @@ import ChatScreen from '../ChatScreen/ChatScreen';
 
 const Ticket = (props: {
     isLocationIran: boolean
+    selectedAccount: string | undefined
 }) => {
     interface Message {
         file: string;
@@ -67,10 +68,10 @@ const Ticket = (props: {
     }, [])
 
     useEffect(() => {
-        getTickets().then((res) => {
+        getTickets(props.selectedAccount).then((res) => {
             setTickets(res.data)
         })
-    }, [refreshTickets])
+    }, [refreshTickets,props.selectedAccount])
 
     useEffect(() => {
         if (chatId) {

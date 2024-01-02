@@ -18,6 +18,7 @@ const StatisticsComponents = (props: {
     width?: number
     removeBg?: boolean
     onClick?: () => void;
+    isCenter?: boolean
 }) => {
 
     return (
@@ -32,7 +33,7 @@ const StatisticsComponents = (props: {
          gap-4 items-center  ${myFontIran.className}`}>
             {props.havePlusButton && <Image src={plus} className='absolute left-0 bottom-0' alt='downloadIcon' />}
             <div className='flex flex-col items-end gap-2'>
-                <p className={`${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} ${props.fontSize ? `text-${props.fontSize}` : 'text-xl'} font-bold 3xl:text-lg `}>
+                <p className={`${props.isCenter && 'text-center'} ${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} ${props.fontSize ? `text-${props.fontSize}` : 'text-xl'} font-bold 3xl:text-lg `}>
                     <span className='text-main-orange'>
                         {props.dollar && '$'}
                     </span>

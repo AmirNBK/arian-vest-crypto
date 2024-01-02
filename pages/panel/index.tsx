@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -41,6 +42,7 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import useLocationData from '@/Hooks/location';
+import { getPurchasedAccounts } from '@/lib/apiConfig';
 
 
 export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
@@ -64,7 +66,12 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         { title: 'مدرک', icon: certificate, link: 'certificates' },
         { title: 'خروج از حساب کاربری', icon: logout, link: 'logout' },
     ]
-
+    interface Account {
+        name: string;
+        code: string;
+    }
+    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+    const [purchasedAccounts, setPurchasedAccounts] = useState();
     const panelItemsEng = [
         { title: 'Dashboard', icon: dashboard, link: 'dashboard' },
         { title: 'Profile', icon: profile, link: 'profile' },
@@ -84,8 +91,19 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
             setIsLogin(true)
         }
         else setIsLogin(false)
+        getPurchasedAccounts().then((res) => {
+            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
+                name: account.accounts,
+                code: account.pk.toString(),
+            }));
+
+            setPurchasedAccounts(formattedAccounts);
+        });
     }, [])
 
+    console.log(selectedAccount?.code);
+    
+    
     return (
         <main
             className={`flex min-h-screen w-full flex-col justify-between`}
@@ -230,15 +248,17 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             <Image src={menu} alt='menu'
                                 className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
                         </div>
-
                         <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
+                            <Dropdown value={selectedAccount} onChange={(e: DropdownChangeEvent) => setSelectedAccount(e.value)}
+                                options={purchasedAccounts} optionLabel="name" style={{ fontFamily: '__myFontIran_ca096e' }}
+                                placeholder={isLocationInIran ? 'انتخاب حساب' : 'Select Account'} className={`w-fit ${isLocationInIran && 'rtl'} mb-6`} />
                             {activePanel === 'leaderboards' ? <Leaderboards isLocationIran={isLocationInIran} /> : activePanel === 'certificates' ? <Certificate isLocationIran={isLocationInIran} /> :
-                                activePanel === 'profitWithdrawal' ? <ProfitWithdrawal isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
+                                activePanel === 'profitWithdrawal' ? <ProfitWithdrawal selectedAccount={selectedAccount?.code} isLocationIran={isLocationInIran} /> : activePanel === 'profile' ? <Profile isLocationIran={isLocationInIran} /> :
                                     activePanel === 'dashboard' ? <Dashboard isLocationIran={isLocationInIran} /> : activePanel === 'download' ? <Download isLocationIran={isLocationInIran} /> :
                                         activePanel === 'referral' ?
                                             <Referral isLocationIran={isLocationInIran} />
                                             : activePanel === 'authentication' ?
-                                                <Authentication isLocationIran={isLocationInIran} /> : activePanel === 'ticket' ? <Ticket isLocationIran={isLocationInIran} /> : ''
+                                                <Authentication isLocationIran={isLocationInIran} /> : activePanel === 'ticket' ? <Ticket selectedAccount={selectedAccount?.code} isLocationIran={isLocationInIran} /> : ''
                             }
 
                         </div>

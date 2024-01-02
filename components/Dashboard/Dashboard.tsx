@@ -39,13 +39,6 @@ const Dashboard = (props: {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
     const size = useWindowSize();
-    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
-    const cities: Account[] = [
-        { name: '2150678923', code: 'NY' },
-        { name: '2150678912', code: 'RM' },
-        { name: '6451678923', code: 'LDN' },
-    ];
-
 
     useEffect(() => {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -113,10 +106,6 @@ const Dashboard = (props: {
                 <h2 className={`${myFont.className} Profile__title text-white text-2xl 3xl:text-5xl w-fit m${isLocationInIran ? 'l' : 'r'}-auto mb-6`}>
                     {isLocationInIran ? 'داشبورد' : 'Dashboard'}
                 </h2>
-
-                <Dropdown value={selectedAccount} onChange={(e: DropdownChangeEvent) => setSelectedAccount(e.value)}
-                    options={cities} optionLabel="name" style={{ fontFamily: '__myFontIran_ca096e' }}
-                    placeholder={isLocationInIran ? 'انتخاب حساب' : 'Select Account'} className={`w-fit ${isLocationInIran && 'rtl'}`} />
             </div>
 
             {/* <div className='Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col sm:flex-row-reverse gap-4
