@@ -11,7 +11,7 @@ const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.tt
 import profitWithdrawal from '../../assets/images/profitWithdrawal.png'
 import { Toast, ToastMessage } from 'primereact/toast';
 import buttonImage from '../../assets/images/profitButton.png'
-import { Wallet, getProfileInfo, withdrawlRequest } from '@/lib/apiConfig';
+import { Wallet, getProfileInfo, getPurchasedAccounts, profitWithdrawlHistory, withdrawlRequest } from '@/lib/apiConfig';
 
 const ProfitWithdrawal = (props: {
     isLocationIran: boolean
@@ -19,6 +19,7 @@ const ProfitWithdrawal = (props: {
 }) => {
     const isLocationInIran = props.isLocationIran
     const [userId, setUserId] = useState<number>()
+    const [walletId, setWalletId] = useState<number>()
     const [loading, setLoading] = useState<boolean>(true)
     const [description, setDescription] = useState('');
 
@@ -26,6 +27,10 @@ const ProfitWithdrawal = (props: {
         setDescription(event.target.value);
     };
     const toastBottomRight = useRef<Toast>(null);
+    interface Account {
+        name: string;
+        code: string;
+    }
     interface dataType {
         Pending_withdrawals: number
         amount_withdrawn: number
@@ -36,15 +41,47 @@ const ProfitWithdrawal = (props: {
 
     const [data, setData] = useState<dataType>()
 
+    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+    const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
+
+    useEffect(() => {
+        getPurchasedAccounts().then((res) => {
+            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
+                name: account.accounts,
+                code: account.pk.toString(),
+            }));
+
+            setPurchasedAccounts(formattedAccounts);
+        });
+    }, [])
+
+    useEffect(() => {
+        if (purchasedAccounts) {
+            setSelectedAccount(purchasedAccounts[0]?.code)
+        }
+    }, [purchasedAccounts])
+
     useEffect(() => {
         getProfileInfo().then((res) => {
             setUserId(res.data.pk)
         })
-        Wallet(props.selectedAccount).then((res) => {
-            setData(res.data)
-            setLoading(false)
-        })
-    }, [props.selectedAccount])
+        if (selectedAccount) {
+            Wallet(selectedAccount).then((res) => {
+                console.log(res);
+                setData(res.data)
+                setWalletId(res.data.pk)
+                setLoading(false)
+            })
+        }
+    }, [selectedAccount])
+
+    useEffect(() => {
+        if (walletId) {
+            profitWithdrawlHistory(walletId).then((res) => {
+                console.log(res);
+            })
+        }
+    }, [walletId])
 
     const handleSendButtonClick = () => {
         withdrawlRequest(userId, data?.withdrawable_amount, description).then((res) => {

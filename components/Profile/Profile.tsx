@@ -60,8 +60,6 @@ const Profile = (
         })
     }, [selectedImage])
 
-    console.log(selectedImage);
-
     const handleFileChange = (event: any) => {
         setSelectedImage(event.target.files[0]);
         const file = event.target.files[0];

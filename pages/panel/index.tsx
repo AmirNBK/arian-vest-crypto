@@ -71,7 +71,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         code: string;
     }
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
-    const [purchasedAccounts, setPurchasedAccounts] = useState();
+    const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const panelItemsEng = [
         { title: 'Dashboard', icon: dashboard, link: 'dashboard' },
         { title: 'Profile', icon: profile, link: 'profile' },
@@ -99,11 +99,16 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
 
             setPurchasedAccounts(formattedAccounts);
         });
+
     }, [])
 
-    console.log(selectedAccount?.code);
-    
-    
+    useEffect(() => {
+        if (purchasedAccounts) {
+            setSelectedAccount(purchasedAccounts[0]?.code)
+        }
+    }, [purchasedAccounts])
+
+
     return (
         <main
             className={`flex min-h-screen w-full flex-col justify-between`}
