@@ -8,6 +8,7 @@ import share from '../../assets/icons/share.svg'
 import profile from '../../assets/icons/profile2.svg'
 import percent from '../../assets/icons/percent.svg'
 import certificateMini from '../../assets/icons/certificateMini.svg'
+import empty from '../../assets/icons/empty.png'
 import Image from 'next/image';
 import { getReferal } from '@/lib/apiConfig';
 
@@ -39,6 +40,7 @@ const Referral = (
     }, [])
 
     const isLocationIran = props.isLocationIran
+
 
     return (
         <div>
@@ -101,52 +103,64 @@ const Referral = (
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
 
-                <table className={`${myFontIran.className} w-full`}>
-                    <tr>
+                {data[0]?.your_referral_code_entries.length > 0 ?
+                    <table className={`${myFontIran.className} w-full`}>
+                        <tr>
 
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                            {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
-                        </th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                            {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
-                        </th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                            {isLocationIran ? 'تاریخ' : 'Date'}
-                        </th>
-                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                            {isLocationIran ? 'نام کاربر' : 'Username'}
-                        </th>
-                    </tr>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
+                            </th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
+                            </th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                {isLocationIran ? 'تاریخ' : 'Date'}
+                            </th>
+                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                {isLocationIran ? 'نام کاربر' : 'Username'}
+                            </th>
+                        </tr>
 
-                    {
-                        data &&
-                        data[0]?.your_referral_code_entries.map((item: any, index: number) => {
-                            return (
-                                <tr >
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {item.added_percentage}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {item.added_percentage}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {formatCreatedAtDate(item.created_at)}
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            {item.username}
-                                        </p>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                </table>
+                        {
+                            data &&
+                            data[0]?.your_referral_code_entries.map((item: any, index: number) => {
+                                return (
+                                    <tr >
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {item.added_percentage}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {item.added_percentage}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {formatCreatedAtDate(item.created_at)}
+                                            </p>
+                                        </td>
+                                        <td className='text-center'>
+                                            <p className='text-white'>
+                                                {item.username}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                    </table>
+                    :
+
+                    <div className='flex flex-col justify-center gap-4 items-center text-white'>
+                        <Image src={empty} alt='empty' />
+                        <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                            {isLocationIran ? 'در حال حاظر هيچ تاريخچه معرفي نداريد.' : 'Currently, you do not have any referal history.'}
+
+                        </p>
+                    </div>
+                }
+
 
                 <style>
                     {

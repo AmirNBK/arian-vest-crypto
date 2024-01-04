@@ -39,10 +39,19 @@ const ProfitWithdrawal = (props: {
         withdrawable_amount: number
     }
 
+    interface profitHistoryType {
+        amount: number;
+        created_at: string;
+        description: string;
+        pk: number;
+        status: string;
+    };
+
     const [data, setData] = useState<dataType>()
 
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
+    const [profitHistory, setProfitHistory] = useState<profitHistoryType[]>();
 
     useEffect(() => {
         getPurchasedAccounts().then((res) => {
@@ -67,7 +76,6 @@ const ProfitWithdrawal = (props: {
         })
         if (selectedAccount) {
             Wallet(selectedAccount).then((res) => {
-                console.log(res);
                 setData(res.data)
                 setWalletId(res.data.pk)
                 setLoading(false)
@@ -79,12 +87,24 @@ const ProfitWithdrawal = (props: {
         if (walletId) {
             profitWithdrawlHistory(walletId).then((res) => {
                 console.log(res);
+                setProfitHistory(res.data)
             })
         }
     }, [walletId])
 
+    const formatCreatedAtDate = (createdAt: string): string => {
+        const dateObject = new Date(createdAt);
+        const formattedDate = `${(dateObject.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}/${dateObject
+                .getDate()
+                .toString()
+                .padStart(2, '0')}/${dateObject.getFullYear()}`;
+        return formattedDate;
+    };
+
     const handleSendButtonClick = () => {
-        withdrawlRequest(userId, data?.withdrawable_amount, description).then((res) => {
+        withdrawlRequest(userId, walletId, data?.withdrawable_amount, description).then((res) => {
             if (res.status === 201) {
                 toastBottomRight.current?.show({
                     severity: 'success',
@@ -242,120 +262,38 @@ const ProfitWithdrawal = (props: {
                                     </th>
                                 </tr>
 
-                                <tr>
-                                    <td className='text-center'>
-                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 1 </h2>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            550000
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            32412412
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            12/23/2023
-                                        </p>
-                                    </td>
-                                    <td className='text-center wrap'>
-                                        <button className={`${myFontIran.className}
-                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                sm:text-sm bg-main-orange`}
-                                        >
-                                            pending
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td className='text-center'>
-                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 2 </h2>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            550000
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            32412412
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            12/23/2023
-                                        </p>
-                                    </td>
-                                    <td className='text-center wrap'>
-                                        <button className={`${myFontIran.className}
-                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                sm:text-sm bg-main-orange`}
-                                        >
-                                            pending
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='text-center'>
-                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 3 </h2>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            550000
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            32412412
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            12/23/2023
-                                        </p>
-                                    </td>
-                                    <td className='text-center wrap'>
-                                        <button className={`${myFontIran.className}
-                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                sm:text-sm bg-main-orange`}
-                                        >
-                                            pending
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='text-center'>
-                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> 4 </h2>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            550000
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            32412412
-                                        </p>
-                                    </td>
-                                    <td className='text-center'>
-                                        <p className='text-white'>
-                                            12/23/2023
-                                        </p>
-                                    </td>
-                                    <td className='text-center wrap'>
-                                        <button className={`${myFontIran.className}
-                                px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                                sm:text-sm bg-main-orange`}
-                                        >
-                                            pending
-                                        </button>
-                                    </td>
-                                </tr>
-
+                                {profitHistory?.map((item, index) => {
+                                    return (
+                                        <tr>
+                                            <td className='text-center'>
+                                                <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                            </td>
+                                            <td className='text-center'>
+                                                <p className='text-white'>
+                                                    {item.amount}
+                                                </p>
+                                            </td>
+                                            <td className='text-center'>
+                                                <p className='text-white'>
+                                                    32412412
+                                                </p>
+                                            </td>
+                                            <td className='text-center'>
+                                                <p className='text-white'>
+                                                    {formatCreatedAtDate(item.created_at)}
+                                                </p>
+                                            </td>
+                                            <td className='text-center wrap'>
+                                                <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
+                               ${item.status === "pending" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "Paid" ? 'bg-[#159400]' : ''}
+                               `}
+                                                >
+                                                    {item.status}
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
                             </table>
 
                             {/* <div className='flex flex-col justify-center gap-4 items-center'>

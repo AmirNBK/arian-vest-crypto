@@ -96,7 +96,7 @@ const Receipt = (props: {
   const [pdfGenerated, setPdfGenerated] = useState(false);
 
   const challengeType = sessionStorage.getItem('challenge');
-  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,12 +108,11 @@ const Receipt = (props: {
   }, []);
 
   console.log(challengeType);
-  
+
 
   useEffect(() => {
     if (paymentInfo && profileInfo && receipt && pdfGenerated) {
-      purchaseAccount(profileInfo.pk, challengeType, '$' + paymentInfo.price_amount, receipt).then((res) => {
-        console.log(res);
+      purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt).then((res) => {
       });
     }
   }, [paymentInfo, profileInfo, receipt, pdfGenerated]);

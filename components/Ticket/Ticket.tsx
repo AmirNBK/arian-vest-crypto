@@ -13,7 +13,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import ticketPic from '../../assets/images/ticketPic.png'
 import SendButton from '../../assets/images/sendButton.png'
 import ReactLoading from 'react-loading';
-import { SendTicket, getProfileInfo, getTicketMessage, getTicketTypes, getTickets, postTicketMessage } from '@/lib/apiConfig';
+import { SendTicket, getProfileInfo, getPurchasedAccounts, getTicketMessage, getTicketTypes, getTickets, postTicketMessage } from '@/lib/apiConfig';
 import tick from '../../assets/icons/tick.svg'
 import MessageComponent from '../MessageComponent/MessageComponent';
 import ChatScreen from '../ChatScreen/ChatScreen';
@@ -46,6 +46,10 @@ const Ticket = (props: {
     }[]>()
     const isLocationIran = props.isLocationIran
 
+    interface Account {
+        name: string;
+        code: string;
+    }
     interface FormData {
         subject: string;
         supportType: string;
@@ -67,11 +71,33 @@ const Ticket = (props: {
         })
     }, [])
 
+    const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
+    const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+
+
+
     useEffect(() => {
-        getTickets(props.selectedAccount).then((res) => {
+        getPurchasedAccounts().then((res) => {
+            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
+                name: account.accounts,
+                code: account.pk.toString(),
+            }));
+
+            setPurchasedAccounts(formattedAccounts);
+        });
+    }, [])
+
+    useEffect(() => {
+        if (purchasedAccounts) {
+            setSelectedAccount(purchasedAccounts[0]?.code)
+        }
+    }, [purchasedAccounts])
+
+    useEffect(() => {
+        getTickets(selectedAccount).then((res) => {
             setTickets(res.data)
         })
-    }, [refreshTickets,props.selectedAccount])
+    }, [refreshTickets, selectedAccount])
 
     useEffect(() => {
         if (chatId) {
@@ -130,7 +156,7 @@ const Ticket = (props: {
                             life: 3000,
                         });
                         postTicketMessage(userId, res.data.pk, formData.description, '').then((res) => {
-                            
+
                         })
                         setRefreshTickets(!refreshTickets)
                         setTimeout(() => {

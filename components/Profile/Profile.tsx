@@ -51,12 +51,13 @@ const Profile = (
     const [firstName, setFirstName] = useState<string>()
     const [lastName, setLastName] = useState<string>()
     const [refreshProfileInfo, setRefreshProfileInfo] = useState<boolean>(false)
+    const [receipt, setReceipt] = useState<any>()
 
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
             setProfilePic(res.data.image)
             console.log(res);
-            
+
         })
     }, [selectedImage])
 
@@ -281,6 +282,7 @@ const Profile = (
                             {profileInfo?.purchased_accounts.length ? (
                                 <table className={`w-full ${isLocationInIran ? '' : 'rtl'}`}>
                                     <tr>
+                                    <th className={`${myFont.className}`}></th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                             {isLocationInIran ? 'وضعیت' : 'Status'}
                                         </th>
@@ -293,11 +295,15 @@ const Profile = (
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                             {isLocationInIran ? 'تاریخ' : 'Date'}
                                         </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}></th>
                                     </tr>
 
                                     {profileInfo?.purchased_accounts.map((item, index) => (
                                         <tr key={index}>
+                                            <td>
+                                                <p className='underline text-blue-500 cursor-pointer'>
+                                                    {props.isLocationIran ? 'مشاهده فاكتور' : 'View receipt'}
+                                                </p>
+                                            </td>
                                             <td className='text-center'>
                                                 <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
                                ${item.status === "pending" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "Paid" ? 'bg-[#159400]' : ''}
@@ -318,6 +324,7 @@ const Profile = (
                                             <td className='text-center'>
                                                 <h2 className='text-main-orange text-2xl font-bold'>{index + 1}</h2>
                                             </td>
+
                                         </tr>
                                     ))}
                                 </table>
