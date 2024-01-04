@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../assets/icons/baseLogo.png'
 import JsPDF from 'jspdf';
 import Image, { StaticImageData } from 'next/image';
-import { paymentInvoice } from '@/lib/apiConfig';
+import { purchaseAccount } from '@/lib/apiConfig';
 import exportIcon from '../../assets/icons/export.svg'
 
 interface TransactionType {
@@ -96,6 +96,7 @@ const Receipt = (props: {
   const [pdfGenerated, setPdfGenerated] = useState(false);
 
   const challengeType = sessionStorage.getItem('challenge');
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -106,9 +107,12 @@ const Receipt = (props: {
     fetchData();
   }, []);
 
+  console.log(challengeType);
+  
+
   useEffect(() => {
     if (paymentInfo && profileInfo && receipt && pdfGenerated) {
-      paymentInvoice(profileInfo.pk, profileInfo.fullname, paymentInfo.invoice_id, '$' + paymentInfo.price_amount, receipt).then((res) => {
+      purchaseAccount(profileInfo.pk, challengeType, '$' + paymentInfo.price_amount, receipt).then((res) => {
         console.log(res);
       });
     }
@@ -148,7 +152,6 @@ const Receipt = (props: {
       }
     }
   };
-
 
 
   const BreakDownContent = [

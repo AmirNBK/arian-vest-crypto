@@ -18,9 +18,10 @@ import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../../assets/images/succesfull-payment.png'
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { getPaymentInfo, getProfileInfo, paymentInvoice } from '@/lib/apiConfig';
+import { getAccounts, getPaymentInfo, getProfileInfo } from '@/lib/apiConfig';
 import Receipt from '@/components/Receipt/Receipt';
 import useLocationData from '@/Hooks/location';
+import Link from 'next/link';
 
 
 export default function SuccessResult({ footer, questions }: { footer: any, questions: any }) {
@@ -82,7 +83,12 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
     const [formData, setFormData] = useState<formDataType>()
+    const [availableAccounts, setAvailableAccounts] = useState<string[]>()
     useEffect(() => {
+        // getAccounts().then((res) => {
+        //     console.log(res);
+        //     setAvailableAccounts(res.data)
+        // })
         const platformLocal = localStorage.getItem('platform');
         const brokerLocal = localStorage.getItem('tradingPlatform');
         setPlatform(platformLocal)
@@ -166,13 +172,12 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                             date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
                             confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
                     }
-                    <div className='cursor-pointer w-fit mx-auto'>
-                        <p className={`${myFontIran.className} text-main-orange text-xl`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
+                    <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
+                        <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
                         <hr style={{ borderColor: '#F68D2E' }} />
-                    </div>
+                    </Link>
                 </div>
 
-                {/* <Footer data={footer?.footer} /> */}
             </PrimeReactProvider>
         </main>
     )
@@ -181,13 +186,11 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
 
 export const getStaticProps: GetStaticProps = async () => {
 
-    const footer = await getQueryFooter();
     const questions = await getQueryFaq();
 
 
     return {
         props: {
-            footer,
             questions
         },
         revalidate: 10,

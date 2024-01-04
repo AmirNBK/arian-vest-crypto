@@ -93,7 +93,7 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         else setIsLogin(false)
         getPurchasedAccounts().then((res) => {
             const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
-                name: account.accounts,
+                name: account.accounts + ' ' + account.pk,
                 code: account.pk.toString(),
             }));
 
