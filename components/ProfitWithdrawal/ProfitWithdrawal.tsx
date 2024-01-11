@@ -6,6 +6,7 @@ import ReactLoading from 'react-loading';
 import certificateMini from '../../assets/icons/certificateMini.svg';
 import StatisticsComponents from '../StatisticsComponents/StatisticsComponents';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
+import { Dialog } from 'primereact/dialog';
 import empty from '../../assets/icons/empty.png'
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import profitWithdrawal from '../../assets/images/profitWithdrawal.png'
@@ -22,6 +23,9 @@ const ProfitWithdrawal = (props: {
     const [walletId, setWalletId] = useState<number>()
     const [loading, setLoading] = useState<boolean>(true)
     const [description, setDescription] = useState('');
+    const [visible, setVisible] = useState<boolean>(false);
+    const [receipt, setReceipt] = useState<any>()
+
 
     const handleTextareaChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setDescription(event.target.value);
@@ -46,11 +50,14 @@ const ProfitWithdrawal = (props: {
         pk: number;
         length: number;
         status: string;
+        invoice_number: number
+        certification: File
     };
 
     const [data, setData] = useState<dataType>()
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
+    const [refreshHistory, setRefreshHistory] = useState<boolean>(true);
     const [profitHistory, setProfitHistory] = useState<profitHistoryType[]>();
 
     useEffect(() => {
@@ -97,7 +104,7 @@ const ProfitWithdrawal = (props: {
                 setProfitHistory(res.data)
             })
         }
-    }, [walletId])
+    }, [walletId, refreshHistory])
 
 
     const formatCreatedAtDate = (createdAt: string): string => {
@@ -139,6 +146,11 @@ const ProfitWithdrawal = (props: {
                     {data ?
                         <>
                             <Toast ref={toastBottomRight} position="bottom-right" />
+                            <Dialog header="Certificate" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+                                <Image src={receipt} alt='There is no receipt for this withdrawl' width={50} height={50} unoptimized
+                                 className='w-full h-full'
+                                />
+                            </Dialog>
                             <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
                                 <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4`}>
                                     <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
@@ -217,7 +229,11 @@ const ProfitWithdrawal = (props: {
                             </div>
 
 
-                            <div className='flex justify-center'>
+                            <div className='flex justify-center'
+                                onClick={() => {
+                                    setRefreshHistory(!refreshHistory)
+                                }}
+                            >
                                 <Image src={isLocationInIran ? buttonImage : profitWithdrawal} unoptimized alt='button' className='cursor-pointer' onClick={handleSendButtonClick} />
                             </div>
                         </>
@@ -275,17 +291,18 @@ const ProfitWithdrawal = (props: {
                                         {profitHistory?.map((item, index) => {
                                             return (
                                                 <tr>
+
                                                     <td className='text-center'>
                                                         <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
                                                     </td>
                                                     <td className='text-center'>
                                                         <p className='text-white'>
-                                                            {item.amount}
+                                                            ${item.amount}
                                                         </p>
                                                     </td>
                                                     <td className='text-center'>
                                                         <p className='text-white'>
-                                                            32412412
+                                                            {item.invoice_number}
                                                         </p>
                                                     </td>
                                                     <td className='text-center'>
@@ -300,6 +317,16 @@ const ProfitWithdrawal = (props: {
                                                         >
                                                             {item.status}
                                                         </button>
+                                                    </td>
+                                                    <td
+                                                        onClick={() => {
+                                                            setVisible(true)
+                                                            setReceipt('https://virafundingbackend.darkube.app' + item.certification)
+                                                        }}
+                                                    >
+                                                        <p className='underline text-blue-500 cursor-pointer'>
+                                                            {props.isLocationIran ? 'مشاهده فاكتور' : 'View receipt'}
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             )

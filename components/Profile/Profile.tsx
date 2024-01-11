@@ -8,6 +8,7 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import range from '../../assets/images/whiteRange.svg'
 import empty from '../../assets/icons/empty.png'
 import Image from 'next/image';
+import { Dialog } from 'primereact/dialog';
 import ReactLoading from 'react-loading';
 import edit from '../../assets/icons/edit.svg'
 import icon from '../../assets/icons/certificateMini.svg'
@@ -22,6 +23,7 @@ const Profile = (
 ) => {
     const isLocationInIran = props.isLocationIran
     const toastBottomRight = useRef<Toast>(null);
+    const [visible, setVisible] = useState<boolean>(false);
 
     interface profileType {
         address: string
@@ -35,6 +37,7 @@ const Profile = (
             name: string
             price: string
             created_at: string
+            payment_invoice: File
             status: string
         }[]
 
@@ -128,6 +131,9 @@ const Profile = (
     return (
         <div className='Profile' style={{ zIndex: '-50' }}>
             <Toast ref={toastBottomRight} position="bottom-right" />
+            <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+                <Image src={receipt} alt='receipt' width={50} height={50} unoptimized />
+            </Dialog>
             {profileInfo ?
                 <>
                     <div className={`Profile__info bg-[#1D1D1D] rounded-md p-16 flex flex-col
@@ -281,7 +287,7 @@ const Profile = (
                             {profileInfo?.purchased_accounts.length ? (
                                 <table className={`w-full ${isLocationInIran ? '' : 'rtl'}`}>
                                     <tr>
-                                    <th className={`${myFont.className}`}></th>
+                                        <th className={`${myFont.className}`}></th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                             {isLocationInIran ? 'وضعیت' : 'Status'}
                                         </th>
@@ -298,7 +304,12 @@ const Profile = (
 
                                     {profileInfo?.purchased_accounts.map((item, index) => (
                                         <tr key={index}>
-                                            <td>
+                                            <td
+                                                onClick={() => {
+                                                    setVisible(true)
+                                                    setReceipt('https://virafundingbackend.darkube.app' + item.payment_invoice)
+                                                }}
+                                            >
                                                 <p className='underline text-blue-500 cursor-pointer'>
                                                     {props.isLocationIran ? 'مشاهده فاكتور' : 'View receipt'}
                                                 </p>

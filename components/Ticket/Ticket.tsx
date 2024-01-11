@@ -92,11 +92,14 @@ const Ticket = (props: {
         }
     }, [purchasedAccounts])
 
+
     useEffect(() => {
-        getTickets(selectedAccount).then((res) => {
-            setTickets(res.data)
-            setLoading(false)
-        })
+        if (selectedAccount) {
+            getTickets(selectedAccount).then((res) => {
+                setTickets(res.data)
+                setLoading(false)
+            })
+        }
     }, [refreshTickets, selectedAccount])
 
     useEffect(() => {
@@ -369,7 +372,7 @@ const Ticket = (props: {
                                                         <td className='text-center wrap'>
                                                             <button className={`${myFontIran.className}
                             px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
-                            sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
+                            sm:text-sm ${item.ticket_status === "pending" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
                                                             >
                                                                 {item.ticket_status}
                                                             </button>
