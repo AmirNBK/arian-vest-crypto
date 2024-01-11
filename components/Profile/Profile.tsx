@@ -56,7 +56,6 @@ const Profile = (
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
             setProfilePic(res.data.image)
-            console.log(res);
 
         })
     }, [selectedImage])

@@ -44,11 +44,11 @@ const ProfitWithdrawal = (props: {
         created_at: string;
         description: string;
         pk: number;
+        length: number;
         status: string;
     };
 
     const [data, setData] = useState<dataType>()
-
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const [profitHistory, setProfitHistory] = useState<profitHistoryType[]>();
@@ -72,22 +72,28 @@ const ProfitWithdrawal = (props: {
 
     useEffect(() => {
         getProfileInfo().then((res) => {
-            setUserId(res.data.pk)
-        })
+            setUserId(res.data.pk);
+        });
+
         if (selectedAccount) {
             Wallet(selectedAccount).then((res) => {
-                setData(res.data)
-                setWalletId(res.data.pk)
-                setLoading(false)
-            })
+                setData(res.data);
+                if (res.data) setWalletId(res.data.pk);
+                setLoading(false);
+            });
+        } else {
+            const timeoutId = setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
         }
-        else setLoading(false)
-    }, [selectedAccount])
+    }, [selectedAccount]);
+
 
     useEffect(() => {
         if (walletId) {
             profitWithdrawlHistory(walletId).then((res) => {
-                console.log(res);
                 setProfitHistory(res.data)
             })
         }
@@ -228,82 +234,89 @@ const ProfitWithdrawal = (props: {
                             <div className='flex flex-col justify-center gap-4 items-center'>
                                 <Image src={empty} alt='empty' />
                                 <p className={`${myFontIran.className} text-white ${props.isLocationIran ? 'rtl' : ''}`}>
-                                    {isLocationInIran ? ' در حال حاظر اطلاعات برداشت سود شما موجود نمي باشد. لطفا بعدا امتحان كنيد.' : 'Currently, your profit withdrawal information is not available. Please purchase an account and try again later.'}
-
+                                    {isLocationInIran ? ' در حال حاظر اطلاعات برداشت سود شما موجود نمي باشد. لطفا بعدا امتحان كنيد.' : 'Currently, your profit withdrawal information is not available. Please purchase an account or try again later.'}
                                 </p>
                             </div>
                         </div>
                     }
-                    {profitHistory ?
-                        <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
-                            <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
-                                <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
+                    <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
+                        <div className={`flex ${isLocationInIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
+                            <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationInIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
 
-                                    {isLocationInIran ? 'آمار برداشت سود' : 'Withdrawl statistics'}
-                                </h2>
-                                <Image src={certificateMini} alt='icon' unoptimized />
-                            </div>
-                            <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
+                                {isLocationInIran ? 'آمار برداشت سود' : 'Withdrawl statistics'}
+                            </h2>
+                            <Image src={certificateMini} alt='icon' unoptimized />
+                        </div>
+                        <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
 
-                                <table className={`${myFontIran.className} w-full`}>
-                                    <tr>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationInIran ? '' : 'Ticket ID'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationInIran ? 'مبلغ برداشت' : 'Withdrawal amount'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationInIran ? 'شماره پيگيري' : 'Tracking Number'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            {
+                                profitHistory &&
+                                    profitHistory?.length > 0 ?
+                                    <table className={`${myFontIran.className} w-full`}>
+                                        <tr>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationInIran ? '' : 'Ticket ID'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationInIran ? 'مبلغ برداشت' : 'Withdrawal amount'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationInIran ? 'شماره پيگيري' : 'Tracking Number'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
 
-                                            {isLocationInIran ? 'تاريخ' : 'Date'}
-                                        </th>
-                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                            {isLocationInIran ? 'وضعیت برداشت' : 'Ticket Status'}
-                                        </th>
-                                    </tr>
+                                                {isLocationInIran ? 'تاريخ' : 'Date'}
+                                            </th>
+                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                {isLocationInIran ? 'وضعیت برداشت' : 'Ticket Status'}
+                                            </th>
+                                        </tr>
 
-                                    {profitHistory?.map((item, index) => {
-                                        return (
-                                            <tr>
-                                                <td className='text-center'>
-                                                    <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        {item.amount}
-                                                    </p>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        32412412
-                                                    </p>
-                                                </td>
-                                                <td className='text-center'>
-                                                    <p className='text-white'>
-                                                        {formatCreatedAtDate(item.created_at)}
-                                                    </p>
-                                                </td>
-                                                <td className='text-center wrap'>
-                                                    <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
+                                        {profitHistory?.map((item, index) => {
+                                            return (
+                                                <tr>
+                                                    <td className='text-center'>
+                                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            {item.amount}
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            32412412
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center'>
+                                                        <p className='text-white'>
+                                                            {formatCreatedAtDate(item.created_at)}
+                                                        </p>
+                                                    </td>
+                                                    <td className='text-center wrap'>
+                                                        <button className={`${myFontIran.className} px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs sm:text-sm
                                                    ${item.status === "pending" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "Paid" ? 'bg-[#159400]' : ''}
                                                    `}
-                                                    >
-                                                        {item.status}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </table>
-                            </div>
+                                                        >
+                                                            {item.status}
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </table>
+                                    :
 
+                                    <div className='flex flex-col justify-center gap-4 items-center text-white'>
+                                        <Image src={empty} alt='empty' />
+                                        <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                            {props.isLocationIran ? 'در حال حاظر هيچ تاريخچه برداشت سودی نداريد.' : 'Currently, you do not have any profit withdrawl history.'}
+
+                                        </p>
+                                    </div>
+                            }
                         </div>
-                        :
-                        ''
-                    }
+                    </div>
                 </>
                 : <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
             }
