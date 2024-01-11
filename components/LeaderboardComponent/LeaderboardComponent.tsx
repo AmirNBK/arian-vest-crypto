@@ -93,7 +93,7 @@ const LeaderboardComponent = (props: {
     }, []);
 
     return (
-        <div className={`LeaderboardComponent rounded-md pb-3 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 ${props.rank > 3 && '-translate-x-[17px]'}
+        <div className={`LeaderboardComponent rounded-md pb-3 px-0 lg:px-8 flex flex-col gap-12 lg:gap-5 ${props.rank > 3 && `${props.isLocationIran ? '-translate-x-[17px]' : 'translate-x-[17px]'} `}
         ${props.isLocationIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} justify-between items-center`}
             style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.10)' }}
         >

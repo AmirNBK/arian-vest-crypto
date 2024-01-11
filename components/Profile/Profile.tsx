@@ -313,7 +313,7 @@ const Profile = (
                                                 </button>
                                             </td>
                                             <td className='text-center'>
-                                                <p className='text-white'>{item.price}</p>
+                                                <p className='text-white'>${item.price}</p>
                                             </td>
                                             <td className='text-center'>
                                                 <p className='text-white'>{item.name}</p>

@@ -109,6 +109,7 @@ export default function Payment() {
         }));
     };
 
+
     const handleBuyClick = () => {
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
 
@@ -169,6 +170,7 @@ export default function Payment() {
         }
     };
 
+    
     const discountValidation = () => {
         const enteredCode = discountCode.trim();
         const matchingCode = discountData?.pages?.nodes[2].discountCoupon.discountCode.find((codeObj: any) => codeObj.code === enteredCode);

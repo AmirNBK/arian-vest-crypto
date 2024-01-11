@@ -37,6 +37,7 @@ const Ticket = (props: {
     const [refreshTickets, setRefreshTickets] = useState<boolean>()
     const [refreshMessages, setRefreshMessages] = useState<boolean>()
     const [chatId, setChatId] = useState<number>()
+    const [loading, setLoading] = useState<boolean>(true)
     const [tickets, setTickets] = useState<{
         subject: string
         ticket_status: string
@@ -74,8 +75,6 @@ const Ticket = (props: {
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
-
-
     useEffect(() => {
         getPurchasedAccounts().then((res) => {
             const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
@@ -96,6 +95,7 @@ const Ticket = (props: {
     useEffect(() => {
         getTickets(selectedAccount).then((res) => {
             setTickets(res.data)
+            setLoading(false)
         })
     }, [refreshTickets, selectedAccount])
 
@@ -209,7 +209,7 @@ const Ticket = (props: {
 
     return (
         <div>
-            {tickets ?
+            {!loading ?
                 <>
                     <Toast ref={toastBottomRight} position="bottom-right" />
                     <div className='Ticket bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>
@@ -323,74 +323,76 @@ const Ticket = (props: {
                         </div>
                         {!chatId ?
                             <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto ${props.isLocationIran ? 'rtl' : 'ltr'}`}>
-                                {tickets.length ?
-                                    <table className={`${myFontIran.className} w-full`}>
-                                        <tr>
-                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                                {isLocationIran ? '' : 'Ticket ID'}
-                                            </th>
-                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                                {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
-                                            </th>
-                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                                {isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
-                                            </th>
-                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                                {isLocationIran ? 'تاریخ' : 'Date'}
-                                            </th>
-                                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
-                                                {isLocationIran ? 'وضعیت تیکت' : 'Ticket Status'}
-                                            </th>
-                                        </tr>
+                                {
+                                    tickets &&
+                                        tickets.length ?
+                                        <table className={`${myFontIran.className} w-full`}>
+                                            <tr>
+                                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                    {isLocationIran ? '' : 'Ticket ID'}
+                                                </th>
+                                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                    {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
+                                                </th>
+                                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                    {isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
+                                                </th>
+                                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                    {isLocationIran ? 'تاریخ' : 'Date'}
+                                                </th>
+                                                <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                                    {isLocationIran ? 'وضعیت تیکت' : 'Ticket Status'}
+                                                </th>
+                                            </tr>
 
-                                        {tickets?.map((item, index) => {
-                                            return (
-                                                <tr >
-                                                    <td className='text-center'>
-                                                        <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
-                                                    </td>
-                                                    <td className='text-center'>
-                                                        <p className='text-white'>
-                                                            {item.subject}
-                                                        </p>
-                                                    </td>
-                                                    <td className='text-center'>
-                                                        <p className='text-white'>
-                                                            {item.support_type}
-                                                        </p>
-                                                    </td>
-                                                    <td className='text-center'>
-                                                        <p className='text-white'>
-                                                            {formatCreatedAtDate(item.created_at)}
-                                                        </p>
-                                                    </td>
-                                                    <td className='text-center wrap'>
-                                                        <button className={`${myFontIran.className}
+                                            {tickets?.map((item, index) => {
+                                                return (
+                                                    <tr >
+                                                        <td className='text-center'>
+                                                            <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                                        </td>
+                                                        <td className='text-center'>
+                                                            <p className='text-white'>
+                                                                {item.subject}
+                                                            </p>
+                                                        </td>
+                                                        <td className='text-center'>
+                                                            <p className='text-white'>
+                                                                {item.support_type}
+                                                            </p>
+                                                        </td>
+                                                        <td className='text-center'>
+                                                            <p className='text-white'>
+                                                                {formatCreatedAtDate(item.created_at)}
+                                                            </p>
+                                                        </td>
+                                                        <td className='text-center wrap'>
+                                                            <button className={`${myFontIran.className}
                             px-5 sm:px-15 sm:py-2 py-3 text-white rounded-lg text-xs cursor-default
                             sm:text-sm ${item.ticket_status === "waiting" ? 'bg-main-orange' : item.ticket_status === "not answered" ? 'bg-[#740000]' : item.ticket_status === "has been answered" ? 'bg-[#159400]' : ''}`}
-                                                        >
-                                                            {item.ticket_status}
-                                                        </button>
-                                                    </td>
-                                                    <td className=' cursor-pointer' onClick={() => {
-                                                        setChatId(item.pk)
-                                                    }}>
-                                                        <p className='underline text-blue-500 '>
-                                                            {isLocationIran ? 'مشاهده' : 'View ticket'}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </table>
-                                    :
-                                    <div className='flex flex-col justify-center gap-4 items-center'>
-                                        <Image src={empty} alt='empty' />
-                                        <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
-                                            {isLocationIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
+                                                            >
+                                                                {item.ticket_status}
+                                                            </button>
+                                                        </td>
+                                                        <td className=' cursor-pointer' onClick={() => {
+                                                            setChatId(item.pk)
+                                                        }}>
+                                                            <p className='underline text-blue-500 '>
+                                                                {isLocationIran ? 'مشاهده' : 'View ticket'}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </table>
+                                        :
+                                        <div className='flex flex-col justify-center gap-4 items-center'>
+                                            <Image src={empty} alt='empty' />
+                                            <p className={`${myFontIran.className} ${props.isLocationIran ? 'rtl' : ''}`}>
+                                                {isLocationIran ? 'در حال حاظر هيچ تيكت ثبت شده اي نداريد.' : 'Currently, you do not have any tickets registered.'}
 
-                                        </p>
-                                    </div>
+                                            </p>
+                                        </div>
                                 }
                             </div>
                             :

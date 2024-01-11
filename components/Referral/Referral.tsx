@@ -103,7 +103,9 @@ const Referral = (
                     <Image src={certificateMini} alt='icon' unoptimized />
                 </div>
 
-                {data[0]?.your_referral_code_entries.length > 0 ?
+                {
+                data &&
+                data[0]?.your_referral_code_entries.length > 0 ?
                     <table className={`${myFontIran.className} w-full`}>
                         <tr>
 

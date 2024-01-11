@@ -169,8 +169,10 @@ const Authentication = (
                         {isVerifiedPending ?
                             <div className='flex flex-col items-center mt-16 gap-4 justify-center'>
                                 <Image src={pending} alt='pending' />
-                                <p className={`${myFontIran.className} text-white rtl`}>
-                                    درخواست احراز هويت شما در حال بررسي است و به محض تعيين شدن نتيجه به شما اطلاع خواهد داده شد.
+                                <p className={`${myFontIran.className} text-white ${isLocationInIran && 'rtl'}`}>
+                                    {isLocationInIran ? 'درخواست احراز هويت شما در حال بررسي است و به محض تعيين شدن نتيجه به شما اطلاع خواهد داده شد.' :
+                                        'Your identity verification request is being reviewed and you will be notified as soon as the result is determined.'
+                                    }
                                 </p>
                             </div>
                             :
