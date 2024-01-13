@@ -107,9 +107,6 @@ const Receipt = (props: {
     fetchData();
   }, []);
 
-  console.log(challengeType);
-
-
   useEffect(() => {
     if (paymentInfo && profileInfo && receipt && pdfGenerated) {
       purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt).then((res) => {
@@ -127,7 +124,8 @@ const Receipt = (props: {
       try {
         await report.html(element as HTMLElement);
         const pdfBlob = report.output('blob');
-        const pdfFile = new File([pdfBlob], 'report.pdf', { type: 'application/pdf' });
+        const pdfFile = new File([pdfBlob], 'report.pdf', { type: 'application/pdf' })
+        
 
         setReceipt(pdfFile);
       } catch (error) {

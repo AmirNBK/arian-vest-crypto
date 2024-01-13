@@ -132,7 +132,7 @@ const Profile = (
         <div className='Profile' style={{ zIndex: '-50' }}>
             <Toast ref={toastBottomRight} position="bottom-right" />
             <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
-                <Image src={receipt} alt='receipt' width={50} height={50} unoptimized />
+                <Image src={receipt} alt='receipt' width={50} height={50} unoptimized className=' w-full h-full' />
             </Dialog>
             {profileInfo ?
                 <>
