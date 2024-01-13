@@ -14,6 +14,7 @@ const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0
 import DOMPurify from 'isomorphic-dompurify';
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client';
+import useLocationData from '@/Hooks/location';
 
 
 const GET_FOOTER = gql`
@@ -50,40 +51,44 @@ query blogs {
 
 
 export default function SingleBlog() {
-    const { data: footerData } = useQuery(GET_FOOTER);
-    const { data: blogData, loading: blogLoading } = useQuery(GET_CONTENT);
-    const router = useRouter()
-    const id = Number(router.query.slug);
-    const data = blogData?.pages?.nodes[2]?.blog?.blogs[id];
+  const { data: footerData } = useQuery(GET_FOOTER);
+  const { data: blogData, loading: blogLoading } = useQuery(GET_CONTENT);
+  const router = useRouter()
+  const { locationData, error, loading } = useLocationData();
+  const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+  const id = Number(router.query.slug);
+  const data = blogData?.pages?.nodes[2]?.blog?.blogs[id];
 
-    const sanitizedHTML = DOMPurify.sanitize(data?.content);
+  const sanitizedHTML = DOMPurify.sanitize(data?.content);
 
-    return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
-        >
-            <PrimeReactProvider>
-                <Header />
-                {blogLoading ? <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-                    :
-                    <>
-                        <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
-                            <Image src={newspaper} alt='newspaper' unoptimized />
-                            <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
-                                {data?.title}
-                            </p>
-                        </div>
+  return (
+    <main
+      className={`flex min-h-screen flex-col ${inter.className}`}
+    >
+      <PrimeReactProvider>
+        <Header isLocationInIran={isLocationInIran} />
 
-                        <div>
-                            <Image src={data?.image?.mediaItemUrl} width={1200} height={100} alt='blogimage' className='mx-auto mt-12 w-[1200px] h-[550px] object-cover' unoptimized />
-                        </div>
+        {blogLoading ? <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+          :
+          <>
+            <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
+              <Image src={newspaper} alt='newspaper' unoptimized />
+              <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
+                {data?.title}
+              </p>
+            </div>
 
-                        <div className='text-white my-16' dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
-                    </>
-                }
+            <div>
+              <Image src={data?.image?.mediaItemUrl} width={1200} height={100} alt='blogimage' className='mx-auto mt-12 w-[1200px] h-[550px] object-cover' unoptimized />
+            </div>
 
-                <Footer data={footerData?.pages?.nodes[2].footer} />
-            </PrimeReactProvider>
-        </main >
-    )
+            <div className='text-white my-16' dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
+          </>
+        }
+
+        <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
+      </PrimeReactProvider>
+    </main >
+  )
 }
