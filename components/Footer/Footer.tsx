@@ -10,6 +10,7 @@ import arrow from '../../assets/icons/arrowWithCircle.svg'
 import bull from '../../assets/icons/bull.svg'
 import bullRed from '../../assets/icons/bull-red-eye.svg'
 import FooterInfo from '../CommonComponents/FooterInfo/FooterInfo';
+const myFontSquad = localFont({ src: '../../assets/fonts/SquadaOne Regular.ttf' })
 import facebook from '../../assets/icons/facebook.svg'
 import twitter from '../../assets/icons/twitter.svg'
 import { Toast, ToastMessage } from 'primereact/toast';
@@ -194,10 +195,9 @@ const Footer = (props: {
                         <FooterInfo title={`${isLocationInIran ? 'شماره تماس' : 'phone number'}`} isLocationIran={isLocationInIran} info={isLocationInIran ? props.data?.phone : props.data?.engPhone} />
                         <FooterInfo title={`${isLocationInIran ? 'ایمیل' : 'email'}`} info={isLocationInIran ? props.data?.email : props.data?.engEmail} isLocationIran={isLocationInIran} />
                         <p className={`${myFont3.className} text-xl lg:text-xl text-right rtl`}>
-                            <span className={`${myFont.className} font-semibold`}> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className={`${myFont3.className} text-white`}>  </span>
+                            <span className={`${myFontSquad.className}`}> {isLocationInIran ? 'آدرس:' : 'address:'} </span> {isLocationInIran ? props.data?.address : props.data?.engAddress} <span className={`${myFont3.className} text-white`}>  </span>
                         </p>
                     </div>
-
 
                     <div className='absolute w-11/12 left-1/2'
                         style={{ bottom: '20px', transform: 'translateX(-50%)' }}
