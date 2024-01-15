@@ -83,12 +83,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
     const [formData, setFormData] = useState<formDataType>()
-    const [availableAccounts, setAvailableAccounts] = useState<string[]>()
     useEffect(() => {
-        // getAccounts().then((res) => {
-        //     console.log(res);
-        //     setAvailableAccounts(res.data)
-        // })
         const platformLocal = localStorage.getItem('platform');
         const brokerLocal = localStorage.getItem('tradingPlatform');
         setPlatform(platformLocal)

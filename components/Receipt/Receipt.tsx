@@ -4,6 +4,7 @@ import JsPDF from 'jspdf';
 import Image, { StaticImageData } from 'next/image';
 import { purchaseAccount } from '@/lib/apiConfig';
 import exportIcon from '../../assets/icons/export.svg'
+import html2canvas from 'html2canvas';
 
 interface TransactionType {
   actually_paid: number;
@@ -110,11 +111,11 @@ const Receipt = (props: {
   useEffect(() => {
     if (paymentInfo && profileInfo && receipt && pdfGenerated) {
       purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt).then((res) => {
+        console.log(res);
+
       });
     }
   }, [paymentInfo, profileInfo, receipt, pdfGenerated]);
-
-
 
   const generatePDF = async () => {
     const report = new JsPDF('portrait', 'pt', 'a3');
@@ -122,12 +123,15 @@ const Receipt = (props: {
 
     if (element) {
       try {
-        await report.html(element as HTMLElement);
-        const pdfBlob = report.output('blob');
-        const pdfFile = new File([pdfBlob], 'report.pdf', { type: 'application/pdf' })
-        
+        const canvas = await html2canvas(element as HTMLElement);
+        const imageDataURL = canvas.toDataURL('image/png');
 
-        setReceipt(pdfFile);
+        const blobData = await (await fetch(imageDataURL)).blob();
+
+        const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
+
+        setReceipt(imageFile)
+
       } catch (error) {
         console.error('Error generating PDF:', error);
       }
