@@ -111,8 +111,6 @@ const Receipt = (props: {
   useEffect(() => {
     if (paymentInfo && profileInfo && receipt && pdfGenerated) {
       purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt).then((res) => {
-        console.log(res);
-
       });
     }
   }, [paymentInfo, profileInfo, receipt, pdfGenerated]);
