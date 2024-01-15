@@ -16,7 +16,7 @@ import { Wallet, getProfileInfo, getPurchasedAccounts, profitWithdrawlHistory, w
 
 const ProfitWithdrawal = (props: {
     isLocationIran: boolean
-    selectedAccount: string | undefined
+    selectedAccount: any
 }) => {
     const isLocationInIran = props.isLocationIran
     const [userId, setUserId] = useState<number>()
@@ -69,12 +69,13 @@ const ProfitWithdrawal = (props: {
 
             setPurchasedAccounts(formattedAccounts);
         });
-    }, [])
+    }, [props.selectedAccount])
 
     useEffect(() => {
-        if (purchasedAccounts) {
+        if (purchasedAccounts && !selectedAccount) {
             setSelectedAccount(purchasedAccounts[0]?.code)
         }
+        else setSelectedAccount(props.selectedAccount)
     }, [purchasedAccounts])
 
     useEffect(() => {
@@ -148,7 +149,7 @@ const ProfitWithdrawal = (props: {
                             <Toast ref={toastBottomRight} position="bottom-right" />
                             <Dialog header="Certificate" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                                 <Image src={receipt} alt='There is no receipt for this withdrawl' width={50} height={50} unoptimized
-                                 className='w-full h-full'
+                                    className='w-full h-full'
                                 />
                             </Dialog>
                             <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg lg:mt-6 mb-10'>

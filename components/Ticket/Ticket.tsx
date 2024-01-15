@@ -20,7 +20,7 @@ import ChatScreen from '../ChatScreen/ChatScreen';
 
 const Ticket = (props: {
     isLocationIran: boolean
-    selectedAccount: string | undefined
+    selectedAccount: any
 }) => {
     interface Message {
         file: string;
@@ -84,12 +84,14 @@ const Ticket = (props: {
 
             setPurchasedAccounts(formattedAccounts);
         });
-    }, [])
+    }, [props.selectedAccount])
+
 
     useEffect(() => {
-        if (purchasedAccounts) {
+        if (purchasedAccounts && !selectedAccount) {
             setSelectedAccount(purchasedAccounts[0]?.code)
         }
+        else setSelectedAccount(props.selectedAccount)
     }, [purchasedAccounts])
 
 
@@ -148,6 +150,7 @@ const Ticket = (props: {
                 formData.metatraderAccount,
                 formData.orderNumber,
                 formData.description,
+                selectedAccount,
                 selectedFile
             )
                 .then((res) => {
