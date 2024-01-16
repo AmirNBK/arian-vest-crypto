@@ -508,7 +508,7 @@ export default function Payment() {
                         <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
                             <Image src={login} alt='login' className='w-16' />
                             <p className="mt-6 text-center">
-                                برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید
+                                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
                             </p>
                             <div className='flex flex-row justify-center mt-6 gap-6'>
                                 <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
@@ -516,7 +516,7 @@ export default function Payment() {
                                         router.push('/register')
                                     }}
                                 >
-                                    ثبت نام / عضویت
+                                   {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
                                 </button>
                             </div>
                         </div>
