@@ -355,6 +355,9 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             </p>
                                             <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
                                         </div>
+                                        <div className={` ${myFontIran.className} ${isLocationInIran && 'text-right justify-end'} text-blue-600 cursor-pointer`}>
+                                            {isLocationInIran ? 'فراموشی رمز عبور' : 'Forgot password'}
+                                        </div>
                                         {loginLoading ?
                                             <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={100} width={60} />
                                             :
