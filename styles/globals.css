@@ -38,29 +38,15 @@ html {
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-}
 
-body {
-  overflow-x: hidden;
-  background-color: #0E0E0E;
-  color: rgb(var(--foreground-rgb));
   .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
     box-shadow: 0 0 0 0.2rem #F68D2E;
   }
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-/* 
-    .p-dialog .p-dialog-header .p-dialog-title {
-      direction: rtl;
-    } */
 
-    .p-toast-bottom-right {
-      z-index: 120000000000000000000 !important;
-    }
+  .p-toast-bottom-right {
+    z-index: 120000000000000000000 !important;
+  }
+
   .p-tabview .p-tabview-nav {
     background: transparent;
   }
@@ -113,6 +99,13 @@ body {
   .p-tabview-nav {
     justify-content: space-between;
   }
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #0E0E0E;
+  color: rgb(var(--foreground-rgb));
+
 
   .rtl {
     direction: rtl;

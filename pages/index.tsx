@@ -7,6 +7,10 @@ import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import Header from '@/components/Header/Header';
 import pic from '../assets/images/HeroSectionPic.png'
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import charts from '../assets/images/charts.png'
 import localFont from 'next/font/local'
 import HeroText from '../assets/images/HeroText.png'
@@ -54,12 +58,51 @@ import { GetStaticProps } from 'next';
 import useLocationData from '@/Hooks/location';
 import Head from 'next/head';
 
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
 export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSection, successSection, aboutUsSection, accountGrowthSection, collabrationSuccessSection, collabrationSuccessSectionTitle, successSteps, footer }: { tariffSectionData: any, tariffs: any, faqHomeSection: any, successSection: any, footerEng: any, aboutUsSection: any, accountGrowthSection: any, collabrationSuccessSection: any, collabrationSuccessSectionTitle: any, successSteps: any, footer: any }) {
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   const [selectedTab, setSelectedTab] = useState<number>(0)
   const { locationData, error, loading } = useLocationData();
   const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+  function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
 
   const cumulativeOffset = (element: any) => {
     let top = 0;
@@ -104,465 +147,545 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
   };
 
   return (
-    <main
-      className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
-      onMouseMoveCapture={moveFunc}
-    >
-      <Head>
-        <title>Vira Funding</title>
-      </Head>
-      {loading ? '' :
-        <PrimeReactProvider>
-          <Header active={0} isLocationInIran={isLocationInIran} />
-          <div className='h-screen'>
-            <div className='relative sm:mt-0 block
+    <>
+      <main
+        className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
+        onMouseMoveCapture={moveFunc}
+      >
+        <Head>
+          <title>Vira Funding</title>
+        </Head>
+        {loading ? '' :
+          <PrimeReactProvider>
+            <Header active={0} isLocationInIran={isLocationInIran} />
+            <div className='h-screen'>
+              <div className='relative sm:mt-0 block
                     absolute left-1/2 top-1/3 
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
-            >
-              <Image src={charts} alt='charts' className='md:block hidden w-screen animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow' unoptimized />
+              >
+                <Image src={charts} alt='charts' className='md:block hidden w-screen animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow' unoptimized />
 
 
-              <Image src={HeroImage} alt='heroImage'
-                unoptimized
-                ref={imageRef}
-                className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
-
-              <div className={`${myFont.className} md:hidden block mt-96`}>
-                <h2 className='text-white text-7xl text-center'>
-                  {isLocationInIran ? 'تا' : 'Up to'}
-
-                </h2>
                 <Image src={HeroImage} alt='heroImage'
                   unoptimized
-                  className='w-10/12 my-10 mx-auto' />
+                  ref={imageRef}
+                  className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
 
-                <p className='text-white text-7xl text-center'>
-                  {isLocationInIran ? 'درصد' : 'percent'}
-                </p>
-                <p className='text-white text-7xl text-center mt-10'>
-                  {isLocationInIran ? 'پرداخت سود' : 'payment'}
+                <div className={`${myFont.className} md:hidden block mt-96`}>
+                  <h2 className='text-white text-7xl text-center'>
+                    {isLocationInIran ? 'تا' : 'Up to'}
 
-                </p>
+                  </h2>
+                  <Image src={HeroImage} alt='heroImage'
+                    unoptimized
+                    className='w-10/12 my-10 mx-auto' />
 
-                <p className={`${myFontIran.className} text-main-orange text-center text-xl mt-10`}>
-                  {isLocationInIran ? 'بدون محدودیت زمانی' : 'No time limit'}
+                  <p className='text-white text-7xl text-center'>
+                    {isLocationInIran ? 'درصد' : 'percent'}
+                  </p>
+                  <p className='text-white text-7xl text-center mt-10'>
+                    {isLocationInIran ? 'پرداخت سود' : 'payment'}
 
-                </p>
+                  </p>
+
+                  <p className={`${myFontIran.className} text-main-orange text-center text-xl mt-10`}>
+                    {isLocationInIran ? 'بدون محدودیت زمانی' : 'No time limit'}
+
+                  </p>
+
+                  <Link href={'/tariff'}>
+                    <Image src={isLocationInIran ? tariffButton : seeChallenges} alt='button' className='mx-auto mt-6' />
+                  </Link>
+                </div>
+
 
                 <Link href={'/tariff'}>
-                  <Image src={isLocationInIran ? tariffButton : seeChallenges} alt='button' className='mx-auto mt-6' />
+                  <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
+                    className='absolute left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
+                </Link>
+              </div>
+              <ArrowComponent />
+
+              <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
+                data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
+                style={{ position: 'relative', zIndex: '5' }}
+              >
+                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
+                  <span className='text-3xl text-main-orange'> </span>
+                  {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].normalTitle : tariffSectionData.engTariffSection[0].title[0].normalTitle}
+                  <span style={{ color: '#F68D2E' }}>
+                    {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].coloredTitle : tariffSectionData.engTariffSection[0].title[0].coloredTitle} </span>
+                </p>
+                <p className={`${myFontIran.className} ${isLocationInIran && 'rtl'} text-white lg:text-start text-center lg:px-0 px-8`}>
+                  {
+                    isLocationInIran ?
+                      tariffSectionData.tariffSection[0].description
+                      :
+                      tariffSectionData.engTariffSection[0].description
+                  }
+                </p>
+                <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
+                  {isLocationInIran ? ' بررسی تعرفه ها' : 'Check challenges'}
                 </Link>
               </div>
 
-
-              <Link href={'/tariff'}>
-                <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
-                  className='absolute left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
-              </Link>
-            </div>
-            <ArrowComponent />
-
-            <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
-              data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
-              style={{ position: 'relative', zIndex: '5' }}
-            >
-              <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
-                <span className='text-3xl text-main-orange'> </span>
-                {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].normalTitle : tariffSectionData.engTariffSection[0].title[0].normalTitle}
-                <span style={{ color: '#F68D2E' }}>
-                  {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].coloredTitle : tariffSectionData.engTariffSection[0].title[0].coloredTitle} </span>
-              </p>
-              <p className={`${myFontIran.className} ${isLocationInIran && 'rtl'} text-white lg:text-start text-center lg:px-0 px-8`}>
-                {
-                  isLocationInIran ?
-                    tariffSectionData.tariffSection[0].description
-                    :
-                    tariffSectionData.engTariffSection[0].description
-                }
-              </p>
-              <Link href={'/tariff'} className={`${myFontIran.className} text-main-orange text-center`} style={{ textDecoration: 'underline' }}>
-                {isLocationInIran ? ' بررسی تعرفه ها' : 'Check challenges'}
-              </Link>
-            </div>
-
-            <div className='relative lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
-              <div className="card"
-                style={{ margin: '0 auto', marginTop: '50px' }}
-              >
-                <TabView
-                  activeIndex={selectedTab}
-                  onTabChange={(e) => {
-                    setSelectedTab(e.index)
-                  }}
+              <div className='relative lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
+                <div className="card"
+                  style={{ margin: '0 auto', marginTop: '50px' }}
                 >
-                  <TabPanel header="Classic">
-                    <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
-                  </TabPanel>
-                  <TabPanel header="One-Step">
-                    <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
-                  </TabPanel>
-                  <TabPanel header="Rapid">
-                    <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
-                  </TabPanel>
-                </TabView>
-                <div className='text-white text-center mt-6 text-3xl'>
-                  {selectedTab === 0 ? `${tariffs?.tariffs[0]?.range}` : selectedTab === 1 ? `${tariffs?.tariffs[1]?.range}` : `${tariffs?.tariffs[2]?.range}`}
+                  <TabView
+                    activeIndex={selectedTab}
+                    onTabChange={(e) => {
+                      setSelectedTab(e.index)
+                    }}
+                  >
+                    <TabPanel header="Classic">
+                      <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                    </TabPanel>
+                    <TabPanel header="One-Step">
+                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
+                    </TabPanel>
+                    <TabPanel header="Rapid">
+                      <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
+                    </TabPanel>
+                  </TabView>
+
+
+                  <div className='text-white text-center mt-6 text-3xl'>
+                    {selectedTab === 0 ? `${tariffs?.tariffs[0]?.range}` : selectedTab === 1 ? `${tariffs?.tariffs[1]?.range}` : `${tariffs?.tariffs[2]?.range}`}
+                  </div>
+                </div>
+                <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
+              </div>
+              <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
+                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
+                >
+                  <span className='text-3xl text-main-orange'> </span>
+                  {isLocationInIran ? (
+                    <>
+                      نحوه دریافت سرمایه از{' '}
+                      <span style={{ color: '#F68D2E' }}>
+                        ویرا فاندینگ
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      How to receive capital from{' '}
+                      <span style={{ color: '#F68D2E' }}>
+                        Vira Funding
+                      </span>
+                    </>
+                  )}
+
+                </p>
+
+                <div className='relative'>
+                  <Image src={isLocationInIran ? rulesPic : rulesPicEng} alt='rulesPic' unoptimized className='mx-auto mt-6'
+                    data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
+                  />
+                  <Image src={faqBull} alt='rulesPic' unoptimized
+                    className='mx-auto w-56 md:w-fit absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
+                  />
+                </div>
+                <Link
+                  href={'/rules'}
+                  className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
+                  style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}
+                >
+                  {isLocationInIran ? 'مشاهده تمام قوانین' : 'View All Rules'}
+                </Link>
+
+              </div>
+
+              <TradeChallengesSection data={faqHomeSection.homepage} isLocationIran={isLocationInIran} />
+
+              {/* <Box sx={{ width: '100%' , background : 'white' }}>
+                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                      <Tab label="Item One" {...a11yProps(0)} />
+                      <Tab label="Item Two" {...a11yProps(1)} />
+                      <Tab label="Item Three" {...a11yProps(2)} />
+                    </Tabs>
+                  </Box>
+                  <CustomTabPanel value={value} index={0}>
+                    Item One
+                  </CustomTabPanel>
+                  <CustomTabPanel value={value} index={1}>
+                    Item Two
+                  </CustomTabPanel>
+                  <CustomTabPanel value={value} index={2}>
+                    Item Three
+                  </CustomTabPanel>
+                </Box> */}
+
+              <div className='lg:py-32'>
+                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
+                  data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
+                >
+                  <span className='text-3xl text-main-orange'> </span>
+                  {isLocationInIran ? successSection?.homepage.successSection[0].title[0].normaltitle :
+                    successSection?.homepage.engSuccessSection[0].title[0].normaltitle
+                  }
+                  <span style={{ color: '#F68D2E' }}> {
+                    isLocationInIran ?
+                      successSection?.homepage.successSection[0].title[0].coloredtitle
+                      :
+                      successSection?.homepage.engSuccessSection[0].title[0].coloredtitle
+                  }</span>
+                </p>
+                <div className='flex flex-col items-center sm:flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
+                  <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
+                  <div className='flex flex-col items-center justify-center gap-10'
+                    data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                    data-aos-delay="800"
+                  >
+                    <p className={`${myFontIran.className} text-white text-xl text-center ${isLocationInIran && 'rtl'}
+              sm:px-0 px-6 leading-relaxed`}>
+                      {
+                        isLocationInIran ?
+                          successSection?.homepage.successSection[0].description
+                          :
+                          successSection?.homepage.engSuccessSection[0].description
+                      }
+                    </p>
+                    <Link href={'/register'}>
+                      <Image src={isLocationInIran ? button : buttonEng} alt='register' className='cursor-pointer' />
+                    </Link>
+                  </div>
+                  <Image src={greenBull} alt='greenBull' className='lg:w-fit w-36'
+                    data-aos-duration="1000" data-aos-once={true} data-aos="fade-right"
+                  />
                 </div>
               </div>
-              <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
-            </div>
-            <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
-              <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
-                data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
-              >
-                <span className='text-3xl text-main-orange'> </span>
-                {isLocationInIran ? (
-                  <>
-                    نحوه دریافت سرمایه از{' '}
-                    <span style={{ color: '#F68D2E' }}>
-                      ویرا فاندینگ
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    How to receive capital from{' '}
-                    <span style={{ color: '#F68D2E' }}>
-                      Vira Funding
-                    </span>
-                  </>
-                )}
 
-              </p>
+              <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
 
-              <div className='relative'>
-                <Image src={isLocationInIran ? rulesPic : rulesPicEng} alt='rulesPic' unoptimized className='mx-auto mt-6'
-                  data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
-                />
-                <Image src={faqBull} alt='rulesPic' unoptimized
-                  className='mx-auto w-56 md:w-fit absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
-                />
-              </div>
-              <Link
-                href={'/rules'}
-                className={`${myFontIran.className} sm:block hidden text-main-orange mt-20 text-center`}
-                style={{ textDecoration: 'underline', transform: 'translateY(-50px)' }}
-              >
-                {isLocationInIran ? 'مشاهده تمام قوانین' : 'View All Rules'}
-              </Link>
+              <div className='my-20 sm:my-56'>
+                <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
+                <div className='relative lg:p-0 pt-24'>
+                  <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl relative leading-tight`}
+                    data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                    style={{ zIndex: '5' }}
+                  >
+                    <span className='text-3xl text-main-orange text-center '>
+                    </span>{
+                      isLocationInIran ?
+                        accountGrowthSection?.homepage.accountGrowth[0].normalTitle
+                        :
+                        accountGrowthSection?.homepage.accountGrowthCop[0].normalTitle
+                    } <span style={{ color: '#F68D2E' }}>
+                      {
+                        isLocationInIran ?
+                          accountGrowthSection?.homepage.accountGrowth[0].coloredTitle
+                          :
+                          accountGrowthSection?.homepage.accountGrowthCop[0].coloredTitle
 
-            </div>
-
-            <TradeChallengesSection data={faqHomeSection.homepage} isLocationIran={isLocationInIran} />
-
-            <div className='lg:py-32'>
-              <p className={`${myFont.className} text-white text-4xl  sm:text-5xl text-center leading-relaxed`}
-                data-aos-duration="1000" data-aos-once={true} data-aos="fade-up"
-              >
-                <span className='text-3xl text-main-orange'> </span>
-                {isLocationInIran ? successSection?.homepage.successSection[0].title[0].normaltitle :
-                  successSection?.homepage.engSuccessSection[0].title[0].normaltitle
-                }
-                <span style={{ color: '#F68D2E' }}> {
-                  isLocationInIran ?
-                    successSection?.homepage.successSection[0].title[0].coloredtitle
-                    :
-                    successSection?.homepage.engSuccessSection[0].title[0].coloredtitle
-                }</span>
-              </p>
-              <div className='flex flex-col items-center sm:flex-row-reverse py-6 gap-4 lg:gap-12 justify-center'>
-                <Image src={redBull} alt='redBull' data-aos-duration="2000" data-aos-once={true} data-aos="fade-left" className='lg:w-fit w-36' />
-                <div className='flex flex-col items-center justify-center gap-10'
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                  data-aos-delay="800"
-                >
-                  <p className={`${myFontIran.className} text-white text-xl text-center ${isLocationInIran && 'rtl'}
-              sm:px-0 px-6 leading-relaxed`}>
+                      } </span>
+                  </p>
+                  <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
                     {
                       isLocationInIran ?
-                        successSection?.homepage.successSection[0].description
+                        accountGrowthSection?.homepage.accountGrowth[0].description
                         :
-                        successSection?.homepage.engSuccessSection[0].description
+                        accountGrowthSection?.homepage.accountGrowthCop[0].description
                     }
                   </p>
-                  <Link href={'/register'}>
-                    <Image src={isLocationInIran ? button : buttonEng} alt='register' className='cursor-pointer' />
-                  </Link>
+                  <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
                 </div>
-                <Image src={greenBull} alt='greenBull' className='lg:w-fit w-36'
-                  data-aos-duration="1000" data-aos-once={true} data-aos="fade-right"
-                />
               </div>
-            </div>
 
-            <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
-
-            <div className='my-20 sm:my-56'>
-              <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
-              <div className='relative lg:p-0 pt-24'>
-                <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl relative leading-tight`}
+              <div className='py-32 cooroprate__Benefits sm:mx-12 mx-6'>
+                <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
                   data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                  style={{ zIndex: '5' }}
                 >
-                  <span className='text-3xl text-main-orange text-center '>
-                  </span>{
+                  <span className='text-3xl text-main-orange text-center'>
+                  </span> {
                     isLocationInIran ?
-                      accountGrowthSection?.homepage.accountGrowth[0].normalTitle
+                      collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle
                       :
-                      accountGrowthSection?.homepage.accountGrowthCop[0].normalTitle
+                      collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].normalTitle
+                  }  <span style={{ color: '#F68D2E' }}>
+                    {
+                      isLocationInIran ?
+                        collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle
+                        :
+                        collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].coloredTitle
+                    } </span>
+                </p>
+                <div className='flex flex-col gap-10 mt-6 relative'>
+                  <BenefitsComponent
+                    isLocationIran={isLocationInIran}
+                    title={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[0].normalTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].normalTitle
+                    }
+                    highlightTitle={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[0].coloredTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].coloredTitle
+                    }
+                    description={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[0].description
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].description
+                    }
+                    image={benefitsPic}
+                    position='normal'
+                  />
+                  <BenefitsComponent
+                    isLocationIran={isLocationInIran}
+
+                    title={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[1].normalTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].normalTitle
+                    }
+                    highlightTitle={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[1].coloredTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].coloredTitle
+                    }
+                    description={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[1].description
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].description
+                    }
+                    image={benefitsPic2}
+                    position=''
+                  />
+                  <BenefitsComponent
+                    isLocationIran={isLocationInIran}
+                    title={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[2].normalTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].normalTitle
+                    }
+                    highlightTitle={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[2].coloredTitle
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].coloredTitle
+                    }
+                    description={
+                      isLocationInIran ?
+                        collabrationSuccessSection?.homepage.collabrationSuccessSection[2].description
+                        :
+                        collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].description
+                    }
+                    image={benefitsPic3}
+                    position='normal'
+                  />
+
+                  <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1] lg:block hidden' />
+                </div>
+              </div>
+
+
+              <div className='successSteps p-6 sm:p-12 lg:py-56'>
+                <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
+                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                >
+                  <span className='text-3xl text-main-orange text-center'>
+                  </span> {
+                    isLocationInIran ?
+                      successSteps.homepage.successSteps[0].title[0].normalTitle :
+                      successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
                   } <span style={{ color: '#F68D2E' }}>
                     {
                       isLocationInIran ?
-                        accountGrowthSection?.homepage.accountGrowth[0].coloredTitle
+                        successSteps.homepage.successSteps[0].title[0].coloredTitle
                         :
-                        accountGrowthSection?.homepage.accountGrowthCop[0].coloredTitle
-
+                        successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
                     } </span>
                 </p>
-                <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
-                  {
-                    isLocationInIran ?
-                      accountGrowthSection?.homepage.accountGrowth[0].description
-                      :
-                      accountGrowthSection?.homepage.accountGrowthCop[0].description
-                  }
-                </p>
-                <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
+                <div className='pt-12'>
+                  <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
+                </div>
               </div>
-            </div>
 
-            <div className='py-32 cooroprate__Benefits sm:mx-12 mx-6'>
-              <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
-                data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-              >
-                <span className='text-3xl text-main-orange text-center'>
-                </span> {
-                  isLocationInIran ?
-                    collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle
-                    :
-                    collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].normalTitle
-                }  <span style={{ color: '#F68D2E' }}>
-                  {
-                    isLocationInIran ?
-                      collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle
-                      :
-                      collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].coloredTitle
-                  } </span>
-              </p>
-              <div className='flex flex-col gap-10 mt-6 relative'>
-                <BenefitsComponent
-                  isLocationIran={isLocationInIran}
-                  title={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[0].normalTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].normalTitle
-                  }
-                  highlightTitle={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[0].coloredTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].coloredTitle
-                  }
-                  description={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[0].description
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[0].description
-                  }
-                  image={benefitsPic}
-                  position='normal'
-                />
-                <BenefitsComponent
-                  isLocationIran={isLocationInIran}
-
-                  title={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[1].normalTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].normalTitle
-                  }
-                  highlightTitle={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[1].coloredTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].coloredTitle
-                  }
-                  description={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[1].description
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[1].description
-                  }
-                  image={benefitsPic2}
-                  position=''
-                />
-                <BenefitsComponent
-                  isLocationIran={isLocationInIran}
-                  title={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[2].normalTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].normalTitle
-                  }
-                  highlightTitle={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[2].coloredTitle
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].coloredTitle
-                  }
-                  description={
-                    isLocationInIran ?
-                      collabrationSuccessSection?.homepage.collabrationSuccessSection[2].description
-                      :
-                      collabrationSuccessSection?.homepage.engCollabrationSuccessSection[2].description
-                  }
-                  image={benefitsPic3}
-                  position='normal'
-                />
-
-                <Image src={line} alt='line' className='absolute left-1/2 top-[57%] -translate-y-1/2 -translate-x-1/2 z-[-1] lg:block hidden' />
-              </div>
-            </div>
+              <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
 
-            <div className='successSteps p-6 sm:p-12 lg:py-56'>
-              <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
-                data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-              >
-                <span className='text-3xl text-main-orange text-center'>
-                </span> {
-                  isLocationInIran ?
-                    successSteps.homepage.successSteps[0].title[0].normalTitle :
-                    successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
-                } <span style={{ color: '#F68D2E' }}>
-                  {
-                    isLocationInIran ?
-                      successSteps.homepage.successSteps[0].title[0].coloredTitle
-                      :
-                      successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
-                  } </span>
-              </p>
-              <div className='pt-12'>
-                <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
-              </div>
-            </div>
-
-            <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
+            </div >
+          </PrimeReactProvider >
+        }
 
 
-          </div >
-        </PrimeReactProvider >
-      }
 
+
+      </main >
 
       <style>
         {
           `
-    .p-toast-bottom-right {
-      bottom: auto;
-    }
+.p-toast-bottom-right {
+bottom: auto;
+}
 
-    .p-component {
-      display: flex;
-      flex-direction: column-reverse;
-    }
+.p-component {
+display: flex;
+flex-direction: column-reverse;
+}
 
-    .p-tabview .p-tabview-panels {
-      max-height: 850px;
-    }
+.p-tabview .p-tabview-panels {
+max-height: 850px;
+}
 
-    @media (min-width: 1024px) {
-      .p-tabview .p-tabview-panels {
-        max-height: 900px;
-      }
-    }
+@media (min-width: 1024px) {
+.p-tabview .p-tabview-panels {
+max-height: 900px;
+}
+}
 
-    @media (max-width: 640px) {
-      .p-tabview .p-tabview-panels {
-        max-height: 700px;
-      }
-    }
+@media (max-width: 640px) {
+.p-tabview .p-tabview-panels {
+max-height: 700px;
+}
+}
 
-    .p-tabview-nav-content {
-      width: 50%;
-      margin: 0 auto;
-      z-index: 1;
-    }
+.p-tabview-nav-content {
+width: 50%;
+margin: 0 auto;
+z-index: 1;
+}
 
-    @media (min-width: 1024px) {
-      .p-tabview-nav-content {
-        width: 35%;
-      }
-    }
+@media (min-width: 1024px) {
+.p-tabview-nav-content {
+width: 35%;
+}
+}
 
-    @media (max-width: 640px) {
-      .p-tabview-nav-content {
-        width: 90%;
-      }
-    }
+@media (max-width: 640px) {
+.p-tabview-nav-content {
+width: 90%;
+}
+}
 
-    .p-accordion .p-accordion-header .p-accordion-header-link {
-      border: none;
-      background: #1D1D1D;
-      color: #fff;
-      padding: 30px 20px;
-      font-family: '__myFont_0ebf61';
-      font-weight: 400;
-    }
+.p-accordion .p-accordion-header .p-accordion-header-link {
+border: none;
+background: #1D1D1D;
+color: #fff;
+padding: 30px 20px;
+font-family: '__myFont_0ebf61';
+font-weight: 400;
+}
 
-    .p-accordion-header-text {
-      text-align: right;
-      line-height: 1.8;
-    }
+.p-accordion-header-text {
+text-align: right;
+line-height: 1.8;
+}
 
-    .p-accordion-header {
-      color: white;
-    }
+.p-accordion-header {
+color: white;
+}
 
-    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
-      background: #1D1D1D;
-      color: white;
-    }
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+background: #1D1D1D;
+color: white;
+}
 
-    .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-      border: none;
-      background: #1D1D1D;
-      color: white;
-    }
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+border: none;
+background: #1D1D1D;
+color: white;
+}
 
-    .p-accordion .p-accordion-content {
-      background: #1D1D1D;
-      color: white;
-      border: none;
-    }
+.p-accordion .p-accordion-content {
+background: #1D1D1D;
+color: white;
+border: none;
+}
 
-    .p-checkbox .p-checkbox-box {
-      background-color: transparent;
-    }
+.p-checkbox .p-checkbox-box {
+background-color: transparent;
+}
 
-    .p-accordion-header-link {
-      justify-content: space-between;
-    }
+.p-accordion-header-link {
+justify-content: space-between;
+}
 
-    .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
-      background-color: #1D1D1D;
-      border: none;
-      color: white;
-    }
+.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+background-color: #1D1D1D;
+border: none;
+color: white;
+}
 
-    .p-accordion .p-accordion-header .p-accordion-header-link {
-      height: 70px;
-    }
+.p-accordion .p-accordion-header .p-accordion-header-link {
+height: 70px;
+}
 
-    .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-      color: #F68D2E;
-    }
-    `
+.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+color: #F68D2E;
+}
+.p-toast-bottom-right {
+z-index: 120000000000000000000 !important;
+}
+.p-tabview .p-tabview-nav {
+background: transparent;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+background: transparent;
+color: #F68D2E;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+background: transparent;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+font-size: 22px;
+}
+
+.p-tabview-title {
+font-size: 22px;
+}
+
+.p-tabview .p-tabview-nav li:hover {
+background: transparent
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+color: white
+}
+
+.p-tabview .p-tabview-panels {
+background: transparent
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+box-shadow: none;
+}
+
+.p-tabview .p-tabview-nav {
+border-bottom: 1px solid #F68D2E;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+background-color: #F68D2E
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+border: none
+}
+
+.p-tabview-nav {
+justify-content: space-between;
+}
+`
         }
       </style>
-
-    </main >
+    </>
   )
 }
 
