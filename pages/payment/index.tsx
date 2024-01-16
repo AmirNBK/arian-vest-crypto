@@ -7,6 +7,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import axios from 'axios';
 import "primereact/resources/primereact.min.css";
 import { useQuery, gql } from '@apollo/client';
+import { useRouter } from 'next/router';
+import login from '../../assets/icons/loginPayment.svg'
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
@@ -15,6 +17,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
 import Footer from '@/components/Footer/Footer';
+
 import useLocationData from '@/Hooks/location';
 import countries from '../../assets/countries.json'
 import Head from 'next/head';
@@ -86,6 +89,8 @@ export default function Payment() {
     const [rules1, setRules1] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [rules2, setRules2] = useState<boolean>(false);
+    const router = useRouter();
+
 
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
@@ -117,6 +122,47 @@ export default function Payment() {
         }));
     };
 
+    // const handleBuyClick = () => {
+    //     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
+
+    //     if (
+    //         formState &&
+    //         selectedTradingPlatform &&
+    //         selectedPlatform &&
+    //         formState.email &&
+    //         isValidEmail &&
+    //         formState.firstName &&
+    //         formState.lastName &&
+    //         formState.phone &&
+    //         formState.streetAddress &&
+    //         formState.province &&
+    //         formState.city &&
+    //         formState.postalCode &&
+    //         rules1 &&
+    //         rules2
+    //     ) {
+    //         handleCreateInvoice()
+    //     } else {
+    //         let errorMessage = isLocationInIran
+    //             ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد'
+    //             : 'Please fill all the inputs correctly';
+
+    //         if (!isValidEmail) {
+    //             errorMessage = isLocationInIran
+    //                 ? 'لطفا آدرس ايميل معتبر وارد نماييد'
+    //                 : 'Please enter a valid email address';
+    //         }
+
+
+    //         toastBottomRight.current?.show({
+    //             severity: 'error',
+    //             summary: 'Error',
+    //             detail: errorMessage,
+    //             life: 3000,
+    //         });
+    //     }
+    // };
+
     const handleBuyClick = () => {
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
 
@@ -136,18 +182,60 @@ export default function Payment() {
             rules1 &&
             rules2
         ) {
-            handleCreateInvoice()
+            handleCreateInvoice();
         } else {
-            let errorMessage = isLocationInIran
-                ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد'
-                : 'Please fill all the inputs correctly';
+            let errorMessage;
 
-            if (!isValidEmail) {
+            if (!formState.email || !isValidEmail) {
                 errorMessage = isLocationInIran
                     ? 'لطفا آدرس ايميل معتبر وارد نماييد'
                     : 'Please enter a valid email address';
+            } else if (!formState.firstName) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا نام خود را وارد نماييد'
+                    : 'Please enter your first name';
+            } else if (!formState.lastName) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا نام خانوادگي خود را وارد نماييد'
+                    : 'Please enter your last name';
+            } else if (!formState.phone) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا شماره تلفن خود را وارد نماييد'
+                    : 'Please enter your phone number';
+            } else if (!formState.streetAddress) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا آدرس خود را وارد نماييد'
+                    : 'Please enter your street address';
+            } else if (!formState.province) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا استان خود را انتخاب نماييد'
+                    : 'Please select your province';
+            } else if (!formState.city) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا شهر خود را وارد نماييد'
+                    : 'Please enter your city';
+            } else if (!formState.postalCode) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا کدپستی خود را وارد نماييد'
+                    : 'Please enter your postal code';
+            } else if (!rules1) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا با شرایط 1 موافقت کنید'
+                    : 'Please agree to rule 1';
+            } else if (!rules2) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا با شرایط 2 موافقت کنید'
+                    : 'Please agree to rule 2';
             }
-
+            else if (!selectedTradingPlatform) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا پلتفرم معاملاتی خود را انتخاب نمایید'
+                    : 'Please select your trading platform';
+            } else if (!selectedPlatform) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا پلتفرم معاملاتی مورد نظر خود را انتخاب نمایید'
+                    : 'Please select your specific platform';
+            }
 
             toastBottomRight.current?.show({
                 severity: 'error',
@@ -157,6 +245,7 @@ export default function Payment() {
             });
         }
     };
+
 
     const handleCreateInvoice = async () => {
         try {
@@ -416,16 +505,16 @@ export default function Payment() {
                     :
                     <>
                         <Header active={''} isLocationInIran={isLocationInIran} />
-                        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md'>
+                        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
+                            <Image src={login} alt='login' className='w-16' />
                             <p className="mt-6 text-center">
                                 برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید
                             </p>
-
                             <div className='flex flex-row justify-center mt-6 gap-6'>
                                 <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
-                                // onClick={() => {
-                                //     router.push('/register')
-                                // }}
+                                    onClick={() => {
+                                        router.push('/register')
+                                    }}
                                 >
                                     ثبت نام / عضویت
                                 </button>
