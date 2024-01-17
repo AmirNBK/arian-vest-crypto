@@ -56,6 +56,8 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
         password: "",
     });
 
+    const [forgotPass, setForgotPass] = useState<boolean>(false)
+
     const handleInputChange = (fieldName: string, value: string) => {
         setRegistrationData((prevData) => ({
             ...prevData,
@@ -332,36 +334,60 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                         <Image src={loginIcon} alt='login' />
                                     </div>
                                     <form onSubmit={handleLogin} className='mt-12 flex flex-col gap-10'>
-                                        <RegisterInput
-                                            isLocationIran={isLocationInIran}
-                                            placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
-                                            value={loginData.username}
-                                            onChange={(value) => handleInputChangeLogin("username", value)}
-                                            type='text'
-                                        />
-                                        <RegisterInput
-                                            isLocationIran={isLocationInIran}
-                                            placeholder={isLocationInIran ? 'رمز عبور' : 'Password'}
-                                            value={loginData.password}
-                                            onChange={(value) => handleInputChangeLogin("password", value)}
-                                            type='password'
-                                        />
-                                        {/* <p style={{ color: '#00A3FF' }} className={`${myFontIran.className} text-base ${isLocationInIran && 'text-right'}`}>
-                                            {isLocationInIran ? 'رمز عبور خود را فراموش کرده اید؟' : 'Forgot your password?'}
-                                        </p> */}
-                                        <div className={`flex flex-row items-center gap-2 ${isLocationInIran && 'text-right justify-end'}`}>
-                                            <p className={`${myFontIran.className} text-white text-base`}>
-                                                {isLocationInIran ? 'مرا به خاطر بسپار' : 'Remember me'}
+                                        {
+                                            !forgotPass ?
+                                                <>
+                                                    <RegisterInput
+                                                        isLocationIran={isLocationInIran}
+                                                        placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
+                                                        value={loginData.username}
+                                                        onChange={(value) => handleInputChangeLogin("username", value)}
+                                                        type='text'
+                                                    />
+                                                    <RegisterInput
+                                                        isLocationIran={isLocationInIran}
+                                                        placeholder={isLocationInIran ? 'رمز عبور' : 'Password'}
+                                                        value={loginData.password}
+                                                        onChange={(value) => handleInputChangeLogin("password", value)}
+                                                        type='password'
+                                                    />
+                                                </>
+                                                :
+                                                <RegisterInput
+                                                    isLocationIran={isLocationInIran}
+                                                    placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
+                                                    value={loginData.username}
+                                                    onChange={(value) => handleInputChangeLogin("username", value)}
+                                                    type='text'
+                                                />
+                                        }
+                                        {
+                                            !forgotPass &&
+                                            <p style={{ color: '#00A3FF' }}
+                                                onClick={() => {
+                                                    setForgotPass(true)
+                                                }}
+                                                className={`${myFontIran.className} cursor-pointer text-base ${isLocationInIran && 'text-right'}`}>
+                                                {isLocationInIran ? 'رمز عبور خود را فراموش کرده اید؟' : 'Forgot your password?'}
                                             </p>
-                                            <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
-                                        </div>
-                                        <div className={` ${myFontIran.className} ${isLocationInIran && 'text-right justify-end'} text-blue-600 cursor-pointer`}>
-                                            {isLocationInIran ? 'فراموشی رمز عبور' : 'Forgot password'}
-                                        </div>
+                                        }
+                                        {!forgotPass &&
+                                            <div className={`flex flex-row items-center gap-2 ${isLocationInIran && 'text-right justify-end'}`}>
+                                                <p className={`${myFontIran.className} text-white text-base`}>
+                                                    {isLocationInIran ? 'مرا به خاطر بسپار' : 'Remember me'}
+                                                </p>
+                                                <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
+                                            </div>
+                                        }
+
+
                                         {loginLoading ?
                                             <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={100} width={60} />
                                             :
-                                            <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
+                                            forgotPass ?
+                                                <RegisterButton text={isLocationInIran ? 'ارسال کد' : 'Send email'} />
+                                                :
+                                                <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
 
                                         }
                                     </form>
