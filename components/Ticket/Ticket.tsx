@@ -102,6 +102,13 @@ const Ticket = (props: {
                 setLoading(false)
             })
         }
+        else {
+            const timeoutId = setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+
+            return () => clearTimeout(timeoutId);
+        }
     }, [refreshTickets, selectedAccount])
 
     useEffect(() => {
