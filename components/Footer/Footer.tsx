@@ -182,7 +182,8 @@ const Footer = (props: {
                             transition: 'all 0.3s ease-in-out',
                         }}
                     >
-                        <Image src={isHovered ? bullRed : bull} alt='bull' className='w-72' />
+                        <Image src={bull} alt='bull' className={`w-72 ${isHovered ? 'hidden' : 'block'}`} />
+                        <Image src={bullRed} alt='bull' className={`w-72 ${isHovered ? 'block' : 'hidden'}`} />
                     </div>
 
                     <div className={`${myFont.className} Footer__leftside absolute flex flex-col items-end w-4/12 gap-6 translate-y-2/4`}
