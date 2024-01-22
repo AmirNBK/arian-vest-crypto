@@ -309,9 +309,7 @@ const Receipt = (props: {
 
       <style>
         {`
-                $blue : #3ba4ff;
-                $altblue: #66a5ff;
-                $grey : #6e7882;
+                $grey : black;
                 
                 @mixin reset-list() {
                   text-indent: 0;
@@ -325,7 +323,7 @@ const Receipt = (props: {
                 }
                 
                 a {
-                  color: $blue;
+                  color: #3ba4ff;
                   text-decoration: none;
                 }
                 
@@ -484,13 +482,13 @@ const Receipt = (props: {
                   
                   p {
                     font-size: 13px;
-                    color: $grey;
+                    color: black;
                     line-height: 1.5;
                   }
                 }
                 
                 .overview-body {
-                    color: $grey;
+                    color: black;
                     
                     span {
                       color: #000;
@@ -516,7 +514,7 @@ const Receipt = (props: {
                   font-weight: 500;
                   
                   a {
-                    color: $blue;
+                    color: #3ba4ff;
                     text-decoration: none;
                   }
                 }
@@ -539,7 +537,7 @@ const Receipt = (props: {
                   .invoice-id {
                     float:right;
                     font-size: 13px;
-                    color: $grey;
+                    color: black;
                     font-weight: 600;
                   }
                 }
