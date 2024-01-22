@@ -211,8 +211,6 @@ export const getStaticProps: GetStaticProps = async () => {
     const data = await getQueryTariffs();
     const titles = await getQueryTariffTitles();
 
-
-
     return {
         props: {
             footer,
