@@ -1,20 +1,17 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local';
-import team from '../../assets/icons/team.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import { Dialog } from 'primereact/dialog';
 import { Sidebar } from 'primereact/sidebar';
 import support from '../../assets/icons/support.svg'
-import { getQueryAboutUs, getQueryFooter } from '@/lib/service';
 import { useEffect, useState } from 'react';
 import menu from '../../assets/icons/menu.svg'
 import dashboard from '../../assets/icons/dashboard.svg'
@@ -45,7 +42,7 @@ import useLocationData from '@/Hooks/location';
 import { getPurchasedAccounts } from '@/lib/apiConfig';
 
 
-export default function SingleBlog({ footer, data }: { footer: any, data: any }) {
+export default function SingleBlog() {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
@@ -282,9 +279,6 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
                             <hr className='w-8 h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
                         </div>
                     </div>
-
-
-
                 </PrimeReactProvider>
             }
 
@@ -360,18 +354,3 @@ export default function SingleBlog({ footer, data }: { footer: any, data: any })
         </main>
     )
 }
-
-
-export const getStaticProps: GetStaticProps = async () => {
-
-    const footer = await getQueryFooter();
-    const data = await getQueryAboutUs();
-
-    return {
-        props: {
-            footer,
-            data
-        },
-        revalidate: 10,
-    };
-};

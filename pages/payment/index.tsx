@@ -4,7 +4,6 @@ import { Toast, ToastMessage } from 'primereact/toast';
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import axios from 'axios';
 import "primereact/resources/primereact.min.css";
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
@@ -68,8 +67,6 @@ query engFooter {
 
 
 export default function Payment() {
-    const nationality = ['ایران', 'آمریکا', 'عربستان']
-    const socialMedia = ['instagram', 'whatsapp', 'telegram']
     const tariff = ['Classic', 'One-step', 'Rapid']
     const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
     const { data: footerData } = useQuery(GET_FOOTER);
@@ -121,47 +118,6 @@ export default function Payment() {
             [fieldName]: value,
         }));
     };
-
-    // const handleBuyClick = () => {
-    //     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
-
-    //     if (
-    //         formState &&
-    //         selectedTradingPlatform &&
-    //         selectedPlatform &&
-    //         formState.email &&
-    //         isValidEmail &&
-    //         formState.firstName &&
-    //         formState.lastName &&
-    //         formState.phone &&
-    //         formState.streetAddress &&
-    //         formState.province &&
-    //         formState.city &&
-    //         formState.postalCode &&
-    //         rules1 &&
-    //         rules2
-    //     ) {
-    //         handleCreateInvoice()
-    //     } else {
-    //         let errorMessage = isLocationInIran
-    //             ? 'لطفا تمامي اطلاعات را به درستي وارد نماييد'
-    //             : 'Please fill all the inputs correctly';
-
-    //         if (!isValidEmail) {
-    //             errorMessage = isLocationInIran
-    //                 ? 'لطفا آدرس ايميل معتبر وارد نماييد'
-    //                 : 'Please enter a valid email address';
-    //         }
-
-
-    //         toastBottomRight.current?.show({
-    //             severity: 'error',
-    //             summary: 'Error',
-    //             detail: errorMessage,
-    //             life: 3000,
-    //         });
-    //     }
-    // };
 
     const handleBuyClick = () => {
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);

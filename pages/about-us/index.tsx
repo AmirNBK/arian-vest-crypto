@@ -19,7 +19,6 @@ import payment from '../../assets/icons/payment.svg'
 import profit from '../../assets/icons/profit6.svg'
 import useWindowSize from '@/Hooks/innerSize';
 import { getQueryAboutUs, getQueryAboutUsTitles, getQueryAboutUsTitlesEng, getQueryEngAboutUs, getQueryEngFooter, getQueryFooter } from '@/lib/service';
-import { useEffect } from 'react';
 import useLocationData from '../../Hooks/location'
 import { GetStaticProps } from 'next';
 import Head from 'next/head';

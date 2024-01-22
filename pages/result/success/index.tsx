@@ -6,13 +6,10 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import { useRouter } from 'next/router';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
 const myFont = localFont({ src: '../../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../../assets/fonts/iranyekanwebregular_0.ttf' })
-import Footer from '@/components/Footer/Footer';
 import { getQueryFaq, getQueryFooter } from '@/lib/service';
 import PaymentResult from '@/components/PaymentResult/PaymentResult';
 import successful from '../../../assets/images/succesfull-payment.png'
