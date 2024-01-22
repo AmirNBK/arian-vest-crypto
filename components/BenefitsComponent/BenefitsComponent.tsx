@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import benefitPic1 from '../../assets/images/benefitsPic1.png'
 import localFont from 'next/font/local'
 import Image, { StaticImageData } from 'next/image';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
