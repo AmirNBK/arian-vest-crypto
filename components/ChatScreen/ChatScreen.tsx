@@ -10,7 +10,6 @@ interface Message {
     author: number;
     content: string;
     created_at: string;
-
 }
 
 const ChatScreen = (props: {
