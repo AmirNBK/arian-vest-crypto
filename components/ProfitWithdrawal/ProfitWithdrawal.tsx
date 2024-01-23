@@ -319,16 +319,19 @@ const ProfitWithdrawal = (props: {
                                                             {item.status}
                                                         </button>
                                                     </td>
-                                                    <td
-                                                        onClick={() => {
-                                                            setVisible(true)
-                                                            setReceipt('https://virafundingbackend.darkube.app' + item.certification)
-                                                        }}
-                                                    >
-                                                        <p className='underline text-blue-500 cursor-pointer'>
-                                                            {props.isLocationIran ? 'مشاهده فاكتور' : 'View receipt'}
-                                                        </p>
-                                                    </td>
+                                                    {
+                                                        (item.status === "Paid") &&
+                                                        <td
+                                                            onClick={() => {
+                                                                setVisible(true)
+                                                                setReceipt('https://virafundingbackend.darkube.app' + item.certification)
+                                                            }}
+                                                        >
+                                                            <p className='underline text-blue-500 cursor-pointer'>
+                                                                {props.isLocationIran ? 'مشاهده فاكتور' : 'View receipt'}
+                                                            </p>
+                                                        </td>
+                                                    }
                                                 </tr>
                                             )
                                         })}
