@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../assets/icons/rulesLogo.svg'
 import Image from 'next/image';
 import localFont from 'next/font/local'
@@ -22,6 +22,15 @@ const TariffTable = (props: {
 }) => {
     useEffect(() => {
         AOS.init();
+    }, [])
+
+    const [isLogin, setIsLogin] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
+            setIsLogin(true)
+        }
+        else setIsLogin(false)
     }, [])
 
     return (
@@ -95,9 +104,12 @@ const TariffTable = (props: {
                 onClick={() => {
                     sessionStorage.setItem('buying price', props.price.toLocaleString())
                     sessionStorage.setItem('challenge', props.challenge.toLocaleString())
+                    if (!isLogin) {
+                        sessionStorage.setItem('payment login', 'true')
+                    }
                 }}
             >
-                <Link href={'/payment'}>
+                <Link href={`${isLogin ? '/payment' : '/register'}`}>
                     <RegisterButton text={props.isLocationIran ? 'خرید' : 'Purchase'} />
                 </Link>
             </div>

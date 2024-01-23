@@ -300,34 +300,6 @@ export default function Payment() {
                                 <PaymentComponent name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                             </div>
 
-                            <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
-                                {isLocationInIran ? 'محصولات' : 'Products'}
-                            </h2>
-
-                            <h2 className={`${isLocationInIran && 'rtl'} mt-6 mb-4 text-sm ${isLocationInIran ? '' : 'text-white'}`}
-                                style={{ color: isLocationInIran ? 'rgba(255, 255, 255, 0.6)' : '' }}
-                            >
-                                {isLocationInIran ? 'انتخاب نوع طرح:' : 'Select Plan Type:'}
-                            </h2>
-
-
-                            <div className={`${inter.className} flex flex-col sm:flex-row gap-12`}>
-                                {tariff.map((item, index) => {
-                                    return (
-                                        <div
-                                            className={`${index === chosenTariffIndex ? 'bg-[#F68D2E] text-white' : 'bg-[#272727] text-gray-400'}
-                        text-center rounded-md py-6 text-lg flex-1 cursor-pointer`}
-                                            onClick={() => {
-                                                setChosenTariffIndex(index);
-                                                setChosenTariff(item);
-                                            }}
-                                        >
-                                            {item}
-                                        </div>
-                                    )
-                                })}
-                            </div>
-
                             <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
                                 style={{ color: 'rgba(255, 255, 255, 0.6)' }}
                             >

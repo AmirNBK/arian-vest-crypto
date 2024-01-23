@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
@@ -33,11 +33,13 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     const [checked, setChecked] = useState<any>(false);
     const [registerLoading, setRegisterLoading] = useState<boolean>(false);
     const [loginLoading, setLoginLoading] = useState<boolean>(false);
+    const [loginPayment, setLoginPayment] = useState<string | null>();
     const router = useRouter();
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const checkPasswordStrength = usePasswordStrengthCheck();
     const toastBottomRight = useRef<Toast>(null);
+
 
     const [registrationData, setRegistrationData] = useState({
         firstname: "",
@@ -56,6 +58,15 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
         password: "",
     });
 
+    useEffect(() => {
+        const paymentLogin = sessionStorage.getItem('payment login');
+
+        setLoginPayment(paymentLogin)
+
+    }, [])
+
+
+    console.log(loginPayment);
     const [forgotPass, setForgotPass] = useState<boolean>(false)
 
     const handleInputChange = (fieldName: string, value: string) => {
@@ -160,7 +171,13 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
-                            window.location.href = '/panel';
+                            if (loginPayment) {
+                                window.location.href = '/payment';
+                                sessionStorage.removeItem('payment login')
+                            }
+                            else {
+                                window.location.href = '/panel';
+                            }
                         }, 1000);
                     }
                     else {
