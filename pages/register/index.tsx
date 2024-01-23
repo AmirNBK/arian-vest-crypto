@@ -114,7 +114,13 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
-                            window.location.href = '/panel';
+                            if (loginPayment) {
+                                window.location.href = '/payment';
+                                sessionStorage.removeItem('payment login')
+                            }
+                            else {
+                                window.location.href = '/panel';
+                            }
                         }, 1000);
                     }
                     else {
@@ -152,55 +158,42 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
             loginData.username &&
             loginData.password
         ) {
-            const passwordStrength = checkPasswordStrength(loginData.password);
-
-            if (passwordStrength === 'Strong') {
-                login(loginData.username, loginData.password).then((res) => {
-                    setLoginLoading(true);
-                    if (res.status === 200) {
-                        toastBottomRight.current?.show({
-                            severity: 'success',
-                            summary: 'Success',
-                            detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
-                            life: 3000,
-                        });
-                        if (checked) {
-                            localStorage.setItem('authToken', res.data.access)
-                        }
-                        else {
-                            sessionStorage.setItem('authToken', res.data.access)
-                        }
-                        setTimeout(() => {
-                            if (loginPayment) {
-                                window.location.href = '/payment';
-                                sessionStorage.removeItem('payment login')
-                            }
-                            else {
-                                window.location.href = '/panel';
-                            }
-                        }, 1000);
+            login(loginData.username, loginData.password).then((res) => {
+                setLoginLoading(true);
+                if (res.status === 200) {
+                    toastBottomRight.current?.show({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
+                        life: 3000,
+                    });
+                    if (checked) {
+                        localStorage.setItem('authToken', res.data.access)
                     }
                     else {
-                        setLoginLoading(false)
-                        toastBottomRight.current?.show({
-                            severity: 'error',
-                            summary: 'Error',
-                            detail: `${res.response.data.error}`,
-                            life: 3000,
-                        });
+                        sessionStorage.setItem('authToken', res.data.access)
                     }
+                    setTimeout(() => {
+                        if (loginPayment) {
+                            window.location.href = '/payment';
+                            sessionStorage.removeItem('payment login')
+                        }
+                        else {
+                            window.location.href = '/panel';
+                        }
+                    }, 1000);
+                }
+                else {
+                    setLoginLoading(false)
+                    toastBottomRight.current?.show({
+                        severity: 'error',
+                        summary: 'Error',
+                        detail: `${res.response.data.error}`,
+                        life: 3000,
+                    });
+                }
 
-                });
-
-            } else {
-                toastBottomRight.current?.show({
-                    severity: 'error',
-                    summary: 'Error',
-                    detail: `${isLocationInIran ? 'لطفا رمز عبور قوی‌تری انتخاب کنید.' : 'Please choose a stronger password'}`,
-                    life: 3000,
-                });
-
-            }
+            });
         } else {
             toastBottomRight.current?.show({
                 severity: 'error',
