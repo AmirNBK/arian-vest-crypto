@@ -54,6 +54,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         setClickedRule(index);
     }
 
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -66,10 +67,10 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                 <PrimeReactProvider>
                     <Dialog
                         header={
-                            isLocationInIran ? 
-                            'SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.'
-                            :
-                            'SGB ​​has found a new solution for a group of power users. This plan is a safe margin that makes you continue your expertise more consistently than before.'
+                            isLocationInIran ?
+                                'SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.'
+                                :
+                                'SGB ​​has found a new solution for a group of power users. This plan is a safe margin that makes you continue your expertise more consistently than before.'
                         }
                         visible={visibleDialog} style={{
                             width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
@@ -92,7 +93,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                         >
                                             <p
                                                 className={`m-0 ${myFontIran.className} text-right`}
-                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                             />
                                         </AccordionTab>
                                     ))
@@ -106,8 +107,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                         >
                                             <p
                                                 className={`m-0 ${myFontIran.className} text-left`}
-                                                dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                             />
+
                                         </AccordionTab>
                                     ))
                             }
@@ -189,7 +191,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                             >
                                                 <p
                                                     className={`m-0 ${myFontIran.className} text-right`}
-                                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                    dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
                                             </AccordionTab>
                                         );
@@ -204,7 +206,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                             >
                                                 <p
                                                     className={`m-0 ${myFontIran.className} text-left`}
-                                                    dangerouslySetInnerHTML={{ __html: item.description.replace(/\r\n/g, '<br />') }}
+                                                    dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
                                             </AccordionTab>
                                         );
