@@ -186,6 +186,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
         jqueryCode()
     }, [])
 
+    console.log(data);
+
     return (
         <div className="wrapper"
             data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
@@ -204,27 +206,48 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 onHide={() => setVisible(false)}
             >
                 <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-
-                <TariffTable
-                    removeTitle={true}
-                    title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
-                    data={[
-                        { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
-                        { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
-                        { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}`}` },
-                        { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
-                        { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
-                        { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
-                        { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
-                        { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
-                        { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
-                        { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
-                        { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
-                    ]}
-                    fullWidth
-                    price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
-                />
-
+                {
+                    isLocationIran ?
+                        <TariffTable
+                            removeTitle={true}
+                            title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                            data={[
+                                { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                                { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                                { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}`}` },
+                                { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                                { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                                { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
+                                { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                                { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                                { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
+                                { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
+                                { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
+                            ]}
+                            fullWidth
+                            price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
+                        />
+                        :
+                        <TariffTable
+                            removeTitle={true}
+                            title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                            data={[
+                                { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                                { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                                { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1} || '0'`].minDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].minDays}`}` },
+                                { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                                { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                                { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
+                                { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                                { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                                { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}`}` },
+                                { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}`}` },
+                                { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}`}` },
+                            ]}
+                            fullWidth
+                            price={`${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
+                        />
+                }
 
             </Dialog>
             <div id="contentContainer" className="trans3d">

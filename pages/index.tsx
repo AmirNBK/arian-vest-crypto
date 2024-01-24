@@ -365,7 +365,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               <div className='my-20 sm:my-56'>
                 <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
                 <div className='relative lg:p-0 pt-24'>
-                  <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl relative leading-tight`}
+                  <p className={`${isLocationInIran && myFont.className} text-white sm:w-max ${isLocationInIran ? 'text-5xl' : 'text-4xl'} mx-auto text-center rtl relative leading-tight`}
                     data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
                     style={{ zIndex: '5' }}
                   >
@@ -384,7 +384,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
                       } </span>
                   </p>
-                  <p className={`${myFontIran.className} text-white text-lg text-center rtl mt-6 mx-auto w-8/12 leading-loose rtl`}>
+                  <p className={`${myFontIran.className} text-white text-lg text-center ${isLocationInIran && 'rtl'} mt-6 mx-auto w-8/12 leading-loose`}>
                     {
                       isLocationInIran ?
                         accountGrowthSection?.homepage.accountGrowth[0].description
