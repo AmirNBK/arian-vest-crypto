@@ -131,7 +131,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                         title={titles.tableTitle} data={[
                                                             { title: 'مقدار سرمایه:', info: item.price + 'k' },
                                                             { title: 'حساب بازرگانی:', info: item.leverage },
-                                                            { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                            { title: 'حداقل روزهای معاملاتی:', info: item?.minDays },
                                                             { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
                                                             { title: 'هدف فاز 1:', info: item.target1 },
                                                             { title: 'هدف فاز 2:', info: item.target2 },
@@ -162,7 +162,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                         title={titles.tableTitle} data={[
                                                             { title: 'مقدار سرمایه:', info: item.price + 'k' },
                                                             { title: 'حساب بازرگانی:', info: item.leverage },
-                                                            { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                            { title: 'حداقل روزهای معاملاتی:', info: item?.minDays },
                                                             { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
                                                             { title: 'هدف فاز 1:', info: item.target1 },
                                                             { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
@@ -197,7 +197,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                         data={[
                                                             { title: 'Capital amount:', info: item.price + 'k' },
                                                             { title: 'Leverage account:', info: item.leverage },
-                                                            { title: 'Minimum trading days:', info: item.minDays },
+                                                            { title: 'Minimum trading days:', info: item?.minDays },
                                                             { title: 'Maximum trading days:', info: item.maxDays },
                                                             { title: 'Target Phase 1:', info: item.target1 },
                                                             { title: 'Target Phase 2:', info: item.target2 },
@@ -231,7 +231,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                         data={[
                                                             { title: 'Capital amount:', info: item.price + 'k' },
                                                             { title: 'Leverage account:', info: item.leverage },
-                                                            { title: 'Minimum trading days:', info: item.minDays },
+                                                            { title: 'Minimum trading days:', info: item?.minDays },
                                                             { title: 'Maximum trading days:', info: item.maxDays },
                                                             { title: 'Target Phase 1:', info: item.target1 },
                                                             { title: 'Maximum daily loss:', info: item.dailyLoss },
