@@ -54,6 +54,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         setClickedRule(index);
     }
 
+    console.log(data.classRules[clickedRule]);
+
+
 
     return (
         <main
@@ -68,9 +71,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                     <Dialog
                         header={
                             isLocationInIran ?
-                                'SGB راه حل جدیدی برای گروهی از کاربران توانا یافته است. این پلن حاشیه امنی است که باعث میشود منسجم تر از پیش به تخصص خود ادامه دهید.'
+                                data.classRules[clickedRule].headerText
                                 :
-                                'SGB ​​has found a new solution for a group of power users. This plan is a safe margin that makes you continue your expertise more consistently than before.'
+                                data.engClassRules[clickedRule].headerText
                         }
                         visible={visibleDialog} style={{
                             width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
@@ -243,82 +246,82 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                 transform: translateY(40px);
                 color : white;
                 z-index : 20;
-
-                @media (max-width: 640px) { 
-                    font-size : 1rem;
+                font-family: ${isLocationInIran ? '__myFont_0ebf61;' : '__Inter_e66fe9;'}
+                        @media (max-width: 640px) {
+                            font - size : 1rem;
                    }
             }
 
-            .p-dialog-draggable .p-dialog-header {
-                flex-direction: row-reverse;
+                        .p-dialog-draggable .p-dialog-header {
+                            flex - direction: row-reverse;
             }
-            .p-accordion .p-accordion-header .p-accordion-header-link {
-                border: none;
-                background: #1D1D1D;
-                color: #fff;
-                padding: 30px 20px;
-                font-family: '__myFont_0ebf61';
-                font-weight:400;
-            }
-
-            .p-accordion-header-text {
-                text-align: ${isLocationInIran && 'text-right'};
-                line-height:1.8;
-                direction : ${isLocationInIran && 'rtl'};
+                        .p-accordion .p-accordion-header .p-accordion-header-link {
+                            border: none;
+                        background: #1D1D1D;
+                        color: #fff;
+                        padding: 30px 20px;
+                        font-family: '__myFont_0ebf61';
+                        font-weight:400;
             }
 
-            .p-accordion-header {
-                color : white;
+                        .p-accordion-header-text {
+                            text - align: ${isLocationInIran && 'text-right'};
+                        line-height:1.8;
+                        direction : ${isLocationInIran && 'rtl'};
             }
 
-            .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
-                background: #1D1D1D;
-                color : white
+                        .p-accordion-header {
+                            color : white;
             }
 
-            .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
-                border:none;
-                background : #1D1D1D;
-                color : white;
+                        .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+                            background: #1D1D1D;
+                        color : white
             }
 
-            .p-accordion .p-accordion-content {
-                background : #1D1D1D;
-                color : white;
-                border:none;
-                direction : ${isLocationInIran && 'rtl'};
+                        .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+                            border:none;
+                        background : #1D1D1D;
+                        color : white;
             }
 
-            
-.p-checkbox .p-checkbox-box {
-background-color: transparent;
+                        .p-accordion .p-accordion-content {
+                            background : #1D1D1D;
+                        color : white;
+                        border:none;
+                        direction : ${isLocationInIran && 'rtl'};
+            }
+
+
+                        .p-checkbox .p-checkbox-box {
+                            background - color: transparent;
 }
 
-.p-accordion-header-link {
+                        .p-accordion-header-link {
 
-justify-content: space-between;
+                            justify - content: space-between;
 }
 
-.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
-background-color: #1D1D1D;
-border: none;
-color : white;
+                        .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+                            background - color: #1D1D1D;
+                        border: none;
+                        color : white;
 }
 
-.p-accordion-tab {
-width: 100%;
+                        .p-accordion-tab {
+                            width: 100%;
 }
 
-.p-accordion .p-accordion-header .p-accordion-header-link {
-height : 90px;
-justify-content : ${!isLocationInIran && 'flex-start'};
+                        .p-accordion .p-accordion-header .p-accordion-header-link {
+                            height : 90px;
+                        justify-content : ${!isLocationInIran && 'flex-start'};
 }
 
-.p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
-color : #F68D2E;
+                        .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+                            color : #F68D2E;
 }
-            
-            `
+
+                        `
                         }
                     </style>
                 </PrimeReactProvider>

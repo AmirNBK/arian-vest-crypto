@@ -395,6 +395,7 @@ export async function getQueryRules() {
                 description
               }
               engClassRules {
+                headerText
                 title
                 feature
                 items {
@@ -413,6 +414,7 @@ export async function getQueryRules() {
               }
               description
               classRules {
+                headerText
                 title
                 feature
                 items {
