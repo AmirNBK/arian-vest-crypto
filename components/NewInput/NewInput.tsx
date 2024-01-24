@@ -4,12 +4,13 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' });
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' });
 
 const NewInput = (props: {
-  placeholder: string
+  placeholder?: string
+  selectablePlaceholder?: string
   isTextArea?: boolean
   selectable?: boolean
   value?: any
   onChange?: (value: string) => void;
-  supportTypes?: []
+  types?: [] | string[]
   isLocationIran: boolean
 }) => {
   const isLocationInIran = props.isLocationIran
@@ -21,9 +22,9 @@ const NewInput = (props: {
   };
 
   return (
-    <div className={`${myFont.className} NewInput`}>
+    <div className={`${isLocationInIran && myFont.className} NewInput`}>
       <div className="input-box active-grey">
-        <label className={`${myFont.className} input-label`}>
+        <label className={`${isLocationInIran && myFont.className} input-label`}>
           {props.placeholder}
         </label>
         <input type="text" className={`input-1 ${isLocationInIran && 'rtl'} ${props.isTextArea ? 'h-[150px]' : 'h-[50px]'}`}
@@ -35,8 +36,8 @@ const NewInput = (props: {
           className={`${isLocationInIran ? 'rtl left-[55%]' : 'left-[45%]'} absolute top-1/2 px-6 outline-none -translate-x-1/2 -translate-y-1/2 w-full bg-transparent`}
           style={{ color: 'white' }}
         >
-          <option disabled selected> {isLocationInIran ? 'انتخاب كنيد' : 'Choose type'} </option>
-          {props.supportTypes?.map((item, index) => (
+          <option disabled selected> {props.selectablePlaceholder} </option>
+          {props.types?.map((item, index) => (
             <option key={index} className='text-black'>{item}</option>
           ))}
         </select>

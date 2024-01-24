@@ -38,6 +38,8 @@ const Ticket = (props: {
     const [refreshMessages, setRefreshMessages] = useState<boolean>()
     const [chatId, setChatId] = useState<number>()
     const [loading, setLoading] = useState<boolean>(true)
+    const priorityTypes = ['Low', 'Medium', 'High'];
+    const platforms = ['MT4', 'MT5'];
     const [tickets, setTickets] = useState<{
         subject: string
         ticket_status: string
@@ -75,11 +77,14 @@ const Ticket = (props: {
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
+    console.log(purchasedAccounts);
+    
+
     useEffect(() => {
         getPurchasedAccounts().then((res) => {
             const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
                 name: account.accounts,
-                code: account.pk.toString(),
+                code: account.pk?.toString(),
             }));
 
             setPurchasedAccounts(formattedAccounts);
@@ -146,7 +151,6 @@ const Ticket = (props: {
     };
 
     const handleSendButtonClick = () => {
-
         if (formData.subject, formData.supportType, formData.priority, formData.orderNumber, formData.metatraderAccount, formData.platform, formData.description) {
             SendTicket(
                 userId,
@@ -278,12 +282,16 @@ const Ticket = (props: {
                                         placeholder={isLocationIran ? 'نوع پشتیبانی' : 'Support Type'}
                                         isTextArea={false}
                                         selectable
-                                        supportTypes={supportTypes}
+                                        types={supportTypes}
+                                        selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose type'}
                                         onChange={(value) => handleInputChange('supportType', value)}
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
-                                        placeholder={isLocationIran ? 'فوریت' : 'Priority'}
+                                        placeholder={isLocationIran ? 'انتخاب كنيد' : 'Priority'}
+                                        selectable
+                                        types={priorityTypes}
+                                        selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your priority'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
                                         value={formData.priority}
@@ -308,6 +316,9 @@ const Ticket = (props: {
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('platform', value)}
                                         value={formData.platform}
+                                        selectable
+                                        types={platforms}
+                                        selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your platform'}
                                     />
                                 </div>
                                 <div>
