@@ -35,6 +35,8 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         title: string
     }
 
+    console.log(data.engTariffs);
+
 
     return (
         <main
@@ -114,70 +116,138 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                             {
                                 isLocationInIran ?
                                     data.tariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
-                                        return (
-                                            <TabPanel header={item.price + 'k'}>
-                                                <div className='mt-12'>
-                                                    <TariffComponent
+                                        if (data.tariffs[selectedTab].type === 'Classic') {
+                                            return (
+                                                <TabPanel header={item.price + 'k'}>
+                                                    <div className='mt-12'>
+                                                        <TariffComponent
+                                                            isLocationIran
+                                                            title={data.tariffs[selectedTab].type + ' challenge'} price={item.price}
+                                                            description={data.tariffs[selectedTab].desccription} />
+                                                    </div>
+                                                    <TariffTable
                                                         isLocationIran
-                                                        title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
-                                                        description={data.tariffs[selectedTab].desccription} />
-                                                </div>
-                                                <TariffTable
-                                                    isLocationIran
-                                                    challenge={data.tariffs[selectedTab].type}
-                                                    title={titles.tableTitle} data={[
-                                                        { title: 'مقدار سرمایه:', info: item.price + 'k' },
-                                                        { title: 'حساب بازرگانی:', info: item.leverage },
-                                                        { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
-                                                        { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
-                                                        { title: 'هدف فاز 1:', info: item.target1 },
-                                                        { title: 'هدف فاز 2:', info: item.target2 },
-                                                        { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
-                                                        { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
-                                                        { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'غیرمجاز' },
-                                                        { title: 'بازپرداخت:', info: item.refund ? 'دارد' : 'ندارد' },
-                                                        { title: 'معاملات اخباری:', info: item.newsTrading ? 'دارد' : 'ندارد' },
-                                                        { title: 'تقسیم سود:', info: item.profitShare },
-                                                    ]}
-                                                    price={item.dollarPrice}
-                                                />
-                                            </TabPanel>
-                                        )
+                                                        challenge={data.tariffs[selectedTab].type}
+                                                        title={titles.tableTitle} data={[
+                                                            { title: 'مقدار سرمایه:', info: item.price + 'k' },
+                                                            { title: 'حساب بازرگانی:', info: item.leverage },
+                                                            { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                            { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
+                                                            { title: 'هدف فاز 1:', info: item.target1 },
+                                                            { title: 'هدف فاز 2:', info: item.target2 },
+                                                            { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
+                                                            { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
+                                                            { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'غیرمجاز' },
+                                                            { title: 'بازپرداخت:', info: item.refund ? 'دارد' : 'ندارد' },
+                                                            { title: 'معاملات اخباری:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                            { title: 'تقسیم سود:', info: item.profitShare },
+                                                        ]}
+                                                        price={item.dollarPrice}
+                                                    />
+                                                </TabPanel>
+                                            )
+                                        }
+                                        else {
+                                            return (
+                                                <TabPanel header={item.price + 'k'}>
+                                                    <div className='mt-12'>
+                                                        <TariffComponent
+                                                            isLocationIran
+                                                            title={data.tariffs[selectedTab].type + ' challenge'} price={item.price}
+                                                            description={data.tariffs[selectedTab].desccription} />
+                                                    </div>
+                                                    <TariffTable
+                                                        isLocationIran
+                                                        challenge={data.tariffs[selectedTab].type}
+                                                        title={titles.tableTitle} data={[
+                                                            { title: 'مقدار سرمایه:', info: item.price + 'k' },
+                                                            { title: 'حساب بازرگانی:', info: item.leverage },
+                                                            { title: 'حداقل روزهای معاملاتی:', info: item.minDays },
+                                                            { title: 'حداکثر روزهای معاملاتی:', info: item.maxDays },
+                                                            { title: 'هدف فاز 1:', info: item.target1 },
+                                                            { title: 'حداکثر ضرر روزانه:', info: item.dailyLoss },
+                                                            { title: 'حداکثر ضرر کلی:', info: item.totalLoss },
+                                                            { title: 'استفاده از ربات:', info: item.robot ? 'مجاز' : 'غیرمجاز' },
+                                                            { title: 'بازپرداخت:', info: item.refund ? 'دارد' : 'ندارد' },
+                                                            { title: 'معاملات اخباری:', info: item.newsTrading ? 'دارد' : 'ندارد' },
+                                                            { title: 'تقسیم سود:', info: item.profitShare },
+                                                        ]}
+                                                        price={item.dollarPrice}
+                                                    />
+                                                </TabPanel>
+                                            )
+                                        }
+
                                     })
                                     :
                                     data.engTariffs[selectedTab].pricesInfo[0].item.map((item: any, index: number) => {
-                                        return (
-                                            <TabPanel header={item.price + 'k'}>
-                                                <div className='mt-12'>
-                                                    <TariffComponent
+                                        if (data.engTariffs[selectedTab].type === 'Classic') {
+                                            return (
+                                                <TabPanel header={item.price + 'k'}>
+                                                    <div className='mt-12'>
+                                                        <TariffComponent
+                                                            isLocationIran={false}
+                                                            title={data.tariffs[selectedTab].type + ' challenge'} price={item.price}
+                                                            description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
+                                                    </div>
+                                                    <TariffTable
                                                         isLocationIran={false}
-                                                        title={'-' + data.tariffs[selectedTab].type + ' challenge-'} price={item.price}
-                                                        description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
-                                                </div>
-                                                <TariffTable
-                                                    isLocationIran={false}
-                                                    title={titles.tableTitle}
-                                                    challenge={data.tariffs[selectedTab].type}
-                                                    data={[
-                                                        { title: 'Capital amount:', info: item.price + 'k' },
-                                                        { title: 'Leverage account:', info: item.leverage },
-                                                        { title: 'Minimum trading days:', info: item.minDays },
-                                                        { title: 'Maximum trading days:', info: item.maxDays },
-                                                        { title: 'Target Phase 1:', info: item.target1 },
-                                                        { title: 'Target Phase 2:', info: item.target2 },
-                                                        { title: 'Maximum daily loss:', info: item.dailyLoss },
-                                                        { title: 'Total maximum loss:', info: item.totalLoss },
-                                                        { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
-                                                        { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
-                                                        { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
-                                                        { title: 'Profit share::', info: item.profitShare },
+                                                        title={titles.tableTitle}
+                                                        challenge={data.tariffs[selectedTab].type}
+                                                        data={[
+                                                            { title: 'Capital amount:', info: item.price + 'k' },
+                                                            { title: 'Leverage account:', info: item.leverage },
+                                                            { title: 'Minimum trading days:', info: item.minDays },
+                                                            { title: 'Maximum trading days:', info: item.maxDays },
+                                                            { title: 'Target Phase 1:', info: item.target1 },
+                                                            { title: 'Target Phase 2:', info: item.target2 },
+                                                            { title: 'Maximum daily loss:', info: item.dailyLoss },
+                                                            { title: 'Total maximum loss:', info: item.totalLoss },
+                                                            { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
+                                                            { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
+                                                            { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
+                                                            { title: 'Profit share:', info: item.profitShare },
 
-                                                    ]}
-                                                    price={item.dollarPrice}
-                                                />
+                                                        ]}
+                                                        price={item.dollarPrice}
+                                                    />
 
-                                            </TabPanel>
-                                        )
+                                                </TabPanel>
+                                            )
+                                        }
+                                        else {
+                                            return (
+                                                <TabPanel header={item.price + 'k'}>
+                                                    <div className='mt-12'>
+                                                        <TariffComponent
+                                                            isLocationIran={false}
+                                                            title={data.tariffs[selectedTab].type + ' challenge'} price={item.price}
+                                                            description={isLocationInIran ? data.tariffs[selectedTab].desccription : data.engTariffs[selectedTab].desccription} />
+                                                    </div>
+                                                    <TariffTable
+                                                        isLocationIran={false}
+                                                        title={titles.tableTitle}
+                                                        challenge={data.tariffs[selectedTab].type}
+                                                        data={[
+                                                            { title: 'Capital amount:', info: item.price + 'k' },
+                                                            { title: 'Leverage account:', info: item.leverage },
+                                                            { title: 'Minimum trading days:', info: item.minDays },
+                                                            { title: 'Maximum trading days:', info: item.maxDays },
+                                                            { title: 'Target Phase 1:', info: item.target1 },
+                                                            { title: 'Maximum daily loss:', info: item.dailyLoss },
+                                                            { title: 'Total maximum loss:', info: item.totalLoss },
+                                                            { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },
+                                                            { title: 'Refund:', info: item.refund ? 'Available' : 'Not available' },
+                                                            { title: 'News trading:', info: item.newsTrading ? 'Available' : 'Not available' },
+                                                            { title: 'Profit share:', info: item.profitShare },
+
+                                                        ]}
+                                                        price={item.dollarPrice}
+                                                    />
+
+                                                </TabPanel>
+                                            )
+                                        }
                                     })
                             }
                         </TabView>

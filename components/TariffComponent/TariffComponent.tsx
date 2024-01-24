@@ -28,7 +28,7 @@ const TariffComponent = (props: {
                 <p> {props.price}k </p>
             </div>
             <div className='mt-5 sm:mt-10'>
-                <p className={`${myFontIranlight} ${props.isLocationIran && 'rtl'} text-center sm:text-right text-white w-full lg:w-8/12 ml-auto mt-6 leading-loose font-extralight`}>
+                <p className={`${myFontIranlight} ${props.isLocationIran && 'rtl'} text-center ${props.isLocationIran ? 'sm:text-right' : 'sm:text-left'} text-white w-full lg:w-8/12 ml-auto mt-6 leading-loose font-extralight`}>
                     {props.description}
                 </p>
                 <Image className='absolute lg:block hidden' src={bull} alt='bull'
