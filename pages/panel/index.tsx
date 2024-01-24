@@ -42,7 +42,7 @@ import useLocationData from '@/Hooks/location';
 import { getPurchasedAccounts } from '@/lib/apiConfig';
 
 
-export default function SingleBlog() {
+export default function Panel() {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
@@ -89,8 +89,8 @@ export default function SingleBlog() {
         }
         else setIsLogin(false)
         getPurchasedAccounts().then((res) => {
-            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
-                name: account.accounts + ' ' + account.pk,
+            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; price: string }) => ({
+                name: (account.price !== undefined ? account.accounts + ' ' + account.price + 'k' : account.accounts + ' ' + account.pk),
                 code: account.pk.toString(),
             }));
 
@@ -266,18 +266,15 @@ export default function SingleBlog() {
                         </div>
                     </div>
                     <div className={`${myFontIran.className} footer__panel text-main-orange flex flex-row-reverse gap-6 mx-auto mb-4 lg:mb-6`}>
-                        <div className='flex flex-col text-center items-center '>
+                        <Link href={'/'} className='flex flex-col text-center items-center '>
                             <p className=''>{isLocationInIran ? 'ويرا فاندينگ' : 'Vira Funding'}</p>
-                            <hr className={`${isLocationInIran ? 'w-[82px]' : 'w-[90px]'} h-[0.5px]`} style={{ background: '#F68D2E', border: 'none' }} />
-                        </div>
-                        <div className='flex flex-col text-center items-center '>
+                        </Link>
+                        <Link href={'/rules'} className='flex flex-col text-center items-center '>
                             <p className=''>{isLocationInIran ? 'قوانین انتشار' : 'Publication Rules'}</p>
-                            <hr className={`${isLocationInIran ? 'w-[88px]' : 'w-[125px]'} h-[0.5px]`} style={{ background: '#F68D2E', border: 'none' }} />
-                        </div>
-                        <div className='flex flex-col text-center items-center '>
+                        </Link>
+                        <Link href={'/blogs'} className='flex flex-col text-center items-center '>
                             <p className=''>{isLocationInIran ? 'بلاگ' : 'Blog'}</p>
-                            <hr className='w-8 h-[0.5px]' style={{ background: '#F68D2E', border: 'none' }} />
-                        </div>
+                        </Link>
                     </div>
                 </PrimeReactProvider>
             }
