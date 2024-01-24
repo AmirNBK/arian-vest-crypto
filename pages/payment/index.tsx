@@ -119,7 +119,8 @@ export default function Payment() {
         }));
     };
 
-    const handleBuyClick = () => {
+    const handleBuyClick = (e: React.FormEvent) => {
+        e.preventDefault();
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
 
         if (
@@ -273,31 +274,30 @@ export default function Payment() {
 
                         <Toast ref={toastBottomRight} position="bottom-right" />
 
-                        <div className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
-
+                        <form
+                            onSubmit={handleBuyClick}
+                            className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
                             <h2 className={`text-white ${isLocationInIran && 'rtl'}`}>
                                 {isLocationInIran ? 'اطلاعات اولیه:' : 'Initial Information:'}
                             </h2>
-
                             <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                                <PaymentComponent name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='email' name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
                             </div>
-
 
                             <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
                                 {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
                             </h2>
 
-                            <PaymentComponent name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
+                            <PaymentComponent type='text' name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
                             <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                                <PaymentComponent name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <PaymentComponent type='text' name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                             </div>
 
                             <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
@@ -407,16 +407,16 @@ export default function Payment() {
                                 }
                             </div>
 
-                            <div
-                                onClick={handleBuyClick}
+                            <button
+                                type='submit'
                                 className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
                                 <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
                                     {isLocationInIran ? 'خرید' : 'buy'}
                                 </p>
                                 <Image src={buy} alt='buy' />
-                            </div>
+                            </button>
 
-                        </div>
+                        </form>
 
                         <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
 
@@ -444,7 +444,7 @@ export default function Payment() {
                                         router.push('/register')
                                     }}
                                 >
-                                   {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
+                                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
                                 </button>
                             </div>
                         </div>
