@@ -37,7 +37,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                         <Image src={faq} alt='faq' />
                         <p className='text-white text-4xl sm:text-end text-center'>
                             {isLocationInIran ? 'سوالات متداول' : 'Frequently Asked Questions'}
-                            <span style={{ color: '#F68D2E' }}> {isLocationInIran ? 'برای معاملات' : 'for transactions'} </span>
+                            <span style={{ color: '#F68D2E' }}> {isLocationInIran ? 'برای معاملات' : 'for trades'} </span>
                         </p>
                     </div>
 

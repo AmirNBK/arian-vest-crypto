@@ -34,8 +34,8 @@ const Download = (
 
             <div className='flex flex-col md:flex-row justify-center gap-6'>
                 <div className='flex flex-col items-center'>
-                    <h2 className={`${myFont.className} Profile__title text-lg mt-6 w-fit mx-auto text-main-orange`}>
-                        {isLocationIran ? 'اپلیکیشن اول' : 'First application'}
+                    <h2 className={`${isLocationIran && myFont.className} Profile__title text-lg mt-6 w-fit mx-auto text-main-orange`}>
+                        Meta trader 4
                     </h2>
                     <div className='flex flex-col sm:flex-row gap-6 mt-6'>
                         <AppDownload platform='ios' text='IOS' />
@@ -43,8 +43,8 @@ const Download = (
                 </div>
 
                 <div className='flex flex-col items-center'>
-                    <h2 className={`${myFont.className} Profile__title text-lg mt-6 w-fit mx-auto text-main-orange`}>
-                        {isLocationIran ? 'اپلیکیشن دوم' : 'Second application'}
+                    <h2 className={`${isLocationIran && myFont.className} Profile__title text-lg mt-6 w-fit mx-auto text-main-orange`}>
+                        Meta trader 5
                     </h2>
                     <div className='flex flex-col sm:flex-row gap-6 mt-6'>
                         <AppDownload platform='ios' text='IOS' />
