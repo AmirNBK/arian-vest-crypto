@@ -77,8 +77,6 @@ const Ticket = (props: {
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
-    console.log(purchasedAccounts);
-    
 
     useEffect(() => {
         getPurchasedAccounts().then((res) => {
@@ -91,12 +89,15 @@ const Ticket = (props: {
         });
     }, [props.selectedAccount])
 
+    console.log(selectedAccount);
 
     useEffect(() => {
         if (purchasedAccounts && !selectedAccount) {
             setSelectedAccount(purchasedAccounts[0]?.code)
         }
-        else setSelectedAccount(props.selectedAccount)
+        else {
+            setSelectedAccount(props.selectedAccount)
+        }
     }, [purchasedAccounts])
 
 
@@ -192,7 +193,7 @@ const Ticket = (props: {
                         toastBottomRight.current?.show({
                             severity: 'error',
                             summary: 'Error',
-                            detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد' : 'Error sending ticket'}`,
+                            detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد، لطفا يك حساب انتخاب و دوباره تلاش نماييد.' : 'Error sending ticket , please select an account and try again'}`,
                             life: 3000,
                         });
                     }
