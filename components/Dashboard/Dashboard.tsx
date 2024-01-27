@@ -98,8 +98,8 @@ const Dashboard = (props: {
                 <p className={`${isLocationInIran && 'rtl'}`}>
                     {isLocationInIran ? 'اگر اطلاعات حساب كاربري خود را مشاهده نكرديد برروي لينك زير كليك كنيد.' : 'If you do not see your user account information, click on the link below.'}
                 </p>
-                <a href='' className='text-blue-500 underline' >
-                    www.bespokefundingprogram.com
+                <a href='https://dashboard.virafunding.com/auth/login' target='_blank' className='text-blue-500 underline' >
+                dashboard.virafunding.com
                 </a>
             </div>
             <div className={`flex ${isLocationInIran ? 'flex-row-reverse' : 'flex-row'} w-full justify-between items-baseline`}>
