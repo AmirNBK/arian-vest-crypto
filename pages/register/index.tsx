@@ -26,7 +26,7 @@ import { usePasswordStrengthCheck } from '../../functions/usePasswordStrengthChe
 import { GetStaticProps } from 'next'
 import useLocationData from '@/Hooks/location'
 import Head from 'next/head'
-import { login, signUp } from '@/lib/apiConfig'
+import { ResetPassword, SendForgotPasswordCode, VerifyForgotPasswordCode, login, signUp } from '@/lib/apiConfig'
 
 export default function Register({ footer, footerEng }: { footer: any, footerEng: any }) {
 
@@ -34,6 +34,11 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     const [registerLoading, setRegisterLoading] = useState<boolean>(false);
     const [loginLoading, setLoginLoading] = useState<boolean>(false);
     const [loginPayment, setLoginPayment] = useState<string | null>();
+    const [codeSent, setCodeSent] = useState<boolean>(false);
+    const [sendedCode, setSendedCode] = useState<string | number>();
+    const [tempToken, setTempToken] = useState<string | number>();
+    const [resetPassword, setResetPassword] = useState<string>();
+    const [confirmResetPassword, setConfirmResetPassword] = useState<string>();
     const router = useRouter();
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
@@ -60,13 +65,9 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
     useEffect(() => {
         const paymentLogin = sessionStorage.getItem('payment login');
-
         setLoginPayment(paymentLogin)
-
     }, [])
 
-
-    console.log(loginPayment);
     const [forgotPass, setForgotPass] = useState<boolean>(false)
 
     const handleInputChange = (fieldName: string, value: string) => {
@@ -154,55 +155,110 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (
-            loginData.username &&
-            loginData.password
-        ) {
-            login(loginData.username, loginData.password).then((res) => {
-                setLoginLoading(true);
-                if (res.status === 200) {
-                    toastBottomRight.current?.show({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
-                        life: 3000,
-                    });
-                    if (checked) {
-                        localStorage.setItem('authToken', res.data.access)
-                    }
-                    else {
-                        sessionStorage.setItem('authToken', res.data.access)
-                    }
-                    setTimeout(() => {
-                        if (loginPayment) {
-                            window.location.href = '/payment';
-                            sessionStorage.removeItem('payment login')
+        if (!forgotPass) {
+            if (
+                loginData.username &&
+                loginData.password
+            ) {
+                login(loginData.username, loginData.password).then((res) => {
+                    setLoginLoading(true);
+                    if (res.status === 200) {
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: `${isLocationInIran ? 'ورود با موفقیت انجام شد' : 'Login was successful.'}`,
+                            life: 3000,
+                        });
+                        if (checked) {
+                            localStorage.setItem('authToken', res.data.access)
                         }
                         else {
-                            window.location.href = '/panel';
+                            sessionStorage.setItem('authToken', res.data.access)
                         }
-                    }, 1000);
+                        setTimeout(() => {
+                            if (loginPayment) {
+                                window.location.href = '/payment';
+                                sessionStorage.removeItem('payment login')
+                            }
+                            else {
+                                window.location.href = '/panel';
+                            }
+                        }, 1000);
+                    }
+                    else {
+                        setLoginLoading(false)
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: `${res.response.data.error}`,
+                            life: 3000,
+                        });
+                    }
+
+                });
+            } else {
+                toastBottomRight.current?.show({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: `${isLocationInIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
+                    life: 3000,
+                });
+            }
+        }
+        else {
+            if (!codeSent) {
+                SendForgotPasswordCode(loginData.username).then((res) => {
+                    if (res.status === 200) {
+                        setCodeSent(true);
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: `${res.data.detail}`,
+                            life: 3000,
+                        });
+                    }
+                    else {
+                        toastBottomRight.current?.show({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: `There has been an error ocurred, please enter a valid email address and try again.`,
+                            life: 3000,
+                        });
+                    }
+
+                })
+            }
+            else {
+                if (!tempToken) {
+                    VerifyForgotPasswordCode(loginData.username, sendedCode).then((res) => {
+                        if (res.status === 200) {
+                            setTempToken(res.data.temp_token)
+                            toastBottomRight.current?.show({
+                                severity: 'success',
+                                summary: 'Success',
+                                detail: `${res.data.message}`,
+                                life: 3000,
+                            });
+                        }
+                        else {
+                            toastBottomRight.current?.show({
+                                severity: 'error',
+                                summary: 'Error',
+                                detail: `Please enter the correct verification code and try again.`,
+                                life: 3000,
+                            });
+                        }
+                    })
                 }
                 else {
-                    setLoginLoading(false)
-                    toastBottomRight.current?.show({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: `${res.response.data.error}`,
-                        life: 3000,
-                    });
+                    ResetPassword(loginData.username, tempToken, resetPassword, confirmResetPassword).then((res) => {
+                        console.log(res);
+
+                    })
                 }
+            }
 
-            });
-        } else {
-            toastBottomRight.current?.show({
-                severity: 'error',
-                summary: 'Error',
-                detail: `${isLocationInIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
-                life: 3000,
-            });
         }
-
     };
 
     return (
@@ -363,13 +419,49 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                                     />
                                                 </>
                                                 :
-                                                <RegisterInput
-                                                    isLocationIran={isLocationInIran}
-                                                    placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
-                                                    value={loginData.username}
-                                                    onChange={(value) => handleInputChangeLogin("username", value)}
-                                                    type='text'
-                                                />
+                                                <>
+                                                    <RegisterInput
+                                                        isLocationIran={isLocationInIran}
+                                                        placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
+                                                        value={loginData.username}
+                                                        onChange={(value) => handleInputChangeLogin("username", value)}
+                                                        type='text'
+                                                    />
+                                                    {codeSent &&
+                                                        <RegisterInput
+                                                            isLocationIran={isLocationInIran}
+                                                            placeholder={isLocationInIran ? 'كد فراموشي' : 'Reset code'}
+                                                            value={sendedCode}
+                                                            onChange={(value) => {
+                                                                setSendedCode(value)
+                                                            }}
+                                                            type='text'
+                                                        />
+                                                    }
+                                                    {tempToken &&
+                                                        <>
+                                                            <RegisterInput
+                                                                isLocationIran={isLocationInIran}
+                                                                placeholder={isLocationInIran ? 'رمز عبور جديد' : 'New password'}
+                                                                value={resetPassword}
+                                                                onChange={(value) => {
+                                                                    setResetPassword(value)
+                                                                }}
+                                                                type='text'
+                                                            />
+                                                            <RegisterInput
+                                                                isLocationIran={isLocationInIran}
+                                                                placeholder={isLocationInIran ? 'ورود دوباره رمز عبور جديد' : 'Re-enter new password'}
+                                                                value={confirmResetPassword}
+                                                                onChange={(value) => {
+                                                                    setConfirmResetPassword(value)
+                                                                }}
+                                                                type='text'
+                                                            />
+                                                        </>
+                                                    }
+
+                                                </>
                                         }
                                         {
                                             !forgotPass &&
@@ -395,7 +487,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                             <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={100} width={60} />
                                             :
                                             forgotPass ?
-                                                <RegisterButton text={isLocationInIran ? 'ارسال کد' : 'Send email'} />
+                                                <RegisterButton text={isLocationInIran ? `${codeSent ? 'تاييد' : 'ارسال کد'}` : `${codeSent ? 'Confirm' : 'Send email'}`} />
                                                 :
                                                 <RegisterButton text={isLocationInIran ? 'ورود' : 'Login'} />
 
