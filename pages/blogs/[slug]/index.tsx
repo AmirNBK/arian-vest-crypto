@@ -65,30 +65,31 @@ export default function SingleBlog() {
     <main
       className={`flex min-h-screen flex-col ${inter.className}`}
     >
-      <PrimeReactProvider>
-        <Header isLocationInIran={isLocationInIran} />
+      {loading ? ''
+        :
+        <PrimeReactProvider>
+          <Header isLocationInIran={isLocationInIran} />
+          {blogLoading ? <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+            :
+            <>
+              <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
+                <Image src={newspaper} alt='newspaper' unoptimized />
+                <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
+                  {data?.title}
+                </p>
+              </div>
+              <div>
+                <Image src={data?.image?.mediaItemUrl} width={1200} height={100} alt='blogimage' className='mx-auto mt-12 w-[1200px] h-[550px] object-cover' unoptimized />
+              </div>
 
-        {blogLoading ? <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-          :
-          <>
-            <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
-              <Image src={newspaper} alt='newspaper' unoptimized />
-              <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
-                {data?.title}
-              </p>
-            </div>
+              <div className='text-white my-16' dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
+            </>
+          }
 
-            <div>
-              <Image src={data?.image?.mediaItemUrl} width={1200} height={100} alt='blogimage' className='mx-auto mt-12 w-[1200px] h-[550px] object-cover' unoptimized />
-            </div>
+          <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
 
-            <div className='text-white my-16' dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
-          </>
-        }
-
-        <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
-
-      </PrimeReactProvider>
+        </PrimeReactProvider>
+      }
     </main >
   )
 }
