@@ -144,33 +144,37 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             <Head>
                 <title>Result</title>
             </Head>
-            <PrimeReactProvider>
-                <Header active={''} />
-                <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
-                    <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
-                    {paymentInfo &&
-                        <Receipt broker={broker}
-                            profileInfo={profileInfo}
-                            paymentInfo={paymentInfo}
-                            ref={receiptRef}
-                            city={formData?.city}
-                            country={formData?.country}
-                            firstName={formData?.firstName}
-                            lastName={formData?.lastName}
-                            platform={platform}
-                            user={profileInfo?.fullname} price={paymentInfo?.price_amount}
-                            phone={formData?.phone}
-                            address={formData?.streetAddress}
-                            date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
-                            confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
-                    }
-                    <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
-                        <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
-                        <hr style={{ borderColor: '#F68D2E' }} />
-                    </Link>
-                </div>
+            {loading ? ''
+                :
+                <PrimeReactProvider>
+                    <Header active={''} />
+                    <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
+                        <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
+                        {paymentInfo &&
+                            <Receipt broker={broker}
+                                profileInfo={profileInfo}
+                                paymentInfo={paymentInfo}
+                                ref={receiptRef}
+                                city={formData?.city}
+                                country={formData?.country}
+                                firstName={formData?.firstName}
+                                lastName={formData?.lastName}
+                                platform={platform}
+                                user={profileInfo?.fullname} price={paymentInfo?.price_amount}
+                                phone={formData?.phone}
+                                address={formData?.streetAddress}
+                                date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
+                                confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
+                        }
+                        <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
+                            <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
+                            <hr style={{ borderColor: '#F68D2E' }} />
+                        </Link>
+                    </div>
 
-            </PrimeReactProvider>
+                </PrimeReactProvider>
+            }
+
         </main>
     )
 }
