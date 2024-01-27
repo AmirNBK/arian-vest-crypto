@@ -252,8 +252,25 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                 }
                 else {
                     ResetPassword(loginData.username, tempToken, resetPassword, confirmResetPassword).then((res) => {
-                        console.log(res);
-
+                        if (res.status === 200) {
+                            toastBottomRight.current?.show({
+                                severity: 'success',
+                                summary: 'Success',
+                                detail: `${res.data.message}`,
+                                life: 3000,
+                            });
+                            setTimeout(() => {
+                                window.location.href = '/register';
+                            }, 1000);
+                        }
+                        else {
+                            toastBottomRight.current?.show({
+                                severity: 'error',
+                                summary: 'Error',
+                                detail: `${res.response.data.error}`,
+                                life: 3000,
+                            });
+                        }
                     })
                 }
             }
@@ -420,14 +437,16 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                                 </>
                                                 :
                                                 <>
-                                                    <RegisterInput
-                                                        isLocationIran={isLocationInIran}
-                                                        placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
-                                                        value={loginData.username}
-                                                        onChange={(value) => handleInputChangeLogin("username", value)}
-                                                        type='text'
-                                                    />
-                                                    {codeSent &&
+                                                    {!tempToken &&
+                                                        <RegisterInput
+                                                            isLocationIran={isLocationInIran}
+                                                            placeholder={isLocationInIran ? 'نام کاربری یا ایمیل' : 'Username or Email'}
+                                                            value={loginData.username}
+                                                            onChange={(value) => handleInputChangeLogin("username", value)}
+                                                            type='text'
+                                                        />
+                                                    }
+                                                    {(codeSent && !tempToken) &&
                                                         <RegisterInput
                                                             isLocationIran={isLocationInIran}
                                                             placeholder={isLocationInIran ? 'كد فراموشي' : 'Reset code'}
@@ -447,7 +466,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                                                 onChange={(value) => {
                                                                     setResetPassword(value)
                                                                 }}
-                                                                type='text'
+                                                                type='password'
                                                             />
                                                             <RegisterInput
                                                                 isLocationIran={isLocationInIran}
@@ -456,7 +475,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                                                 onChange={(value) => {
                                                                     setConfirmResetPassword(value)
                                                                 }}
-                                                                type='text'
+                                                                type='password'
                                                             />
                                                         </>
                                                     }
