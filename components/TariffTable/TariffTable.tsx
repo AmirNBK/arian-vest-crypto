@@ -33,6 +33,9 @@ const TariffTable = (props: {
         else setIsLogin(false)
     }, [])
 
+    console.log(props.challenge);
+    
+
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-4'}
         ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}

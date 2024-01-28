@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/icons/baseLogo.png'
 import JsPDF from 'jspdf';
+import ReactLoading from 'react-loading';
 import Image, { StaticImageData } from 'next/image';
 import { purchaseAccount } from '@/lib/apiConfig';
 import exportIcon from '../../assets/icons/export.svg'
@@ -95,46 +96,69 @@ const Receipt = (props: {
 
   const [receipt, setReceipt] = useState<File | undefined>()
   const [pdfGenerated, setPdfGenerated] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const challengeType = sessionStorage.getItem('challenge');
-
 
   useEffect(() => {
     const fetchData = async () => {
       await generatePDF();
       setPdfGenerated(true);
     };
-
     fetchData();
-  }, []);
-
+  }, []);  
+  
   useEffect(() => {
-    if (paymentInfo && profileInfo && receipt && pdfGenerated) {
-      purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt).then((res) => {
-      });
-    }
+    const makePurchase = async () => {
+      if (paymentInfo && profileInfo && receipt && pdfGenerated) {
+        console.log('here');
+        
+        try {
+          const res = await purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
+          console.log(res);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error making purchase:', error);
+          setLoading(false);
+        }
+      }
+    };
+
+    makePurchase();
+
   }, [paymentInfo, profileInfo, receipt, pdfGenerated]);
 
   const generatePDF = async () => {
     const report = new JsPDF('portrait', 'pt', 'a3');
     const element = document.querySelector('#overview');
-
     if (element) {
+      
       try {
         const canvas = await html2canvas(element as HTMLElement);
-        const imageDataURL = canvas.toDataURL('image/png');
+        const imageDataURL = canvas.toDataURL('image/png', 0.5);
 
         const blobData = await (await fetch(imageDataURL)).blob();
-
         const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
 
-        setReceipt(imageFile)
+        // Get the file size in bytes
+        const fileSizeInBytes = imageFile.size;
+        
+        // Convert bytes to kilobytes (1 KB = 1024 bytes)
+        const fileSizeInKB = fileSizeInBytes / 1024;
+        
+        // Convert kilobytes to megabytes (1 MB = 1024 KB)
+        const fileSizeInMB = fileSizeInKB / 1024;
+        
+        console.log(`File size: ${fileSizeInBytes} bytes (${fileSizeInKB} KB, ${fileSizeInMB} MB)`);
+             
+        setReceipt(imageFile);
 
       } catch (error) {
         console.error('Error generating PDF:', error);
       }
     }
   };
+
 
   const PdfExport = async () => {
     const report = new JsPDF('portrait', 'pt', 'a3');
@@ -281,269 +305,275 @@ const Receipt = (props: {
   }, []);
 
   return (
-    <div className='Receipt'
-    >
-      <div className="receipt"
-        id='overview'
-      >
-        <div className="receipt-breakdown">
-          <div className="receipt-breakdown--header">
-            <p>Receipt for</p>
-            <h2>
-              {props.user}
-            </h2>
+    <>
+      {loading ?
+        <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+        :
+        <div className='Receipt'
+        >
+          <div className="receipt"
+            id='overview'
+          >
+            <div className="receipt-breakdown">
+              <div className="receipt-breakdown--header">
+                <p>Receipt for</p>
+                <h2>
+                  {props.user}
+                </h2>
+              </div>
+              <ul className="receipt-breakdown--list">
+                {breakdown.map((entry, index) => (
+                  <BreakDownEntry key={index} details={entry} />
+                ))}
+              </ul>
+            </div>
+            <Overview />
           </div>
-          <ul className="receipt-breakdown--list">
-            {breakdown.map((entry, index) => (
-              <BreakDownEntry key={index} details={entry} />
-            ))}
-          </ul>
-        </div>
-        <Overview />
-      </div>
 
-      <div className=' bg-main-orange w-fit p-2 rounded-md cursor-pointer mx-auto mb-6'>
-        <Image src={exportIcon} alt='export' className='w-8' onClick={PdfExport} />
-      </div>
+          <div className=' bg-main-orange w-fit p-2 rounded-md cursor-pointer mx-auto mb-6'>
+            <Image src={exportIcon} alt='export' className='w-8' onClick={PdfExport} />
+          </div>
 
 
-      <style>
-        {`
-                $grey : black;
-                
-                @mixin reset-list() {
-                  text-indent: 0;
-                  list-style: none;
-                  padding: 0;
-                  margin: 0;
-                  &:before {
-                    display: none;
-                    content: "";
-                  }
-                }
-                
-                a {
-                  color: #3ba4ff;
-                  text-decoration: none;
-                }
-                
-                .view-design {
-                  position:absolute;
-                  top:30px;
-                  left: 30px;
-                }
-                
-                .container {
-                   height: 1060px;
-                   overflow: hidden;
-                   position:relative;
-                }
-                
-                .circle {
-                  display: none;
-                  
-                  @media(min-width:768px){
-                    height: 1600px;
-                    width: 1100px;
-                    background: linear-gradient(180deg,#3ba4ff,#66a5ff);
-                    position: absolute;
-                    top: -400px;
-                    right: -300px;
-                    z-index: -1;
-                    border-radius: 50%;
-                    display:block;
-                  }
-                }
-                
-                .receipt {
-                  display: flex;
-                  flex-wrap: wrap;
-                  margin: 60px auto;
-                  margin-bottom : 30px;
-                  justify-content : center;
-                  box-shadow: 0px 0px 50px 10px rgba(0,0,0,.1);
-                  vertical-align:top;
-                  border-radius : 6px;
-                  border : 1px solid grey;
-                  width : fit-content;
-                }
-                
-                .receipt-breakdown {
-                  background: #F68D2E;
-                  color:#fff;
-                  width: 220px;
-                  display:inline-block;
-                  position:relative;
-                  float:left;
-                  padding: 40px 30px;
-                  border-radius: 5px 0 0 5px;
-                  
-                  .receipt-breakdown--list {
-                    @include reset-list;
+          <style>
+            {`
+                    $grey : black;
                     
-                    li {
-                      padding: 25px 0;
-                      border-bottom:1px solid rgba(255,255,255,.4);
-                      
-                      &:last-of-type {
-                        border-bottom: none;
-                      }
-                    }
-                    
-                    .fa {
-                      display: inline-block;
-                      width:15%;
-                      float:left;
-                    }
-                    
-                    .list-content {
-                      width: 75%;
-                      display:inline-block;
-                    }
-                    
-                    p {
-                      font-weight:300;
-                      font-size: 13px;
+                    @mixin reset-list() {
+                      text-indent: 0;
+                      list-style: none;
+                      padding: 0;
                       margin: 0;
-                      .list-bold {
-                        font-weight:600;
-                        display:block;
-                        font-size: 15px;
-                        padding-top:5px;
+                      &:before {
+                        display: none;
+                        content: "";
                       }
                     }
-                  }
-                }
-                
-                .receipt-breakdown--header {
-                  border-bottom:1px solid rgba(255,255,255,.4);  
-                  padding: 10px 0;
-                  
-                  h2 {
-                    margin: 0;
-                    font-size: 22px;
-                    padding-bottom: 15px;
-                  }
-                  
-                  p {
-                    padding: 0 0 7px 0;
-                    margin: 0;
-                  }
-                }
-                
-                .receipt-overview {
-                  width: 490px;
-                  display: inline-block;
-                  border-radius: 0 5px 5px 0;
-                  padding: 0 30px;
-                  background-color: #fff;
                     
-                  hr {
-                    margin-top: 15px;
-                    border-top: 1px solid lighten($grey, 30%) !important;
-                    box-shadow: none;
-                  }
-                  
-                  .user-info {
-                    padding-top: 15px;
-                  }
-                }
-                
-                .overview-header {
-                  padding: 38px 0 20px 0;
-                }
-                
-                .logo {
-                  display: inline-block;
-                  width:70px;
-                  float: right;
-                }
-                
-                .timestamp {
-                  display: inline-block;
-                  float:left;
-                  padding-top:15px;
-                
-                  span {
-                    color: lighten($grey, 25%);
-                    font-size: 15px;
-                    font-family:inherit;
-                    font-weight: 600;
-                    
-                    &:first-of-type {
-                      padding: 15px;
+                    a {
+                      color: #3ba4ff;
+                      text-decoration: none;
                     }
-                  }
-                }
-                
-                .descriptor {
-                  width: 60%;
-                  padding-top:8px;
-                  
-                  p {
-                    font-size: 13px;
-                    color: black;
-                    line-height: 1.5;
-                  }
-                }
-                
-                .overview-body {
-                    color: black;
                     
-                    span {
-                      color: #000;
+                    .view-design {
+                      position:absolute;
+                      top:30px;
+                      left: 30px;
                     }
-                }
-                
-                .salutation {
-                  text-align: center;
-                  font-style: italic;
-                  font-size: 130%;
-                }
-                .salutation img {
-                  height:55px;
-                  padding-top: 8px;
-                }
-                .user-info-name {
-                  font-weight:600;
-                  font-size: 18px;
-                }
-                
-                .user-info-text {
-                  line-height:1.5;
-                  font-weight: 500;
-                  
-                  a {
-                    color: #3ba4ff;
-                    text-decoration: none;
-                  }
-                }
-                
-                
-                .purchase-overview {
-                  color: darken($grey, 12%);
-                }
-                
-                .overview-footer {
-                  padding: 20px 0 15px;
-                  margin-top: 30px;
-                  border-top: 1px solid lighten($grey, 30%) !important;
-                  
-                  a {
-                    font-size: 13px;
-                    font-weight: 600;
-                  }
-                  
-                  .invoice-id {
-                    float:right;
-                    font-size: 13px;
-                    color: black;
-                    font-weight: 600;
-                  }
-                }
-                `}
-      </style>
-    </div>
+                    
+                    .container {
+                       height: 1060px;
+                       overflow: hidden;
+                       position:relative;
+                    }
+                    
+                    .circle {
+                      display: none;
+                      
+                      @media(min-width:768px){
+                        height: 1600px;
+                        width: 1100px;
+                        background: linear-gradient(180deg,#3ba4ff,#66a5ff);
+                        position: absolute;
+                        top: -400px;
+                        right: -300px;
+                        z-index: -1;
+                        border-radius: 50%;
+                        display:block;
+                      }
+                    }
+                    
+                    .receipt {
+                      display: flex;
+                      flex-wrap: wrap;
+                      margin: 60px auto;
+                      margin-bottom : 30px;
+                      justify-content : center;
+                      box-shadow: 0px 0px 50px 10px rgba(0,0,0,.1);
+                      vertical-align:top;
+                      border-radius : 6px;
+                      border : 1px solid grey;
+                      width : fit-content;
+                    }
+                    
+                    .receipt-breakdown {
+                      background: #F68D2E;
+                      color:#fff;
+                      width: 220px;
+                      display:inline-block;
+                      position:relative;
+                      float:left;
+                      padding: 40px 30px;
+                      border-radius: 5px 0 0 5px;
+                      
+                      .receipt-breakdown--list {
+                        @include reset-list;
+                        
+                        li {
+                          padding: 25px 0;
+                          border-bottom:1px solid rgba(255,255,255,.4);
+                          
+                          &:last-of-type {
+                            border-bottom: none;
+                          }
+                        }
+                        
+                        .fa {
+                          display: inline-block;
+                          width:15%;
+                          float:left;
+                        }
+                        
+                        .list-content {
+                          width: 75%;
+                          display:inline-block;
+                        }
+                        
+                        p {
+                          font-weight:300;
+                          font-size: 13px;
+                          margin: 0;
+                          .list-bold {
+                            font-weight:600;
+                            display:block;
+                            font-size: 15px;
+                            padding-top:5px;
+                          }
+                        }
+                      }
+                    }
+                    
+                    .receipt-breakdown--header {
+                      border-bottom:1px solid rgba(255,255,255,.4);  
+                      padding: 10px 0;
+                      
+                      h2 {
+                        margin: 0;
+                        font-size: 22px;
+                        padding-bottom: 15px;
+                      }
+                      
+                      p {
+                        padding: 0 0 7px 0;
+                        margin: 0;
+                      }
+                    }
+                    
+                    .receipt-overview {
+                      width: 490px;
+                      display: inline-block;
+                      border-radius: 0 5px 5px 0;
+                      padding: 0 30px;
+                      background-color: #fff;
+                        
+                      hr {
+                        margin-top: 15px;
+                        border-top: 1px solid lighten($grey, 30%) !important;
+                        box-shadow: none;
+                      }
+                      
+                      .user-info {
+                        padding-top: 15px;
+                      }
+                    }
+                    
+                    .overview-header {
+                      padding: 38px 0 20px 0;
+                    }
+                    
+                    .logo {
+                      display: inline-block;
+                      width:70px;
+                      float: right;
+                    }
+                    
+                    .timestamp {
+                      display: inline-block;
+                      float:left;
+                      padding-top:15px;
+                    
+                      span {
+                        color: lighten($grey, 25%);
+                        font-size: 15px;
+                        font-family:inherit;
+                        font-weight: 600;
+                        
+                        &:first-of-type {
+                          padding: 15px;
+                        }
+                      }
+                    }
+                    
+                    .descriptor {
+                      width: 60%;
+                      padding-top:8px;
+                      
+                      p {
+                        font-size: 13px;
+                        color: black;
+                        line-height: 1.5;
+                      }
+                    }
+                    
+                    .overview-body {
+                        color: black;
+                        
+                        span {
+                          color: #000;
+                        }
+                    }
+                    
+                    .salutation {
+                      text-align: center;
+                      font-style: italic;
+                      font-size: 130%;
+                    }
+                    .salutation img {
+                      height:55px;
+                      padding-top: 8px;
+                    }
+                    .user-info-name {
+                      font-weight:600;
+                      font-size: 18px;
+                    }
+                    
+                    .user-info-text {
+                      line-height:1.5;
+                      font-weight: 500;
+                      
+                      a {
+                        color: #3ba4ff;
+                        text-decoration: none;
+                      }
+                    }
+                    
+                    
+                    .purchase-overview {
+                      color: darken($grey, 12%);
+                    }
+                    
+                    .overview-footer {
+                      padding: 20px 0 15px;
+                      margin-top: 30px;
+                      border-top: 1px solid lighten($grey, 30%) !important;
+                      
+                      a {
+                        font-size: 13px;
+                        font-weight: 600;
+                      }
+                      
+                      .invoice-id {
+                        float:right;
+                        font-size: 13px;
+                        color: black;
+                        font-weight: 600;
+                      }
+                    }
+                    `}
+          </style>
+        </div>
+      }
+    </>
   );
 };
 

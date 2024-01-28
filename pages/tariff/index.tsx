@@ -35,9 +35,6 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         title: string
     }
 
-    console.log(data.engTariffs);
-
-
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}

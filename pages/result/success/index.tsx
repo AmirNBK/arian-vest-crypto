@@ -99,14 +99,20 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
 
     const router = useRouter();
     const npId = router.query.NP_id;
-
     useEffect(() => {
-        if (npId) {
-            handleGetPaymentInfo();
-            getProfileInfo().then((res) => {
-                setProfileInfo(res.data)
-            });
-        }
+        const fetchData = async () => {
+            try {
+                if (npId) {
+                    await handleGetPaymentInfo();
+                    const profileResponse = await getProfileInfo();
+                    setProfileInfo(profileResponse.data);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, [npId]);
 
     const handleGetPaymentInfo = async () => {
@@ -119,6 +125,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             console.error('Error getting payment info:', error);
         }
     };
+
     const formatDateString = (inputDateStr: string | number | Date) => {
         const inputDate = new Date(inputDateStr);
 
