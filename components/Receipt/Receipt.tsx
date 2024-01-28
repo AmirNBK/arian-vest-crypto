@@ -102,63 +102,49 @@ const Receipt = (props: {
 
   useEffect(() => {
     const fetchData = async () => {
-      await generatePDF();
-      setPdfGenerated(true);
-    };
-    fetchData();
-  }, []);  
-  
-  useEffect(() => {
-    const makePurchase = async () => {
-      if (paymentInfo && profileInfo && receipt && pdfGenerated) {
-        console.log('here');
-        
-        try {
-          const res = await purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
-          console.log(res);
-          setLoading(false);
-        } catch (error) {
-          console.error('Error making purchase:', error);
-          setLoading(false);
-        }
-      }
-    };
-
-    makePurchase();
-
-  }, [paymentInfo, profileInfo, receipt, pdfGenerated]);
-
-  const generatePDF = async () => {
-    const report = new JsPDF('portrait', 'pt', 'a3');
-    const element = document.querySelector('#overview');
-    if (element) {
-      
       try {
-        const canvas = await html2canvas(element as HTMLElement);
-        const imageDataURL = canvas.toDataURL('image/png', 0.5);
+        await generatePDF();
 
-        const blobData = await (await fetch(imageDataURL)).blob();
-        const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
-
-        // Get the file size in bytes
-        const fileSizeInBytes = imageFile.size;
-        
-        // Convert bytes to kilobytes (1 KB = 1024 bytes)
-        const fileSizeInKB = fileSizeInBytes / 1024;
-        
-        // Convert kilobytes to megabytes (1 MB = 1024 KB)
-        const fileSizeInMB = fileSizeInKB / 1024;
-        
-        console.log(`File size: ${fileSizeInBytes} bytes (${fileSizeInKB} KB, ${fileSizeInMB} MB)`);
-             
-        setReceipt(imageFile);
-
+        if (paymentInfo && profileInfo && receipt) {
+          try {
+            const res = await purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
+            setLoading(false);
+          } catch (error) {
+            console.error('Error making purchase:', error);
+            setLoading(false);
+          }
+        }
       } catch (error) {
         console.error('Error generating PDF:', error);
       }
+    };
+
+    fetchData();
+  }, [paymentInfo, profileInfo, challengeType , pdfGenerated]);
+
+  const generatePDF = async () => {
+    const element = document.querySelector('#overview');
+    if (element) {
+      try {
+        const canvas = await html2canvas(element as HTMLElement);
+        const imageDataURL = canvas.toDataURL('image/png', 0.001);
+
+        console.log(imageDataURL);
+        
+
+
+        const blobData = await (await fetch(imageDataURL)).blob();
+        const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
+        setReceipt(imageFile);
+        setPdfGenerated(true)
+
+
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        throw error;
+      }
     }
   };
-
 
   const PdfExport = async () => {
     const report = new JsPDF('portrait', 'pt', 'a3');
@@ -172,6 +158,7 @@ const Receipt = (props: {
         window.open(pdfUrl, '_blank');
       } catch (error) {
         console.error('Error generating PDF:', error);
+        throw error; // Propagate the error for better error handling
       }
     }
   };
