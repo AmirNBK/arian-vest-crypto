@@ -54,6 +54,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         setClickedRule(index);
     }
 
+    console.log(titles);
+
+
     return (
         <main
             className={`flex min-h-screen flex-col ${inter.className}`}
@@ -172,11 +175,10 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                         <Image src={book} alt='rules' unoptimized />
                         <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
             text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
-                            {isLocationInIran ? 'قوانین کلی' : 'General rules'} <span style={{ color: '#F68D2E' }}>
-                                {isLocationInIran ? 'مربوط به سایت' : 'related to the site'} </span>
+                            {isLocationInIran ? `${titles.secondTitle[0].normalTitle}` : `${titles.engSecondTitle[0].normalTitle}`} <span style={{ color: '#F68D2E' }}>
+                                {isLocationInIran ? `${titles.secondTitle[0].coloredTitle}` : `${titles.engSecondTitle[0].secondTitle}`} </span>
                         </p>
                     </div>
-
                     <div>
                         <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
                             {
@@ -237,9 +239,14 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                 background: #252525;
             }
 
+            .p-dialog .p-dialog-header {
+            padding : 1.5rem 1.5rem 0.5rem 1.5rem;
+        }
+
             .p-dialog .p-dialog-header .p-dialog-title {
                 text-align: ${isLocationInIran ? 'right' : 'left'};
-                transform: translateY(40px);
+                transform: translateY(20px);
+                font-size : 23px;
                 color : white;
                 z-index : 20;
                 font-family: ${isLocationInIran ? '__myFont_0ebf61;' : '__Inter_e66fe9;'}

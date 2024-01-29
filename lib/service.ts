@@ -453,6 +453,14 @@ export async function getQueryRulesTitles() {
               title
               coloredTitle
             }
+            secondTitle {
+              normalTitle
+              coloredTitle
+            }
+            engSecondTitle {
+              secondTitle
+              normalTitle
+            }
           }
         }
       }
