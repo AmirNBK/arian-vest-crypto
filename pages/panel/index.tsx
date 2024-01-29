@@ -167,11 +167,12 @@ export default function Panel() {
                     <Sidebar visible={visibleRight} position={isLocationInIran ? "right" : 'left'} onHide={() => setVisibleRight(false)}
                         style={{ backgroundColor: 'black' }}
                     >
-                        <Image src={mobileLogo} alt='logo' className='mx-auto w-7/12' />
+                        <Link href={'/'}>
+                            <Image src={mobileLogo} alt='logo' className='mx-auto w-7/12' />
+                        </Link>
 
                         <div className='flex flex-col gap-8'>
                             {isLocationInIran ?
-
                                 panelItems.map((item) => {
                                     return (
                                         <div className='panelItem flex flex-row items-center justify-end gap-4'>
