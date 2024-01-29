@@ -264,7 +264,7 @@ const Receipt = (props: {
   const OverviewFooter = () => (
     <footer className="overview-footer">
       <span className="site">
-        <a href="https://virafunding.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://virafunding.com/" className='text-[#3ba4ff]' target="_blank" rel="noopener noreferrer">
           https://virafunding.com/
         </a>
       </span>
@@ -336,11 +336,7 @@ const Receipt = (props: {
                         content: "";
                       }
                     }
-                    
-                    a {
-                      color: #3ba4ff;
-                      text-decoration: none;
-                    }
+                  
                     
                     .view-design {
                       position:absolute;
