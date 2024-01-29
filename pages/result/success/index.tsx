@@ -5,7 +5,6 @@ import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import ReactLoading from 'react-loading';
 import { useRouter } from 'next/router';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
@@ -100,20 +99,14 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
 
     const router = useRouter();
     const npId = router.query.NP_id;
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                if (npId) {
-                    await handleGetPaymentInfo();
-                    const profileResponse = await getProfileInfo();
-                    setProfileInfo(profileResponse.data);
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
 
-        fetchData();
+    useEffect(() => {
+        if (npId) {
+            handleGetPaymentInfo();
+            getProfileInfo().then((res) => {
+                setProfileInfo(res.data)
+            });
+        }
     }, [npId]);
 
     const handleGetPaymentInfo = async () => {
@@ -126,7 +119,6 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             console.error('Error getting payment info:', error);
         }
     };
-
     const formatDateString = (inputDateStr: string | number | Date) => {
         const inputDate = new Date(inputDateStr);
 
@@ -158,23 +150,21 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                     <Header active={''} />
                     <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
                         <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
-                        {(profileInfo) ?
+                        {paymentInfo &&
                             <Receipt broker={broker}
                                 profileInfo={profileInfo}
-                                // paymentInfo={paymentInfo}
+                                paymentInfo={paymentInfo}
                                 ref={receiptRef}
                                 city={formData?.city}
                                 country={formData?.country}
                                 firstName={formData?.firstName}
                                 lastName={formData?.lastName}
                                 platform={platform}
-                                // user={profileInfo?.fullname} price={paymentInfo?.price_amount}
+                                user={profileInfo?.fullname} price={paymentInfo?.price_amount}
                                 phone={formData?.phone}
                                 address={formData?.streetAddress}
-                                // date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
+                                date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
                                 confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
-                            :
-                            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
                         }
                         <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
                             <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
