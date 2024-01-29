@@ -112,7 +112,7 @@ export default function Payment() {
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === '' || !locationData;
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
