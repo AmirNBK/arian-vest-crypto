@@ -295,7 +295,7 @@ const Ticket = (props: {
                                         selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your priority'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
-                                        value={formData.priority}
+                                        
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
@@ -316,7 +316,6 @@ const Ticket = (props: {
                                         placeholder={isLocationIran ? 'پلتفرم' : 'Platform'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('platform', value)}
-                                        value={formData.platform}
                                         selectable
                                         types={platforms}
                                         selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your platform'}

@@ -49,7 +49,7 @@ export default function Panel() {
     const router = useRouter();
     const size = useWindowSize();
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === '' || !locationData;
     const [visible, setVisible] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
