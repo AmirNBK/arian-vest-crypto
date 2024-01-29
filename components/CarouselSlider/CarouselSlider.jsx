@@ -305,6 +305,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(6)}
+
                                     >
 
                                     </div>
@@ -321,6 +323,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(5)}
+
                                     >
 
 
@@ -339,6 +343,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(4)}
                                     >
 
 
@@ -356,6 +361,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(3)}
+
                                     >
 
 
@@ -375,6 +382,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(2)}
+
                                     >
 
 
@@ -393,6 +402,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(1)}
                                     >
 
                                     </div>
@@ -410,6 +420,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
@@ -431,6 +442,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(6)}
                                     >
 
                                     </div>
@@ -447,6 +459,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(5)}
                                     >
                                     </div>
                                 </figure>
@@ -463,6 +476,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(4)}
                                     >
 
                                     </div>
@@ -479,6 +493,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(3)}
                                     >
                                     </div>
                                 </figure>
@@ -495,6 +510,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(2)}
                                     >
 
 
@@ -514,6 +530,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(1)}
                                     >
 
                                     </div>
@@ -532,6 +549,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
@@ -549,6 +567,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
@@ -567,13 +586,13 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
                                 </figure>
-                                <figure id="item10" className="cursor-pointer  carouselItem trans3d"
+                                <figure id="item10" className="cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
-
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
@@ -584,6 +603,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     ></div>
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
