@@ -98,7 +98,7 @@ const Receipt = (props: {
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const challengeType = sessionStorage.getItem('challenge');
+  const challengeType = localStorage.getItem('challenge');
 
   useEffect(() => {
     const fetchData = async () => {
