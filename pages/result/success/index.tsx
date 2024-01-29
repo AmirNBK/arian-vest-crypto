@@ -158,20 +158,20 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                     <Header active={''} />
                     <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
                         <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
-                        {(paymentInfo && profileInfo) ?
+                        {(profileInfo) ?
                             <Receipt broker={broker}
                                 profileInfo={profileInfo}
-                                paymentInfo={paymentInfo}
+                                // paymentInfo={paymentInfo}
                                 ref={receiptRef}
                                 city={formData?.city}
                                 country={formData?.country}
                                 firstName={formData?.firstName}
                                 lastName={formData?.lastName}
                                 platform={platform}
-                                user={profileInfo?.fullname} price={paymentInfo?.price_amount}
+                                // user={profileInfo?.fullname} price={paymentInfo?.price_amount}
                                 phone={formData?.phone}
                                 address={formData?.streetAddress}
-                                date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
+                                // date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
                                 confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
                             :
                             <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />

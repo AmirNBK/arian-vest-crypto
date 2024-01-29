@@ -120,7 +120,7 @@ const Receipt = (props: {
     };
 
     fetchData();
-  }, [paymentInfo, profileInfo, challengeType , pdfGenerated]);
+  }, [paymentInfo, profileInfo, challengeType, pdfGenerated]);
 
   const generatePDF = async () => {
     const element = document.querySelector('#overview');
@@ -128,10 +128,6 @@ const Receipt = (props: {
       try {
         const canvas = await html2canvas(element as HTMLElement);
         const imageDataURL = canvas.toDataURL('image/png', 0.001);
-
-        console.log(imageDataURL);
-        
-
 
         const blobData = await (await fetch(imageDataURL)).blob();
         const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
@@ -377,6 +373,10 @@ const Receipt = (props: {
                       border-radius : 6px;
                       border : 1px solid grey;
                       width : fit-content;
+
+                      @media(max-width:768px){
+                      width : auto;
+                      }
                     }
                     
                     .receipt-breakdown {
@@ -388,7 +388,10 @@ const Receipt = (props: {
                       float:left;
                       padding: 40px 30px;
                       border-radius: 5px 0 0 5px;
-                      
+                      @media(max-width:768px){
+                        width : 100%;
+                        }
+
                       .receipt-breakdown--list {
                         @include reset-list;
                         
