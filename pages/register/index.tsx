@@ -112,6 +112,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             localStorage.setItem('authToken', res.data.access)
                         }
                         else {
+                            localStorage.setItem('authToken', res.data.access)
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
@@ -173,6 +174,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                             localStorage.setItem('authToken', res.data.access)
                         }
                         else {
+                            localStorage.setItem('authToken', res.data.access)
                             sessionStorage.setItem('authToken', res.data.access)
                         }
                         setTimeout(() => {
