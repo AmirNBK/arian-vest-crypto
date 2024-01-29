@@ -230,7 +230,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                             { title: 'Leverage account:', info: item.leverage },
                                                             { title: 'Minimum trading days:', info: item?.minDays },
                                                             { title: 'Maximum trading days:', info: item.maxDays },
-                                                            { title: 'Target Phase 1:', info: item.target1 },
+                                                            { title: 'Profit target:', info: item.target1 },
                                                             { title: 'Maximum daily loss:', info: item.dailyLoss },
                                                             { title: 'Total maximum loss:', info: item.totalLoss },
                                                             { title: 'Robot usage:', info: item.robot ? 'Allowed' : 'Not allowed' },

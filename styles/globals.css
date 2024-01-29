@@ -99,6 +99,10 @@ html {
   .p-tabview-nav {
     justify-content: space-between;
   }
+
+  .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+    background: transparent;
+  }
 }
 
 body {
