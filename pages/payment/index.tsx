@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header/Header'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { Dialog } from 'primereact/dialog';
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 import login from '../../assets/icons/loginPayment.svg'
@@ -35,6 +36,36 @@ query discount {
     }
   }
 }
+`;
+
+const GET_PAYMENT_RULES = gql`
+query PaymentRules {
+    pages {
+      nodes {
+        paymentRules {
+          paymentRules {
+            faRules
+            engRules
+          }
+        }
+      }
+    }
+  }
+`;
+
+const GET_PAYMENT_BROKER = gql`
+query PaymentBroker {
+    pages {
+      nodes {
+        paymentRules {
+          paymentBroker {
+            faBroker
+            engBroker
+          }
+        }
+      }
+    }
+  }
 `;
 
 const GET_FOOTER = gql`
@@ -69,6 +100,8 @@ query engFooter {
 export default function Payment() {
     const tariff = ['Classic', 'One-step', 'Rapid']
     const { data: discountData } = useQuery(GET_DISCOUNT_CODES);
+    const { data: paymentRules } = useQuery(GET_PAYMENT_RULES);
+    const { data: paymentBroker } = useQuery(GET_PAYMENT_BROKER);
     const { data: footerData } = useQuery(GET_FOOTER);
     const { data: footerDataEng } = useQuery(GET_FOOTER_ENG);
     const [chosenTariffIndex, setChosenTariffIndex] = useState(0);
@@ -79,13 +112,15 @@ export default function Payment() {
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === '' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
     const [rules1, setRules1] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [rules2, setRules2] = useState<boolean>(false);
+    const [paymentRulesModal, setPaymentRulesModal] = useState<boolean>(false);
+    const [paymentBrokerModal, setPaymentBrokerModal] = useState<boolean>(false);
     const router = useRouter();
 
 
@@ -118,6 +153,9 @@ export default function Payment() {
             [fieldName]: value,
         }));
     };
+
+    console.log(paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker);
+
 
     const handleBuyClick = (e: React.FormEvent) => {
         e.preventDefault();
@@ -274,6 +312,41 @@ export default function Payment() {
 
                         <Toast ref={toastBottomRight} position="bottom-right" />
 
+                        <Dialog visible={paymentRulesModal}
+                            className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
+                            style={{ width: '50vw', fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
+                            {
+                                isLocationInIran ?
+                                    <p
+                                    dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].faRules.replace(/\r\n/g, '<br />') }}
+                                    >
+                                    </p>
+                                    :
+                                    <p
+                                    dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].engRules.replace(/\r\n/g, '<br />') }}
+                                    >
+                                    </p>
+                                    
+                            }
+                        </Dialog>
+
+                        <Dialog visible={paymentBrokerModal}
+                            className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
+                            style={{ width: '50vw', fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentBrokerModal(false)}>
+                            {
+                                isLocationInIran ?
+                                    <p
+                                    dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].faBroker.replace(/\r\n/g, '<br />') }}
+                                    >
+                                    </p>
+                                    :
+                                    <p
+                                    dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker.replace(/\r\n/g, '<br />') }}
+                                    >
+                                    </p>
+                            }
+                        </Dialog>
+
                         <form
                             onSubmit={handleBuyClick}
                             className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
@@ -338,7 +411,6 @@ export default function Payment() {
                                 <div className={'flex flex-row-reverse gap-3'}>
                                     <input type="radio" id="MT4" name="MT4" value="MT4"
                                         onChange={() => handleRadioPlatformChange('MT4')}
-
                                     />
                                     <label className='text-xl'> MT4 </label>
                                 </div>
@@ -358,7 +430,11 @@ export default function Payment() {
                                     {isLocationInIran
                                         ? 'بروکر موردنظر توسط تریدر تست شده و سرمایه گذار برتر هیچ مسئولیتی در قبال آن ندارد.'
                                         : 'The chosen broker has been tested by the trader, and the superior investor assumes no responsibility for it.'}
-                                    <span className='text-white ml-1'>
+                                    <span className='text-white ml-1 cursor-pointer'
+                                        onClick={() => {
+                                            setPaymentBrokerModal(true)
+                                        }}
+                                    >
                                         {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
                                     </span>
                                 </p>
@@ -370,7 +446,9 @@ export default function Payment() {
                                     {isLocationInIran
                                         ? ' قوانین و terms & conditions را مطالعه کرده و شرایط پلن ها را میپذیرم.'
                                         : 'I have read the rules and terms & conditions and accept the terms of the plans.'}
-                                    <span className='text-white ml-1'>
+                                    <span className='text-white ml-1 cursor-pointer' onClick={() => {
+                                        setPaymentRulesModal(true)
+                                    }}>
                                         {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
                                     </span>
                                 </p>
@@ -431,31 +509,33 @@ export default function Payment() {
                         </style>
                     </PrimeReactProvider>
                     :
-                    <>
-                        <Header active={''} isLocationInIran={isLocationInIran} />
-                        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
-                            <Image src={login} alt='login' className='w-16' />
-                            <p className="mt-6 text-center">
-                                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
-                            </p>
-                            <div className='flex flex-row justify-center mt-6 gap-6'>
-                                <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
-                                    onClick={() => {
-                                        router.push('/register')
-                                    }}
-                                >
-                                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
-                                </button>
-                            </div>
-                        </div>
+    <>
+        <Header active={''} isLocationInIran={isLocationInIran} />
+        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
+            <Image src={login} alt='login' className='w-16' />
+            <p className="mt-6 text-center">
+                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
+            </p>
+            <div className='flex flex-row justify-center mt-6 gap-6'>
+                <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
+                    onClick={() => {
+                        router.push('/register')
+                    }}
+                >
+                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
+                </button>
+            </div>
+        </div>
 
-                        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
-
-                    </>
-
-            }
+        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
 
 
-        </main>
+
+    </>
+
+}
+
+
+        </main >
     )
 }
