@@ -22,6 +22,7 @@ import useLocationData from '@/Hooks/location';
 import countries from '../../assets/countries.json'
 import Head from 'next/head';
 import { createInvoice } from '@/lib/apiConfig';
+import useWindowSize from '@/Hooks/innerSize';
 
 const GET_DISCOUNT_CODES = gql`
 query discount {
@@ -112,7 +113,7 @@ export default function Payment() {
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === '' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
@@ -122,6 +123,8 @@ export default function Payment() {
     const [paymentRulesModal, setPaymentRulesModal] = useState<boolean>(false);
     const [paymentBrokerModal, setPaymentBrokerModal] = useState<boolean>(false);
     const router = useRouter();
+    const size = useWindowSize();
+
 
 
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -312,9 +315,11 @@ export default function Payment() {
 
                         <Toast ref={toastBottomRight} position="bottom-right" />
 
-                        <Dialog visible={paymentRulesModal}
+                        <Dialog
+                         visible={paymentRulesModal}
                             className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
-                            style={{ width: '50vw', fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
+                            
+                            style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
                             {
                                 isLocationInIran ?
                                     <p
@@ -332,7 +337,7 @@ export default function Payment() {
 
                         <Dialog visible={paymentBrokerModal}
                             className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
-                            style={{ width: '50vw', fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentBrokerModal(false)}>
+                            style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentBrokerModal(false)}>
                             {
                                 isLocationInIran ?
                                     <p
@@ -379,7 +384,7 @@ export default function Payment() {
                                 {isLocationInIran ? 'انتخاب یک کارگزار:' : 'Select a Broker:'}
                             </h2>
 
-                            <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
+                            <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse flex-wrap text-white gap-6 mt-8`}>
                                 <div className='flex flex-row-reverse gap-3'>
                                     <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets"
                                         onChange={() => handleRadioChange('Think Markets')}
