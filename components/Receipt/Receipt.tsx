@@ -5,7 +5,10 @@ import ReactLoading from 'react-loading';
 import Image, { StaticImageData } from 'next/image';
 import { purchaseAccount } from '@/lib/apiConfig';
 import exportIcon from '../../assets/icons/export.svg'
+import successful from '../../assets/images/succesfull-payment.png'
 import html2canvas from 'html2canvas';
+import PaymentResult from '../PaymentResult/PaymentResult';
+import useLocationData from '@/Hooks/location';
 
 interface TransactionType {
   actually_paid: number;
@@ -96,7 +99,9 @@ const Receipt = (props: {
 
   const [receipt, setReceipt] = useState<File | undefined>()
   const [pdfGenerated, setPdfGenerated] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
+  const { locationData, error, loading } = useLocationData();
+  const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
   const challengeType = localStorage.getItem('challenge');
 
@@ -108,10 +113,10 @@ const Receipt = (props: {
         if (paymentInfo && profileInfo && receipt) {
           try {
             const res = await purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
-            setLoading(false);
+            setLoadingData(false);
           } catch (error) {
             console.error('Error making purchase:', error);
-            setLoading(false);
+            setLoadingData(false);
           }
         }
       } catch (error) {
@@ -289,11 +294,15 @@ const Receipt = (props: {
 
   return (
     <>
-      {loading ?
-        <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-        :
+      {
         <div className='Receipt'
         >
+          {!loadingData ?
+            <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
+            :
+            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+
+          }
           <div className="receipt"
             id='overview'
           >
@@ -320,6 +329,7 @@ const Receipt = (props: {
 
           <style>
             {`
+          
                     $grey : black;
                     
                     @mixin reset-list() {

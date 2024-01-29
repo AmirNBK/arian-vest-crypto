@@ -81,6 +81,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
     const [formData, setFormData] = useState<formDataType>()
+    const [dataLoading, setDataLoading] = useState(true);
     useEffect(() => {
         const platformLocal = localStorage.getItem('platform');
         const brokerLocal = localStorage.getItem('tradingPlatform');
@@ -157,7 +158,6 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                 <PrimeReactProvider>
                     <Header active={''} />
                     <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
-                        <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
                         {(paymentInfo && profileInfo) ?
                             <Receipt broker={broker}
                                 profileInfo={profileInfo}

@@ -106,7 +106,7 @@ const TariffTable = (props: {
             <div className='w-6/12 mx-auto pb-10'
                 onClick={() => {
                     sessionStorage.setItem('buying price', props.price.toLocaleString())
-                    sessionStorage.setItem('challenge', props.challenge.toLocaleString())
+                    localStorage.setItem('challenge', props.challenge.toLocaleString())
                     if (!isLogin) {
                         sessionStorage.setItem('payment login', 'true')
                     }
