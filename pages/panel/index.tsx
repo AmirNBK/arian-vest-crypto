@@ -49,7 +49,7 @@ export default function Panel() {
     const router = useRouter();
     const size = useWindowSize();
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === '' || !locationData;
+    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
     const [visible, setVisible] = useState<boolean>(false);
     const panelItems = [
         { title: 'داشبورد', icon: dashboard, link: 'dashboard' },
@@ -164,30 +164,54 @@ export default function Panel() {
                     </Dialog>
 
 
-                    <Sidebar visible={visibleRight} position={isLocationInIran ? 'right' : 'left'} onHide={() => setVisibleRight(false)}
+                    <Sidebar visible={visibleRight} position={isLocationInIran ? "right" : 'left'} onHide={() => setVisibleRight(false)}
                         style={{ backgroundColor: 'black' }}
                     >
                         <Image src={mobileLogo} alt='logo' className='mx-auto w-7/12' />
 
                         <div className='flex flex-col gap-8'>
-                            {panelItems.map((item) => {
-                                return (
-                                    <div className='panelItem flex flex-row items-center justify-end gap-4'>
-                                        <p className='cursor-pointer text-base text-white'
-                                            onClick={() => {
-                                                if (item.link === 'logout') {
-                                                    setVisible(true)
-                                                }
-                                                else {
-                                                    setActivePanel(item.link)
-                                                    setVisibleRight(false)
-                                                }
-                                            }}
-                                        > {item.title} </p>
-                                        <Image width={35} src={item.icon} alt='icon' />
-                                    </div>
-                                )
-                            })}
+                            {isLocationInIran ?
+
+                                panelItems.map((item) => {
+                                    return (
+                                        <div className='panelItem flex flex-row items-center justify-end gap-4'>
+                                            <p className='cursor-pointer text-base text-white'
+                                                onClick={() => {
+                                                    if (item.link === 'logout') {
+                                                        setVisible(true)
+                                                    }
+                                                    else {
+                                                        setActivePanel(item.link)
+                                                        setVisibleRight(false)
+                                                    }
+                                                }}
+                                            > {item.title} </p>
+                                            <Image width={35} src={item.icon} alt='icon' />
+                                        </div>
+                                    )
+                                })
+
+                                :
+                                panelItemsEng.map((item) => {
+                                    return (
+                                        <div className='panelItem flex flex-row-reverse items-center justify-end gap-4'>
+                                            <p className='cursor-pointer text-base text-white'
+                                                onClick={() => {
+                                                    if (item.link === 'logout') {
+                                                        setVisible(true)
+                                                    }
+                                                    else {
+                                                        setActivePanel(item.link)
+                                                        setVisibleRight(false)
+                                                    }
+                                                }}
+                                            > {item.title} </p>
+                                            <Image width={35} src={item.icon} alt='icon' />
+                                        </div>
+                                    )
+                                })
+                            }
+
                         </div>
                     </Sidebar>
 
@@ -248,7 +272,7 @@ export default function Panel() {
                         </div>
                         <div className='panelContainer mx-6 my-6 lg:hidden block'>
                             <Image src={menu} alt='menu'
-                                className='ml-auto cursor-pointer' width={35} onClick={() => setVisibleRight(true)} />
+                                className={`${isLocationInIran ? 'ml-auto' : 'mr-auto rotate-180'} cursor-pointer`} width={35} onClick={() => setVisibleRight(true)} />
                         </div>
                         <div className='h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-4 sm:py-8 px-3 sm:px-6 rounded-lg mt-0 sm:mt-6 mb-20'>
                             <Dropdown value={selectedAccount} onChange={(e: DropdownChangeEvent) => setSelectedAccount(e.value)}

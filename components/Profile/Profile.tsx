@@ -326,7 +326,7 @@ const Profile = (
                                                 <p className='text-white'>${item.price}</p>
                                             </td>
                                             <td className='text-center'>
-                                                <p className='text-white'>{item.name}</p>
+                                                <p className='text-white'>{item.name + ' ' + item.price + 'k'}</p>
                                             </td>
                                             <td className='text-center'>
                                                 <p className='text-white'>{formatCreatedAtDate(item.created_at)}</p>
