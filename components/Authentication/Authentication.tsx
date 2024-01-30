@@ -41,7 +41,7 @@ const Authentication = (
     const [userId, setUserId] = useState<number>()
     const [isVerifiedPending, setIsVerifiedPending] = useState<boolean>()
     const [isVerified, setIsVerified] = useState<boolean>()
-
+    const [loading, setLoading] = useState<boolean>(false)
 
     interface FormData {
         name: string;
@@ -107,6 +107,7 @@ const Authentication = (
     });
 
     const handleSendButtonClick = () => {
+        setLoading(true)
         if (formData.name && formData.lastName && formData.nationalCode && formData.phone && frontCard && userPhoto && backCard) {
             AuthenticationApi(userPhoto, frontCard, backCard, userId, formData.name, formData.lastName, formData.nationalCode, formData.phone).then((res) => {
                 if (res.status === 201) {
@@ -116,6 +117,7 @@ const Authentication = (
                         detail: `${props.isLocationIran ? 'اطلاعات شما براي احراز هويت ثبت گرديد و به زودي نتيجه به شما اطلاع اعلام خواهد شد.' : 'Your information has been registered for identity verification and the result will be announced to you soon.'}`,
                         life: 3000,
                     });
+                    setLoading(false)
                 }
                 else {
                     toastBottomRight.current?.show({
@@ -124,6 +126,7 @@ const Authentication = (
                         detail: `${res.response.data.non_field_errors[0]}`,
                         life: 3000,
                     });
+                    setLoading(false)
                 }
             })
         }
@@ -134,6 +137,7 @@ const Authentication = (
                 detail: `${props.isLocationIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
                 life: 3000,
             });
+            setLoading(false)
         }
     }
 
@@ -290,9 +294,13 @@ const Authentication = (
                         }
                     </div>
 
-                    <div className={`${(isVerifiedPending || isVerified) ? 'hidden' : ''} flex justify-center cursor-pointer`}>
-                        <Image src={isLocationInIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
-                    </div>
+                    {loading ?
+                        <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
+                        :
+                        <div className={`${(isVerifiedPending || isVerified) ? 'hidden' : ''} flex justify-center cursor-pointer`}>
+                            <Image src={isLocationInIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
+                        </div>
+                    }
                 </>
 
                 :

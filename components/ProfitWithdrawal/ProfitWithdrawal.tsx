@@ -22,6 +22,7 @@ const ProfitWithdrawal = (props: {
     const [userId, setUserId] = useState<number>()
     const [walletId, setWalletId] = useState<number>()
     const [loading, setLoading] = useState<boolean>(true)
+    const [loadingData, setLoadingData] = useState<boolean>(false)
     const [description, setDescription] = useState('');
     const [visible, setVisible] = useState<boolean>(false);
     const [receipt, setReceipt] = useState<any>()
@@ -120,6 +121,7 @@ const ProfitWithdrawal = (props: {
     };
 
     const handleSendButtonClick = () => {
+        setLoadingData(true)
         withdrawlRequest(userId, walletId, data?.withdrawable_amount, description).then((res) => {
             if (res.status === 201) {
                 toastBottomRight.current?.show({
@@ -128,6 +130,7 @@ const ProfitWithdrawal = (props: {
                     detail: `${props.isLocationIran ? 'درخواست شما با موفقيت ارسال گرديد' : 'Your request has been sent successfully'}`,
                     life: 3000,
                 });
+                setLoadingData(false)
             }
             else {
                 toastBottomRight.current?.show({
@@ -136,6 +139,7 @@ const ProfitWithdrawal = (props: {
                     detail: `${props.isLocationIran ? 'ارسال درخواست شما با مشكل مواجه شد' : 'There was a problem sending your request'}`,
                     life: 3000,
                 });
+                setLoadingData(false)
             }
         })
     }
@@ -235,7 +239,11 @@ const ProfitWithdrawal = (props: {
                                     setRefreshHistory(!refreshHistory)
                                 }}
                             >
-                                <Image src={isLocationInIran ? buttonImage : profitWithdrawal} unoptimized alt='button' className='cursor-pointer' onClick={handleSendButtonClick} />
+                                {loadingData ?
+                                    <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
+                                    :
+                                    <Image src={isLocationInIran ? buttonImage : profitWithdrawal} unoptimized alt='button' className='cursor-pointer' onClick={handleSendButtonClick} />
+                                }
                             </div>
                         </>
                         :

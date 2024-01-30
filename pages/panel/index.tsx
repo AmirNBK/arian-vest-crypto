@@ -9,6 +9,7 @@ import localFont from 'next/font/local';
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import { useRouter } from 'next/router';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
+import ReactLoading from 'react-loading';
 import { Dialog } from 'primereact/dialog';
 import { Sidebar } from 'primereact/sidebar';
 import support from '../../assets/icons/support.svg'
@@ -45,6 +46,7 @@ import { getPurchasedAccounts } from '@/lib/apiConfig';
 export default function Panel() {
     const [visibleRight, setVisibleRight] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
+    const [logoutLoading, setLogoutLoading] = useState<boolean>(false);
     const [activePanel, setActivePanel] = useState<any>('dashboard');
     const router = useRouter();
     const size = useWindowSize();
@@ -142,24 +144,30 @@ export default function Panel() {
                             <p className="m-0">
                                 {isLocationInIran ? "آیا از خروج از حساب کاربری خود اطمینان دارید؟" : "Are you sure you want to log out of your account?"}
                             </p>
-                            <div className={`flex ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} justify-center mt-6 gap-6`}>
-                                <button className='btn-grad-red text-white rounded-lg text-center text-lg'
-                                    onClick={() => {
-                                        sessionStorage.removeItem("authToken")
-                                        localStorage.removeItem("authToken")
-                                        router.push('/')
-                                    }}
-                                >
-                                    {isLocationInIran ? "بله" : "Yes"}
-                                </button>
-                                <button className='btn-grad-black text-white rounded-lg text-center text-lg'
-                                    onClick={() => {
-                                        setVisible(false)
-                                    }}
-                                >
-                                    {isLocationInIran ? "خیر" : "No"}
-                                </button>
-                            </div>
+                            {logoutLoading ?
+                                <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
+                                :
+                                <div className={`flex ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} justify-center mt-6 gap-6`}>
+                                    <button className='btn-grad-red text-white rounded-lg text-center text-lg'
+                                        onClick={() => {
+                                            setLogoutLoading(true)
+                                            sessionStorage.removeItem("authToken")
+                                            localStorage.removeItem("authToken")
+                                            router.push('/')
+                                        }}
+                                    >
+                                        {isLocationInIran ? "بله" : "Yes"}
+                                    </button>
+                                    <button className='btn-grad-black text-white rounded-lg text-center text-lg'
+                                        onClick={() => {
+                                            setVisible(false)
+                                        }}
+                                    >
+                                        {isLocationInIran ? "خیر" : "No"}
+                                    </button>
+                                </div>
+                            }
+
                         </div>
                     </Dialog>
 

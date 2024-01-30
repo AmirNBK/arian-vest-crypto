@@ -87,6 +87,8 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
     const handleRegistration = async (e: React.FormEvent) => {
         e.preventDefault();
+        setRegisterLoading(true)
+
 
         if (
             registrationData.username &&
@@ -100,7 +102,6 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
             if (passwordStrength === 'Strong') {
                 signUp(registrationData.email, registrationData.phone, registrationData.firstname, registrationData.lastname, registrationData.username, registrationData.password, registrationData.password, registrationData.locale, registrationData.description).then((res) => {
-                    setRegisterLoading(true)
                     if (res.status === 201) {
                         toastBottomRight.current?.show({
                             severity: 'success',
@@ -155,6 +156,8 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoginLoading(true);
+
 
         if (!forgotPass) {
             if (
@@ -162,7 +165,6 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                 loginData.password
             ) {
                 login(loginData.username, loginData.password).then((res) => {
-                    setLoginLoading(true);
                     if (res.status === 200) {
                         toastBottomRight.current?.show({
                             severity: 'success',

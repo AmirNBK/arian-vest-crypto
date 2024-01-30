@@ -38,6 +38,7 @@ const Ticket = (props: {
     const [refreshMessages, setRefreshMessages] = useState<boolean>()
     const [chatId, setChatId] = useState<number>()
     const [loading, setLoading] = useState<boolean>(true)
+    const [submitLoading, setSubmitLoading] = useState<boolean>(false)
     const priorityTypes = ['Low', 'Medium', 'High'];
     const platforms = ['MT4', 'MT5'];
     const [tickets, setTickets] = useState<{
@@ -77,7 +78,6 @@ const Ticket = (props: {
     const [purchasedAccounts, setPurchasedAccounts] = useState<any>();
     const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
-
     useEffect(() => {
         getPurchasedAccounts().then((res) => {
             const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; }) => ({
@@ -88,8 +88,6 @@ const Ticket = (props: {
             setPurchasedAccounts(formattedAccounts);
         });
     }, [props.selectedAccount])
-
-    console.log(selectedAccount);
 
     useEffect(() => {
         if (purchasedAccounts && !selectedAccount) {
@@ -152,6 +150,7 @@ const Ticket = (props: {
     };
 
     const handleSendButtonClick = () => {
+        setSubmitLoading(true)
         if (formData.subject, formData.supportType, formData.priority, formData.orderNumber, formData.metatraderAccount, formData.platform, formData.description) {
             SendTicket(
                 userId,
@@ -188,6 +187,7 @@ const Ticket = (props: {
                                 description: '',
                             });
                         }, 0);
+                        setSubmitLoading(false)
                     }
                     else {
                         toastBottomRight.current?.show({
@@ -196,6 +196,7 @@ const Ticket = (props: {
                             detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد، لطفا يك حساب انتخاب و دوباره تلاش نماييد.' : 'Error sending ticket , please select an account and try again'}`,
                             life: 3000,
                         });
+                        setSubmitLoading(false)
                     }
 
 
@@ -207,6 +208,7 @@ const Ticket = (props: {
                         detail: `${props.isLocationIran ? 'مشكلي در ارسال تيكت ايجاد شد' : 'Error sending ticket'}`,
                         life: 3000,
                     });
+                    setSubmitLoading(false)
                 });
         } else {
             toastBottomRight.current?.show({
@@ -215,6 +217,7 @@ const Ticket = (props: {
                 detail: `${props.isLocationIran ? 'لطفا تمامی فیلد ها را تکمیل نمایید' : 'Please fill out all the fields'}`,
                 life: 3000,
             });
+            setSubmitLoading(false)
         }
     };
 
@@ -295,7 +298,7 @@ const Ticket = (props: {
                                         selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your priority'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
-                                        
+
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}
@@ -334,9 +337,13 @@ const Ticket = (props: {
                         </div>
 
                     </div>
-                    <div className='flex justify-center cursor-pointer'>
-                        <Image src={isLocationIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
-                    </div>
+                    {submitLoading ?
+                        <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
+                        :
+                        <div className='flex justify-center cursor-pointer'>
+                            <Image src={isLocationIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={handleSendButtonClick} />
+                        </div>
+                    }
                     <div className='flex flex-col gap-2 bg-[#1D1D1D] mt-6 p-4 '>
                         <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4 mb-6`}>
                             <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
