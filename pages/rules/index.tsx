@@ -78,7 +78,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                             width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
                             backgroundColor: '#252525'
                         }}
-                        className={`${myFont.className} font-normal`}
+                        className={`${isLocationInIran && myFont.className} font-normal`}
                         onHide={() => setVisibleDialog(false)}
                     >
                         <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
@@ -94,7 +94,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                             header={item.title}
                                         >
                                             <p
-                                                className={`m-0 ${myFontIran.className} text-right`}
+                                                className={`m-0 ${isLocationInIran && myFontIran.className} text-right`}
                                                 dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                             />
                                         </AccordionTab>
@@ -108,7 +108,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                             header={item.title}
                                         >
                                             <p
-                                                className={`m-0 ${myFontIran.className} text-left`}
+                                                className={`m-0 ${isLocationInIran && myFontIran.className} text-left`}
                                                 dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                             />
 
@@ -119,14 +119,14 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                     </Dialog>
                     <Header active={3} isLocationInIran={isLocationInIran} />
                     <div className='text-white w-10/12 mx-auto mt-10'>
-                        <h2 className={`${myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
+                        <h2 className={`${isLocationInIran && myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
                         >
                             {isLocationInIran ? titles.mainTitles[0].title : titles.engMainTitles[0].title}
                             <span style={{ color: '#F68D2E' }}>
                                 {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
                             </span>
                         </h2>
-                        <p className={`${myFontIran.className} text-center 3xl:text-xl ${isLocationInIran && 'rtl'}`} style={{ lineHeight: '2' }}>
+                        <p className={`${isLocationInIran && myFontIran.className} text-center 3xl:text-xl ${isLocationInIran && 'rtl'}`} style={{ lineHeight: '2' }}>
                             {isLocationInIran ? data.description : data.engDescription}
                         </p>
                     </div>
@@ -136,7 +136,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                         data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
                     >
                         <Image src={rules} alt='rules' unoptimized />
-                        <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
+                        <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
                             {isLocationInIran ? data.title[0].normalTitle : data.engTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {isLocationInIran ? data.title[0].coloredTitle : data.engTitle[0].coloredTitle} </span>
                         </p>
                     </div>
@@ -173,7 +173,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
         ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
         sm:gap-0 gap-4 justify-center items-center mt-24`}>
                         <Image src={book} alt='rules' unoptimized />
-                        <p className={`${myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
+                        <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
             text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
                             {isLocationInIran ? `${titles.secondTitle[0].normalTitle}` : `${titles.engSecondTitle[0].normalTitle}`} <span style={{ color: '#F68D2E' }}>
                                 {isLocationInIran ? `${titles.secondTitle[0].coloredTitle}` : `${titles.engSecondTitle[0].secondTitle}`} </span>
@@ -191,7 +191,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                 header={item.title}
                                             >
                                                 <p
-                                                    className={`m-0 ${myFontIran.className} text-right`}
+                                                    className={`m-0 ${isLocationInIran && myFontIran.className} text-right`}
                                                     dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
                                             </AccordionTab>
@@ -206,7 +206,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                 header={item.title}
                                             >
                                                 <p
-                                                    className={`m-0 ${myFontIran.className} text-left`}
+                                                    className={`m-0 ${isLocationInIran && myFontIran.className} text-left`}
                                                     dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
                                             </AccordionTab>
@@ -263,7 +263,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                         background: #1D1D1D;
                         color: #fff;
                         padding: 30px 20px;
-                        font-family: '__myFont_0ebf61';
+                        font-family: ${isLocationInIran ? '__myFont_0ebf61;' : '__Inter_e66fe9;'}
                         font-weight:400;
             }
 

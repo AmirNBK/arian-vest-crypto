@@ -576,7 +576,7 @@ border: none;
 background: #1D1D1D;
 color: #fff;
 padding: 30px 20px;
-font-family: '__myFont_0ebf61';
+font-family: ${isLocationInIran ? '__myFont_0ebf61;' : '__Inter_e66fe9;'}
 font-weight: 400;
 }
 
