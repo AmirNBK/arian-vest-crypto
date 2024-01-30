@@ -4,6 +4,7 @@ import Image from 'next/image';
 import localFont from 'next/font/local'
 import RegisterButton from '../CommonComponents/RegisterButton/RegisterButton';
 import AOS from 'aos';
+import ReactLoading from 'react-loading';
 import 'aos/dist/aos.css';
 import Link from 'next/link';
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
@@ -25,6 +26,7 @@ const TariffTable = (props: {
     }, [])
 
     const [isLogin, setIsLogin] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         if (localStorage.getItem("authToken") || sessionStorage.getItem("authToken")) {
@@ -34,7 +36,7 @@ const TariffTable = (props: {
     }, [])
 
     console.log(props.challenge);
-    
+
 
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-4'}
@@ -105,6 +107,7 @@ const TariffTable = (props: {
 
             <div className='w-6/12 mx-auto pb-10'
                 onClick={() => {
+                    setLoading(true)
                     sessionStorage.setItem('buying price', props.price.toLocaleString())
                     localStorage.setItem('challenge', props.challenge.toLocaleString())
                     if (!isLogin) {
@@ -112,9 +115,13 @@ const TariffTable = (props: {
                     }
                 }}
             >
-                <Link href={`${isLogin ? '/payment' : '/register'}`}>
-                    <RegisterButton text={props.isLocationIran ? 'خرید' : 'Purchase'} />
-                </Link>
+                {loading ?
+                    <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
+                    :
+                    <Link href={`${isLogin ? '/payment' : '/register'}`}>
+                        <RegisterButton text={props.isLocationIran ? 'خرید' : 'Purchase'} />
+                    </Link>
+                }
             </div>
 
             <style>

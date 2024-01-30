@@ -8,6 +8,7 @@ import "primereact/resources/primereact.min.css";
 import { Dialog } from 'primereact/dialog';
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
+import ReactLoading from 'react-loading';
 import login from '../../assets/icons/loginPayment.svg'
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
@@ -122,6 +123,7 @@ export default function Payment() {
     const [rules2, setRules2] = useState<boolean>(false);
     const [paymentRulesModal, setPaymentRulesModal] = useState<boolean>(false);
     const [paymentBrokerModal, setPaymentBrokerModal] = useState<boolean>(false);
+    const [submitLoading, setSubmitLoading] = useState<boolean>(false);
     const router = useRouter();
     const size = useWindowSize();
 
@@ -157,9 +159,6 @@ export default function Payment() {
         }));
     };
 
-    console.log(paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker);
-
-
     const handleBuyClick = (e: React.FormEvent) => {
         e.preventDefault();
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email);
@@ -180,6 +179,7 @@ export default function Payment() {
             rules1 &&
             rules2
         ) {
+            setSubmitLoading(true)
             handleCreateInvoice();
         } else {
             let errorMessage;
@@ -316,22 +316,22 @@ export default function Payment() {
                         <Toast ref={toastBottomRight} position="bottom-right" />
 
                         <Dialog
-                         visible={paymentRulesModal}
+                            visible={paymentRulesModal}
                             className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
-                            
+
                             style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
                             {
                                 isLocationInIran ?
                                     <p
-                                    dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].faRules.replace(/\r\n/g, '<br />') }}
+                                        dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].faRules.replace(/\r\n/g, '<br />') }}
                                     >
                                     </p>
                                     :
                                     <p
-                                    dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].engRules.replace(/\r\n/g, '<br />') }}
+                                        dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].engRules.replace(/\r\n/g, '<br />') }}
                                     >
                                     </p>
-                                    
+
                             }
                         </Dialog>
 
@@ -341,12 +341,12 @@ export default function Payment() {
                             {
                                 isLocationInIran ?
                                     <p
-                                    dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].faBroker.replace(/\r\n/g, '<br />') }}
+                                        dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].faBroker.replace(/\r\n/g, '<br />') }}
                                     >
                                     </p>
                                     :
                                     <p
-                                    dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker.replace(/\r\n/g, '<br />') }}
+                                        dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker.replace(/\r\n/g, '<br />') }}
                                     >
                                     </p>
                             }
@@ -414,14 +414,14 @@ export default function Payment() {
 
                             <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
                                 <div className={'flex flex-row-reverse gap-3'}>
-                                    <input type="radio" id="MT4" name="MT4" value="MT4"
+                                    <input type="radio" id="MT4" name="platform" value="MT4"
                                         onChange={() => handleRadioPlatformChange('MT4')}
                                     />
                                     <label className='text-xl'> MT4 </label>
                                 </div>
 
                                 <div className={'flex flex-row-reverse gap-3'}>
-                                    <input type="radio" id="MT5" name="MT5" value="MT5"
+                                    <input type="radio" id="MT5" name="platform" value="MT5"
                                         onChange={() => handleRadioPlatformChange('MT5')}
                                     />
                                     <label className='text-xl'> MT5 </label>
@@ -490,14 +490,18 @@ export default function Payment() {
                                 }
                             </div>
 
-                            <button
-                                type='submit'
-                                className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
-                                <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
-                                    {isLocationInIran ? 'خرید' : 'buy'}
-                                </p>
-                                <Image src={buy} alt='buy' />
-                            </button>
+                            {submitLoading ?
+                                <ReactLoading type={'spinningBubbles'} className='mx-auto mt-10' color={'#F68D2E'} height={50} width={50} />
+                                :
+                                <button
+                                    type='submit'
+                                    className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
+                                    <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
+                                        {isLocationInIran ? 'خرید' : 'buy'}
+                                    </p>
+                                    <Image src={buy} alt='buy' />
+                                </button>
+                            }
 
                         </form>
 
@@ -514,31 +518,31 @@ export default function Payment() {
                         </style>
                     </PrimeReactProvider>
                     :
-    <>
-        <Header active={''} isLocationInIran={isLocationInIran} />
-        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
-            <Image src={login} alt='login' className='w-16' />
-            <p className="mt-6 text-center">
-                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
-            </p>
-            <div className='flex flex-row justify-center mt-6 gap-6'>
-                <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
-                    onClick={() => {
-                        router.push('/register')
-                    }}
-                >
-                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
-                </button>
-            </div>
-        </div>
+                    <>
+                        <Header active={''} isLocationInIran={isLocationInIran} />
+                        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
+                            <Image src={login} alt='login' className='w-16' />
+                            <p className="mt-6 text-center">
+                                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
+                            </p>
+                            <div className='flex flex-row justify-center mt-6 gap-6'>
+                                <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
+                                    onClick={() => {
+                                        router.push('/register')
+                                    }}
+                                >
+                                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
+                                </button>
+                            </div>
+                        </div>
 
-        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
+                        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
 
 
 
-    </>
+                    </>
 
-}
+            }
 
 
         </main >
