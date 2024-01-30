@@ -131,14 +131,18 @@ const Receipt = (props: {
     const element = document.querySelector('#overview');
     if (element) {
       try {
-        const canvas = await html2canvas(element as HTMLElement);
-        const imageDataURL = canvas.toDataURL('image/png', 0.001);
+        setTimeout(async () => {
+          const canvas = await html2canvas(element as HTMLElement);
+          const imageDataURL = canvas.toDataURL('image/png');
 
-        const blobData = await (await fetch(imageDataURL)).blob();
-        const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
-        setReceipt(imageFile);
-        setPdfGenerated(true)
+          const blobData = await (await fetch(imageDataURL)).blob();
+          const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
 
+          console.log(imageDataURL);
+
+          setReceipt(imageFile);
+          setPdfGenerated(true);
+        }, 2000);
 
       } catch (error) {
         console.error('Error generating PDF:', error);
