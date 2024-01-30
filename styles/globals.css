@@ -101,7 +101,7 @@ html {
   }
 
   .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
-    background: transparent;
+    background: #1D1D1D;
   }
 }
 
