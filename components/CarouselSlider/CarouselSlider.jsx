@@ -12,7 +12,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
 import TariffTable from '../TariffTable/TariffTable';
 
-const CarouselSlider = ({ type, data, isLocationIran , device }) => {
+const CarouselSlider = ({ type, data, isLocationIran, device }) => {
     const [visible, setVisible] = useState(false);
     const [clickedTariff, setClickedTariff] = useState(1);
 
@@ -170,7 +170,7 @@ const CarouselSlider = ({ type, data, isLocationIran , device }) => {
                 rotationX: mouseY,
                 ease: Quint.easeOut,
             });
-                TweenMax.set(carousel, { z: type !== 'one-step' ? 450 : 600 });
+                TweenMax.set(carousel, { z: type !== 'one-step' ? 500 : 600 });
         }
 
         function getRandomInt($n) {

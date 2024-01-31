@@ -258,9 +258,6 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
                 <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
               </div>
-
-              
-
               
               
               <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
