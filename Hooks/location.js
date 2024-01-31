@@ -15,7 +15,8 @@ const useLocationData = () => {
                 }
 
                 const result = await response.json();
-                setData(result.countryName);
+                // setData(result.countryName);
+                setData('USA');
             } catch (err) {
                 setError(err);
             } finally {
