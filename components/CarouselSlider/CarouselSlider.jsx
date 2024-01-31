@@ -23,7 +23,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
     const size = useWindowSize();
 
     const tariffClickHandler = (index) => {
-        alert('mobile test')
         setClickedTariff(index)
         setVisible(true)
     }
@@ -294,7 +293,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                     {
                         type !== 'one-step' ?
                             <>
-                                <div id="item1" className=" cursor-pointer carouselItem trans3d"
+                                <div  className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(6)}
                                 >
                                     <div className="carouselItemInner trans3d"
@@ -312,7 +311,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item2" className=" cursor-pointer carouselItem trans3d"
+                                <div className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(5)}
                                 >
                                     <div className="carouselItemInner trans3d"
@@ -331,7 +330,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item3" className=" cursor-pointer carouselItem trans3d"
+                                <div className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(4)}
 
                                 >
@@ -350,7 +349,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item4" className=" cursor-pointer carouselItem trans3d"
+                                <div className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(3)}
                                 >
                                     <div className="carouselItemInner trans3d"
@@ -369,7 +368,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item5" className="carouselItem trans3d"
+                                <div className="carouselItem trans3d"
                                     onClick={() => tariffClickHandler(2)}
 
                                 >
@@ -390,7 +389,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item6" className=" cursor-pointer carouselItem trans3d"
+                                <div className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(1)}
 
                                 >
@@ -408,7 +407,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item7" className=" cursor-pointer carouselItem trans3d"
+                                <div className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
 
                                 >
@@ -427,7 +426,6 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     </div>
                                 </div>
                             </>
-
                             :
                             <>
                                 <div id="item1" className=" cursor-pointer carouselItem trans3d"
