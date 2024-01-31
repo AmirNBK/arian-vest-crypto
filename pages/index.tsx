@@ -230,7 +230,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </Link>
               </div>
 
-              <div className='relative lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
+              <div className='relative sm:block hidden lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
                 <div className="card"
                   style={{ margin: '0 auto', marginTop: '50px' }}
                 >
@@ -241,13 +241,13 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     }}
                   >
                     <TabPanel header="Classic">
-                      <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider device={'desktop'} type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                     <TabPanel header="One-Step">
-                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider device={'desktop'} type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                     <TabPanel header="Rapid">
-                      <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider device={'desktop'} type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                   </TabView>
 
@@ -258,6 +258,11 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
                 <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
               </div>
+
+              
+
+              
+              
               <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
                 <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
                   data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
