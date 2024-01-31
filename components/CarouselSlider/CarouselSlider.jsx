@@ -23,6 +23,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
     const size = useWindowSize();
 
     const tariffClickHandler = (index) => {
+        alert('mobile test')
         setClickedTariff(index)
         setVisible(true)
     }
