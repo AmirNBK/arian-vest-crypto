@@ -240,14 +240,14 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                       setSelectedTab(e.index)
                     }}
                   >
-                    <TabPanel header="Classic">
-                      <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                    <TabPanel header="One-Step">
+                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                     <TabPanel header="One-Step">
                       <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
-                    <TabPanel header="Rapid">
-                      <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
+                    <TabPanel header="One-Step">
+                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                   </TabView>
 
