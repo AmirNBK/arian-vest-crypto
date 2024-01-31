@@ -330,7 +330,7 @@ const Dashboard = (props: {
                             </div>
                             <div className={`flex flex-col  ${isLocationInIran ? 'items-end' : 'items-start'}`}>
                                 <p className={`${myFont.className} text-white`}>{isLocationInIran ? 'سرور' : 'Server'}</p>
-                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> ThinkMarkets-Demo </p>
+                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> Icmarkets </p>
                             </div>
                         </div>
                         <div className={`rounded-md flex ${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} items-start px-4 py-4 justify-between bg-[#202020]`}>
@@ -339,7 +339,7 @@ const Dashboard = (props: {
                             </div>
                             <div className={`flex flex-col  ${isLocationInIran ? 'items-end' : 'items-start'}`}>
                                 <p className={`${myFont.className} text-white`}>{isLocationInIran ? 'پلتفرم' : 'Platform'}</p>
-                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> ThinkMarkets-Demo </p>
+                                <p className='text-gray-500 text-center text-sm mt-1 text-main-orange'> Icmarkets </p>
                             </div>
                         </div>
                     </div>

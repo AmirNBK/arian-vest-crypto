@@ -295,9 +295,11 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                             <>
                                 <div id="item1" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(6)}
+                                    onTouchStart={() => tariffClickHandler(6)}
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(6)}
+                                        onTouchStart={() => tariffClickHandler(6)}
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
                                             backgroundSize: 'cover'
@@ -306,6 +308,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(6)}
+                                        onTouchStart={() => tariffClickHandler(6)}
 
                                     >
 
@@ -313,9 +316,13 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item2" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(5)}
+                                    onTouchStart={() => tariffClickHandler(5)}
+
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(5)}
+                                        onTouchStart={() => tariffClickHandler(5)}
+
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
                                             backgroundSize: 'cover'
@@ -324,6 +331,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(5)}
+                                        onTouchStart={() => tariffClickHandler(5)}
+
 
                                     >
 
@@ -332,10 +341,13 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item3" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(4)}
+                                    onTouchStart={() => tariffClickHandler(4)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(4)}
+                                        onTouchStart={() => tariffClickHandler(4)}
+
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
                                             backgroundSize: 'cover'
@@ -344,6 +356,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(4)}
+                                        onTouchStart={() => tariffClickHandler(4)}
+
                                     >
 
 
@@ -351,9 +365,11 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item4" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(3)}
+                                    onTouchStart={() => tariffClickHandler(3)}
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(3)}
+                                        onTouchStart={() => tariffClickHandler(3)}
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
                                             backgroundSize: 'cover'
@@ -362,6 +378,8 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(3)}
+                                        onTouchStart={() => tariffClickHandler(3)}
+
 
                                     >
 
@@ -370,10 +388,13 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item5" className="carouselItem trans3d"
                                     onClick={() => tariffClickHandler(2)}
+                                    onTouchStart={() => tariffClickHandler(2)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(2)}
+                                        onTouchStart={() => tariffClickHandler(2)}
+
 
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
@@ -383,6 +404,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(2)}
+                                        onTouchStart={() => tariffClickHandler(2)}
 
                                     >
 
@@ -391,10 +413,13 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item6" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(1)}
+                                    onTouchStart={() => tariffClickHandler(1)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(1)}
+                                        onTouchStart={() => tariffClickHandler(1)}
+
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
                                             backgroundSize: 'cover',
@@ -403,16 +428,20 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(1)}
+                                        onTouchStart={() => tariffClickHandler(1)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item7" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
+                                    onTouchStart={() => tariffClickHandler(7)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled-fotor-20231205201240-e1701794985905.jpg")',
                                             backgroundSize: 'cover'
@@ -421,6 +450,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
                                     >
 
                                     </div>
@@ -431,9 +461,11 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                             <>
                                 <div id="item1" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(6)}
+                                    onTouchStart={() => tariffClickHandler(6)}
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(6)}
+                                        onTouchStart={() => tariffClickHandler(6)}
 
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
@@ -443,15 +475,19 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(6)}
+                                        onTouchStart={() => tariffClickHandler(6)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item2" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(5)}
+                                    onTouchStart={() => tariffClickHandler(5)}
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(5)}
+                                        onTouchStart={() => tariffClickHandler(5)}
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
                                             backgroundSize: 'cover'
@@ -460,15 +496,19 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(5)}
+                                        onTouchStart={() => tariffClickHandler(5)}
+
                                     >
                                     </div>
                                 </div>
                                 <div id="item3" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(4)}
+                                    onTouchStart={() => tariffClickHandler(4)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(4)}
+                                        onTouchStart={() => tariffClickHandler(4)}
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
                                             backgroundSize: 'cover'
@@ -477,15 +517,19 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(4)}
+                                        onTouchStart={() => tariffClickHandler(4)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item4" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(3)}
+                                    onTouchStart={() => tariffClickHandler(3)}
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(3)}
+                                        onTouchStart={() => tariffClickHandler(3)}
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
                                             backgroundSize: 'cover'
@@ -494,15 +538,18 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(3)}
+                                        onTouchStart={() => tariffClickHandler(3)}
                                     >
                                     </div>
                                 </div>
                                 <div id="item5" className="carouselItem trans3d"
                                     onClick={() => tariffClickHandler(2)}
+                                    onTouchStart={() => tariffClickHandler(2)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(2)}
+                                        onTouchStart={() => tariffClickHandler(2)}
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
                                             backgroundSize: 'cover'
@@ -511,6 +558,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(2)}
+                                        onTouchStart={() => tariffClickHandler(2)}
                                     >
 
 
@@ -518,10 +566,12 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                 </div>
                                 <div id="item6" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(1)}
+                                    onTouchStart={() => tariffClickHandler(1)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(1)}
+                                        onTouchStart={() => tariffClickHandler(1)}
 
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
@@ -531,16 +581,19 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(1)}
+                                        onTouchStart={() => tariffClickHandler(1)}
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item7" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
+                                    onTouchStart={() => tariffClickHandler(7)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
 
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
@@ -550,16 +603,22 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item8" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
+                                    onTouchStart={() => tariffClickHandler(7)}
+
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
                                         style={{
                                             backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
                                             backgroundSize: 'cover'
@@ -568,16 +627,21 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item9" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
+                                    onTouchStart={() => tariffClickHandler(7)}
 
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
 
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
@@ -587,15 +651,21 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
                                     >
 
                                     </div>
                                 </div>
                                 <div id="item10" className="cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
+                                    onTouchStart={() => tariffClickHandler(7)}
+
                                 >
                                     <div className="carouselItemInner trans3d"
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
+
                                         style={{
                                             backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
                                             backgroundSize: 'cover'
@@ -604,6 +674,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
                                         style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
                                         onClick={() => tariffClickHandler(7)}
+                                        onTouchStart={() => tariffClickHandler(7)}
                                     >
 
                                     </div>

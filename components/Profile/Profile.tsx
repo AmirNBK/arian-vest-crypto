@@ -39,6 +39,7 @@ const Profile = (
             created_at: string
             payment_invoice: File
             status: string
+            invoice_number: number
         }[]
 
     }
@@ -295,6 +296,9 @@ const Profile = (
                                             {isLocationInIran ? 'قیمت' : 'Price'}
                                         </th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                                            {isLocationInIran ? 'شماره سفارش' : 'Order number'}
+                                        </th>
+                                        <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                             {isLocationInIran ? 'حساب خریداری شده' : 'Purchased Account'}
                                         </th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
@@ -319,11 +323,14 @@ const Profile = (
                                ${item.status === "pending" ? 'bg-main-orange' : item.status === "expired" ? 'bg-[#740000]' : item.status === "Paid" ? 'bg-[#159400]' : ''}
                                `}
                                                 >
-                                                    {item.status}
+                                                    {item.status === 'pending' ? 'Success - Processing' : item.status}
                                                 </button>
                                             </td>
                                             <td className='text-center'>
                                                 <p className='text-white'>${item.price}</p>
+                                            </td>
+                                            <td className='text-center'>
+                                                <p className='text-white'>{item.invoice_number}</p>
                                             </td>
                                             <td className='text-center'>
                                                 <p className='text-white'>{item.name + ' ' + item.price + 'k'}</p>
