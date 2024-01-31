@@ -205,68 +205,68 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
             >
                 <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
                 {
-                    // isLocationIran ?
-                    //     type === 'classic' ?
-                    //         <TariffTable
-                    //             removeTitle={true}
-                    //             title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
-                    //             data={[
-                    //                 { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
-                    //                 { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
-                    //                 { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
-                    //                 { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
-                    //                 { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
-                    //                 { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
-                    //                 { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
-                    //                 { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
-                    //             ]}
-                    //             fullWidth
-                    //             price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
-                    //         />
-                    //         :
-                    //         <TariffTable
-                    //             removeTitle={true}
-                    //             title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
-                    //             data={[
-                    //                 { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
-                    //                 { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
-                    //                 { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
-                    //                 { title: isLocationIran ? 'سود هدف :' : 'Profit target:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
-                    //                 { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
-                    //                 { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
-                    //                 { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
-                    //                 { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
-                    //             ]}
-                    //             fullWidth
-                    //             price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
-                    //         />
-                    //     :
-                        // type === 'classic' ?
-                        //     <TariffTable
-                        //         removeTitle={true}
-                        //         title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
-                        //         data={[
-                        //             { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
-                        //             { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
-                        //             { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1} || '0'`]?.minDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
-                        //             { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
-                        //             { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
-                        //             { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
-                        //             { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
-                        //             { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
-                        //             { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}`}` },
-                        //             { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}`}` },
-                        //             { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}`}` },
-                        //         ]}
-                        //         fullWidth
-                        //         price={`${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
-                        //     />
-                        //     :
+                    isLocationIran ?
+                        type === 'classic' ?
+                            <TariffTable
+                                removeTitle={true}
+                                title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                                data={[
+                                    { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                                    { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                                    { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
+                                    { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                                    { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                                    { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                                    { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
+                                    { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
+                                    { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
+                                ]}
+                                fullWidth
+                                price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
+                            />
+                            :
+                            <TariffTable
+                                removeTitle={true}
+                                title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                                data={[
+                                    { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                                    { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                                    { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
+                                    { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                                    { title: isLocationIran ? 'سود هدف :' : 'Profit target:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                                    { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'دارد' : 'ندارد'}`}` },
+                                    { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'دارد' : 'ندارد'}`}` },
+                                    { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
+                                ]}
+                                fullWidth
+                                price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
+                            />
+                        :
+                        type === 'classic' ?
+                            <TariffTable
+                                removeTitle={true}
+                                title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
+                                data={[
+                                    { title: isLocationIran ? 'مقدار سرمایه:' : 'Capital Amount:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].price}k` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].price}k`}` },
+                                    { title: isLocationIran ? 'leverage حساب :' : 'Account Leverage:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].leverage}`}` },
+                                    { title: isLocationIran ? 'حداقل روزهای معاملاتی:' : 'Minimum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1} || '0'`]?.minDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`]?.minDays}`}` },
+                                    { title: isLocationIran ? 'حداکثر روزهای معاملاتی:' : 'Maximum Trading Days:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].maxDays}`}` },
+                                    { title: isLocationIran ? 'target فاز 1:' : 'Target Phase 1:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target1}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target1}`}` },
+                                    { title: isLocationIran ? 'target فاز 2:' : 'Target Phase 2:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].target2}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].target2}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر روزانه:' : 'Maximum Daily Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dailyLoss}`}` },
+                                    { title: isLocationIran ? 'حداکثر ضرر کلی:' : 'Maximum Total Loss:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].totalLoss}`}` },
+                                    { title: isLocationIran ? 'استفاده از ربات:' : 'Use of Robot:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].robot ? 'Allowed' : 'Not allowed'}`}` },
+                                    { title: isLocationIran ? 'refund:' : 'Refund:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].refund ? 'Available' : 'Not available'}`}` },
+                                    { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}`}` },
+                                ]}
+                                fullWidth
+                                price={`${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
+                            />
+                            :
                             <TariffTable
                                 removeTitle={true}
                                 title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
@@ -292,187 +292,140 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 <section id="carouselContainer" className="trans3d">
                     {
                         type === 'classic' ?
-                        <>
-                        <div id="item1" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(6)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(6)}
+                            <>
+                                <div  className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(6)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(6)}
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/100-fotor-202312052022-e1701794394177.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(6)}
 
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(6)}
-                            >
+                                    >
 
-                            </div>
-                        </div>
-                        <div id="item2" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(5)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(5)}
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(5)}
-                            >
-                            </div>
-                        </div>
-                        <div id="item3" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(4)}
+                                    </div>
+                                </div>
+                                <div className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(5)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(5)}
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(5)}
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(4)}
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(4)}
-                            >
-
-                            </div>
-                        </div>
-                        <div id="item4" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(3)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(3)}
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(3)}
-                            >
-                            </div>
-                        </div>
-                        <div id="item5" className="carouselItem trans3d"
-                            onClick={() => tariffClickHandler(2)}
-
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(2)}
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(2)}
-                            >
+                                    >
 
 
-                            </div>
-                        </div>
-                        <div id="item6" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(1)}
+                                    </div>
+                                </div>
+                                <div className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(4)}
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(1)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(4)}
+                                        style={{
+                                            backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(4)}
+                                    >
 
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
-                                    backgroundSize: 'cover',
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(1)}
-                            >
 
-                            </div>
-                        </div>
-                        <div id="item7" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
+                                    </div>
+                                </div>
+                                <div className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(3)}
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(3)}
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(3)}
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(7)}
+                                    >
 
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/50-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(7)}
-                            >
 
-                            </div>
-                        </div>
-                        {/* <div id="item8" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
+                                    </div>
+                                </div>
+                                <div className="carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(2)}
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(7)}
-                                style={{
-                                    backgroundImage: 'url(https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/25-scaled.jpg)',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(7)}
-                            >
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(2)}
 
-                            </div>
-                        </div>
-                        <div id="item9" className=" cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(2)}
 
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(7)}
+                                    >
 
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/15-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(7)}
-                            >
 
-                            </div>
-                        </div>
-                        <div id="item10" className="cursor-pointer carouselItem trans3d"
-                            onClick={() => tariffClickHandler(7)}
-                        >
-                            <div className="carouselItemInner trans3d"
-                                onClick={() => tariffClickHandler(7)}
-                                style={{
-                                    backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/10-scaled.jpg")',
-                                    backgroundSize: 'cover'
-                                }}
-                            ></div>
-                            <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
-                                style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
-                                onClick={() => tariffClickHandler(7)}
-                            >
+                                    </div>
+                                </div>
+                                <div className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(1)}
 
-                            </div>
-                        </div> */}
-                    </>
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(1)}
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/5-scaled.jpg")',
+                                            backgroundSize: 'cover',
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(1)}
+                                    >
+
+                                    </div>
+                                </div>
+                                <div className=" cursor-pointer carouselItem trans3d"
+                                    onClick={() => tariffClickHandler(7)}
+
+                                >
+                                    <div className="carouselItemInner trans3d"
+                                        onClick={() => tariffClickHandler(7)}
+                                        style={{
+                                            backgroundImage: 'url("https://zafremedia.ir/aryanVest/wp-content/uploads/2023/12/200-scaled-fotor-20231205201240-e1701794985905.jpg")',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    ></div>
+                                    <div className={`${myFontIran.className} absolute top-1/2 left-1/2 text-2xl sm:text-4xl w-full text-end`}
+                                        style={{ transform: 'translate(-50%,0%) rotateY(180deg) scaleX(-1)' }}
+                                        onClick={() => tariffClickHandler(7)}
+                                    >
+
+                                    </div>
+                                </div>
+                            </>
                             :
                             type === 'one-step' ?
                             <>
