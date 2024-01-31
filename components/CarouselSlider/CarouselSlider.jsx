@@ -171,7 +171,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 ease: Quint.easeOut,
             });
             if (size.width && size.width < 640) {
-                TweenMax.set(carousel, { z: 530 });
+                TweenMax.set(carousel, { z: 570 });
             }
             else {
                 TweenMax.set(carousel, { z: type !== 'one-step' ? 450 : 600 });
