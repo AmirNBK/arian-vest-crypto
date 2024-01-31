@@ -244,8 +244,8 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     }}
                   >
                     <TabPanel header="Classic">
-                      {/* <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} /> */}
-                      <CarouselSliderClassic type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                      {/* <CarouselSliderClassic type={'classic'} data={tariffs} isLocationIran={isLocationInIran} /> */}
                     </TabPanel>
                     <TabPanel header="One-Step">
                       <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />

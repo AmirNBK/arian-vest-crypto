@@ -170,7 +170,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 rotationX: mouseY,
                 ease: Quint.easeOut,
             });
-            TweenMax.set(carousel, { z: type !== 'one-step' ? 450 : 600 });
+            TweenMax.set(carousel, { z:  600 });
         }
 
         function getRandomInt($n) {
