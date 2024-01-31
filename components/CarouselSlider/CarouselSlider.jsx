@@ -535,7 +535,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
 
                                     </div>
                                 </div>
-                                <div id="item7" className=" cursor-pointer carouselItem trans3d"
+                                {/* <div id="item7" className=" cursor-pointer carouselItem trans3d"
                                     onClick={() => tariffClickHandler(7)}
 
                                 >
@@ -607,7 +607,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     >
 
                                     </div>
-                                </div>
+                                </div> */}
                             </>
                             :
                              <>
