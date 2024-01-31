@@ -104,15 +104,16 @@ const Receipt = (props: {
   const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
   const challengeType = localStorage.getItem('challenge');
+  const challengeName = localStorage.getItem('challenge amount');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await generatePDF();
 
-        if (paymentInfo && profileInfo && receipt) {
+        if (paymentInfo && profileInfo && receipt && challengeName && challengeType) {
           try {
-            const res = await purchaseAccount(profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
+            const res = await purchaseAccount(challengeType + ' ' + challengeName, profileInfo.pk, challengeType, paymentInfo.price_amount, receipt);
             setLoadingData(false);
           } catch (error) {
             console.error('Error making purchase:', error);
@@ -125,7 +126,7 @@ const Receipt = (props: {
     };
 
     fetchData();
-  }, [paymentInfo, profileInfo, challengeType, pdfGenerated]);
+  }, [paymentInfo, profileInfo, challengeType, pdfGenerated, challengeName]);
 
   const generatePDF = async () => {
     const element = document.querySelector('#overview');

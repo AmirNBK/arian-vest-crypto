@@ -101,7 +101,7 @@ const Ticket = (props: {
 
     useEffect(() => {
         if (selectedAccount) {
-            getTickets(selectedAccount).then((res) => {
+            getTickets().then((res) => {
                 setTickets(res.data)
                 setLoading(false)
             })
@@ -160,9 +160,6 @@ const Ticket = (props: {
                 formData.platform,
                 formData.metatraderAccount,
                 formData.orderNumber,
-                formData.description,
-                selectedAccount,
-                selectedFile
             )
                 .then((res) => {
                     if (res.status === 201) {
@@ -177,15 +174,14 @@ const Ticket = (props: {
                         })
                         setRefreshTickets(!refreshTickets)
                         setTimeout(() => {
-                            setFormData({
+                            setFormData(prevFormData => ({
+                                ...prevFormData,
                                 subject: '',
-                                supportType: '',
-                                priority: '',
                                 orderNumber: '',
                                 metatraderAccount: '',
-                                platform: '',
                                 description: '',
-                            });
+                            }));
+
                         }, 0);
                         setSubmitLoading(false)
                     }
@@ -298,7 +294,6 @@ const Ticket = (props: {
                                         selectablePlaceholder={isLocationIran ? 'انتخاب كنيد' : 'Choose your priority'}
                                         isTextArea={false}
                                         onChange={(value) => handleInputChange('priority', value)}
-
                                     />
                                     <NewInput
                                         isLocationIran={props.isLocationIran}

@@ -14,9 +14,10 @@ const myFontSquad = localFont({ src: '../../assets/fonts/SquadaOne Regular.ttf' 
 import facebook from '../../assets/icons/facebook.svg'
 import twitter from '../../assets/icons/twitter.svg'
 import { Toast, ToastMessage } from 'primereact/toast';
-import dribble from '../../assets/icons/dribble.svg'
-import pinterest from '../../assets/icons/pinterest.svg'
-import linkedin from '../../assets/icons/linkedin.svg'
+import telegram from '../../assets/icons/telegram.svg'
+import instagram from '../../assets/icons/instagram.svg'
+import { useQuery, gql } from '@apollo/client';
+import discord from '../../assets/icons/discord.svg'
 import Link from 'next/link';
 
 const Footer = (props: {
@@ -24,6 +25,22 @@ const Footer = (props: {
     dataEng?: any
     isLocationInIran?: boolean
 }) => {
+    const GET_LEADERBOARDS = gql`
+    query socialMedia {
+        pages {
+          nodes {
+            socialMedia {
+              socialMediaItems {
+                discord
+                instagram
+                telegram
+              }
+            }
+          }
+        }
+      }
+`;
+    const { data: socialMediaLinks } = useQuery(GET_LEADERBOARDS);
     const isLocationInIran = props.isLocationInIran;
     const toastBottomRight = useRef<Toast>(null);
     const [email, setEmail] = useState('');
@@ -38,9 +55,10 @@ const Footer = (props: {
         { title: 'انتقادات و پیشنهادات', link: '/' }
     ];
 
-    const socialMedia = [facebook, twitter, dribble, pinterest, linkedin]
+    const socialMedia = [{ icon: telegram, link: socialMediaLinks?.pages.nodes[2].socialMedia.socialMediaItems[0].telegram },
+    { icon: instagram, link: socialMediaLinks?.pages.nodes[2].socialMedia.socialMediaItems[0].instagram },
+    { icon: discord, link: socialMediaLinks?.pages.nodes[2].socialMedia.socialMediaItems[0].discord }]
     const [isHovered, setIsHovered] = useState(false);
-
 
     const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setEmail(e.target.value);
@@ -132,9 +150,18 @@ const Footer = (props: {
                     <div className='flex flex-col justify-between items-center lg:items-baseline'>
                         <div className='flex flex-row gap-6 lg:gap-16'>
                             {socialMedia.map((item) => {
-                                return (
-                                    <Image src={item} alt={item} unoptimized width={20} />
-                                )
+                                if (item.link) {
+                                    return (
+                                        <Link href={item.link && item.link}>
+                                            <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                        </Link>
+                                    )
+                                }
+                                else {
+                                    return (
+                                        <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                    )
+                                }
                             })}
                         </div>
 
@@ -215,14 +242,22 @@ const Footer = (props: {
                             <p className={`text-white text-center mt-6 text-xl lg:block hidden ${myFont2.className}`}
                                 style={{ color: '#000' }}
                             >
-                                {/* {isLocationInIran ? 'طراحی شده توسط زفره مدیا' : 'Designed by Zafre Media'} */}
                             </p>
 
                             <div className='flex flex-row gap-6 lg:gap-16'>
                                 {socialMedia.map((item) => {
-                                    return (
-                                        <Image src={item} alt={item} unoptimized />
-                                    )
+                                    if (item.link) {
+                                        return (
+                                            <Link href={item.link && item.link}>
+                                                <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                            </Link>
+                                        )
+                                    }
+                                    else {
+                                        return (
+                                            <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                        )
+                                    }
                                 })}
                             </div>
                         </div>

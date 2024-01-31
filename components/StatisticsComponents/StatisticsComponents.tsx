@@ -31,7 +31,7 @@ const StatisticsComponents = (props: {
              flex flex-row-reverse rounded-md ${props.paddingY ? `py-${props.paddingY}` : 'py-10'}
         ${props.width ? `w-${props.width}` : 'w-44'} px-5
          gap-4 items-center  ${myFontIran.className}`}>
-            {props.havePlusButton && <Image src={plus} className='absolute left-0 bottom-0' alt='downloadIcon' />}
+            {props.havePlusButton && <Image src={plus} className='absolute sm:block hidden left-0 bottom-0' alt='downloadIcon' />}
             <div className='flex flex-col items-end gap-2'>
                 <p className={`${props.isCenter && 'text-center'} ${props.isActive ? 'rounded-md px-6 py-1 ml-auto w-fit  text-[#21c21e] bg-green-200' : 'text-white'} ${props.fontSize ? `text-${props.fontSize}` : 'text-xl'} font-bold 3xl:text-lg `}>
                     <span className='text-main-orange'>

@@ -412,7 +412,7 @@ export default function Payment() {
                             </h2>
 
 
-                            <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse text-white gap-6 mt-8`}>
+                            <div className={`${!isLocationInIran && 'justify-start'} flex flex-row text-white gap-6 mt-8`}>
                                 <div className={'flex flex-row-reverse gap-3'}>
                                     <input type="radio" id="MT4" name="platform" value="MT4"
                                         onChange={() => handleRadioPlatformChange('MT4')}

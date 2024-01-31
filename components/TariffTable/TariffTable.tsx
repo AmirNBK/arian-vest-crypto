@@ -35,9 +35,6 @@ const TariffTable = (props: {
         else setIsLogin(false)
     }, [])
 
-    console.log(props.challenge);
-
-
     return (
         <div className={`${myFontIran.className} TariffTable ${!(props.removeTitle) ? 'my-32' : 'my-4'}
         ${props.fullWidth ? ' w-full' : 'w-full sm:w-11/12 lg:w-8/12 3xl:w-5/12'} sm:mx-auto`}
@@ -110,6 +107,7 @@ const TariffTable = (props: {
                     setLoading(true)
                     sessionStorage.setItem('buying price', props.price.toLocaleString())
                     localStorage.setItem('challenge', props.challenge.toLocaleString())
+                    localStorage.setItem('challenge amount', props.data[0].info.toLocaleString())
                     if (!isLogin) {
                         sessionStorage.setItem('payment login', 'true')
                     }

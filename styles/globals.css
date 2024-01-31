@@ -39,8 +39,30 @@ html {
     background: #555;
   }
 
+  .content__box {
+    color: white;
+    text-align: center;
+    padding: 50px;
+    width: 60%;
+    margin: 0 auto;
+
+    @media (min-width: 2000px) {
+      font-size: 32px;
+    }
+
+    @media (max-width: 640px) {
+      width: 100% !important;
+      padding: 0px !important;
+    }
+  }
+
   .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
     box-shadow: 0 0 0 0.2rem #F68D2E;
+  }
+
+  .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
+    background: #1D1D1D !important;
+    color: white
   }
 
   .p-toast-bottom-right {

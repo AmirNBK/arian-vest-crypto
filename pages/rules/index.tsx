@@ -278,7 +278,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
             }
 
                         .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link:hover {
-                            background: #1D1D1D;
+                            background: #1D1D1D !important;
                         color : white
             }
 

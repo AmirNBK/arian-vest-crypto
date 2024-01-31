@@ -132,7 +132,7 @@ const Profile = (
     return (
         <div className='Profile' style={{ zIndex: '-50' }}>
             <Toast ref={toastBottomRight} position="bottom-right" />
-            <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+            <Dialog header="Receipt" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
                 <Image src={receipt} alt='receipt' width={50} height={50} unoptimized className=' w-full h-full' />
             </Dialog>
             {profileInfo ?
@@ -333,7 +333,7 @@ const Profile = (
                                                 <p className='text-white'>{item.invoice_number}</p>
                                             </td>
                                             <td className='text-center'>
-                                                <p className='text-white'>{item.name + ' ' + item.price + 'k'}</p>
+                                                <p className='text-white'>{item.name}</p>
                                             </td>
                                             <td className='text-center'>
                                                 <p className='text-white'>{formatCreatedAtDate(item.created_at)}</p>

@@ -91,8 +91,8 @@ export default function Panel() {
         }
         else setIsLogin(false)
         getPurchasedAccounts().then((res) => {
-            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; price: string }) => ({
-                name: (account.price !== undefined ? account.accounts + ' ' + account.price + 'k' : account.accounts + ' ' + account.pk),
+            const formattedAccounts = res.data.map((account: { accounts: any; pk: { toString: () => any; }; name: string }) => ({
+                name: (account.name),
                 code: account.pk.toString(),
             }));
 
