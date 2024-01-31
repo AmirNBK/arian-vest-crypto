@@ -254,6 +254,70 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                     <style>
                         {
                             `
+                            .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+                                box-shadow: 0 0 0 0.2rem #F68D2E;
+                              }
+                            
+                              .p-toast-bottom-right {
+                                z-index: 120000000000000000000 !important;
+                              }
+                            
+                              .p-tabview .p-tabview-nav {
+                                background: transparent;
+                              }
+                            
+                              .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+                                background: transparent;
+                                color: #F68D2E;
+                              }
+                            
+                              .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+                                background: transparent;
+                              }
+                            
+                              .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+                                font-size: 22px;
+                              }
+                            
+                              .p-tabview-title {
+                                font-size: 22px;
+                              }
+                            
+                              .p-tabview .p-tabview-nav li:hover {
+                                background: transparent
+                              }
+                            
+                              .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+                                color: white
+                              }
+                            
+                              .p-tabview .p-tabview-panels {
+                                background: transparent
+                              }
+                            
+                              .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+                                box-shadow: none;
+                              }
+                            
+                              .p-tabview .p-tabview-nav {
+                                border-bottom: 1px solid #F68D2E;
+                              }
+                            
+                              .p-tabview .p-tabview-nav .p-tabview-ink-bar {
+                                background-color: #F68D2E
+                              }
+                            
+                              .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+                                border: none
+                              }
+                            
+                              .p-tabview-nav {
+                                justify-content: space-between;
+                              }
+                            
+                              .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+                                background: #1D1D1D;
+                              }
                 .p-tabview-nav-content {
                     margin: 0 auto;
                     width : 90%;
