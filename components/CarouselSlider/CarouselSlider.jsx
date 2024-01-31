@@ -12,7 +12,7 @@ const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
 import TariffTable from '../TariffTable/TariffTable';
 
-const CarouselSlider = ({ type, data, isLocationIran, device }) => {
+const CarouselSlider = ({ type, data, isLocationIran }) => {
     const [visible, setVisible] = useState(false);
     const [clickedTariff, setClickedTariff] = useState(1);
 

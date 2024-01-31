@@ -230,7 +230,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </Link>
               </div>
 
-              <div className='relative sm:block hidden lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
+              <div className='relative lg:-mt-[20rem] 2xl:-mt-[22rem] 3xl:-mt-[27rem] sm:-mt-[27rem] -mt-[23rem]' id='Tariffs'>
                 <div className="card"
                   style={{ margin: '0 auto', marginTop: '50px' }}
                 >
@@ -241,13 +241,13 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     }}
                   >
                     <TabPanel header="Classic">
-                      <CarouselSlider device={'desktop'} type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                     <TabPanel header="One-Step">
-                      <CarouselSlider device={'desktop'} type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                     <TabPanel header="Rapid">
-                      <CarouselSlider device={'desktop'} type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
+                      <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                   </TabView>
 
