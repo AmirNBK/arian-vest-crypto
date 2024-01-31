@@ -35,9 +35,6 @@ import 'animate.css';
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
 });
-const CarouselSliderClassic = dynamic(() => import("@/components/CarouselSlider/CarouselSliderClassic"), {
-  ssr: false,
-});
 import bull from '../assets/images/bull.svg'
 import redBull from '../assets/images/redBull.svg'
 import greenBull from '../assets/images/greenBull.svg'
@@ -245,13 +242,12 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                   >
                     <TabPanel header="Classic">
                       <CarouselSlider type={'classic'} data={tariffs} isLocationIran={isLocationInIran} />
-                      {/* <CarouselSliderClassic type={'classic'} data={tariffs} isLocationIran={isLocationInIran} /> */}
                     </TabPanel>
                     <TabPanel header="One-Step">
                       <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
-                    <TabPanel header="One-Step">
-                      <CarouselSlider type={'one-step'} data={tariffs} isLocationIran={isLocationInIran} />
+                    <TabPanel header="Rapid">
+                      <CarouselSlider type={'rapid'} data={tariffs} isLocationIran={isLocationInIran} />
                     </TabPanel>
                   </TabView>
 
