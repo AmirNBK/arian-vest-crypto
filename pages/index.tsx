@@ -251,7 +251,6 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     </TabPanel>
                   </TabView>
 
-
                   <div className='text-white text-center mt-6 text-3xl'>
                     {selectedTab === 0 ? `${tariffs?.tariffs[0]?.range}` : selectedTab === 1 ? `${tariffs?.tariffs[1]?.range}` : `${tariffs?.tariffs[2]?.range}`}
                   </div>

@@ -52,9 +52,9 @@ const MessageComponent = (props: {
 
     const textContent = doc.body.textContent;
     return (
-        <div className={`MessageComponent w-4/12 flex items-center gap-4 my-2 ${type === 'user' ? 'ml-auto mr-2 flex-row-reverse' : 'ml-2 flex-row'}`}>
+        <div className={`MessageComponent sm:w-4/12 w-full flex items-center sm:gap-4 gap-2 my-2 ${type === 'user' ? 'ml-auto mr-2 flex-row-reverse' : 'sm:ml-2 flex-row'}`}>
             {type === 'user' ?
-                <Image src={profilePic ? ('https://virafundingbackend.darkube.app/media-files/' + profilePic) : profile} alt='profile' unoptimized style={{ zIndex: '20' }} width={170} height={170} className='rounded-full relative w-8 h-8 object-cover' />
+                <Image src={profilePic ? ('https://virafundingbackend.darkube.app/media-files/' + profilePic) : profile} alt='profile' unoptimized style={{ zIndex: '20' }} width={170} height={170} className='rounded-full relative sm:w-8 sm:h-8 w-6 h-6 object-cover' />
                 :
                 <Image src={profile} alt='profile' className='w-8' />
             }

@@ -357,6 +357,9 @@ const Ticket = (props: {
                                                 <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                                     {isLocationIran ? '' : 'Ticket ID'}
                                                 </th>
+                                                <th className={`${myFont.className} sm:hidden block text-xl text-center text-main-orange`}>
+                                                    
+                                                </th>
                                                 <th className={`${myFont.className} text-xl text-center text-main-orange`}>
                                                     {isLocationIran ? 'موضوع تیکت' : 'Ticket Subject'}
                                                 </th>
@@ -376,6 +379,13 @@ const Ticket = (props: {
                                                     <tr >
                                                         <td className='text-center'>
                                                             <h2 className='text-main-orange text-xl sm:text-2xl font-bold'> {index + 1} </h2>
+                                                        </td>
+                                                        <td className='sm:hidden block cursor-pointer' onClick={() => {
+                                                            setChatId(item.pk)
+                                                        }}>
+                                                            <p className='underline text-blue-500 '>
+                                                                {isLocationIran ? 'مشاهده' : 'View ticket'}
+                                                            </p>
                                                         </td>
                                                         <td className='text-center'>
                                                             <p className='text-white'>
@@ -400,7 +410,7 @@ const Ticket = (props: {
                                                                 {item.ticket_status}
                                                             </button>
                                                         </td>
-                                                        <td className=' cursor-pointer' onClick={() => {
+                                                        <td className='sm:block hidden cursor-pointer' onClick={() => {
                                                             setChatId(item.pk)
                                                         }}>
                                                             <p className='underline text-blue-500 '>

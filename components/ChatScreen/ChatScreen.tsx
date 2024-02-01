@@ -30,7 +30,7 @@ const ChatScreen = (props: {
                     messages.slice(0).reverse().map((item) => {
                         return (
                             <div className='relative'>
-                                <div className='flex flex-row items-center'>
+                                <div className='flex flex-row items-center mt-5 sm:m-0 '>
                                     <MessageComponent isLocationIran={props.isLocationIran} file={item.file} id={item?.message_id} type={item?.author == 1 ? 'support' : 'user'} message={item?.content} date={item?.created_at} />
                                 </div>
                             </div>
