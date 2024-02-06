@@ -226,7 +226,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
                                 ]}
                                 fullWidth
-                                challenge={type}
+                                challenge={`${type === 'classic' ? `Classic` : type === 'one-step' ? `One-Step` : `Rapid`}`}
                                 price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
                             />
                             :
@@ -246,7 +246,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'دارد' : 'ندارد'}`}` },
                                 ]}
                                 fullWidth
-                                challenge={type}
+                                challenge={`${type === 'classic' ? `Classic` : type === 'one-step' ? `One-Step` : `Rapid`}`}
                                 price={`${type === 'classic' ? `${data?.tariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.tariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.tariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
                             />
                         :
@@ -268,7 +268,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}`}` },
                                 ]}
                                 fullWidth
-                                challenge={type}
+                                challenge={`${type === 'classic' ? `Classic` : type === 'one-step' ? `One-Step` : `Rapid`}`}
                                 price={`${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
                             />
                             :
@@ -288,7 +288,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                                     { title: isLocationIran ? 'news trading:' : 'News Trading:', info: `${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].newsTrading ? 'Available' : 'Not available'}`}` },
                                 ]}
                                 fullWidth
-                                challenge={type}
+                                challenge={`${type === 'classic' ? `Classic` : type === 'one-step' ? `One-Step` : `Rapid`}`}
                                 price={`${type === 'classic' ? `${data?.engTariffs[0].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : type === 'one-step' ? `${data?.engTariffs[1].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}` : `${data?.engTariffs[2].pricesInfo[0].item[`${clickedTariff - 1}`].dollarPrice}`}`}
                             />
                 }
