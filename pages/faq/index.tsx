@@ -22,8 +22,9 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
     return (
-        <main
-            className={`flex min-h-screen flex-col justify-between ${inter.className}`}
+        <div className='flex justify-center'>
+            <main
+            className={`flex min-h-screen flex-col justify-between max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Faq</title>
@@ -35,14 +36,14 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                     <Header active={4} isLocationInIran={isLocationInIran} />
                     <div className={`${myFont.className} flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse sm:mr-12' : 'sm:flex-row sm:ml-12'} gap-4 items-center mt-8`}>
                         <Image src={faq} alt='faq' />
-                        <p className='text-white text-4xl sm:text-end text-center'>
+                        <p className='text-white text-4xl  md:text-end text-center'>
                             {isLocationInIran ? 'سوالات متداول' : 'Frequently Asked Questions'}
                             <span style={{ color: '#F68D2E' }}> {isLocationInIran ? 'برای معاملات' : 'for trades'} </span>
                         </p>
                     </div>
 
                     <div>
-                        <Accordion multiple className='flex  flex-wrap gap-12 justify-center lg:ml-12 sm:ml-20 3xl:ml-6 mb-24 mt-8'>
+                        <Accordion multiple className='flex  flex-wrap gap-12 w-[90%] lg:w-full mx-auto justify-center lg:ml-12  3xl:ml-6 mb-24 mt-8'>
                             {
                                 isLocationInIran ?
                                     questions.question.map((item: any, index: number) => {
@@ -165,6 +166,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                 }
             </style>
         </main>
+        </div>
     )
 }
 

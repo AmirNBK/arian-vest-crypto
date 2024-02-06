@@ -15,8 +15,9 @@ import Head from 'next/head';
 export default function SingleBlog({ footer }: { footer: any}) {
 
     return (
-        <main
-            className={`flex min-h-screen flex-col justify-between ${inter.className}`}
+        <div className='flex justify-center w-full'>
+            <main
+            className={`flex w-full min-h-screen flex-col justify-between 2xl:justify-start max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Result</title>
@@ -24,9 +25,10 @@ export default function SingleBlog({ footer }: { footer: any}) {
             <PrimeReactProvider>
                 <Header active={''} />
                 <PaymentResult title='پرداخت موفقیت آمیز بود' image={successful} />
-                <Footer data={footer?.footer} />
+                {/* <Footer data={footer?.footer} /> */}
             </PrimeReactProvider>
         </main>
+        </div>
     )
 }
 

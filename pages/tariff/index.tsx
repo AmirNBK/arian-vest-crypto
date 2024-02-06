@@ -36,8 +36,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
     }
 
     return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
+        <div className='flex w-full justify-center'>
+            <main
+            className={`min-h-screen flex-col text-center w-full max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Challenges</title>
@@ -49,7 +50,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                     <Header active={2} isLocationInIran={isLocationInIran} />
                     <div className={`${isLocationInIran ? 'lg:flex-row-reverse' : 'lg:flex-row'} flex flex-col items-center`}>
                         <div className='flex flex-col flex-1 lg:my-0 my-16'>
-                            <div className={`${myFont.className} justify-right flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse lg:mr-12' : 'sm:flex-row lg:ml-12'} gap-4 items-center  mt-8`}>
+                            <div className={`${myFont.className} justify-center sm:justify-right flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse lg:mr-12' : 'sm:flex-row lg:ml-12'} gap-4 items-center  mt-8`}>
                                 <Image src={tariff} alt='faq' />
                                 {isLocationInIran ?
                                     <p className='text-white text-5xl sm:text-end text-center'>
@@ -73,7 +74,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                 }
                             </div>
                             <div>
-                                <p className={`${myFontIran.className} ${isLocationInIran ? 'rtl sm:text-right' : 'ltr sm:text-left'} text-white text-center leading-loose text-white lg:w-10/12 mx-auto mt-6`}>
+                                <p className={`${myFontIran.className} ${isLocationInIran ? 'rtl sm:text-right' : 'ltr sm:text-left'} text-white text-center leading-loose lg:w-10/12 mx-auto mt-6`}>
                                     {isLocationInIran ? data.tariffs[selectedTab].title : data.engTariffs[selectedTab].title}
                                 </p>
                             </div>
@@ -332,6 +333,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                 </PrimeReactProvider>
             }
         </main>
+        </div>
     )
 }
 

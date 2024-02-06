@@ -147,8 +147,9 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     };
 
     return (
-        <main
-            className={`flex min-h-screen flex-col justify-between ${inter.className}`}
+        <div className='flex justify-center w-full'>
+            <main
+            className={`flex w-full min-h-screen flex-col justify-between 2xl:justify-start max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Result</title>
@@ -186,6 +187,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             }
 
         </main>
+        </div>
     )
 }
 

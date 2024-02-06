@@ -62,7 +62,7 @@ const Header = (props: {
 
 
     return (
-        <div className={`Header flex flex-wrap
+        <div className={`Header flex flex-wrap z-[3] 
         flex-row-reverse ${props.active === 'panel' ? 'justify-center' : `${props.isLocationInIran ? 'justify-start' : 'justify-end'}`}
         lg:justify-center xl:justify-between w-full items-center lg:px-12 animate__animated animate__fadeInLeft
         animate__slow xl:gap-0 gap-8`}>

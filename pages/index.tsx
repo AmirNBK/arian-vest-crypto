@@ -148,19 +148,20 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
   return (
     <>
-      <main
-        className={`flex min-h-screen flex-col sm:translate-x-0 translate-x-[22px] ${inter.className}`}
-        onMouseMoveCapture={moveFunc}
-      >
-        <Head>
-          <title>Vira Funding</title>
-        </Head>
-        {loading ? '' :
-          <PrimeReactProvider>
-            <Header active={0} isLocationInIran={isLocationInIran} />
-            <div className='h-screen'>
-              <div className='relative sm:mt-0 block
-                    absolute left-1/2 top-1/3 
+      <div className='flex justify-center w-full'>
+        <main
+          className={`flex min-h-screen flex-col  max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+          onMouseMoveCapture={moveFunc}
+        >
+          <Head>
+            <title>Vira Funding</title>
+          </Head>
+          {loading ? '' :
+            <PrimeReactProvider>
+              <Header active={0} isLocationInIran={isLocationInIran} />
+
+              <div className=' relative sm:mt-0 block  mb-[200px] sm:mb-0
+                     left-1/2 top-[9%] md:top-[2%] 
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
               >
@@ -170,7 +171,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 <Image src={HeroImage} alt='heroImage'
                   unoptimized
                   ref={imageRef}
-                  className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
+                  className='md:block hidden md:w-72 lg:w-fit absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
 
                 <div className={`${myFont.className} md:hidden block mt-96`}>
                   <h2 className='text-white text-7xl text-center'>
@@ -202,16 +203,16 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
                 <Link href={'/tariff'}>
                   <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
-                    className='absolute left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
+                    className='absolute z-[2] left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
                 </Link>
               </div>
               <ArrowComponent />
 
-              <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
+              <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto  lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto sm:mb-56 md:mb-4 lg:mb-56 lg:ml-12 sm:mt-[500px] md:mt-[400px] lg:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
                 style={{ position: 'relative', zIndex: '5' }}
               >
-                <p className={`${myFont.className} text-white text-4xl  sm:text-5xl my-2`}>
+                <p className={`${myFont.className} text-white text-4xl text-center  sm:text-5xl my-2`}>
                   <span className='text-3xl text-main-orange'> </span>
                   {isLocationInIran ? tariffSectionData.tariffSection[0].title[0].normalTitle : tariffSectionData.engTariffSection[0].title[0].normalTitle}
                   <span style={{ color: '#F68D2E' }}>
@@ -257,8 +258,8 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
                 <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
               </div>
-              
-              
+
+
               <div className='lg:py-40 pb-32 pt-20 text-center tradeRules'>
                 <p className={`${myFont.className} text-white text-4xl  sm:text-5xl py-12`}
                   data-aos-duration="2000" data-aos-once={true} data-aos="fade-down"
@@ -361,60 +362,69 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
               </div>
 
-              <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
+              <div className='flex flex-col'>
+                <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
 
-              <div className='my-20 sm:my-56'>
-                <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
-                <div className='relative lg:p-0 pt-24'>
-                  <p className={`${isLocationInIran && myFont.className} text-white sm:w-max ${isLocationInIran ? 'text-5xl' : 'text-4xl'} mx-auto text-center rtl relative leading-tight`}
-                    data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                    style={{ zIndex: '5' }}
-                  >
-                    <span className='text-3xl text-main-orange text-center '>
-                    </span>{
-                      isLocationInIran ?
-                        accountGrowthSection?.homepage.accountGrowth[0].normalTitle
-                        :
-                        accountGrowthSection?.homepage.accountGrowthCop[0].normalTitle
-                    } <span style={{ color: '#F68D2E' }}>
+                <div className='my-20 sm:mt-[100%] sm:mb-[30%] lg:my-56'>
+                  <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
+                  <div className='relative lg:p-0 pt-24'>
+                    <div className='flex flex-wrap justify-center'>
+                      <p className={`${isLocationInIran && myFont.className} text-white sm:w-max ${isLocationInIran ? 'text-5xl' : 'text-4xl'} mx-auto text-center rtl relative leading-tight`}
+                        data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                        style={{ zIndex: '5' }}
+                      >
+                        <span className='text-3xl text-main-orange text-center '>
+                        </span>{
+                          isLocationInIran ?
+                            accountGrowthSection?.homepage.accountGrowth[0].normalTitle
+                            :
+                            accountGrowthSection?.homepage.accountGrowthCop[0].normalTitle
+                        } <span style={{ color: '#F68D2E' }}>
+                          {
+                            isLocationInIran ?
+                              accountGrowthSection?.homepage.accountGrowth[0].coloredTitle
+                              :
+                              accountGrowthSection?.homepage.accountGrowthCop[0].coloredTitle
+
+                          } </span>
+                      </p>
+                    </div>
+                    <p className={`${myFontIran.className} text-white text-lg text-center ${isLocationInIran && 'rtl'} mt-6 mx-auto w-8/12 leading-loose`}>
                       {
                         isLocationInIran ?
-                          accountGrowthSection?.homepage.accountGrowth[0].coloredTitle
+                          accountGrowthSection?.homepage.accountGrowth[0].description
                           :
-                          accountGrowthSection?.homepage.accountGrowthCop[0].coloredTitle
-
-                      } </span>
-                  </p>
-                  <p className={`${myFontIran.className} text-white text-lg text-center ${isLocationInIran && 'rtl'} mt-6 mx-auto w-8/12 leading-loose`}>
-                    {
-                      isLocationInIran ?
-                        accountGrowthSection?.homepage.accountGrowth[0].description
-                        :
-                        accountGrowthSection?.homepage.accountGrowthCop[0].description
-                    }
-                  </p>
-                  <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
+                          accountGrowthSection?.homepage.accountGrowthCop[0].description
+                      }
+                    </p>
+                    <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
+                  </div>
                 </div>
               </div>
 
+
+              {/* *** */}
+
               <div className='py-32 cooroprate__Benefits sm:mx-12 mx-6'>
-                <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                >
-                  <span className='text-3xl text-main-orange text-center'>
-                  </span> {
-                    isLocationInIran ?
-                      collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle
-                      :
-                      collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].normalTitle
-                  }  <span style={{ color: '#F68D2E' }}>
-                    {
+                <div className='flex justify-center flex-wrap'>
+                  <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
+                    data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                  >
+                    <span className='text-3xl text-main-orange text-center'>
+                    </span> {
                       isLocationInIran ?
-                        collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle
+                        collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].normalTitle
                         :
-                        collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].coloredTitle
-                    } </span>
-                </p>
+                        collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].normalTitle
+                    }  <span style={{ color: '#F68D2E' }}>
+                      {
+                        isLocationInIran ?
+                          collabrationSuccessSectionTitle.homepage.collabrationSuccessTitle[0].coloredTitle
+                          :
+                          collabrationSuccessSectionTitle.homepage.engCollabrationSuccessTitle[0].coloredTitle
+                      } </span>
+                  </p>
+                </div>
                 <div className='flex flex-col gap-10 mt-6 relative'>
                   <BenefitsComponent
                     isLocationIran={isLocationInIran}
@@ -492,23 +502,25 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               </div>
 
 
-              <div className='successSteps p-6 sm:p-12 lg:py-56'>
-                <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
-                  data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
-                >
-                  <span className='text-3xl text-main-orange text-center'>
-                  </span> {
-                    isLocationInIran ?
-                      successSteps.homepage.successSteps[0].title[0].normalTitle :
-                      successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
-                  } <span style={{ color: '#F68D2E' }}>
-                    {
+              <div className='successSteps p-6 sm:p-12 lg:py-56 '>
+                <div className='flex flex-wrap justify-center'>
+                  <p className={`${myFont.className} text-white sm:w-max leading-tight text-5xl mx-auto text-center rtl`}
+                    data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
+                  >
+                    <span className='text-3xl text-main-orange text-center'>
+                    </span> {
                       isLocationInIran ?
-                        successSteps.homepage.successSteps[0].title[0].coloredTitle
-                        :
-                        successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
-                    } </span>
-                </p>
+                        successSteps.homepage.successSteps[0].title[0].normalTitle :
+                        successSteps.homepage.engSuccessSteps[0].title[0].normalTitle
+                    } <span style={{ color: '#F68D2E' }}>
+                      {
+                        isLocationInIran ?
+                          successSteps.homepage.successSteps[0].title[0].coloredTitle
+                          :
+                          successSteps.homepage.engSuccessSteps[0].title[0].coloredTitle
+                      } </span>
+                  </p>
+                </div>
                 <div className='pt-12'>
                   <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
                 </div>
@@ -517,14 +529,14 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
 
-            </div >
-          </PrimeReactProvider >
-        }
+            </PrimeReactProvider >
+          }
 
 
 
 
-      </main >
+        </main >
+      </div>
 
       <style>
         {
@@ -622,7 +634,7 @@ color: white;
 }
 
 .p-accordion .p-accordion-header .p-accordion-header-link {
-height: 70px;
+height: auto;
 }
 
 .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {

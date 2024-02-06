@@ -109,8 +109,9 @@ export default function Panel() {
 
 
     return (
-        <main
-            className={`flex min-h-screen w-full flex-col justify-between`}
+        <div className='w-full flex justify-center'>
+            <main
+            className={`flex min-h-screen w-full flex-col justify-between max-w-[1700px] min-w-full 2xl:min-w-0`}
         >
             <Head>
                 <title>Panel</title>
@@ -382,5 +383,6 @@ export default function Panel() {
                 `}
             </style>
         </main>
+        </div>
     )
 }

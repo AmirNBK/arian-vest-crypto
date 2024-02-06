@@ -139,8 +139,6 @@ const Receipt = (props: {
           const blobData = await (await fetch(imageDataURL)).blob();
           const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
 
-          console.log(imageDataURL);
-
           setReceipt(imageFile);
           setPdfGenerated(true);
         }, 2000);

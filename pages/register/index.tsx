@@ -283,8 +283,9 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     };
 
     return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
+        <div className='flex justify-center w-full'>
+            <main
+            className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Register</title>
@@ -536,6 +537,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                 }
             </style>
         </main>
+        </div>
     )
 }
 

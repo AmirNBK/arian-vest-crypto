@@ -42,8 +42,9 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
     };
 
     return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
+        <div className='flex justify-center w-full'>
+            <main
+            className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>About us</title>
@@ -94,7 +95,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                         </div>
                     </div>
 
-                    <div className={`${myFont.className} flex flex-col justify-center flex flex-row-reverse gap-12 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
+                    <div className={`${myFont.className} flex flex-col justify-center  gap-12 items-center sm:mr-12 mt-8 sm:mb-44 mb-24`}>
                         <p className='text-white text-5xl sm:text-end text-center'>
                             {
                                 (country === 'Iran (Islamic Republic of)' || !country) ? (
@@ -144,6 +145,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
             }
 
         </main>
+        </div>
     )
 }
 

@@ -69,7 +69,7 @@ const StepsComponent = (props: {
                         color: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && 'white'}`
                     }}
                 >
-                    <p className={`absolute font-light sm:top-[-30px]  text-sm sm:text-base text-white ${props.isLocationIran ? 'text-wrap top-[-30px]' : 'top-[-50px] sm:text-wrap sm:w-max w-1/3'}`}
+                    <p className={`absolute  font-light sm:top-[-30px] ml-5 text-sm sm:text-base text-white ${props.isLocationIran ? 'text-wrap top-[-30px]' : 'top-[-50px] sm:text-wrap sm:w-max w-1/3'}`}
                     > {
                             props.isLocationIran ?
                                 props.data.successSteps[0].item[0].title
@@ -105,7 +105,7 @@ const StepsComponent = (props: {
                 >
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
                     <p className={`absolute sm:-translate-x-[0px] ${props.isLocationIran && 'translate-x-[10px]'}
-                    font-light sm:top-[-30px] top-[-50px] sm:w-max w-1/3 text-sm text-white sm:text-base`}> {
+                    font-light sm:top-[-30px] mr-5 top-[-50px] sm:w-max w-1/3 text-sm text-white sm:text-base`}> {
                             props.isLocationIran ?
                                 props.data.successSteps[0].item[2].title : props.data.engSuccessSteps[0].item[2].title} </p>
                 </button>

@@ -62,8 +62,9 @@ export default function SingleBlog() {
   const sanitizedHTML = DOMPurify.sanitize(data?.content);
 
   return (
-    <main
-      className={`flex min-h-screen flex-col ${inter.className}`}
+   <div className='w-full flex justify-center'>
+     <main
+      className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
     >
       {loading ? ''
         :
@@ -74,7 +75,7 @@ export default function SingleBlog() {
             <>
               <div className='flex flex-col sm:flex-row-reverse gap-6 justify-center items-center mt-16'>
                 <Image src={newspaper} alt='newspaper' unoptimized />
-                <p className={`${myFont.className} text-white text-3xl sm:text-4xl`}>
+                <p className={`${myFont.className} text-white text-3xl text-center sm:text-4xl`}>
                   {data?.title}
                 </p>
               </div>
@@ -86,10 +87,11 @@ export default function SingleBlog() {
             </>
           }
 
-          <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+          {/* <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} /> */}
 
         </PrimeReactProvider>
       }
     </main >
+   </div>
   )
 }

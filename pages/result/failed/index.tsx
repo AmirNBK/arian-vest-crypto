@@ -21,8 +21,9 @@ import Head from 'next/head';
 export default function FailedResult({ footer, questions }: { footer: any, questions: any }) {
 
     return (
-        <main
-            className={`flex min-h-screen flex-col justify-between ${inter.className}`}
+        <div className='w-full flex justify-center'>
+            <main
+            className={`flex w-full min-h-screen flex-col justify-between 2xl:justify-start max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Result</title>
@@ -30,9 +31,10 @@ export default function FailedResult({ footer, questions }: { footer: any, quest
             <PrimeReactProvider>
                 <Header active={''} />
                 <PaymentResult title='پرداخت موفقیت آمیز نبود' image={unsuccessful} />
-                <Footer data={footer?.footer} />
+                {/* <Footer data={footer?.footer} /> */}
             </PrimeReactProvider>
         </main>
+        </div>
     )
 }
 

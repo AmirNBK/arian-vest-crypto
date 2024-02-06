@@ -23,7 +23,7 @@ const Stats = (props: {
         >
             <Image src={props.icon} alt='icon' unoptimized data-aos-duration="3000"
                 data-aos-once={true} data-aos={`fade-${props.fadePosition}`} />
-            <p className='text-lg sm:text-2xl 3xl:text-3xl'
+            <p className='text-lg sm:text-2xl text-center 3xl:text-3xl'
                 data-aos-duration="3000" data-aos-once={true} data-aos={`fade-${props.fadePosition}`}
             > {props.text} </p>
             <p className='text-base sm:text-xl 3xl:text-2xl'

@@ -100,8 +100,9 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
     };
 
     return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
+       <div className='flex justify-center w-full'>
+         <main
+            className={`flex min-h-screen flex-col w-full max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
         >
             <Head>
                 <title>Blogs</title>
@@ -203,6 +204,7 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
             }
 
         </main>
+       </div>
     )
 }
 

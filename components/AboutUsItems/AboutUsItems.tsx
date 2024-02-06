@@ -5,7 +5,6 @@ import 'aos/dist/aos.css';
 import localFont from 'next/font/local'
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import logo from '../../assets/icons/rulesLogo.svg'
-
 const AboutUsItems = (props: {
     text: string
     translate: number

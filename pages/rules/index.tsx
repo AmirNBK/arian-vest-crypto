@@ -58,136 +58,40 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
 
     return (
-        <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
-        >
-            <Head>
-                <title>Rules</title>
-            </Head>
-            {loading ? ''
-                :
-                <PrimeReactProvider>
-                    <Dialog
-                        header={
-                            isLocationInIran ?
-                                data.classRules[clickedRule].headerText
-                                :
-                                data.engClassRules[clickedRule].headerText
-                        }
-                        visible={visibleDialog} style={{
-                            width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
-                            backgroundColor: '#252525'
-                        }}
-                        className={`${isLocationInIran && myFont.className} font-normal`}
-                        onHide={() => setVisibleDialog(false)}
-                    >
-                        <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
-
-                        <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
-                            {
+        <div className='flex justify-center'>
+            <main
+                className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+            >
+                <Head>
+                    <title>Rules</title>
+                </Head>
+                {loading ? ''
+                    :
+                    <PrimeReactProvider>
+                        <Dialog
+                            header={
                                 isLocationInIran ?
-                                    data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
-                                        <AccordionTab
-                                            key={index}
-                                            style={{ width: '100%' }}
-                                            className='text-white text-right w-full'
-                                            header={item.title}
-                                        >
-                                            <p
-                                                className={`m-0 ${isLocationInIran && myFontIran.className} text-right`}
-                                                dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
-                                            />
-                                        </AccordionTab>
-                                    ))
+                                    data.classRules[clickedRule].headerText
                                     :
-                                    data.engClassRules[clickedRule]?.items?.map((item: any, index: number) => (
-                                        <AccordionTab
-                                            key={index}
-                                            style={{ width: '100%' }}
-                                            className='text-white text-right w-full'
-                                            header={item.title}
-                                        >
-                                            <p
-                                                className={`m-0 ${isLocationInIran && myFontIran.className} text-left`}
-                                                dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
-                                            />
-
-                                        </AccordionTab>
-                                    ))
+                                    data.engClassRules[clickedRule].headerText
                             }
-                        </Accordion>
-                    </Dialog>
-                    <Header active={3} isLocationInIran={isLocationInIran} />
-                    <div className='text-white w-10/12 mx-auto mt-10'>
-                        <h2 className={`${isLocationInIran && myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
+                            visible={visibleDialog} style={{
+                                width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, display: 'flex', flexDirection: 'column',
+                                backgroundColor: '#252525'
+                            }}
+                            className={`${isLocationInIran && myFont.className} font-normal`}
+                            onHide={() => setVisibleDialog(false)}
                         >
-                            {isLocationInIran ? titles.mainTitles[0].title : titles.engMainTitles[0].title}
-                            <span style={{ color: '#F68D2E' }}>
-                                {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
-                            </span>
-                        </h2>
-                        <p className={`${isLocationInIran && myFontIran.className} text-center 3xl:text-xl ${isLocationInIran && 'rtl'}`} style={{ lineHeight: '2' }}>
-                            {isLocationInIran ? data.description : data.engDescription}
-                        </p>
-                    </div>
+                            <Image src={logo} alt='logo' className='absolute right-[30px] top-[-20px]' />
 
-                    <div className={`flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
-        sm:gap-0 gap-4 justify-center items-center mt-24`}
-                        data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
-                    >
-                        <Image src={rules} alt='rules' unoptimized />
-                        <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
-                            {isLocationInIran ? data.title[0].normalTitle : data.engTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {isLocationInIran ? data.title[0].coloredTitle : data.engTitle[0].coloredTitle} </span>
-                        </p>
-                    </div>
-
-                    <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
-                        data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
-                    >
-                        {
-                            isLocationInIran ?
-                                data.classRules.map((item: rulesType, index: number) => {
-                                    return (
-                                        <RulesComponent isLocationIran onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
-
-                                    )
-                                })
-                                :
-                                data.engClassRules.map((item: rulesType, index: number) => {
-                                    return (
-                                        <RulesComponent isLocationIran={false} onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
-
-                                    )
-                                })
-                        }
-                    </div>
-
-                    <div className='relative'>
-                        <Image src={trading} alt='trading' unoptimized className='w-full' />
-                        <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
-                            style={{ transform: 'translate(-50%,-50%)' }}
-                        />
-                    </div>
-
-                    <div className={`flex flex-col
-        ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
-        sm:gap-0 gap-4 justify-center items-center mt-24`}>
-                        <Image src={book} alt='rules' unoptimized />
-                        <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
-            text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
-                            {isLocationInIran ? `${titles.secondTitle[0].normalTitle}` : `${titles.engSecondTitle[0].normalTitle}`} <span style={{ color: '#F68D2E' }}>
-                                {isLocationInIran ? `${titles.secondTitle[0].coloredTitle}` : `${titles.engSecondTitle[0].secondTitle}`} </span>
-                        </p>
-                    </div>
-                    <div>
-                        <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
-                            {
-                                isLocationInIran ?
-                                    data.allRules.map((item: any, index: number) => {
-                                        return (
+                            <Accordion multiple className='gap-y-4 lg:mx-auto mb-24 mt-8 '>
+                                {
+                                    isLocationInIran ?
+                                        data.classRules[clickedRule]?.items?.map((item: any, index: number) => (
                                             <AccordionTab
                                                 key={index}
-                                                className='text-white text-right'
+                                                style={{ width: '100%' }}
+                                                className='text-white text-right w-full'
                                                 header={item.title}
                                             >
                                                 <p
@@ -195,33 +99,130 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                                                     dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
                                             </AccordionTab>
-                                        );
-                                    })
-                                    :
-                                    data.engAllRules.map((item: any, index: number) => {
-                                        return (
+                                        ))
+                                        :
+                                        data.engClassRules[clickedRule]?.items?.map((item: any, index: number) => (
                                             <AccordionTab
                                                 key={index}
-                                                className='text-white text-left'
+                                                style={{ width: '100%' }}
+                                                className='text-white text-right w-full'
                                                 header={item.title}
                                             >
                                                 <p
                                                     className={`m-0 ${isLocationInIran && myFontIran.className} text-left`}
                                                     dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
                                                 />
+
                                             </AccordionTab>
-                                        );
+                                        ))
+                                }
+                            </Accordion>
+                        </Dialog>
+                        <Header active={3} isLocationInIran={isLocationInIran} />
+                        <div className='text-white w-10/12 mx-auto mt-10'>
+                            <h2 className={`${isLocationInIran && myFont.className} text-3xl 3xl:text-5xl mb-6 text-center text-white`}
+                            >
+                                {isLocationInIran ? titles.mainTitles[0].title : titles.engMainTitles[0].title}
+                                <span style={{ color: '#F68D2E' }}>
+                                    {isLocationInIran ? titles.mainTitles[0].coloredTitle : titles.engMainTitles[0].coloredTitle}
+                                </span>
+                            </h2>
+                            <p className={`${isLocationInIran && myFontIran.className} text-center 3xl:text-xl ${isLocationInIran && 'rtl'}`} style={{ lineHeight: '2' }}>
+                                {isLocationInIran ? data.description : data.engDescription}
+                            </p>
+                        </div>
+
+                        <div className={`flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+        sm:gap-0 gap-4 justify-center items-center mt-24`}
+                            data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in"
+                        >
+                            <Image src={rules} alt='rules' unoptimized />
+                            <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'} text-white text-4xl 3xl:text-5xl`}>
+                                {isLocationInIran ? data.title[0].normalTitle : data.engTitle[0].normalTitle} <span style={{ color: '#F68D2E' }}> {isLocationInIran ? data.title[0].coloredTitle : data.engTitle[0].coloredTitle} </span>
+                            </p>
+                        </div>
+
+                        <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
+                            data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
+                        >
+                            {
+                                isLocationInIran ?
+                                    data.classRules.map((item: rulesType, index: number) => {
+                                        return (
+                                            <RulesComponent isLocationIran onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+
+                                        )
+                                    })
+                                    :
+                                    data.engClassRules.map((item: rulesType, index: number) => {
+                                        return (
+                                            <RulesComponent isLocationIran={false} onClick={() => rulesClickHandler(index)} translate={0} text={item.title} feature={item.feature} />
+
+                                        )
                                     })
                             }
-                        </Accordion>
+                        </div>
 
-                    </div>
+                        <div className='relative'>
+                            <Image src={trading} alt='trading' unoptimized className='w-full' />
+                            <Image src={bull} alt='bull' unoptimized className='absolute left-1/2 top-1/2'
+                                style={{ transform: 'translate(-50%,-50%)' }}
+                            />
+                        </div>
 
-                    <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+                        <div className={`flex flex-col
+        ${isLocationInIran ? 'sm:flex-row-reverse' : 'sm:flex-row'}
+        sm:gap-0 gap-4 justify-center items-center mt-24`}>
+                            <Image src={book} alt='rules' unoptimized />
+                            <p className={`${isLocationInIran && myFont.className} ${isLocationInIran ? 'mr-5' : 'ml-5'}
+            text-white text-4xl 3xl:text-5xl sm:text-end text-center`}>
+                                {isLocationInIran ? `${titles.secondTitle[0].normalTitle}` : `${titles.engSecondTitle[0].normalTitle}`} <span style={{ color: '#F68D2E' }}>
+                                    {isLocationInIran ? `${titles.secondTitle[0].coloredTitle}` : `${titles.engSecondTitle[0].secondTitle}`} </span>
+                            </p>
+                        </div>
+                        <div>
+                            <Accordion multiple className='grid grid-cols-1 lg:grid-cols-2 gap-4 mx-4 sm:mx-12 xl:mx-32 3xl:ml-56 mb-24 mt-8 3xl:mt-16'>
+                                {
+                                    isLocationInIran ?
+                                        data.allRules.map((item: any, index: number) => {
+                                            return (
+                                                <AccordionTab
+                                                    key={index}
+                                                    className='text-white'
+                                                    header={item.title}
+                                                >
+                                                    <p
+                                                        className={`m-0 ${isLocationInIran && myFontIran.className} text-right`}
+                                                        dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
+                                                    />
+                                                </AccordionTab>
+                                            );
+                                        })
+                                        :
+                                        data.engAllRules.map((item: any, index: number) => {
+                                            return (
+                                                <AccordionTab
+                                                    key={index}
+                                                    className='text-white text-left'
+                                                    header={item.title}
+                                                >
+                                                    <p
+                                                        className={`m-0 ${isLocationInIran && myFontIran.className} text-left`}
+                                                        dangerouslySetInnerHTML={{ __html: item.description !== null ? item.description.replace(/\r\n/g, '<br />') : '0' }}
+                                                    />
+                                                </AccordionTab>
+                                            );
+                                        })
+                                }
+                            </Accordion>
 
-                    <style>
-                        {
-                            `
+                        </div>
+
+                        <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+
+                        <style>
+                            {
+                                `
 
                 .p-accordion .p-accordion-header .p-accordion-header-link {
                     @media (min-width: 2000px) { 
@@ -316,7 +317,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 }
 
                         .p-accordion .p-accordion-header .p-accordion-header-link {
-                            height : 90px;
+                            height : auto;
                         justify-content : ${!isLocationInIran && 'flex-start'};
 }
 
@@ -325,11 +326,12 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 }
 
                         `
-                        }
-                    </style>
-                </PrimeReactProvider>
-            }
-        </main>
+                            }
+                        </style>
+                    </PrimeReactProvider>
+                }
+            </main>
+        </div>
     )
 }
 
