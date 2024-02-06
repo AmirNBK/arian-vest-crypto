@@ -247,7 +247,7 @@ const StepsComponent = (props: {
                            }
 
                            @media (max-width: 640px) { 
-                            width : 100% !important;
+      width: auto;
                         padding: 0px !important;
                                }
                       }
