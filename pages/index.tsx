@@ -173,7 +173,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                   ref={imageRef}
                   className='md:block hidden md:w-72 lg:w-fit absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
 
-                <div className={`${myFont.className} md:hidden block mt-96`}>
+                <div className={`${myFont.className} md:hidden block mt-56 -translate-y-36`}>
                   <h2 className='text-white text-7xl text-center'>
                     {isLocationInIran ? 'تا' : 'Up to'}
 
