@@ -103,7 +103,7 @@ const Footer = (props: {
         <div className='Footer relative'
         >
             <Toast ref={toastBottomRight} position="bottom-right" />
-            <div className='Footer__mobile md:hidden block px-5 bg-[#F68D2F] w-[110%] translate-x-[-22px]'>
+            <div className='Footer__mobile lg:hidden block px-5 bg-[#F68D2F] w-[110%] translate-x-[-22px]'>
                 <div className={`${myFont.className} Footer__rightside px-12 pt-12`}>
                     <p className={`text-white ${isLocationInIran ? 'text-right' : 'text-left'} mb-3 lg:text-base text-sm`}>
                         {isLocationInIran ? ' همیشه به روز باشید' : ' Always stay up to date'}
@@ -174,7 +174,7 @@ const Footer = (props: {
                 </div>
             </div>
 
-            <div className='Footer__default md:block hidden'>
+            <div className='Footer__default lg:block hidden'>
                 <Toast ref={toastBottomRight} position="bottom-right" />
 
                 <Image src={footerBg} alt='footerBg' className='w-full lg:h-[420px]' />
