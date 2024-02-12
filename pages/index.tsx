@@ -150,7 +150,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
     <>
       <div className='flex justify-center w-full'>
         <main
-          className={`flex min-h-screen flex-col  max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+          className={`flex min-h-screen flex-col min-w-full sm:translate-x-[22px] xl:translate-x-0 ${inter.className}`}
           onMouseMoveCapture={moveFunc}
         >
           <Head>
@@ -171,9 +171,9 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 <Image src={HeroImage} alt='heroImage'
                   unoptimized
                   ref={imageRef}
-                  className='md:block hidden md:w-72 lg:w-fit absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
+                  className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
 
-                <div className={`${myFont.className} md:hidden block mt-56 -translate-y-36`}>
+                <div className={`${myFont.className} md:hidden block mt-96`}>
                   <h2 className='text-white text-7xl text-center'>
                     {isLocationInIran ? 'تا' : 'Up to'}
 
@@ -208,7 +208,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               </div>
               <ArrowComponent />
 
-              <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto  lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto sm:mb-56 md:mb-4 lg:mb-56 lg:ml-12 sm:mt-[500px] md:mt-[400px] lg:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
+              <div className={` w-full justify-center flex flex-row-reverse gap-4 ${isLocationInIran ? 'lg:items-end ml-auto  lg:mr-12 sm:mt-[500px]' : ' lg:items-start mr-auto mb-56 lg:ml-12 sm:mt-[500px] 3xl:mt-[650px]'} items-center pb-20 pt-0 sm:py-20 -mt-56 flex flex-col lg:w-6/12`}
                 data-aos-duration="2000" data-aos-once={true} data-aos="fade-down" id='AboutUs'
                 style={{ position: 'relative', zIndex: '5' }}
               >
@@ -365,7 +365,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
               <div className='flex flex-col'>
                 <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
 
-                <div className='my-20 sm:mt-[100%] sm:mb-[30%] lg:my-56'>
+                <div className='my-20 sm:my-[100%] lg:my-56'>
                   <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
                   <div className='relative lg:p-0 pt-24'>
                     <div className='flex flex-wrap justify-center'>
@@ -405,7 +405,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
               {/* *** */}
 
-              <div className='py-32 cooroprate__Benefits sm:mx-12 mx-6'>
+              <div className='py-72 md:py-32  cooroprate__Benefits sm:mx-12 mx-6'>
                 <div className='flex justify-center flex-wrap'>
                   <p className={`${myFont.className} text-white sm:w-max text-5xl mx-auto text-center rtl leading-tight`}
                     data-aos-duration="2000" data-aos-once={true} data-aos="fade-up"
@@ -521,7 +521,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                       } </span>
                   </p>
                 </div>
-                <div className='pt-12'>
+                <div className='pt-12 h-[600px] lg:h-auto'>
                   <StepsComponent data={successSteps.homepage} isLocationIran={isLocationInIran} />
                 </div>
               </div>
@@ -594,7 +594,7 @@ font-weight: 400;
 }
 
 .p-accordion-header-text {
-text-align: right;
+text-align: left;
 line-height: 1.8;
 }
 

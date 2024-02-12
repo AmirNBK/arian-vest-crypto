@@ -58,9 +58,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
 
     return (
-        <div className='flex justify-center'>
+        <div className=''>
             <main
-                className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+                className={`flex min-h-screen flex-col  ${inter.className}`}
             >
                 <Head>
                     <title>Rules</title>
@@ -142,7 +142,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                             </p>
                         </div>
 
-                        <div className='px-12 mt-20 flex-wrap flex flex-col lg:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
+                        <div className='px-12 mt-20 flex-wrap flex flex-col sm:flex-row justify-center lg:gap-y-20 gap-y-16 gap-x-32 mb-32'
                             data-aos-duration="2000" data-aos-once={true} data-aos="zoom-in-up"
                         >
                             {
@@ -246,7 +246,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
             .p-dialog .p-dialog-header .p-dialog-title {
                 text-align: ${isLocationInIran ? 'right' : 'left'};
-                transform: translateY(20px);
+                transform: translateY(10px);
                 font-size : 23px;
                 color : white;
                 z-index : 20;
@@ -269,6 +269,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
             }
 
                         .p-accordion-header-text {
+                            text-align:left;
                             text - align: ${isLocationInIran && 'text-right'};
                         line-height:1.8;
                         direction : ${isLocationInIran && 'rtl'};

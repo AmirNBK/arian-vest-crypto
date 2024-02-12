@@ -62,9 +62,9 @@ export default function SingleBlog() {
   const sanitizedHTML = DOMPurify.sanitize(data?.content);
 
   return (
-   <div className='w-full flex justify-center'>
+   <div className=''>
      <main
-      className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+      className={`flex min-h-screen flex-col  ${inter.className}`}
     >
       {loading ? ''
         :

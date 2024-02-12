@@ -203,8 +203,8 @@ const Profile = (
                                     {editable ?
                                         <div className='flex flex-col gap-2'>
                                             <div
-                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center text-black`}>
-                                                <input placeholder='' className='rounded-sm p-0.5 text-black'
+                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
+                                                <input placeholder='' className='rounded-sm p-0.5'
                                                     value={firstName}
                                                     onChange={(e) => {
                                                         setFirstName(e.target.value)
@@ -213,7 +213,7 @@ const Profile = (
                                                 <p className={`text-white ${myFontIran.className}`}> {isLocationInIran ? ' : نام كوچك ' : 'First name : '} </p>
                                             </div>
                                             <div
-                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center text-black`}>
+                                                className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
                                                 <input placeholder='' className='rounded-sm p-0.5'
                                                     value={lastName}
                                                     onChange={(e) => {
@@ -229,7 +229,7 @@ const Profile = (
                                 </div>
                                 <p className={`text-base text-white ${!editable && 'opacity-[0.7]'}  text-sm`}>
                                     {editable ?
-                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center text-black`}>
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
                                             <input placeholder='' className='rounded-sm p-0.5 text-black'
                                                 value={email}
                                                 onChange={(e) => {
@@ -244,7 +244,7 @@ const Profile = (
                                 </p>
                                 <p className={`text-base text-white ${!editable && 'opacity-[0.7]'}  text-sm`}>
                                     {editable ?
-                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center text-black`}>
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
                                             <input placeholder='' className='rounded-sm p-0.5 text-black'
                                                 value={phone}
                                                 onChange={(e) => {
@@ -259,7 +259,7 @@ const Profile = (
                                 </p>
                                 <p className={`text-white text-sm ${!editable && 'opacity-[0.7]'} text-center`}>
                                     {editable ?
-                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center text-black`}>
+                                        <div className={`${isLocationInIran ? 'flex-row' : 'flex-row-reverse'} flex gap-2 items-center`}>
                                             <input placeholder='' className='rounded-sm p-0.5 text-black'
                                                 value={address}
                                                 onChange={(e) => {

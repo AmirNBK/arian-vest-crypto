@@ -61,6 +61,10 @@ const StepsComponent = (props: {
 
     return (
         <>
+            {/* ** */}
+
+
+
             <div className={`${myFontIran.className} steps relative`} id="steps">
                 <button data-step="1"
                     className={(activeStep === 1 || activeStep === 2 || activeStep === 3) ? "active" : ""}
@@ -69,7 +73,7 @@ const StepsComponent = (props: {
                         color: `${(activeStep === 1 || activeStep === 2 || activeStep === 3) && 'white'}`
                     }}
                 >
-                    <p className={`absolute  font-light sm:top-[-30px] ml-5 text-sm sm:text-base text-white ${props.isLocationIran ? 'text-wrap top-[-30px]' : 'top-[-50px] sm:text-wrap sm:w-max w-1/3'}`}
+                    <p className={`absolute  font-light sm:top-[-30px] ml-5 text-[12px] sm:text-base text-white ${props.isLocationIran ? 'text-wrap top-[-30px]' : 'top-[-50px] sm:text-wrap sm:w-max w-1/3'}`}
                     > {
                             props.isLocationIran ?
                                 props.data.successSteps[0].item[0].title
@@ -88,7 +92,7 @@ const StepsComponent = (props: {
                 >
                     <span>{(activeStep === 2 || activeStep === 3) ? 2 : <Image src={logo} alt='logo' />}
                         <p className={`absolute font-light top-[-30px] ${props.isLocationIran ? 'sm:-translate-x-[40px] -translate-x-[25px]' : 'sm:-translate-x-[65px] -translate-x-[50px]'}
-                         text-sm sm:text-base text-white`}> {
+                         text-[12px] sm:text-base text-white`}> {
                                 props.isLocationIran ?
                                     props.data.successSteps[0].item[1].title
                                     :
@@ -105,7 +109,7 @@ const StepsComponent = (props: {
                 >
                     <span>{activeStep === 3 ? activeStep : <Image src={logo} alt='logo' />}</span>
                     <p className={`absolute sm:-translate-x-[0px] ${props.isLocationIran && 'translate-x-[10px]'}
-                    font-light sm:top-[-30px] mr-5 top-[-50px] sm:w-max w-1/3 text-sm text-white sm:text-base`}> {
+                    font-light sm:top-[-30px] mr-5 top-[-50px] sm:w-max w-1/3 text-[12px] text-white sm:text-base`}> {
                             props.isLocationIran ?
                                 props.data.successSteps[0].item[2].title : props.data.engSuccessSteps[0].item[2].title} </p>
                 </button>
@@ -167,10 +171,12 @@ const StepsComponent = (props: {
                         justify-content: space-around;
                         align-items: center;
                         margin: 50px auto;
+                        margin-bottom: 5px;
 
 
                         @media (max-width: 640px) { 
                             width : 100%;
+                            margin-bottom: 25px;
                                }
                       }
                       .steps div {
@@ -216,7 +222,7 @@ const StepsComponent = (props: {
                         position: relative !important;
                         width: 100%;
                         height: 100%;
-                        min-height: 200px;
+
                         box-sizing: border-box;
                       }
                       
@@ -239,16 +245,16 @@ const StepsComponent = (props: {
                         color : white;
                         text-align:center;
                         padding: 50px;
-                        width: 60%;
+                        width: auto;
                         margin: 0 auto;
+
 
                         @media (min-width: 2000px) { 
                         font-size : 32px;
                            }
 
                            @media (max-width: 640px) { 
-      width: auto;
-      font-size: 12px;
+                            width : 100% !important;
                         padding: 0px !important;
                                }
                       }

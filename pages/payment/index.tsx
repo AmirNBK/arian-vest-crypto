@@ -301,9 +301,9 @@ export default function Payment() {
 
 
     return (
-       <div className='flex justify-center w-full'>
+       <div className=''>
          <main
-            className={`flex w-full min-h-screen flex-col justify-between max-w-[1700px] min-w-full 2xl:min-w-0 ${myFontIran.className}`}
+            className={`flex min-h-screen flex-col justify-between ${myFontIran.className}`}
         >
             <Head>
                 <title>Payment</title>

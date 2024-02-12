@@ -22,9 +22,9 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
     const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
 
     return (
-        <div className='flex justify-center'>
+        <div className=''>
             <main
-            className={`flex min-h-screen flex-col justify-between max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+            className={`flex min-h-screen flex-col justify-between  ${inter.className}`}
         >
             <Head>
                 <title>Faq</title>
@@ -43,7 +43,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                     </div>
 
                     <div>
-                        <Accordion multiple className='flex  flex-wrap gap-12 w-[90%] lg:w-full mx-auto justify-center lg:ml-12  3xl:ml-6 mb-24 mt-8'>
+                        <Accordion multiple className='flex  flex-wrap gap-12 w-[90%] lg:w-full mx-auto justify-center   3xl:ml-6 mb-24 mt-8'>
                             {
                                 isLocationInIran ?
                                     questions.question.map((item: any, index: number) => {
@@ -103,7 +103,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                     }
 
                     .p-accordion-header-text {
-                        text-align:right;
+                        
                         line-height:1.8;
                         direction : ${isLocationInIran && 'rtl'};
                     }
@@ -151,6 +151,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
         @media (min-width: 640px) { 
             width: 681px;
            }
+    
       }
 
       .p-accordion .p-accordion-header .p-accordion-header-link {

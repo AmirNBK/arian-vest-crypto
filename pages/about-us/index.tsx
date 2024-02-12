@@ -42,9 +42,9 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
     };
 
     return (
-        <div className='flex justify-center w-full'>
+        <div className=''>
             <main
-            className={`flex min-h-screen flex-col max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+            className={`flex min-h-screen flex-col ${inter.className}`}
         >
             <Head>
                 <title>About us</title>

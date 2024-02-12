@@ -36,9 +36,9 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
     }
 
     return (
-        <div className='flex w-full justify-center'>
+        <div className=''>
             <main
-            className={`min-h-screen flex-col text-center w-full max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+            className={`min-h-screen flex-col flex ${inter.className}`}
         >
             <Head>
                 <title>Challenges</title>

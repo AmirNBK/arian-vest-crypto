@@ -147,9 +147,9 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     };
 
     return (
-        <div className='flex justify-center w-full'>
+        <div className=''>
             <main
-            className={`flex w-full min-h-screen flex-col justify-between 2xl:justify-start max-w-[1700px] min-w-full 2xl:min-w-0 ${inter.className}`}
+            className={`flex w-full min-h-screen flex-col justify-between 3xl:justify-start ${inter.className}`}
         >
             <Head>
                 <title>Result</title>
