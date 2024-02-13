@@ -159,9 +159,9 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
           {loading ? '' :
             <PrimeReactProvider>
               <Header active={0} isLocationInIran={isLocationInIran} />
-
+<div className='h-screen'>
               <div className=' relative sm:mt-0 block  mb-[200px] sm:mb-0
-                     left-1/2 top-[9%] md:top-[2%] 
+                     left-1/2 top-[55%]  md:top-1/3 
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
               >
@@ -528,7 +528,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
               <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
-
+              </div>
             </PrimeReactProvider >
           }
 

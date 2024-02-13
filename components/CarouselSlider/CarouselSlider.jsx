@@ -288,7 +288,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                 }
 
             </Dialog>
-            <div id="contentContainer" className="trans3d 3xl:hidden">
+            <div id="contentContainer" className="trans3d ">
                 <section id="carouselContainer" className="trans3d">
                     {
                         type === 'classic' ?
