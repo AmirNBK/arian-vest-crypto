@@ -6,26 +6,27 @@ const useLocationData = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://freeipapi.com/api/json');
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await fetch('https://freeipapi.com/api/json');
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! Status: ${response.status}`);
+        //         }
 
-                const result = await response.json();
-                // setData(result.countryName);
-                setData('USA');
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+        //         const result = await response.json();
+        //         // setData(result.countryName);
+        //         setData('USA');
+        //     } catch (err) {
+        //         setError(err);
+        //     } finally {
+        //         setLoading(false);
+        //     }
+        // };
         setData('USA');
+        setLoading(false)
 
-        fetchData();
+        // fetchData();
 
         // Cleanup function, in case the component unmounts before the fetch completes
         return () => {
