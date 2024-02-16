@@ -23,6 +23,7 @@ const useLocationData = () => {
                 setLoading(false);
             }
         };
+        setData('USA');
 
         fetchData();
 

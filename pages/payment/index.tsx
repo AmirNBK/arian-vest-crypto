@@ -250,6 +250,10 @@ export default function Payment() {
             const response = await createInvoice(finalPrice || initialPrice, '', 'This is a test');
             const invoiceUrl = response.invoice_url;
 
+            if (!invoiceUrl) {
+                setSubmitLoading(false)
+            }
+
             const formDataString = JSON.stringify(formState);
 
             localStorage.setItem('formData', formDataString);
@@ -260,7 +264,13 @@ export default function Payment() {
             window.location.href = invoiceUrl;
 
         } catch (error) {
-            console.error('Error creating invoice:', error);
+            setSubmitLoading(false)
+            toastBottomRight.current?.show({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Network error , Please check your network connection and try again.',
+                life: 3000,
+            });
         }
     };
 
@@ -301,252 +311,252 @@ export default function Payment() {
 
 
     return (
-       <div className=''>
-         <main
-            className={`flex min-h-screen flex-col justify-between ${myFontIran.className}`}
-        >
-            <Head>
-                <title>Payment</title>
-            </Head>
-            {loading ? ''
-                :
-                isLogin ?
-                    <PrimeReactProvider>
-                        <Header active={''} isLocationInIran={isLocationInIran} />
+        <div className=''>
+            <main
+                className={`flex min-h-screen flex-col justify-between ${myFontIran.className}`}
+            >
+                <Head>
+                    <title>Payment</title>
+                </Head>
+                {loading ? ''
+                    :
+                    isLogin ?
+                        <PrimeReactProvider>
+                            <Header active={''} isLocationInIran={isLocationInIran} />
 
-                        <Toast ref={toastBottomRight} position="bottom-right" />
+                            <Toast ref={toastBottomRight} position="bottom-right" />
 
-                        <Dialog
-                            visible={paymentRulesModal}
-                            className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
+                            <Dialog
+                                visible={paymentRulesModal}
+                                className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
 
-                            style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
-                            {
-                                isLocationInIran ?
-                                    <p
-                                        dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].faRules.replace(/\r\n/g, '<br />') }}
-                                    >
-                                    </p>
-                                    :
-                                    <p
-                                        dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].engRules.replace(/\r\n/g, '<br />') }}
-                                    >
-                                    </p>
+                                style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentRulesModal(false)}>
+                                {
+                                    isLocationInIran ?
+                                        <p
+                                            dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].faRules.replace(/\r\n/g, '<br />') }}
+                                        >
+                                        </p>
+                                        :
+                                        <p
+                                            dangerouslySetInnerHTML={{ __html: paymentRules?.pages?.nodes[2].paymentRules.paymentRules[0].engRules.replace(/\r\n/g, '<br />') }}
+                                        >
+                                        </p>
 
-                            }
-                        </Dialog>
-
-                        <Dialog visible={paymentBrokerModal}
-                            className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
-                            style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentBrokerModal(false)}>
-                            {
-                                isLocationInIran ?
-                                    <p
-                                        dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].faBroker.replace(/\r\n/g, '<br />') }}
-                                    >
-                                    </p>
-                                    :
-                                    <p
-                                        dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker.replace(/\r\n/g, '<br />') }}
-                                    >
-                                    </p>
-                            }
-                        </Dialog>
-
-                        <form
-                            onSubmit={handleBuyClick}
-                            className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
-                            <h2 className={`text-white ${isLocationInIran && 'rtl'}`}>
-                                {isLocationInIran ? 'اطلاعات اولیه:' : 'Initial Information:'}
-                            </h2>
-                            <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                                <PaymentComponent type='text' name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='text' name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='email' name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='text' name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
-                            </div>
-
-                            <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
-                                {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
-                            </h2>
-
-                            <PaymentComponent type='text' name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
-
-                            <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                                <PaymentComponent type='text' name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='text' name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='text' name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
-                                <PaymentComponent type='text' name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
-                            </div>
-
-                            <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
-                                style={{ color: 'rgba(255, 255, 255, 0.6)' }}
-                            >
-                                {isLocationInIran ? 'انتخاب یک کارگزار:' : 'Select a Broker:'}
-                            </h2>
-
-                            <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse flex-wrap text-white gap-6 mt-8`}>
-                                <div className='flex flex-row-reverse gap-3'>
-                                    <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets"
-                                        onChange={() => handleRadioChange('Think Markets')}
-                                    />
-                                    <label className='text-xl'> ThinkMarkets </label>
-                                </div>
-                                <div className='flex flex-row-reverse gap-3'>
-                                    <input type="radio" name="tradingPlatform" id="Eight Cap" value="Eight Cap"
-                                        onChange={() => handleRadioChange('Eight Cap')}
-                                    />
-                                    <label className='text-xl'> Eightcap </label>
-                                </div>
-                                <div className='flex flex-row-reverse gap-3'>
-                                    <input type="radio" name="tradingPlatform" id="Ic Markets" value="Ic Markets"
-                                        onChange={() => handleRadioChange('Ic Markets')}
-                                    />
-                                    <label className='text-xl'> Icmarkets </label>
-                                </div>
-                            </div>
-
-                            <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
-                                style={{ color: 'rgba(255, 255, 255, 0.6)' }}
-                            >
-                                {isLocationInIran ? 'یک پلت فرم را انتخاب کنید:' : 'Select a Platform:'}
-                            </h2>
-
-
-                            <div className={`${!isLocationInIran && 'justify-start'} flex flex-row text-white gap-6 mt-8`}>
-                                <div className={'flex flex-row-reverse gap-3'}>
-                                    <input type="radio" id="MT4" name="platform" value="MT4"
-                                        onChange={() => handleRadioPlatformChange('MT4')}
-                                    />
-                                    <label className='text-xl'> MT4 </label>
-                                </div>
-
-                                <div className={'flex flex-row-reverse gap-3'}>
-                                    <input type="radio" id="MT5" name="platform" value="MT5"
-                                        onChange={() => handleRadioPlatformChange('MT5')}
-                                    />
-                                    <label className='text-xl'> MT5 </label>
-                                </div>
-                            </div>
-
-
-                            <div className={`flex ${isLocationInIran && 'flex-row-reverse'} items-baseline text-white gap-2 mt-12 text-sm`}>
-                                <input type='checkbox' onChange={() => setRules1(!rules1)} />
-                                <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
-                                    {isLocationInIran
-                                        ? 'بروکر موردنظر توسط تریدر تست شده و سرمایه گذار برتر هیچ مسئولیتی در قبال آن ندارد.'
-                                        : 'The chosen broker has been tested by the trader, and the superior investor assumes no responsibility for it.'}
-                                    <span className='text-white ml-1 cursor-pointer'
-                                        onClick={() => {
-                                            setPaymentBrokerModal(true)
-                                        }}
-                                    >
-                                        {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
-                                    </span>
-                                </p>
-                            </div>
-
-                            <div className={`${isLocationInIran && 'flex-row-reverse'} flex text-white gap-2 mt-4 text-sm`}>
-                                <input type='checkbox' onChange={() => setRules2(!rules2)} />
-                                <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right rtl'}`}>
-                                    {isLocationInIran
-                                        ? ' قوانین و terms & conditions را مطالعه کرده و شرایط پلن ها را میپذیرم.'
-                                        : 'I have read the rules and terms & conditions and accept the terms of the plans.'}
-                                    <span className='text-white ml-1 cursor-pointer' onClick={() => {
-                                        setPaymentRulesModal(true)
-                                    }}>
-                                        {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
-                                    </span>
-                                </p>
-                            </div>
-
-
-                            <div className='w-full relative mt-16'>
-                                <input
-                                    placeholder={isLocationInIran ? 'کد تخفیف' : 'Discount Code'}
-                                    className={` placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent ${isLocationInIran && 'rtl'}`}
-                                    value={discountCode}
-                                    onChange={handleDiscountInputChange}
-                                    style={{ border: '1px solid #6B7280' }}
-                                />
-                                <button
-                                    onClick={() => {
-                                        discountValidation();
-                                    }}
-                                    className={`text-white absolute ${isLocationInIran ? 'left-2' : 'right-2'} text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange`}
-                                >
-                                    {isLocationInIran ? 'تایید اعتبار' : 'Validate Discount'}
-                                </button>
-                            </div>
-
-                            <div className='text-center text-[#0A8100] mt-12'>
-                                <p className={`${discountAmount > 0 ? 'line-through text-2xl text-[#ef4444]' : 'text-4xl'} font-bold`}>
-                                    ${initialPrice}
-                                </p>
-
-                                {discountAmount > 0 &&
-                                    <p className='text-4xl font-bold mt-8'>
-                                        ${finalPrice}
-                                    </p>
                                 }
-                            </div>
+                            </Dialog>
 
-                            {submitLoading ?
-                                <ReactLoading type={'spinningBubbles'} className='mx-auto mt-10' color={'#F68D2E'} height={50} width={50} />
-                                :
-                                <button
-                                    type='submit'
-                                    className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
-                                    <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
-                                        {isLocationInIran ? 'خرید' : 'buy'}
+                            <Dialog visible={paymentBrokerModal}
+                                className={`${myFontIran.className} ${isLocationInIran && 'rtl'}`}
+                                style={{ width: `${size.width && size.width < 1024 ? '90vw' : '60vw'}`, fontFamily: `${isLocationInIran && '__myFont_a44d44'}` }} onHide={() => setPaymentBrokerModal(false)}>
+                                {
+                                    isLocationInIran ?
+                                        <p
+                                            dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].faBroker.replace(/\r\n/g, '<br />') }}
+                                        >
+                                        </p>
+                                        :
+                                        <p
+                                            dangerouslySetInnerHTML={{ __html: paymentBroker?.pages?.nodes[2].paymentRules.paymentBroker[0].engBroker.replace(/\r\n/g, '<br />') }}
+                                        >
+                                        </p>
+                                }
+                            </Dialog>
+
+                            <form
+                                onSubmit={handleBuyClick}
+                                className='bg-[#1D1D1D] 3xl:w-6/12 2xl:w-8/12 sm:w-9/12 w-11/12 mx-auto p-6 mt-16 mb-36 rounded-md'>
+                                <h2 className={`text-white ${isLocationInIran && 'rtl'}`}>
+                                    {isLocationInIran ? 'اطلاعات اولیه:' : 'Initial Information:'}
+                                </h2>
+                                <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
+                                    <PaymentComponent type='text' name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='email' name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+                                </div>
+
+                                <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
+                                    {isLocationInIran ? 'اطلاعات نشانی:' : 'Address Information:'}
+                                </h2>
+
+                                <PaymentComponent type='text' name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
+
+                                <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
+                                    <PaymentComponent type='text' name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
+                                </div>
+
+                                <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
+                                    style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                                >
+                                    {isLocationInIran ? 'انتخاب یک کارگزار:' : 'Select a Broker:'}
+                                </h2>
+
+                                <div className={`${!isLocationInIran && 'justify-end'} flex flex-row-reverse flex-wrap text-white gap-6 mt-8`}>
+                                    <div className='flex flex-row-reverse gap-3'>
+                                        <input type="radio" name="tradingPlatform" id="Think Markets" value="Think Markets"
+                                            onChange={() => handleRadioChange('Think Markets')}
+                                        />
+                                        <label className='text-xl'> ThinkMarkets </label>
+                                    </div>
+                                    <div className='flex flex-row-reverse gap-3'>
+                                        <input type="radio" name="tradingPlatform" id="Eight Cap" value="Eight Cap"
+                                            onChange={() => handleRadioChange('Eight Cap')}
+                                        />
+                                        <label className='text-xl'> Eightcap </label>
+                                    </div>
+                                    <div className='flex flex-row-reverse gap-3'>
+                                        <input type="radio" name="tradingPlatform" id="Ic Markets" value="Ic Markets"
+                                            onChange={() => handleRadioChange('Ic Markets')}
+                                        />
+                                        <label className='text-xl'> Icmarkets </label>
+                                    </div>
+                                </div>
+
+                                <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
+                                    style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                                >
+                                    {isLocationInIran ? 'یک پلت فرم را انتخاب کنید:' : 'Select a Platform:'}
+                                </h2>
+
+
+                                <div className={`${!isLocationInIran && 'justify-start'} flex flex-row text-white gap-6 mt-8`}>
+                                    <div className={'flex flex-row-reverse gap-3'}>
+                                        <input type="radio" id="MT4" name="platform" value="MT4"
+                                            onChange={() => handleRadioPlatformChange('MT4')}
+                                        />
+                                        <label className='text-xl'> MT4 </label>
+                                    </div>
+
+                                    <div className={'flex flex-row-reverse gap-3'}>
+                                        <input type="radio" id="MT5" name="platform" value="MT5"
+                                            onChange={() => handleRadioPlatformChange('MT5')}
+                                        />
+                                        <label className='text-xl'> MT5 </label>
+                                    </div>
+                                </div>
+
+
+                                <div className={`flex ${isLocationInIran && 'flex-row-reverse'} items-baseline text-white gap-2 mt-12 text-sm`}>
+                                    <input type='checkbox' onChange={() => setRules1(!rules1)} />
+                                    <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right'}`}>
+                                        {isLocationInIran
+                                            ? 'بروکر موردنظر توسط تریدر تست شده و سرمایه گذار برتر هیچ مسئولیتی در قبال آن ندارد.'
+                                            : 'The chosen broker has been tested by the trader, and the superior investor assumes no responsibility for it.'}
+                                        <span className='text-white ml-1 cursor-pointer'
+                                            onClick={() => {
+                                                setPaymentBrokerModal(true)
+                                            }}
+                                        >
+                                            {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
+                                        </span>
                                     </p>
-                                    <Image src={buy} alt='buy' />
-                                </button>
-                            }
+                                </div>
 
-                        </form>
+                                <div className={`${isLocationInIran && 'flex-row-reverse'} flex text-white gap-2 mt-4 text-sm`}>
+                                    <input type='checkbox' onChange={() => setRules2(!rules2)} />
+                                    <p className={`text-[#9CA3AF] ${isLocationInIran && 'text-right rtl'}`}>
+                                        {isLocationInIran
+                                            ? ' قوانین و terms & conditions را مطالعه کرده و شرایط پلن ها را میپذیرم.'
+                                            : 'I have read the rules and terms & conditions and accept the terms of the plans.'}
+                                        <span className='text-white ml-1 cursor-pointer' onClick={() => {
+                                            setPaymentRulesModal(true)
+                                        }}>
+                                            {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
+                                        </span>
+                                    </p>
+                                </div>
 
-                        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
 
-                        <style>
-                            {
-                                `
+                                <div className='w-full relative mt-16'>
+                                    <input
+                                        placeholder={isLocationInIran ? 'کد تخفیف' : 'Discount Code'}
+                                        className={` placeholder:text-xs text-lg text-white rounded-md w-full px-6 py-8 bg-transparent ${isLocationInIran && 'rtl'}`}
+                                        value={discountCode}
+                                        onChange={handleDiscountInputChange}
+                                        style={{ border: '1px solid #6B7280' }}
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            discountValidation();
+                                        }}
+                                        className={`text-white absolute ${isLocationInIran ? 'left-2' : 'right-2'} text-sm h-4/5 top-1/2 -translate-y-1/2 rounded-md w-4/12 sm:w-2/12 bg-main-orange`}
+                                    >
+                                        {isLocationInIran ? 'تایید اعتبار' : 'Validate Discount'}
+                                    </button>
+                                </div>
+
+                                <div className='text-center text-[#0A8100] mt-12'>
+                                    <p className={`${discountAmount > 0 ? 'line-through text-2xl text-[#ef4444]' : 'text-4xl'} font-bold`}>
+                                        ${initialPrice}
+                                    </p>
+
+                                    {discountAmount > 0 &&
+                                        <p className='text-4xl font-bold mt-8'>
+                                            ${finalPrice}
+                                        </p>
+                                    }
+                                </div>
+
+                                {submitLoading ?
+                                    <ReactLoading type={'spinningBubbles'} className='mx-auto mt-10' color={'#F68D2E'} height={50} width={50} />
+                                    :
+                                    <button
+                                        type='submit'
+                                        className='bg-[#0A8100] rounded-md cursor-pointer w-fit py-3 mt-10 px-16 ml-auto flex flex-row-reverse gap-3 items-center'>
+                                        <p className={`${!isLocationInIran && 'translate-y-0.5'}`}>
+                                            {isLocationInIran ? 'خرید' : 'buy'}
+                                        </p>
+                                        <Image src={buy} alt='buy' />
+                                    </button>
+                                }
+
+                            </form>
+
+                            <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
+
+                            <style>
+                                {
+                                    `
             .p-toast-detail {
                 text-align : ${isLocationInIran ? 'right' : 'left'};
             }
             `
-                            }
-                        </style>
-                    </PrimeReactProvider>
-                    :
-                    <>
-                        <Header active={''} isLocationInIran={isLocationInIran} />
-                        <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
-                            <Image src={login} alt='login' className='w-16' />
-                            <p className="mt-6 text-center">
-                                {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
-                            </p>
-                            <div className='flex flex-row justify-center mt-6 gap-6'>
-                                <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
-                                    onClick={() => {
-                                        router.push('/register')
-                                    }}
-                                >
-                                    {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
-                                </button>
+                                }
+                            </style>
+                        </PrimeReactProvider>
+                        :
+                        <>
+                            <Header active={''} isLocationInIran={isLocationInIran} />
+                            <div className=' bg-white w-1/2 mx-auto p-6 rounded-md items-center flex  flex-col my-20'>
+                                <Image src={login} alt='login' className='w-16' />
+                                <p className="mt-6 text-center">
+                                    {isLocationInIran ? ' برای مشاهده پنل کاربری ابتدا وارد حساب کاربری خود شوید' : 'To view the user panel, first log in to your account'}
+                                </p>
+                                <div className='flex flex-row justify-center mt-6 gap-6'>
+                                    <button className='bg-main-orange px-12 py-2 text-white rounded-lg text-center text-lg'
+                                        onClick={() => {
+                                            router.push('/register')
+                                        }}
+                                    >
+                                        {isLocationInIran ? ' ثبت نام / عضویت' : 'Registration / membership'}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
-                        <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
-
+                            <Footer data={isLocationInIran ? footerData?.pages?.nodes[2].footer : footerDataEng?.pages?.nodes[2].engFooter} isLocationInIran={isLocationInIran} />
 
 
-                    </>
 
-            }
+                        </>
+
+                }
 
 
-        </main >
-       </div>
+            </main >
+        </div>
     )
 }

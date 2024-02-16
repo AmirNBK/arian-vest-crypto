@@ -25,10 +25,10 @@ const Header = (props: {
     const header = [
         { label: 'صفحه اصلی', url: '/' },
         {
-            label: `${(props.loggedIn && (size.width && size.width < 640)) ? 'پنل کاربری' :
-                `${(!(props.loggedIn) && (size.width && size.width < 640)) ? 'ورود و عضویت' : ''}`}`,
-            url: `${(props.loggedIn && (size.width && size.width < 640)) ? '/panel' :
-                `${(!(props.loggedIn) && (size.width && size.width < 640)) ? '/register' : ''}`}`
+            label: `${(props.loggedIn && (size.width && size.width < 1024)) ? 'پنل کاربری' :
+                `${(!(props.loggedIn) && (size.width && size.width < 1024)) ? 'ورود و عضویت' : ''}`}`,
+            url: `${(props.loggedIn && (size.width && size.width < 1024)) ? '/panel' :
+                `${(!(props.loggedIn) && (size.width && size.width < 1024)) ? '/register' : ''}`}`
         },
         { label: 'تعرفه ها', url: '/tariff' },
         { label: 'قوانین', url: '/rules' },
@@ -40,15 +40,15 @@ const Header = (props: {
     const headerEng = [
         { label: 'Home', url: '/' },
         {
-            label: `${props.loggedIn && size.width && size.width < 640
+            label: `${props.loggedIn && size.width && size.width < 1024
                 ? 'User Panel'
-                : !props.loggedIn && size.width && size.width < 640
+                : !props.loggedIn && size.width && size.width < 1024
                     ? 'Login and Register'
                     : ''
                 }`,
-            url: `${props.loggedIn && size.width && size.width < 640
+            url: `${props.loggedIn && size.width && size.width < 1024
                 ? '/panel'
-                : !props.loggedIn && size.width && size.width < 640
+                : !props.loggedIn && size.width && size.width < 1024
                     ? '/register'
                     : ''
                 }`,
