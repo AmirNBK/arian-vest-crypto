@@ -594,6 +594,7 @@ font-weight: 400;
 }
 
 .p-accordion-header-text {
+font-family : '__myFontIran_ca096e', '__myFontIran_Fallback_ca096e';
 text-align: left;
 line-height: 1.8;
 }
