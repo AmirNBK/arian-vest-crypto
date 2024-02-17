@@ -103,7 +103,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                     }
 
                     .p-accordion-header-text {
-                        
+                        font-family : '__myFontIran_ca096e', '__myFontIran_Fallback_ca096e';
                         line-height:1.8;
                         direction : ${isLocationInIran && 'rtl'};
                     }
