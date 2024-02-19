@@ -377,6 +377,9 @@ const Profile = (
         padding-top: 20px;
       }
     
+      input {
+        color : black !important;
+      }
                      td {
                         padding-left: 5px;
                         padding-right: 5px; 

@@ -9,6 +9,7 @@ import successful from '../../assets/images/succesfull-payment.png'
 import html2canvas from 'html2canvas';
 import PaymentResult from '../PaymentResult/PaymentResult';
 import useLocationData from '@/Hooks/location';
+import useWindowSize from '@/Hooks/innerSize';
 
 interface TransactionType {
   actually_paid: number;
@@ -105,10 +106,24 @@ const Receipt = (props: {
 
   const challengeType = localStorage.getItem('challenge');
   const challengeName = localStorage.getItem('challenge amount');
+  const size = useWindowSize();
+
+  const TIMEOUT_THRESHOLD = 7000;
+  const MOBILE_WIDTH_THRESHOLD = 640;
 
   useEffect(() => {
+    let fetchDataTimeout: any;
+
     const fetchData = async () => {
       try {
+        const isMobile = size.width && size.width < MOBILE_WIDTH_THRESHOLD;
+
+        if (isMobile) {
+          fetchDataTimeout = setTimeout(() => {
+            window.location.reload();
+          }, TIMEOUT_THRESHOLD);
+        }
+
         await generatePDF();
 
         if (paymentInfo && profileInfo && receipt && challengeName && challengeType) {
@@ -123,9 +138,15 @@ const Receipt = (props: {
       } catch (error) {
         console.error('Error generating PDF:', error);
       }
+      finally {
+        clearTimeout(fetchDataTimeout);
+      }
     };
 
     fetchData();
+    return () => {
+      clearTimeout(fetchDataTimeout);
+    };
   }, [paymentInfo, profileInfo, challengeType, pdfGenerated, challengeName]);
 
   const generatePDF = async () => {
