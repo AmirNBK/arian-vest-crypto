@@ -116,7 +116,7 @@ const Receipt = (props: {
       if (loadingData) {
         window.location.reload();
       }
-    }, 10000);
+    }, 14000);
 
     return () => clearTimeout(timeout);
   }, [paymentInfo, profileInfo , loading]);
