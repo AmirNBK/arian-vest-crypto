@@ -112,6 +112,16 @@ const Receipt = (props: {
   const MOBILE_WIDTH_THRESHOLD = 640;
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (loading) {
+        window.location.reload();
+      }
+    }, 10000);
+
+    return () => clearTimeout(timeout);
+  }, [paymentInfo, profileInfo , loading]);
+
+  useEffect(() => {
     let fetchDataTimeout: any;
 
     const fetchData = async () => {

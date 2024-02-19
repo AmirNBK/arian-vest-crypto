@@ -87,9 +87,9 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             if (!paymentInfo || !profileInfo) {
                 window.location.reload();
             }
-        }, 8000); // 25 seconds in milliseconds
+        }, 8000);
 
-        return () => clearTimeout(timeout); // Cleanup the timeout on component unmount
+        return () => clearTimeout(timeout);
     }, [paymentInfo, profileInfo]);
     useEffect(() => {
         const platformLocal = localStorage.getItem('platform');
