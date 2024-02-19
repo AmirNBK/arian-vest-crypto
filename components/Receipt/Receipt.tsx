@@ -321,7 +321,12 @@ const Receipt = (props: {
           {!loadingData ?
             <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
             :
-            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+            <div className='flex flex-col items-center'>
+              <p className=' text-white text-lg sm:w-8/12 w-10/12 text-center mt-12'>
+                Your purchase is being processed, please be patient until your purchase is completed.
+              </p>
+              <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+            </div>
 
           }
           <div className="receipt"
