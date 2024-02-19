@@ -45,6 +45,7 @@ const SendMessageComponent = (props: {
                 </div>
             } */}
             <textarea rows={5} cols={50} className={`w-full border border-solid border-slate-300 rounded-md p-text-sm ${props.isLocationIran && 'rtl'} p-4 placeholder:text-sm text-sm bg-slate-100`} dir='auto' value={message}
+                style={{ color: 'black' }}
                 placeholder={`${props.isLocationIran ? 'پاسخ خود را وارد كنيد' : 'Enter your answer'}`}
                 onChange={(e) => { setMessage(e.target.value) }}>
 
@@ -68,6 +69,16 @@ const SendMessageComponent = (props: {
 
                 } */}
             </div>
+
+            <style>
+                {`
+                textarea {
+                    color : black !important;
+                }
+                
+                
+                `}
+            </style>
         </div>
     );
 };
