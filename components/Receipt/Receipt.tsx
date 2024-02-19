@@ -116,10 +116,10 @@ const Receipt = (props: {
       if (loadingData) {
         window.location.reload();
       }
-    }, 14000);
+    }, 10000);
 
     return () => clearTimeout(timeout);
-  }, [loading]);
+  }, [loadingData]);
 
   useEffect(() => {
     const fetchData = async () => {
