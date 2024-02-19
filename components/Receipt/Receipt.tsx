@@ -119,20 +119,11 @@ const Receipt = (props: {
     }, 14000);
 
     return () => clearTimeout(timeout);
-  }, [paymentInfo, profileInfo , loading]);
+  }, [loading]);
 
   useEffect(() => {
-    let fetchDataTimeout: any;
-
     const fetchData = async () => {
       try {
-        const isMobile = size.width && size.width < MOBILE_WIDTH_THRESHOLD;
-
-        if (isMobile && loading) {
-          fetchDataTimeout = setTimeout(() => {
-            window.location.reload();
-          }, TIMEOUT_THRESHOLD);
-        }
 
         await generatePDF();
 
@@ -148,15 +139,9 @@ const Receipt = (props: {
       } catch (error) {
         console.error('Error generating PDF:', error);
       }
-      finally {
-        clearTimeout(fetchDataTimeout);
-      }
     };
 
     fetchData();
-    return () => {
-      clearTimeout(fetchDataTimeout);
-    };
   }, [paymentInfo, profileInfo, challengeType, pdfGenerated, challengeName]);
 
   const generatePDF = async () => {
