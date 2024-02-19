@@ -108,7 +108,7 @@ const Receipt = (props: {
   const challengeName = localStorage.getItem('challenge amount');
   const size = useWindowSize();
 
-  const TIMEOUT_THRESHOLD = 7000;
+  const TIMEOUT_THRESHOLD = 10000;
   const MOBILE_WIDTH_THRESHOLD = 640;
 
   useEffect(() => {
@@ -118,7 +118,7 @@ const Receipt = (props: {
       try {
         const isMobile = size.width && size.width < MOBILE_WIDTH_THRESHOLD;
 
-        if (isMobile) {
+        if (isMobile && loading) {
           fetchDataTimeout = setTimeout(() => {
             window.location.reload();
           }, TIMEOUT_THRESHOLD);
