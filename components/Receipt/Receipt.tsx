@@ -113,7 +113,7 @@ const Receipt = (props: {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (loading) {
+      if (loadingData) {
         window.location.reload();
       }
     }, 10000);
