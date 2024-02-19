@@ -83,6 +83,15 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     const [formData, setFormData] = useState<formDataType>()
     const [dataLoading, setDataLoading] = useState(true);
     useEffect(() => {
+        const timeout = setTimeout(() => {
+            if (!paymentInfo || !profileInfo) {
+                window.location.reload();
+            }
+        }, 8000); // 25 seconds in milliseconds
+
+        return () => clearTimeout(timeout); // Cleanup the timeout on component unmount
+    }, [paymentInfo, profileInfo]);
+    useEffect(() => {
         const platformLocal = localStorage.getItem('platform');
         const brokerLocal = localStorage.getItem('tradingPlatform');
         setPlatform(platformLocal)
@@ -97,7 +106,6 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
             console.error('formData is not present in localStorage');
         }
     }, []);
-
 
     const router = useRouter();
     const npId = router.query.NP_id;
@@ -149,44 +157,44 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
     return (
         <div className=''>
             <main
-            className={`flex w-full min-h-screen flex-col justify-between 3xl:justify-start ${inter.className}`}
-        >
-            <Head>
-                <title>Result</title>
-            </Head>
-            {loading ? ''
-                :
-                <PrimeReactProvider>
-                    <Header active={''} />
-                    <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
-                        {(paymentInfo && profileInfo) ?
-                            <Receipt broker={broker}
-                                profileInfo={profileInfo}
-                                paymentInfo={paymentInfo}
-                                ref={receiptRef}
-                                city={formData?.city}
-                                country={formData?.country}
-                                firstName={formData?.firstName}
-                                lastName={formData?.lastName}
-                                platform={platform}
-                                user={profileInfo?.fullname} price={paymentInfo?.price_amount}
-                                phone={formData?.phone}
-                                address={formData?.streetAddress}
-                                date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
-                                confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
-                            :
-                            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-                        }
-                        <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
-                            <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
-                            <hr style={{ borderColor: '#F68D2E' }} />
-                        </Link>
-                    </div>
+                className={`flex w-full min-h-screen flex-col justify-between 3xl:justify-start ${inter.className}`}
+            >
+                <Head>
+                    <title>Result</title>
+                </Head>
+                {loading ? ''
+                    :
+                    <PrimeReactProvider>
+                        <Header active={''} />
+                        <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
+                            {(paymentInfo && profileInfo) ?
+                                <Receipt broker={broker}
+                                    profileInfo={profileInfo}
+                                    paymentInfo={paymentInfo}
+                                    ref={receiptRef}
+                                    city={formData?.city}
+                                    country={formData?.country}
+                                    firstName={formData?.firstName}
+                                    lastName={formData?.lastName}
+                                    platform={platform}
+                                    user={profileInfo?.fullname} price={paymentInfo?.price_amount}
+                                    phone={formData?.phone}
+                                    address={formData?.streetAddress}
+                                    date={formatDateString(paymentInfo.created_at)} currency={paymentInfo.pay_currency}
+                                    confirmationNum={paymentInfo?.invoice_id} email={formData?.email} />
+                                :
+                                <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+                            }
+                            <Link href={'/'} className='block cursor-pointer w-fit mx-auto'>
+                                <p className={`${myFontIran.className} text-main-orange text-xl w-fit`}> {isLocationInIran ? 'بازگشت' : 'Back'} </p>
+                                <hr style={{ borderColor: '#F68D2E' }} />
+                            </Link>
+                        </div>
 
-                </PrimeReactProvider>
-            }
+                    </PrimeReactProvider>
+                }
 
-        </main>
+            </main>
         </div>
     )
 }
