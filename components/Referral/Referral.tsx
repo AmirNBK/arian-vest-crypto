@@ -93,7 +93,7 @@ const Referral = (
             </div>
 
 
-            <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20'>
+            <div className='bg-[#1A1C1F] h-full lg:w-full mx-4 lg:mx-6 sm:mx-12 py-8 px-3 sm:px-6 rounded-lg mt-6 mb-20 overflow-auto'>
                 <div className={`flex ${isLocationIran ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-4`}>
                     <h2 className={`${myFont.className} Leaderboards__title text-white text-2xl w-fit ${isLocationIran ? 'ml-auto' : 'mr-auto translate-y-0.5'}`}>
 
@@ -109,16 +109,16 @@ const Referral = (
                     <table className={`${myFontIran.className} w-full`}>
                         <tr>
 
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            <th className={`${myFont.className} text-sm sm:text-xl text-center text-main-orange`}>
                                 {isLocationIran ? 'تعداد جوایز' : 'Number of Prizes'}
                             </th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            <th className={`${myFont.className} text-sm sm:text-xl text-center text-main-orange`}>
                                 {isLocationIran ? 'درصده افزوده' : 'Percentage Added'}
                             </th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            <th className={`${myFont.className} text-sm sm:text-xl text-center text-main-orange`}>
                                 {isLocationIran ? 'تاریخ' : 'Date'}
                             </th>
-                            <th className={`${myFont.className} text-xl text-center text-main-orange`}>
+                            <th className={`${myFont.className} text-sm sm:text-xl text-center text-main-orange`}>
                                 {isLocationIran ? 'نام کاربر' : 'Username'}
                             </th>
                         </tr>

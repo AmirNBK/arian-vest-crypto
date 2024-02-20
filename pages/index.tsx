@@ -185,7 +185,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                   <p className='text-white text-7xl text-center'>
                     {isLocationInIran ? 'درصد' : 'percent'}
                   </p>
-                  <p className='text-black text-7xl text-center mt-10'>
+                  <p className='text-white text-7xl text-center mt-10'>
                     {isLocationInIran ? 'پرداخت سود' : 'payment'}
 
                   </p>
