@@ -197,7 +197,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
             <Dialog
                 maximizable
                 visible={visible} style={{
-                    width: `${size.width < 640 ? '120vw' : '90vw'}`, display: 'flex', flexDirection: 'column',
+                    width: `${size.width < 640 ? '120vw' : '70vw'}`, display: 'flex', flexDirection: 'column',
                     backgroundColor: '#252525'
                 }}
                 className={`${myFont.className} font-normal`}
