@@ -139,7 +139,7 @@ export default function Panel() {
                             </div>
                         </div>
                     </Dialog>
-                    <Dialog header={isLocationInIran ? "خروج از حساب کاربری" : 'Log out of your account'} visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '25vw'}` }}
+                    <Dialog header={isLocationInIran ? "خروج از حساب کاربری" : 'Log out of your account'} visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '40vw'}` }}
                         className={`${myFontIran.className} ${isLocationInIran ? 'rtl' : 'ltr'}`} onHide={() => setVisible(false)}>
                         <div>
                             <p className="m-0">

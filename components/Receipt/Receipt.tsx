@@ -400,7 +400,8 @@ const Receipt = (props: {
                     
                     .receipt {
                       display: flex;
-                      flex-wrap: wrap;
+                      flex-direction: row;
+
                       margin: 60px auto;
                       margin-bottom : 30px;
                       justify-content : center;
@@ -411,14 +412,16 @@ const Receipt = (props: {
                       width : fit-content;
 
                       @media(max-width:768px){
-                      width : auto;
+                      width : fit-content;
+                      flex-direction: column;
+
                       }
                     }
                     
                     .receipt-breakdown {
                       background: #F68D2E;
                       color:#fff;
-                      width: 220px;
+                      width: 25%;
                       display:inline-block;
                       position:relative;
                       float:left;
@@ -482,11 +485,14 @@ const Receipt = (props: {
                     }
                     
                     .receipt-overview {
-                      width: 490px;
+                      width: 75%;
                       display: inline-block;
                       border-radius: 0 5px 5px 0;
                       padding: 0 30px;
                       background-color: #fff;
+                      @media(max-width:768px){
+                        width : 100%;
+                        }
                         
                       hr {
                         margin-top: 15px;

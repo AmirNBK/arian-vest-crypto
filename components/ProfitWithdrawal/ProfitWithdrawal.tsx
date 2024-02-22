@@ -227,7 +227,7 @@ const ProfitWithdrawal = (props: {
                                         value={description} onChange={handleTextareaChange}
                                     />
                                     <textarea
-                                        cols={35} rows={5} className={`${isLocationInIran ? 'rtl' : ''} bg-transparent border border-white rounded-md md:hidden block text-white`}
+                                        cols={25} rows={5} className={`${isLocationInIran ? 'rtl' : ''} bg-transparent border border-white rounded-md md:hidden block text-white`}
                                         value={description} onChange={handleTextareaChange}
                                     />
                                 </div>

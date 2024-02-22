@@ -35,7 +35,7 @@ import 'animate.css';
 const CarouselSlider = dynamic(() => import("@/components/CarouselSlider/CarouselSlider"), {
   ssr: false,
 });
-import bull from '../assets/images/bull.svg'
+import bull2 from '../assets/images/bull2.svg'
 import redBull from '../assets/images/redBull.svg'
 import greenBull from '../assets/images/greenBull.svg'
 import button from '../assets/icons/register.svg'
@@ -165,11 +165,11 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     -translate-x-1/2 sm:-translate-y-[54%] -translate-y-[85%]
                     '
               >
-                <Image src={charts} alt='charts' className='md:block hidden w-screen animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow' unoptimized />
+                <Image src={charts} alt='charts' className='md:block hidden w-screen animate__lightSpeedInRight animate__animated animate__delay-1s animate__slow'  />
 
 
                 <Image src={HeroImage} alt='heroImage'
-                  unoptimized
+                  
                   ref={imageRef}
                   className='md:block hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 animate__animated  animate__zoomIn animate__slower' />
 
@@ -179,7 +179,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
                   </h2>
                   <Image src={HeroImage} alt='heroImage'
-                    unoptimized
+                    
                     className='w-10/12 my-10 mx-auto' />
 
                   <p className='text-white text-7xl text-center'>
@@ -202,7 +202,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
 
                 <Link href={'/tariff'}>
-                  <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' unoptimized
+                  <Image src={isLocationInIran ? HeroText : HeroTextEn} alt='text' 
                     className='absolute z-[2] left-[54%] 3xl:left-[52%] -translate-x-1/2 -translate-y-1/2 md:block hidden top-[70%] cursor-pointer mt-20' />
                 </Link>
               </div>
@@ -256,7 +256,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                     {selectedTab === 0 ? `${tariffs?.tariffs[0]?.range}` : selectedTab === 1 ? `${tariffs?.tariffs[1]?.range}` : `${tariffs?.tariffs[2]?.range}`}
                   </div>
                 </div>
-                <Image src={bull} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }} unoptimized />
+                <Image src={bull2} alt='bull' className='absolute top-[60%] lg:block hidden' style={{ zIndex: '1' }}  />
               </div>
 
 
@@ -284,10 +284,10 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </p>
 
                 <div className='relative'>
-                  <Image src={isLocationInIran ? rulesPic : rulesPicEng} alt='rulesPic' unoptimized className='mx-auto mt-6'
+                  <Image src={isLocationInIran ? rulesPic : rulesPicEng} alt='rulesPic'  className='mx-auto mt-6'
                     data-aos-duration="3000" data-aos-once={true} data-aos="zoom-in"
                   />
-                  <Image src={faqBull} alt='rulesPic' unoptimized
+                  <Image src={faqBull} alt='rulesPic' 
                     className='mx-auto w-56 md:w-fit absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2'
                   />
                 </div>
@@ -366,7 +366,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 <HomepageAboutUs data={aboutUsSection?.homepage} isLocationIran={isLocationInIran} />
 
                 <div className='my-20 sm:my-[100%] lg:my-56'>
-                  <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden' unoptimized />
+                  <Image src={customer} alt='customer' className='ml-40 3xl:ml-60 translate-y-12 lg:block hidden'  />
                   <div className='relative lg:p-0 pt-24'>
                     <div className='flex flex-wrap justify-center'>
                       <p className={`${isLocationInIran && myFont.className} text-white sm:w-max ${isLocationInIran ? 'text-5xl' : 'text-4xl'} mx-auto text-center rtl relative leading-tight`}
@@ -397,7 +397,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                           accountGrowthSection?.homepage.accountGrowthCop[0].description
                       }
                     </p>
-                    <Image src={customers} alt='customers' unoptimized className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
+                    <Image src={customers} alt='customers'  className='absolute top-[27rem] sm:top-[10rem] lg:-top-12 3xl:top-1/2 3xl:left-1/2 3xl:-z-[1] 3xl:-translate-x-1/2 3xl:-translate-y-1/2 lg:p-0 pt-24' />
                   </div>
                 </div>
               </div>
