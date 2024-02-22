@@ -289,7 +289,7 @@ const Profile = (
 
                         <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto`}>
                             {profileInfo?.purchased_accounts.length ? (
-                                <table className={`w-full ${isLocationInIran ? '' : 'rtl'}`}>
+                                <table className={`w-full`} style={{direction : 'rtl'}}>
                                     <tr>
                                         <th className={`${myFont.className}`}></th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
