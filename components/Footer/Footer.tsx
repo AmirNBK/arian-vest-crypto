@@ -153,13 +153,13 @@ const Footer = (props: {
                                 if (item.link) {
                                     return (
                                         <Link href={item.link && item.link}>
-                                            <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                            <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                         </Link>
                                     )
                                 }
                                 else {
                                     return (
-                                        <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                        <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                     )
                                 }
                             })}
@@ -249,13 +249,13 @@ const Footer = (props: {
                                     if (item.link) {
                                         return (
                                             <Link href={item.link && item.link}>
-                                                <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                                <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                             </Link>
                                         )
                                     }
                                     else {
                                         return (
-                                            <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                            <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                         )
                                     }
                                 })}
@@ -341,13 +341,13 @@ const Footer = (props: {
                                     if (item.link) {
                                         return (
                                             <Link href={item.link && item.link}>
-                                                <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                                <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                             </Link>
                                         )
                                     }
                                     else {
                                         return (
-                                            <Image src={item.icon} alt={'icon'} unoptimized className=' w-7' />
+                                            <Image src={item.icon} alt={'icon'}  className=' w-7' />
                                         )
                                     }
                                 })}

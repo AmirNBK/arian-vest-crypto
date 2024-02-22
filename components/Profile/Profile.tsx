@@ -14,6 +14,7 @@ import edit from '../../assets/icons/edit.svg'
 import icon from '../../assets/icons/certificateMini.svg'
 import { UpdateProfileInfo, getProfileInfo } from '@/lib/apiConfig';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import useWindowSize from '@/Hooks/innerSize';
 
 
 const Profile = (
@@ -56,6 +57,8 @@ const Profile = (
     const [lastName, setLastName] = useState<string>()
     const [refreshProfileInfo, setRefreshProfileInfo] = useState<boolean>(false)
     const [receipt, setReceipt] = useState<any>()
+    const size = useWindowSize();
+
 
     useEffect(() => {
         UpdateProfileInfo(selectedImage).then((res) => {
@@ -132,7 +135,7 @@ const Profile = (
     return (
         <div className='Profile' style={{ zIndex: '-50' }}>
             <Toast ref={toastBottomRight} position="bottom-right" />
-            <Dialog header="Receipt" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+            <Dialog header="Receipt" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '50vw'}` }} onHide={() => setVisible(false)}>
                 <Image src={receipt} alt='receipt' width={50} height={50} unoptimized className=' w-full h-full' />
             </Dialog>
             {profileInfo ?
