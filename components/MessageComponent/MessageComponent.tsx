@@ -2,7 +2,8 @@ import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
 import profile from '../../assets/icons/profileChat.svg'
 import { getProfileInfo } from '@/lib/apiConfig'
-
+import { Dialog } from 'primereact/dialog';
+import useWindowSize from '@/Hooks/innerSize';
 
 const MessageComponent = (props: {
     message: string
@@ -14,7 +15,8 @@ const MessageComponent = (props: {
 }) => {
     const { message, date, type, id, file } = props
     const [profilePic, setProfilePic] = useState<File | null | string>(null);
-
+    const [visible, setVisible] = useState<boolean>(false);
+    const size = useWindowSize();
 
     useEffect(() => {
         getProfileInfo().then((res) => {
@@ -53,6 +55,11 @@ const MessageComponent = (props: {
     const textContent = doc.body.textContent;
     return (
         <div className={`MessageComponent sm:w-4/12 w-full flex items-center sm:gap-4 gap-2 my-2 ${type === 'user' ? 'ml-auto mr-2 flex-row-reverse' : 'sm:ml-2 flex-row'}`}>
+            <Dialog header="" visible={visible} style={{ width: `${size.width && size.width < 640 ? '90vw' : '50vw'}` }} onHide={() => setVisible(false)}>
+                <Image src={'https://virafundingbackend.darkube.app' + file}
+                    className='w-full'
+                    unoptimized width={1250} height={1250} alt='image' />
+            </Dialog>
             {type === 'user' ?
                 <Image src={profilePic ? ('https://virafundingbackend.darkube.app/media-files/' + profilePic) : profile} alt='profile' unoptimized style={{ zIndex: '20' }} width={170} height={170} className='rounded-full relative sm:w-8 sm:h-8 w-6 h-6 object-cover' />
                 :
@@ -60,8 +67,18 @@ const MessageComponent = (props: {
             }
             <div className='flex flex-col w-full'>
                 <div
-                    className='MessageComponent__message rounded-md text-left text-base flex justify-content-end borderRadius-default p-2 line-height-4 bg-main-orange text-white'
+                    className='MessageComponent__message rounded-md text-left
+                    flex flex-col items-start gap-3
+                    text-base flex justify-content-end borderRadius-default p-2 line-height-4 bg-main-orange text-white'
                 >
+                    {file &&
+                        <Image src={'https://virafundingbackend.darkube.app' + file}
+                            className='w-full cursor-pointer'
+                            onClick={() => {
+                                setVisible(true)
+                            }}
+                            unoptimized width={1250} height={1250} alt='image' />
+                    }
                     {textContent}
                 </div>
                 <div className='MessageComponent__options flex column-gap-2 mt-1' style={{ fontSize: '10px', color: '#AAAAAA' }}>
