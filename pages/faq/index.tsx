@@ -156,7 +156,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
 
       .p-accordion .p-accordion-header .p-accordion-header-link {
         height : 90px;
-        justify-content : ${isLocationInIran && 'space-between'};
+        justify-content : ${isLocationInIran ? 'space-between' : 'flex-start'};
       }
 
       .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {

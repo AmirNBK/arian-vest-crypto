@@ -270,8 +270,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
                         .p-accordion-header-text {
                         font-family : '__myFontIran_ca096e', '__myFontIran_Fallback_ca096e';
-                            text-align:left;
-                            text - align: ${isLocationInIran && 'text-right'};
+                            text-align: ${isLocationInIran ? 'right' : 'left'};
                         line-height:1.8;
                         direction : ${isLocationInIran && 'rtl'};
             }
