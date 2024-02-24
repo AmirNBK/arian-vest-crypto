@@ -35,7 +35,7 @@ export default function SingleBlog({ footer, data, footerEng }: { footer: any, d
 
     const size = useWindowSize();
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran' || !locationData;
+    const isLocationInIran = locationData === 'IR' || !locationData;
 
 
 

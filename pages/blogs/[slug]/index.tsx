@@ -55,7 +55,7 @@ export default function SingleBlog() {
   const { data: blogData, loading: blogLoading } = useQuery(GET_CONTENT);
   const router = useRouter()
   const { locationData, error, loading } = useLocationData();
-  const isLocationInIran = locationData === 'Iran' || !locationData;
+  const isLocationInIran = locationData === 'IR' || !locationData;
   const id = Number(router.query.slug);
   const data = blogData?.pages?.nodes[2]?.blog?.blogs[id];
 
@@ -87,7 +87,7 @@ export default function SingleBlog() {
             </>
           }
 
-          {/* <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'Iran' || !locationData} /> */}
+          {/* <Footer data={footerData?.pages?.nodes[2].footer} isLocationInIran={locationData === 'IR' || !locationData} /> */}
 
         </PrimeReactProvider>
       }

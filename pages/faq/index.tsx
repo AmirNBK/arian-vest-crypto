@@ -19,7 +19,7 @@ import Head from 'next/head';
 
 export default function SingleBlog({ footer, questions, footerEng }: { footer: any, questions: any, footerEng: any }) {
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran' || !locationData;
+    const isLocationInIran = locationData === 'IR' || !locationData;
 
     return (
         <div className=''>
@@ -79,7 +79,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
                             </Accordion>
                         </div>
 
-                        <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
+                        <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'IR' || !locationData} />
                     </PrimeReactProvider>
                 }
 

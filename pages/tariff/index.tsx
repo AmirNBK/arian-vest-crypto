@@ -25,7 +25,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
     const [selectedTab, setSelectedTab] = useState<number>(0)
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran' || !locationData;
+    const isLocationInIran = locationData === 'IR' || !locationData;
     const size = useWindowSize()
 
     type tariffType = {
@@ -250,7 +250,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
                             }
                         </TabView>
                     </div>
-                    <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
+                    <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'IR' || !locationData} />
 
                     <style>
                         {

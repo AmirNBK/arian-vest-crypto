@@ -52,7 +52,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
             {loading ? ''
                 :
                 <PrimeReactProvider>
-                    <Header active={5} isLocationInIran={locationData === 'Iran' || !locationData} />
+                    <Header active={5} isLocationInIran={locationData === 'IR' || !locationData} />
                     <div className={`${myFont.className} justify-center flex flex-col
                 ${(country === 'Iran' || !country) ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-4 items-center sm:mr-12 mt-8`}>
                         <Image src={team} alt='faq' />
@@ -82,13 +82,13 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                             {(country === 'Iran' || !country) ?
                                 data.features.map((item: ItemType, index: number) => {
                                     return (
-                                        <AboutUsItems isLocationIran={locationData === 'Iran' || !locationData} delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                        <AboutUsItems isLocationIran={locationData === 'IR' || !locationData} delay={index * 500} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                     )
                                 })
                                 :
                                 dataEng.engFeatures.map((item: ItemType, index: number) => {
                                     return (
-                                        <AboutUsItems delay={index * 500} isLocationIran={locationData === 'Iran' || !locationData} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
+                                        <AboutUsItems delay={index * 500} isLocationIran={locationData === 'IR' || !locationData} key={index} translate={((index === 0 || index === 2) && size.width) && size.width > 640 ? 60 : 0} text={item.item} />
                                     )
                                 })
                             }
@@ -139,7 +139,7 @@ export default function SingleBlog({ footer, data, titles, titlesEng, dataEng, f
                             }
                         </div>
                     </div>
-                    <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
+                    <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'IR' || !locationData} />
 
                 </PrimeReactProvider>
             }

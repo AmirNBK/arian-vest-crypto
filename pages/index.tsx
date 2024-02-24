@@ -70,7 +70,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
   const [selectedTab, setSelectedTab] = useState<number>(0)
   const { locationData, error, loading } = useLocationData();
-  const isLocationInIran = locationData === 'Iran' || !locationData;
+  const isLocationInIran = locationData === 'IR' || !locationData;
 
   const [value, setValue] = useState(0);
 
@@ -529,7 +529,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
               </div>
 
-              <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
+              <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
               </div>
             </PrimeReactProvider >

@@ -8,7 +8,7 @@ const useLocationData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://ip-api.com/json/');
+                const response = await fetch('https://api.country.is/');
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);

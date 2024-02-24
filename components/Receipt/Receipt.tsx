@@ -102,7 +102,7 @@ const Receipt = (props: {
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
   const { locationData, error, loading } = useLocationData();
-  const isLocationInIran = locationData === 'Iran' || !locationData;
+  const isLocationInIran = locationData === 'IR' || !locationData;
 
   const challengeType = localStorage.getItem('challenge');
   const challengeName = localStorage.getItem('challenge amount');
