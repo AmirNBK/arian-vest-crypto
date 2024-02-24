@@ -208,6 +208,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                     isLocationIran ?
                         type === 'classic' ?
                             <TariffTable
+                                isLocationIran={isLocationIran}
                                 removeTitle={true}
                                 title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
                                 data={[
@@ -229,6 +230,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                             />
                             :
                             <TariffTable
+                                isLocationIran={isLocationIran}
                                 removeTitle={true}
                                 title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
                                 data={[
@@ -250,6 +252,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                         :
                         type === 'classic' ?
                             <TariffTable
+                                isLocationIran={isLocationIran}
                                 removeTitle={true}
                                 title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
                                 data={[
@@ -271,6 +274,7 @@ const CarouselSlider = ({ type, data, isLocationIran }) => {
                             />
                             :
                             <TariffTable
+                                isLocationIran={isLocationIran}
                                 removeTitle={true}
                                 title={isLocationIran ? 'همیشه همراه شماییم' : 'Always with you'}
                                 data={[

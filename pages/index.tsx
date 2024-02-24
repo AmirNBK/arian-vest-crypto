@@ -70,9 +70,12 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
 
   const [selectedTab, setSelectedTab] = useState<number>(0)
   const { locationData, error, loading } = useLocationData();
-  const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+  const isLocationInIran = locationData === 'Iran' || !locationData;
 
   const [value, setValue] = useState(0);
+
+  console.log(locationData);
+  
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -526,7 +529,7 @@ export default function Home({ tariffSectionData, tariffs, footerEng, faqHomeSec
                 </div>
               </div>
 
-              <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
+              <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={isLocationInIran} />
 
               </div>
             </PrimeReactProvider >

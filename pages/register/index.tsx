@@ -41,7 +41,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
     const [confirmResetPassword, setConfirmResetPassword] = useState<string>();
     const router = useRouter();
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === 'Iran' || !locationData;
     const checkPasswordStrength = usePasswordStrengthCheck();
     const toastBottomRight = useRef<Toast>(null);
 
@@ -528,7 +528,7 @@ export default function Register({ footer, footerEng }: { footer: any, footerEng
                                 </div>
                             </div>
                         </div>
-                        <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+                        <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
 
                     </PrimeReactProvider>
                 }

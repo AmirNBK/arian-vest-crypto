@@ -35,7 +35,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
     const { locationData, error, loading } = useLocationData();
     const [visibleDialog, setVisibleDialog] = useState<boolean>(false);
     const [clickedRule, setClickedRule] = useState<number>(0);
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === 'Iran' || !locationData;
 
     type ItemType = {
         title: string;
@@ -218,7 +218,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
                         </div>
 
-                        <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
+                        <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
 
                         <style>
                             {
@@ -320,7 +320,7 @@ export default function Rules({ footer, data, titles, footerEng }: { footer: any
 
                         .p-accordion .p-accordion-header .p-accordion-header-link {
                             height : auto;
-                        justify-content : ${!isLocationInIran && 'flex-start'};
+                        justify-content : ${isLocationInIran && 'space-between'};
 }
 
                         .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {

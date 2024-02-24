@@ -19,75 +19,75 @@ import Head from 'next/head';
 
 export default function SingleBlog({ footer, questions, footerEng }: { footer: any, questions: any, footerEng: any }) {
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === 'Iran' || !locationData;
 
     return (
         <div className=''>
             <main
-            className={`flex min-h-screen flex-col justify-between  ${inter.className}`}
-        >
-            <Head>
-                <title>Faq</title>
-            </Head>
-            {loading
-                ? ''
-                :
-                <PrimeReactProvider>
-                    <Header active={4} isLocationInIran={isLocationInIran} />
-                    <div className={`${myFont.className} flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse sm:mr-12' : 'sm:flex-row sm:ml-12'} gap-4 items-center mt-8`}>
-                        <Image src={faq} alt='faq' />
-                        <p className='text-white text-4xl  md:text-end text-center'>
-                            {isLocationInIran ? 'سوالات متداول' : 'Frequently Asked Questions'}
-                            <span style={{ color: '#F68D2E' }}> {isLocationInIran ? 'برای معاملات' : 'for trades'} </span>
-                        </p>
-                    </div>
+                className={`flex min-h-screen flex-col justify-between  ${inter.className}`}
+            >
+                <Head>
+                    <title>Faq</title>
+                </Head>
+                {loading
+                    ? ''
+                    :
+                    <PrimeReactProvider>
+                        <Header active={4} isLocationInIran={isLocationInIran} />
+                        <div className={`${myFont.className} flex flex-col ${isLocationInIran ? 'sm:flex-row-reverse sm:mr-12' : 'sm:flex-row sm:ml-12'} gap-4 items-center mt-8`}>
+                            <Image src={faq} alt='faq' />
+                            <p className='text-white text-4xl  md:text-end text-center'>
+                                {isLocationInIran ? 'سوالات متداول' : 'Frequently Asked Questions'}
+                                <span style={{ color: '#F68D2E' }}> {isLocationInIran ? 'برای معاملات' : 'for trades'} </span>
+                            </p>
+                        </div>
 
-                    <div>
-                        <Accordion multiple className='flex  flex-wrap gap-12 w-[90%] lg:w-full mx-auto justify-center   3xl:ml-6 mb-24 mt-8'>
-                            {
-                                isLocationInIran ?
-                                    questions.question.map((item: any, index: number) => {
-                                        return (
-                                            <AccordionTab
-                                                key={index}
-                                                pt={{
-                                                    headerIcon: <Image src={arrow} alt='arrow' />
-                                                }}
-                                                className={`${myFontIran.className} text-white text-right`}
-                                                style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
-                                                header={item.title}>
-                                                {item.description}
-                                            </AccordionTab>
-                                        )
-                                    })
-                                    :
-                                    questions.engQuestion.map((item: any, index: number) => {
-                                        return (
-                                            <AccordionTab
-                                                key={index}
-                                                pt={{
-                                                    headerIcon: <Image src={arrow} alt='arrow' />
-                                                }}
-                                                className='text-white text-left'
-                                                style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
-                                                header={item.title}>
-                                                {item.description}
-                                            </AccordionTab>
-                                        )
-                                    })
-                            }
-                        </Accordion>
-                    </div>
+                        <div>
+                            <Accordion multiple className='flex  flex-wrap gap-12 w-[90%] lg:w-full mx-auto justify-center   3xl:ml-6 mb-24 mt-8'>
+                                {
+                                    isLocationInIran ?
+                                        questions.question.map((item: any, index: number) => {
+                                            return (
+                                                <AccordionTab
+                                                    key={index}
+                                                    pt={{
+                                                        headerIcon: <Image src={arrow} alt='arrow' />
+                                                    }}
+                                                    className={`${myFontIran.className} text-white text-right`}
+                                                    style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
+                                                    header={item.title}>
+                                                    {item.description}
+                                                </AccordionTab>
+                                            )
+                                        })
+                                        :
+                                        questions.engQuestion.map((item: any, index: number) => {
+                                            return (
+                                                <AccordionTab
+                                                    key={index}
+                                                    pt={{
+                                                        headerIcon: <Image src={arrow} alt='arrow' />
+                                                    }}
+                                                    className='text-white text-left'
+                                                    style={{ boxShadow: '0px 0px 45px 0px rgba(246, 141, 46, 0.20)' }}
+                                                    header={item.title}>
+                                                    {item.description}
+                                                </AccordionTab>
+                                            )
+                                        })
+                                }
+                            </Accordion>
+                        </div>
 
-                    <Footer data={locationData === 'Iran (Islamic Republic of)' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran (Islamic Republic of)' || !locationData} />
-                </PrimeReactProvider>
-            }
+                        <Footer data={locationData === 'Iran' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'Iran' || !locationData} />
+                    </PrimeReactProvider>
+                }
 
 
 
-            <style>
-                {
-                    `
+                <style>
+                    {
+                        `
                     .p-accordion .p-accordion-header .p-accordion-header-link {
                         @media (min-width: 2000px) { 
                             font-size : 20px;
@@ -156,7 +156,7 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
 
       .p-accordion .p-accordion-header .p-accordion-header-link {
         height : 90px;
-        justify-content : ${!isLocationInIran && 'flex-start'};
+        justify-content : ${isLocationInIran && 'space-between'};
       }
 
       .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
@@ -164,9 +164,9 @@ export default function SingleBlog({ footer, questions, footerEng }: { footer: a
       }
                     
                     `
-                }
-            </style>
-        </main>
+                    }
+                </style>
+            </main>
         </div>
     )
 }

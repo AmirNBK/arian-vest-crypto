@@ -25,7 +25,7 @@ import Link from 'next/link';
 export default function SuccessResult({ footer, questions }: { footer: any, questions: any }) {
 
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === 'Iran' || !locationData;
     interface TransactionType {
         actually_paid: number;
         burning_percent: null | string;

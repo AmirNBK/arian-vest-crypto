@@ -114,7 +114,7 @@ export default function Payment() {
     const toastBottomRight = useRef<Toast>(null);
     const [discountAmount, setDiscountAmount] = useState(0);
     const { locationData, error, loading } = useLocationData();
-    const isLocationInIran = locationData === 'Iran (Islamic Republic of)' || !locationData;
+    const isLocationInIran = locationData === 'Iran' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
@@ -421,9 +421,8 @@ export default function Payment() {
                                 >
                                     {isLocationInIran ? 'یک پلت فرم را انتخاب کنید:' : 'Select a Platform:'}
                                 </h2>
-
-
-                                <div className={`${!isLocationInIran && 'justify-start'} flex flex-row text-white gap-6 mt-8`}>
+                                <div className={`${!isLocationInIran ? 'justify-start flex-row' : 'flex-row-reverse'} flex
+                                 text-white gap-6 mt-8`}>
                                     <div className={'flex flex-row-reverse gap-3'}>
                                         <input type="radio" id="MT4" name="platform" value="MT4"
                                             onChange={() => handleRadioPlatformChange('MT4')}
