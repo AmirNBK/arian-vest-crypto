@@ -12,7 +12,7 @@ import Image from 'next/image';
 import { Toast, ToastMessage } from 'primereact/toast';
 import { CurrencyTransfer, getProfileInfo } from '@/lib/apiConfig';
 
-const CurrencyTransferComponent = () => {
+const CurrencyTransferComponent = (onRender: any) => {
     const { locationData, error, loading } = useLocationData();
     const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false)
     const [userId, setUserId] = useState<number>()

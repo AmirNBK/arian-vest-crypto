@@ -13,6 +13,7 @@ import { GetStaticProps } from 'next';
 import useLocationData from '@/Hooks/location';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 const CurrencyTransferComponent = dynamic(() => import("@/components/CurrencyTransfer/CurrencyTransfer"), {
     ssr: false,
 });
@@ -20,18 +21,32 @@ const CurrencyTransferComponent = dynamic(() => import("@/components/CurrencyTra
 export default function SingleBlog({ footer, footerEng }: { footer: any, footerEng: any }) {
     const { locationData, error, loading } = useLocationData();
     const isLocationInIran = locationData === 'IR' || !locationData;
+    const [currencyComponentRendered, setCurrencyComponentRendered] = useState(false);
+    const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowHeaderAndFooter(true);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [currencyComponentRendered]);
 
     return (
         <>
-            {loading ?
-                ''
-                :
                 <div>
-                    <Header isLocationInIran={isLocationInIran}  />
-                    <CurrencyTransferComponent />
-                    <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'IR' || !locationData} />
+                    <>
+                        <>
+                            {showHeaderAndFooter && <Header isLocationInIran={isLocationInIran} />}
+                            <CurrencyTransferComponent onRender={() => setCurrencyComponentRendered(true)} />
+                            {showHeaderAndFooter && <Footer
+                                data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter}
+                                isLocationInIran={locationData === 'IR' || !locationData}
+                            />}
+                        </>
+                    </>
                 </div>
-            }
+            
         </>
     )
 }
