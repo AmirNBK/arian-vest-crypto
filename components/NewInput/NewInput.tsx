@@ -12,6 +12,7 @@ const NewInput = (props: {
   onChange?: (value: string) => void;
   types?: [] | string[]
   isLocationIran: boolean
+  width?: number | string
 }) => {
   const isLocationInIran = props.isLocationIran
 
@@ -22,7 +23,7 @@ const NewInput = (props: {
   };
 
   return (
-    <div className={`${isLocationInIran && myFont.className} NewInput`}>
+    <div className={`${isLocationInIran && myFont.className} NewInput ${props.width ? `w-${props.width} mx-auto` : ''}`}>
       <div className="input-box active-grey">
         <label className={`${isLocationInIran && myFont.className} input-label`}>
           {props.placeholder}

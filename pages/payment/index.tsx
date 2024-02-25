@@ -13,7 +13,9 @@ import login from '../../assets/icons/loginPayment.svg'
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 const inter = Inter({ subsets: ['latin'] })
 import localFont from 'next/font/local'
+import wallet from '@/assets/icons/wallet.svg'
 import buy from '../../assets/icons/buy.svg'
+import nowPayment from '@/assets/icons/NowPayment.svg'
 const myFont = localFont({ src: '../../assets/fonts/Mj Dinar Two Medium.ttf' })
 const myFontIran = localFont({ src: '../../assets/fonts/iranyekanwebregular_0.ttf' })
 import PaymentComponent from '@/components/PaymentComponent/PaymentComponent';
@@ -117,6 +119,7 @@ export default function Payment() {
     const isLocationInIran = locationData === 'IR' || !locationData;
     const [toomanPrice, setToomanPrice] = useState(0)
     const [selectedTradingPlatform, setSelectedTradingPlatform] = useState<string>('');
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('');
     const [selectedPlatform, setSelectedPlatform] = useState('');
     const [rules1, setRules1] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(true);
@@ -127,6 +130,7 @@ export default function Payment() {
     const router = useRouter();
     const size = useWindowSize();
 
+    console.log(selectedPaymentMethod);
 
 
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -148,6 +152,10 @@ export default function Payment() {
         setSelectedPlatform(value);
     };
 
+    const handleRadioPaymentChange = (value: any) => {
+        setSelectedPaymentMethod(value);
+    };
+
     const [formState, setFormState] = useState<any>({
 
     });
@@ -166,6 +174,7 @@ export default function Payment() {
         if (
             formState &&
             selectedTradingPlatform &&
+            selectedPaymentMethod && 
             selectedPlatform &&
             formState.email &&
             isValidEmail &&
@@ -234,6 +243,11 @@ export default function Payment() {
                     ? 'لطفا پلتفرم معاملاتی مورد نظر خود را انتخاب نمایید'
                     : 'Please select your specific platform';
             }
+            else if (!selectedPaymentMethod) {
+                errorMessage = isLocationInIran
+                    ? 'لطفا روش پرداخت خود را انتخاب کنید'
+                    : 'Please select your Payment method';
+            }
 
             toastBottomRight.current?.show({
                 severity: 'error',
@@ -246,31 +260,36 @@ export default function Payment() {
 
 
     const handleCreateInvoice = async () => {
-        try {
-            const response = await createInvoice(finalPrice || initialPrice, '', 'This is a test');
-            const invoiceUrl = response.invoice_url;
+        if (selectedPaymentMethod === 'CurrencyTransfer') {
+            window.location.href = '/currency-transfer';
+        }
+        else {
+            try {
+                const response = await createInvoice(finalPrice || initialPrice, '', 'This is a test');
+                const invoiceUrl = response.invoice_url;
 
-            if (!invoiceUrl) {
+                if (!invoiceUrl) {
+                    setSubmitLoading(false)
+                }
+
+                const formDataString = JSON.stringify(formState);
+
+                localStorage.setItem('formData', formDataString);
+                localStorage.setItem('tradingPlatform', selectedTradingPlatform);
+                localStorage.setItem('platform', selectedPlatform);
+                localStorage.setItem('chosenTariff', chosenTariff);
+
+                window.location.href = invoiceUrl;
+
+            } catch (error) {
                 setSubmitLoading(false)
+                toastBottomRight.current?.show({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Network error , Please check your network connection and try again.',
+                    life: 3000,
+                });
             }
-
-            const formDataString = JSON.stringify(formState);
-
-            localStorage.setItem('formData', formDataString);
-            localStorage.setItem('tradingPlatform', selectedTradingPlatform);
-            localStorage.setItem('platform', selectedPlatform);
-            localStorage.setItem('chosenTariff', chosenTariff);
-
-            window.location.href = invoiceUrl;
-
-        } catch (error) {
-            setSubmitLoading(false)
-            toastBottomRight.current?.show({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Network error , Please check your network connection and try again.',
-                life: 3000,
-            });
         }
     };
 
@@ -467,6 +486,31 @@ export default function Payment() {
                                             {isLocationInIran ? '(برای مشاهده اینجا را کلیک کنید)' : '(Click here to view)'}
                                         </span>
                                     </p>
+                                </div>
+
+                                <div>
+                                    <h2 className={`${isLocationInIran ? 'rtl' : ''} mt-16 mb-4 text-sm`}
+                                        style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                                    >
+                                        {isLocationInIran ? 'انتخاب روش پرداخت:' : 'Select a Payment method:'}
+                                    </h2>
+
+                                    <div className={`${!isLocationInIran ? 'justify-start flex-row' : 'flex-row-reverse'} flex
+                                 text-white gap-8 mt-8`}>
+                                        <div className={'flex flex-row-reverse gap-3 items-center'}>
+                                            <input type="radio" id="NowPayment" name="paymentMethod" value="NowPayment"
+                                                onChange={() => handleRadioPaymentChange('NowPayment')}
+                                            />
+                                            <Image alt='nowPayment' src={nowPayment} className='' />
+                                        </div>
+
+                                        <div className={'flex flex-row-reverse gap-3 items-center'}>
+                                            <input type="radio" id="CurrencyTransfer" name="paymentMethod" value="CurrencyTransfer"
+                                                onChange={() => handleRadioPaymentChange('CurrencyTransfer')}
+                                            />
+                                            <Image alt='wallet' src={wallet} className='w-8' />
+                                        </div>
+                                    </div>
                                 </div>
 
 

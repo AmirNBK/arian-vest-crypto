@@ -15,7 +15,7 @@ const StatisticsComponents = (props: {
     paddingY?: number
     havePlusButton?: boolean
     fontSize?: string
-    width?: number
+    width?: number | string
     removeBg?: boolean
     onClick?: () => void;
     isCenter?: boolean
