@@ -27,7 +27,7 @@ export default function SingleBlog({ footer, footerEng }: { footer: any, footerE
                 ''
                 :
                 <div>
-                    <Header />
+                    <Header isLocationInIran={isLocationInIran}  />
                     <CurrencyTransferComponent />
                     <Footer data={locationData === 'IR' || !locationData ? footer?.footer : footerEng?.engFooter} isLocationInIran={locationData === 'IR' || !locationData} />
                 </div>
