@@ -16,7 +16,7 @@ const MessageComponent = (props: {
     const { message, date, type, id, file } = props
     const [profilePic, setProfilePic] = useState<File | null | string>(null);
     const [visible, setVisible] = useState<boolean>(false);
-    const size = useWindowSize();
+    const size = useWindowSize();    
 
     useEffect(() => {
         getProfileInfo().then((res) => {

@@ -15,7 +15,6 @@ import SendButton from '../../assets/images/sendButton.png'
 import ReactLoading from 'react-loading';
 import { SendTicket, getProfileInfo, getPurchasedAccounts, getTicketMessage, getTicketTypes, getTickets, postTicketMessage } from '@/lib/apiConfig';
 import tick from '../../assets/icons/tick.svg'
-import MessageComponent from '../MessageComponent/MessageComponent';
 import ChatScreen from '../ChatScreen/ChatScreen';
 
 const Ticket = (props: {
@@ -169,7 +168,7 @@ const Ticket = (props: {
                             detail: `${props.isLocationIran ? 'درخواست تيكت شما با موفقيت ثبت گرديد' : 'Your ticket request has been successfully registered'}`,
                             life: 3000,
                         });
-                        postTicketMessage(userId, res.data.pk, formData.description, '').then((res) => {
+                        postTicketMessage(userId, res.data.pk, formData.description, selectedFile).then((res) => {
 
                         })
                         setRefreshTickets(!refreshTickets)
@@ -437,7 +436,9 @@ const Ticket = (props: {
                                     setChatId(undefined)
                                 }} userId={userId} ticketId={chatId} refershMessages={() => {
                                     setRefreshMessages(!refreshMessages)
-                                }} />
+                                }}
+                                
+                                />
                             </div>
                         }
 
