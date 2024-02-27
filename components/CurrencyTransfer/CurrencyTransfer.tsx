@@ -12,6 +12,7 @@ import Image from 'next/image';
 import { Toast, ToastMessage } from 'primereact/toast';
 import { CurrencyTransfer, getProfileInfo } from '@/lib/apiConfig';
 import Receipt from '../Receipt/Receipt';
+import { useAppContext } from '@/functions/AppContext';
 
 
 interface TransactionType {
@@ -69,16 +70,19 @@ const CurrencyTransferComponent = (onRender: any) => {
     const [showReceipt, setShowReceipt] = useState<boolean>(false)
     const [userId, setUserId] = useState<number>()
     const isLocationInIran = locationData === 'IR' || !locationData;
+    const { receiptContext } = useAppContext();
     const [trackCode, setTrackCode] = useState()
     const challengeName = localStorage.getItem('challenge amount');
     const toastBottomRight = useRef<Toast>(null);
     const price = sessionStorage.getItem('buying price');
     const challengeType = localStorage.getItem('challenge');
     const [profileInfo, setProfileInfo] = useState<ProfileType>()
-    const [paymentInfo, setPaymentInfo] = useState<TransactionType>()
     const [formData, setFormData] = useState<formDataType>()
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
+
+    console.log(receiptContext);
+
 
     useEffect(() => {
         getProfileInfo().then((res) => {
@@ -138,10 +142,7 @@ const CurrencyTransferComponent = (onRender: any) => {
     const formattedCurrentDate = formatDateString();
 
     function generateRandomNumber() {
-        // Generate a random number between 0 and 9999999999 (inclusive)
         const randomNumber = Math.floor(Math.random() * 10000000000);
-
-        // Ensure the generated number has 10 digits
         const formattedNumber = randomNumber.toString().padStart(10, '0');
 
         return formattedNumber;

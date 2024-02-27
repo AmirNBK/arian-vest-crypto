@@ -10,6 +10,7 @@ import html2canvas from 'html2canvas';
 import PaymentResult from '../PaymentResult/PaymentResult';
 import useLocationData from '@/Hooks/location';
 import useWindowSize from '@/Hooks/innerSize';
+import { useAppContext } from '@/functions/AppContext';
 
 interface TransactionType {
   actually_paid: number;
@@ -102,6 +103,7 @@ const Receipt = (props: {
   const [receipt, setReceipt] = useState<File | undefined>()
   const [pdfGenerated, setPdfGenerated] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
+  const { setReceiptContext } = useAppContext();
   const { locationData, error, loading } = useLocationData();
   const isLocationInIran = locationData === 'IR' || !locationData;
   const challengeType = localStorage.getItem('challenge');
@@ -154,9 +156,8 @@ const Receipt = (props: {
           const blobData = await (await fetch(imageDataURL)).blob();
           const imageFile = new File([blobData], 'report.png', { type: 'image/png' });
 
-          console.log(imageDataURL);
-
           setReceipt(imageFile);
+          setReceiptContext(imageFile)
           setPdfGenerated(true);
         }, 2000);
 
@@ -230,9 +231,6 @@ const Receipt = (props: {
       </div>
     </li>
   );
-  
-  console.log(props.date);
-  
 
   const OverviewHeader: React.FC<OverviewHeaderProps> = ({ logo }) => (
     <div className="overview-header flex flex-col items-center text-black">
