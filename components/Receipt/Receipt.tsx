@@ -52,8 +52,9 @@ const Receipt = (props: {
   firstName: string | undefined
   lastName: string | undefined
   user: string | undefined
-  price: number
-  ref: React.Ref<HTMLDivElement>
+  price: number | string | null
+  ref?: React.Ref<HTMLDivElement>
+  isWallet: boolean
   address: string | undefined
   confirmationNum: string | undefined | number
   date: string
@@ -64,7 +65,7 @@ const Receipt = (props: {
   country: string | undefined
   city: string | undefined
   phone: string | undefined
-  paymentInfo: TransactionType
+  paymentInfo?: TransactionType
   profileInfo: ProfileType | undefined
 }) => {
   const paymentInfo = props.paymentInfo
@@ -103,22 +104,20 @@ const Receipt = (props: {
   const [loadingData, setLoadingData] = useState(true);
   const { locationData, error, loading } = useLocationData();
   const isLocationInIran = locationData === 'IR' || !locationData;
-
   const challengeType = localStorage.getItem('challenge');
   const challengeName = localStorage.getItem('challenge amount');
   const size = useWindowSize();
 
-  const TIMEOUT_THRESHOLD = 10000;
-  const MOBILE_WIDTH_THRESHOLD = 640;
-
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (loadingData) {
-        window.location.reload();
-      }
-    }, 10000);
+    if (!props.isWallet) {
+      const timeout = setTimeout(() => {
+        if (loadingData) {
+          window.location.reload();
+        }
+      }, 10000);
 
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
   }, [loadingData]);
 
   useEffect(() => {
@@ -231,9 +230,12 @@ const Receipt = (props: {
       </div>
     </li>
   );
+  
+  console.log(props.date);
+  
 
   const OverviewHeader: React.FC<OverviewHeaderProps> = ({ logo }) => (
-    <div className="overview-header flex flex-col items-center">
+    <div className="overview-header flex flex-col items-center text-black">
       <Image className="logo" src={logo} unoptimized alt="Logo" />
       <div className="timestamp">
         <div> {props.date} </div>
@@ -252,7 +254,7 @@ const Receipt = (props: {
   const OverviewBody: React.FC<OverviewBodyProps> = ({ name, value, merchant, merchantEmail }) => (
     <div className="overview-body">
       <PurchaseOverview product="Receipt for your purchase payment at Vira Funding" />
-      <p className="user-info-name my-4">Hello {props.firstName} {props.lastName} </p>
+      <p className="user-info-name my-4">Hello {props.firstName || props.user} {props.lastName} </p>
       <span>
         You sent a payment of <span>${props.price}</span> to Vira Funding.
       </span>
@@ -318,16 +320,19 @@ const Receipt = (props: {
       {
         <div className='Receipt'
         >
-          {!loadingData ?
-            <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
-            :
-            <div className='flex flex-col items-center'>
-              <p className=' text-white text-lg sm:w-8/12 w-10/12 text-center mt-12'>
-                Your purchase is being processed, please be patient until your purchase is completed.
-              </p>
-              <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
-            </div>
-
+          {
+            !props.isWallet &&
+            (
+              !loadingData ?
+                <PaymentResult title={isLocationInIran ? 'پرداخت موفقیت آمیز بود' : 'Payment was successful'} image={successful} />
+                :
+                <div className='flex flex-col items-center'>
+                  <p className=' text-white text-lg sm:w-8/12 w-10/12 text-center mt-12'>
+                    Your purchase is being processed, please be patient until your purchase is completed.
+                  </p>
+                  <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
+                </div>
+            )
           }
           <div className="receipt"
             id='overview'

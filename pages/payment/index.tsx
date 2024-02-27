@@ -130,9 +130,6 @@ export default function Payment() {
     const router = useRouter();
     const size = useWindowSize();
 
-    console.log(selectedPaymentMethod);
-
-
     const handleDiscountInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setDiscountCode(event.target.value);
     };
@@ -174,7 +171,7 @@ export default function Payment() {
         if (
             formState &&
             selectedTradingPlatform &&
-            selectedPaymentMethod && 
+            selectedPaymentMethod &&
             selectedPlatform &&
             formState.email &&
             isValidEmail &&
@@ -261,6 +258,11 @@ export default function Payment() {
 
     const handleCreateInvoice = async () => {
         if (selectedPaymentMethod === 'CurrencyTransfer') {
+            const formDataString = JSON.stringify(formState);
+            localStorage.setItem('formData', formDataString);
+            localStorage.setItem('tradingPlatform', selectedTradingPlatform);
+            localStorage.setItem('platform', selectedPlatform);
+            localStorage.setItem('chosenTariff', chosenTariff);
             window.location.href = '/currency-transfer';
         }
         else {

@@ -11,10 +11,62 @@ import sendInfoButton from '../../assets/images/sendInfo.png'
 import Image from 'next/image';
 import { Toast, ToastMessage } from 'primereact/toast';
 import { CurrencyTransfer, getProfileInfo } from '@/lib/apiConfig';
+import Receipt from '../Receipt/Receipt';
+
+
+interface TransactionType {
+    actually_paid: number;
+    burning_percent: null | string;
+    created_at: string;
+    invoice_id: number;
+    order_description: null | any;
+    order_id: string;
+    outcome_amount: number;
+    outcome_currency: string;
+    pay_address: string;
+    pay_amount: number;
+    pay_currency: string;
+    payin_extra_id: null | any;
+    payin_hash: null | any;
+    payment_id: number;
+    payment_status: string;
+    payout_hash: null | any;
+    price_amount: number;
+    price_currency: string;
+    purchase_id: number;
+    type: string;
+    updated_at: string;
+}
+
+type formDataType = {
+    city: string;
+    country: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    postalCode: string;
+    province: string;
+    streetAddress: string;
+};
+
+interface ProfileType {
+    address: string;
+    created_at: string;
+    documents: null | any;
+    email: string;
+    first_name: string;
+    fullname: string;
+    image: null | any;
+    last_name: string;
+    phone_number: string;
+    pk: number;
+}
 
 const CurrencyTransferComponent = (onRender: any) => {
     const { locationData, error, loading } = useLocationData();
     const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false)
+    const [showReceipt, setShowReceipt] = useState<boolean>(false)
     const [userId, setUserId] = useState<number>()
     const isLocationInIran = locationData === 'IR' || !locationData;
     const [trackCode, setTrackCode] = useState()
@@ -22,6 +74,30 @@ const CurrencyTransferComponent = (onRender: any) => {
     const toastBottomRight = useRef<Toast>(null);
     const price = sessionStorage.getItem('buying price');
     const challengeType = localStorage.getItem('challenge');
+    const [profileInfo, setProfileInfo] = useState<ProfileType>()
+    const [paymentInfo, setPaymentInfo] = useState<TransactionType>()
+    const [formData, setFormData] = useState<formDataType>()
+    const [broker, setBroker] = useState<string | null>()
+    const [platform, setPlatform] = useState<string | null>()
+
+    useEffect(() => {
+        getProfileInfo().then((res) => {
+            setProfileInfo(res.data)
+        })
+        const platformLocal = localStorage.getItem('platform');
+        const brokerLocal = localStorage.getItem('tradingPlatform');
+        setPlatform(platformLocal)
+        setBroker(brokerLocal)
+
+        const formDataString = localStorage.getItem('formData');
+
+        if (formDataString !== null) {
+            const formDataLocal = JSON.parse(formDataString);
+            setFormData(formDataLocal)
+        } else {
+            console.error('formData is not present in localStorage');
+        }
+    }, [])
 
     const handleInputChange = (value: any) => {
         setTrackCode(value)
@@ -34,12 +110,50 @@ const CurrencyTransferComponent = (onRender: any) => {
 
     }, [])
 
+
+    const formatDateString = (inputDateStr?: string | number | Date) => {
+        let inputDate: Date;
+
+        if (inputDateStr === undefined) {
+            inputDate = new Date();
+        } else {
+            inputDate = new Date(inputDateStr);
+        }
+
+        const options: any = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZoneName: 'short',
+        };
+
+        const formattedDate = inputDate.toLocaleString('en-US', options);
+
+        return formattedDate;
+    };
+
+    const formattedCurrentDate = formatDateString();
+
+    function generateRandomNumber() {
+        // Generate a random number between 0 and 9999999999 (inclusive)
+        const randomNumber = Math.floor(Math.random() * 10000000000);
+
+        // Ensure the generated number has 10 digits
+        const formattedNumber = randomNumber.toString().padStart(10, '0');
+
+        return formattedNumber;
+    }
+
     const submit = () => {
         setLoadingSubmit(true)
         if (trackCode) {
             CurrencyTransfer(userId, challengeType + ' ' + challengeName, price, trackCode).then((res) => {
                 setLoadingSubmit(false)
                 if (res.status === 201) {
+                    setShowReceipt(true)
                     toastBottomRight.current?.show({
                         severity: 'success',
                         summary: 'Success',
@@ -119,6 +233,27 @@ const CurrencyTransferComponent = (onRender: any) => {
                                     submit()
                                 }} />
                             </div>
+                        }
+
+                        {(profileInfo && showReceipt) ?
+                            <Receipt broker={broker}
+                                isWallet
+                                profileInfo={profileInfo}
+                                city={formData?.city}
+                                country={formData?.country}
+                                firstName={formData?.firstName}
+                                lastName={formData?.lastName}
+                                platform={platform}
+                                user={profileInfo?.fullname}
+                                price={price}
+                                phone={formData?.phone}
+                                address={formData?.streetAddress}
+                                date={formattedCurrentDate}
+                                currency={'Wallet transfer'}
+                                confirmationNum={generateRandomNumber()} email={formData?.email} />
+                            :
+                            showReceipt &&
+                            <ReactLoading type={'spinningBubbles'} className='mx-auto mt-12' color={'#F68D2E'} height={667} width={150} />
                         }
                     </div>
                 </div>

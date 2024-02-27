@@ -169,6 +169,7 @@ export default function SuccessResult({ footer, questions }: { footer: any, ques
                         <div className='bg-[#1D1D1D] rounded-md w-10/12 lg:w-7/12 mx-auto py-6 my-12'>
                             {(paymentInfo && profileInfo) ?
                                 <Receipt broker={broker}
+                                    isWallet={false}
                                     profileInfo={profileInfo}
                                     paymentInfo={paymentInfo}
                                     ref={receiptRef}
