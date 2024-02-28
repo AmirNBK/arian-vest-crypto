@@ -68,6 +68,7 @@ const CurrencyTransferComponent = (onRender: any) => {
     const { locationData, error, loading } = useLocationData();
     const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false)
     const [showReceipt, setShowReceipt] = useState<boolean>(false)
+    const [oneRequest, setOneRequest] = useState<boolean>(true)
     const [userId, setUserId] = useState<number>()
     const isLocationInIran = locationData === 'IR' || !locationData;
     const { receiptContext } = useAppContext();
@@ -80,9 +81,6 @@ const CurrencyTransferComponent = (onRender: any) => {
     const [formData, setFormData] = useState<formDataType>()
     const [broker, setBroker] = useState<string | null>()
     const [platform, setPlatform] = useState<string | null>()
-
-    console.log(receiptContext);
-
 
     useEffect(() => {
         getProfileInfo().then((res) => {
@@ -151,18 +149,20 @@ const CurrencyTransferComponent = (onRender: any) => {
     const submit = () => {
         setLoadingSubmit(true)
         if (trackCode) {
-            CurrencyTransfer(userId, challengeType + ' ' + challengeName, price, trackCode).then((res) => {
-                setLoadingSubmit(false)
-                if (res.status === 201) {
-                    setShowReceipt(true)
-                    toastBottomRight.current?.show({
-                        severity: 'success',
-                        summary: 'Success',
-                        detail: `${isLocationInIran ? 'اطلاعات شما با موفقیت ارسال شدو بعد از پیگیری پشتیبانی و تایید به حساب شما اضافه خواهد شد' : 'Your information has been successfully submitted and will be added to your account after following up with support'}`,
-                        life: 3000,
-                    });
-                }
-            })
+            setShowReceipt(true)
+            if (receiptContext) {
+                CurrencyTransfer(userId, challengeType, challengeType + ' ' + challengeName, price, trackCode, receiptContext).then((res) => {
+                    setLoadingSubmit(false)
+                    if (res.status === 201) {
+                        toastBottomRight.current?.show({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: `${isLocationInIran ? 'اطلاعات شما با موفقیت ارسال شدو بعد از پیگیری پشتیبانی و تایید به حساب شما اضافه خواهد شد' : 'Your information has been successfully submitted and will be added to your account after following up with support'}`,
+                            life: 3000,
+                        });
+                    }
+                })
+            }
         }
         else {
             setLoadingSubmit(false)
@@ -173,8 +173,15 @@ const CurrencyTransferComponent = (onRender: any) => {
                 life: 3000,
             });
         }
-
     }
+
+    useEffect(() => {
+        if (receiptContext && oneRequest) {
+            submit()
+            setOneRequest(false)
+        }
+
+    }, [receiptContext])
 
     return (
         <>
@@ -199,43 +206,48 @@ const CurrencyTransferComponent = (onRender: any) => {
                             }
 
                         </p>
-                        <div>
-                            <h3 className={`${myFont.className} text-center mb-2 text-xl text-main-orange`}>
-                                {isLocationInIran ? 'آدرس کیف پول' : 'Wallet address'}
-                            </h3>
-                            <StatisticsComponents dollar={false} title={isLocationInIran ? 'تعداد جوایز' : 'Wallet address'} width={'fit'} value={'A122-223A-JN5L-IO2P'} icon={''} />
-                        </div>
-                        <div className='sm:block hidden my-10'>
-                            <NewInput
-                                isLocationIran={isLocationInIran}
-                                placeholder={isLocationInIran ? 'کد رهگیری' : 'Tracking Code'}
-                                isTextArea={false}
-                                width={'1/3'}
-                                onChange={(value) => handleInputChange(value)}
-                                value={trackCode}
-                            />
-                        </div>
-                        <div className='sm:hidden block my-10'>
-                            <NewInput
-                                isLocationIran={isLocationInIran}
-                                placeholder={isLocationInIran ? 'کد رهگیری' : 'Tracking Code'}
-                                isTextArea={false}
-                                width={'full'}
-                                onChange={(value) => handleInputChange(value)}
-                                value={trackCode}
-                            />
-                        </div>
+                        {!showReceipt &&
+                            <>
+                                <div>
+                                    <h3 className={`${myFont.className} text-center mb-2 text-xl text-main-orange`}>
+                                        {isLocationInIran ? 'آدرس کیف پول' : 'Wallet address'}
+                                    </h3>
+                                    <StatisticsComponents dollar={false} title={isLocationInIran ? 'تعداد جوایز' : 'Wallet address'} width={'fit'} value={'A122-223A-JN5L-IO2P'} icon={''} />
+                                </div>
+                                <div className='sm:block hidden my-10'>
+                                    <NewInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'کد رهگیری' : 'Tracking Code'}
+                                        isTextArea={false}
+                                        width={'1/3'}
+                                        onChange={(value) => handleInputChange(value)}
+                                        value={trackCode}
+                                    />
+                                </div>
+                                <div className='sm:hidden block my-10'>
+                                    <NewInput
+                                        isLocationIran={isLocationInIran}
+                                        placeholder={isLocationInIran ? 'کد رهگیری' : 'Tracking Code'}
+                                        isTextArea={false}
+                                        width={'full'}
+                                        onChange={(value) => handleInputChange(value)}
+                                        value={trackCode}
+                                    />
+                                </div>
+                            </>
+                        }
 
                         {loadingSubmit ?
                             <ReactLoading type={'spinningBubbles'} className='mx-auto' color={'#F68D2E'} height={50} width={50} />
                             :
+                            !showReceipt &&
                             <div className={`flex justify-center cursor-pointer`}>
                                 <Image src={isLocationInIran ? SendButton : sendInfoButton} alt='button' unoptimized onClick={() => {
                                     submit()
                                 }} />
                             </div>
-                        }
 
+                        }
                         {(profileInfo && showReceipt) ?
                             <Receipt broker={broker}
                                 isWallet
