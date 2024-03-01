@@ -9,7 +9,6 @@ interface PaymentComponentProps {
     onChange: (fieldName: string, value: string) => void;
     name: string;
     type: string
-    ref?: any
 }
 
 const PaymentComponent: React.FC<PaymentComponentProps> = ({
@@ -20,8 +19,7 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
     isLocationIran,
     onChange,
     name,
-    type,
-    ref
+    type
 },) => {
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         onChange(name, event.target.value);
@@ -37,7 +35,6 @@ const PaymentComponent: React.FC<PaymentComponentProps> = ({
                     className={`${isLocationIran && 'rtl'} p-3 w-full text-white bg-transparent rounded-md`}
                     style={{ border: '1px solid #6B7280' }}
                     onChange={handleChange}
-                    ref={ref}
                 />
             ) : (
                 <select
