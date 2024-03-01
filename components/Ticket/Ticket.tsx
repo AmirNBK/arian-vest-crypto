@@ -182,6 +182,7 @@ const Ticket = (props: {
                             }));
 
                         }, 0);
+                        setSelectedFile(null)
                         setSubmitLoading(false)
                     }
                     else {

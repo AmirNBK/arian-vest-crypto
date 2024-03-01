@@ -255,6 +255,27 @@ export default function Payment() {
         }
     };
 
+    const firstNameRef = useRef<HTMLInputElement>(null);
+    const lastNameRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+
+    const handleInputChangeInputs = (fieldName: any, value: any) => {
+        switch (fieldName) {
+            case 'lastName':
+                firstNameRef.current?.focus();
+                break;
+            case 'firstName':
+                phoneRef.current?.focus();
+                break;
+            case 'phone':
+                emailRef.current?.focus();
+                break;
+            default:
+                break;
+        }
+    };
+
 
     const handleCreateInvoice = async () => {
         if (selectedPaymentMethod === 'CurrencyTransfer') {
@@ -390,11 +411,85 @@ export default function Payment() {
                                 <h2 className={`text-white ${isLocationInIran && 'rtl'}`}>
                                     {isLocationInIran ? 'اطلاعات اولیه:' : 'Initial Information:'}
                                 </h2>
-                                <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
-                                    <PaymentComponent type='text' name='lastName' onChange={(lastName, value) => handleInputChange(lastName, value)} placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                    <PaymentComponent type='text' name='firstName' onChange={(firstName, value) => handleInputChange(firstName, value)} placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'} selectInput={false} isLocationIran={isLocationInIran} />
-                                    <PaymentComponent type='email' name='email' onChange={(email, value) => handleInputChange(email, value)} placeholder={isLocationInIran ? 'ایمیل' : 'Email'} selectInput={false} isLocationIran={isLocationInIran} />
-                                    <PaymentComponent type='text' name='phone' onChange={(phone, value) => handleInputChange(phone, value)} placeholder={isLocationInIran ? 'تلفن' : 'Phone'} selectInput={false} isLocationIran={isLocationInIran} />
+                                <div className={`${isLocationInIran ? 'hidden' : 'flex'} grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md`}>
+                                    <PaymentComponent
+                                        type='text'
+                                        name='lastName'
+                                        onChange={(lastName, value) => handleInputChangeInputs(lastName, value)}
+                                        placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={lastNameRef}
+                                    />
+                                    <PaymentComponent
+                                        type='text'
+                                        name='firstName'
+                                        onChange={(firstName, value) => handleInputChangeInputs(firstName, value)}
+                                        placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={firstNameRef}
+                                    />
+                                    <PaymentComponent
+                                        type='email'
+                                        name='email'
+                                        onChange={(email, value) => handleInputChangeInputs(email, value)}
+                                        placeholder={isLocationInIran ? 'ایمیل' : 'Email'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={emailRef}
+                                    />
+                                    <PaymentComponent
+                                        type='text'
+                                        name='phone'
+                                        onChange={(phone, value) => handleInputChangeInputs(phone, value)}
+                                        placeholder={isLocationInIran ? 'تلفن' : 'Phone'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={phoneRef}
+                                    />
+                                </div>
+
+                                <div className={`${isLocationInIran ? 'flex' : 'hidden'} flex-row-reverse w-full justify-between gap-6 mt-4 rounded-md`}>
+                                    <PaymentComponent
+                                        type='text'
+                                        name='firstName'
+                                        onChange={(firstName, value) => handleInputChangeInputs(firstName, value)}
+                                        placeholder={isLocationInIran ? 'نام کوچک' : 'First Name'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={firstNameRef}
+                                    />
+                                    <PaymentComponent
+                                        type='text'
+                                        name='lastName'
+                                        onChange={(lastName, value) => handleInputChangeInputs(lastName, value)}
+                                        placeholder={isLocationInIran ? 'نام خانوادگی' : 'Last Name'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={lastNameRef}
+                                    />
+                                </div>
+
+                                <div className={`${isLocationInIran ? 'flex' : 'hidden'} flex flex-row-reverse  w-full justify-between gap-6 mt-4 rounded-md`}>
+                                    <PaymentComponent
+                                        type='email'
+                                        name='email'
+                                        onChange={(email, value) => handleInputChangeInputs(email, value)}
+                                        placeholder={isLocationInIran ? 'ایمیل' : 'Email'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={emailRef}
+                                    />
+                                    <PaymentComponent
+                                        type='text'
+                                        name='phone'
+                                        onChange={(phone, value) => handleInputChangeInputs(phone, value)}
+                                        placeholder={isLocationInIran ? 'تلفن' : 'Phone'}
+                                        selectInput={false}
+                                        isLocationIran={isLocationInIran}
+                                        ref={phoneRef}
+                                    />
                                 </div>
 
                                 <h2 className={`text-white ${isLocationInIran && 'rtl'} mt-6 mb-4`}>
@@ -403,9 +498,18 @@ export default function Payment() {
 
                                 <PaymentComponent type='text' name='streetAddress' onChange={(fieldName, value) => handleInputChange(fieldName, value)} placeholder={isLocationInIran ? 'آدرس خیابان' : 'Street Address'} selectInput={false} isLocationIran={isLocationInIran} />
 
-                                <div className='grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md'>
+                                <div className={`${isLocationInIran ? 'hidden' : 'flex'} grid grid-cols-2 w-full justify-between gap-6 mt-4 rounded-md`}>
                                     <PaymentComponent type='text' name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
                                     <PaymentComponent type='text' name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
+                                </div>
+
+                                <div className={`${isLocationInIran ? 'flex' : 'hidden'} flex flex-row  w-full justify-between gap-6 mt-4 rounded-md`}>
+                                    <PaymentComponent type='text' name='province' onChange={(province, value) => handleInputChange(province, value)} placeholder={isLocationInIran ? 'استان' : 'Province'} selectInput={false} isLocationIran={isLocationInIran} />
+                                    <PaymentComponent type='text' name='country' onChange={(country, value) => handleInputChange(country, value)} placeholder={''} selectInput selectOptions={countries} isLocationIran={isLocationInIran} />
+                                </div>
+                                <div className={`${isLocationInIran ? 'flex' : 'hidden'} flex flex-row-reverse  w-full justify-between gap-6 mt-4 rounded-md`}>
                                     <PaymentComponent type='text' name='postalCode' onChange={(postalCode, value) => handleInputChange(postalCode, value)} placeholder={isLocationInIran ? 'کد پستی' : 'Postal Code'} selectInput={false} isLocationIran={isLocationInIran} />
                                     <PaymentComponent type='text' name='city' onChange={(city, value) => handleInputChange(city, value)} placeholder={isLocationInIran ? 'شهر' : 'City'} selectInput={false} isLocationIran={isLocationInIran} />
                                 </div>

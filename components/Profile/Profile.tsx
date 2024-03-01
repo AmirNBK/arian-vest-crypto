@@ -116,7 +116,7 @@ const Profile = (
                     toastBottomRight.current?.show({
                         severity: 'error',
                         summary: 'Error',
-                        detail: `${(res.response.data.error) || (isLocationInIran ? 'مشکلی در ویرایش اطلاعات رخ داد لطفا دوباره امتحان کنید' : 'There was a problem editing information. Please try again')}`,
+                        detail: `${(isLocationInIran ? 'کاربری با این ایمیل وجود دارد' : res.response.data.error) || (isLocationInIran ? 'مشکلی در ویرایش اطلاعات رخ داد لطفا دوباره امتحان کنید' : 'There was a problem editing information. Please try again')}`,
                         life: 3000,
                     });
                 }
@@ -289,7 +289,7 @@ const Profile = (
 
                         <div className={`accounts__info rounded-md p-1 mt-5 w-full text-white overflow-auto`}>
                             {profileInfo?.purchased_accounts.length ? (
-                                <table className={`w-full`} style={{direction : `${isLocationInIran ? 'ltr' : 'rtl'}`}}>
+                                <table className={`w-full`} style={{ direction: `${isLocationInIran ? 'ltr' : 'rtl'}` }}>
                                     <tr>
                                         <th className={`${myFont.className}`}></th>
                                         <th className={`${myFont.className} text-xl text-center text-main-orange`}>
